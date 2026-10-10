@@ -1,0 +1,2909 @@
+{
+  "schema_version": 1,
+  "firmware": "blue-7",
+  "manual_sha256": "e324801d355524354223d3d0e7528f8077dc330f193f10b7544f01d76a6f94ad",
+  "manual_pages": 413,
+  "extraction": "Xpdf 4.04 pdftohtml, code-font rows/spans, explicit columns",
+  "scope": "All standalone INI headers/assignments and inline assignment spans in the PDF text layer; GUI screenshots, register tables, shell commands and status dumps are not source programs.",
+  "matching": "Coverage only: ignore whitespace, case and trailing comments. Imported files are never rewritten by this matching.",
+  "corpus_count": 630,
+  "txt_examples": 332,
+  "pdf_transcriptions": 262,
+  "standalone_candidates": 3010,
+  "inline_candidates": 207,
+  "missing_count": 0,
+  "passed": true,
+  "pages": [
+    {
+      "page": 1,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 2,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 3,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 4,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 5,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 6,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 7,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 8,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 9,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 10,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 11,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 12,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 13,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 14,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 15,
+      "standalone_candidates": 1,
+      "inline_candidates": 0,
+      "covered": 1,
+      "missing": []
+    },
+    {
+      "page": 16,
+      "standalone_candidates": 10,
+      "inline_candidates": 0,
+      "covered": 10,
+      "missing": []
+    },
+    {
+      "page": 17,
+      "standalone_candidates": 27,
+      "inline_candidates": 0,
+      "covered": 27,
+      "missing": []
+    },
+    {
+      "page": 18,
+      "standalone_candidates": 55,
+      "inline_candidates": 0,
+      "covered": 55,
+      "missing": []
+    },
+    {
+      "page": 19,
+      "standalone_candidates": 58,
+      "inline_candidates": 0,
+      "covered": 58,
+      "missing": []
+    },
+    {
+      "page": 20,
+      "standalone_candidates": 54,
+      "inline_candidates": 0,
+      "covered": 54,
+      "missing": []
+    },
+    {
+      "page": 21,
+      "standalone_candidates": 1,
+      "inline_candidates": 0,
+      "covered": 1,
+      "missing": []
+    },
+    {
+      "page": 22,
+      "standalone_candidates": 43,
+      "inline_candidates": 0,
+      "covered": 43,
+      "missing": []
+    },
+    {
+      "page": 23,
+      "standalone_candidates": 21,
+      "inline_candidates": 1,
+      "covered": 22,
+      "missing": []
+    },
+    {
+      "page": 24,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 25,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 26,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 27,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 28,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 29,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 30,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 31,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 32,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 33,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 34,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 35,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 36,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 37,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 38,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 39,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 40,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 41,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 42,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 43,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 44,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 45,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 46,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 47,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 48,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 49,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 50,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 51,
+      "standalone_candidates": 9,
+      "inline_candidates": 0,
+      "covered": 9,
+      "missing": []
+    },
+    {
+      "page": 52,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 53,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 54,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 55,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 56,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 57,
+      "standalone_candidates": 17,
+      "inline_candidates": 0,
+      "covered": 17,
+      "missing": []
+    },
+    {
+      "page": 58,
+      "standalone_candidates": 11,
+      "inline_candidates": 1,
+      "covered": 12,
+      "missing": []
+    },
+    {
+      "page": 59,
+      "standalone_candidates": 26,
+      "inline_candidates": 0,
+      "covered": 26,
+      "missing": []
+    },
+    {
+      "page": 60,
+      "standalone_candidates": 32,
+      "inline_candidates": 0,
+      "covered": 32,
+      "missing": []
+    },
+    {
+      "page": 61,
+      "standalone_candidates": 17,
+      "inline_candidates": 0,
+      "covered": 17,
+      "missing": []
+    },
+    {
+      "page": 62,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 63,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 64,
+      "standalone_candidates": 3,
+      "inline_candidates": 0,
+      "covered": 3,
+      "missing": []
+    },
+    {
+      "page": 65,
+      "standalone_candidates": 36,
+      "inline_candidates": 0,
+      "covered": 36,
+      "missing": []
+    },
+    {
+      "page": 66,
+      "standalone_candidates": 7,
+      "inline_candidates": 0,
+      "covered": 7,
+      "missing": []
+    },
+    {
+      "page": 67,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 68,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 69,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 70,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 71,
+      "standalone_candidates": 22,
+      "inline_candidates": 0,
+      "covered": 22,
+      "missing": []
+    },
+    {
+      "page": 72,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 73,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 74,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 75,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 76,
+      "standalone_candidates": 6,
+      "inline_candidates": 0,
+      "covered": 6,
+      "missing": []
+    },
+    {
+      "page": 77,
+      "standalone_candidates": 3,
+      "inline_candidates": 0,
+      "covered": 3,
+      "missing": []
+    },
+    {
+      "page": 78,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 79,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 80,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 81,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 82,
+      "standalone_candidates": 4,
+      "inline_candidates": 0,
+      "covered": 4,
+      "missing": []
+    },
+    {
+      "page": 83,
+      "standalone_candidates": 13,
+      "inline_candidates": 1,
+      "covered": 14,
+      "missing": []
+    },
+    {
+      "page": 84,
+      "standalone_candidates": 4,
+      "inline_candidates": 2,
+      "covered": 6,
+      "missing": []
+    },
+    {
+      "page": 85,
+      "standalone_candidates": 11,
+      "inline_candidates": 0,
+      "covered": 11,
+      "missing": []
+    },
+    {
+      "page": 86,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 87,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 88,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 89,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 90,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 91,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 92,
+      "standalone_candidates": 7,
+      "inline_candidates": 0,
+      "covered": 7,
+      "missing": []
+    },
+    {
+      "page": 93,
+      "standalone_candidates": 52,
+      "inline_candidates": 0,
+      "covered": 52,
+      "missing": []
+    },
+    {
+      "page": 94,
+      "standalone_candidates": 32,
+      "inline_candidates": 0,
+      "covered": 32,
+      "missing": []
+    },
+    {
+      "page": 95,
+      "standalone_candidates": 12,
+      "inline_candidates": 0,
+      "covered": 12,
+      "missing": []
+    },
+    {
+      "page": 96,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 97,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 98,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 99,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 100,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 101,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 102,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 103,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 104,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 105,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 106,
+      "standalone_candidates": 16,
+      "inline_candidates": 0,
+      "covered": 16,
+      "missing": []
+    },
+    {
+      "page": 107,
+      "standalone_candidates": 9,
+      "inline_candidates": 0,
+      "covered": 9,
+      "missing": []
+    },
+    {
+      "page": 108,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 109,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 110,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 111,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 112,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 113,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 114,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 115,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 116,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 117,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 118,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 119,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 120,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 121,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 122,
+      "standalone_candidates": 0,
+      "inline_candidates": 1,
+      "covered": 1,
+      "missing": []
+    },
+    {
+      "page": 123,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 124,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 125,
+      "standalone_candidates": 12,
+      "inline_candidates": 0,
+      "covered": 12,
+      "missing": []
+    },
+    {
+      "page": 126,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 127,
+      "standalone_candidates": 24,
+      "inline_candidates": 0,
+      "covered": 24,
+      "missing": []
+    },
+    {
+      "page": 128,
+      "standalone_candidates": 20,
+      "inline_candidates": 2,
+      "covered": 22,
+      "missing": []
+    },
+    {
+      "page": 129,
+      "standalone_candidates": 35,
+      "inline_candidates": 0,
+      "covered": 35,
+      "missing": []
+    },
+    {
+      "page": 130,
+      "standalone_candidates": 6,
+      "inline_candidates": 2,
+      "covered": 8,
+      "missing": []
+    },
+    {
+      "page": 131,
+      "standalone_candidates": 38,
+      "inline_candidates": 0,
+      "covered": 38,
+      "missing": []
+    },
+    {
+      "page": 132,
+      "standalone_candidates": 10,
+      "inline_candidates": 0,
+      "covered": 10,
+      "missing": []
+    },
+    {
+      "page": 133,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 134,
+      "standalone_candidates": 0,
+      "inline_candidates": 7,
+      "covered": 7,
+      "missing": []
+    },
+    {
+      "page": 135,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 136,
+      "standalone_candidates": 0,
+      "inline_candidates": 3,
+      "covered": 3,
+      "missing": []
+    },
+    {
+      "page": 137,
+      "standalone_candidates": 0,
+      "inline_candidates": 1,
+      "covered": 1,
+      "missing": []
+    },
+    {
+      "page": 138,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 139,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 140,
+      "standalone_candidates": 8,
+      "inline_candidates": 3,
+      "covered": 11,
+      "missing": []
+    },
+    {
+      "page": 141,
+      "standalone_candidates": 29,
+      "inline_candidates": 0,
+      "covered": 29,
+      "missing": []
+    },
+    {
+      "page": 142,
+      "standalone_candidates": 23,
+      "inline_candidates": 3,
+      "covered": 26,
+      "missing": []
+    },
+    {
+      "page": 143,
+      "standalone_candidates": 39,
+      "inline_candidates": 0,
+      "covered": 39,
+      "missing": []
+    },
+    {
+      "page": 144,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 145,
+      "standalone_candidates": 0,
+      "inline_candidates": 3,
+      "covered": 3,
+      "missing": []
+    },
+    {
+      "page": 146,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 147,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 148,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 149,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 150,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 151,
+      "standalone_candidates": 5,
+      "inline_candidates": 0,
+      "covered": 5,
+      "missing": []
+    },
+    {
+      "page": 152,
+      "standalone_candidates": 30,
+      "inline_candidates": 0,
+      "covered": 30,
+      "missing": []
+    },
+    {
+      "page": 153,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 154,
+      "standalone_candidates": 33,
+      "inline_candidates": 1,
+      "covered": 34,
+      "missing": []
+    },
+    {
+      "page": 155,
+      "standalone_candidates": 40,
+      "inline_candidates": 2,
+      "covered": 42,
+      "missing": []
+    },
+    {
+      "page": 156,
+      "standalone_candidates": 32,
+      "inline_candidates": 2,
+      "covered": 34,
+      "missing": []
+    },
+    {
+      "page": 157,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 158,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 159,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 160,
+      "standalone_candidates": 54,
+      "inline_candidates": 0,
+      "covered": 54,
+      "missing": []
+    },
+    {
+      "page": 161,
+      "standalone_candidates": 20,
+      "inline_candidates": 3,
+      "covered": 23,
+      "missing": []
+    },
+    {
+      "page": 162,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 163,
+      "standalone_candidates": 0,
+      "inline_candidates": 3,
+      "covered": 3,
+      "missing": []
+    },
+    {
+      "page": 164,
+      "standalone_candidates": 7,
+      "inline_candidates": 0,
+      "covered": 7,
+      "missing": []
+    },
+    {
+      "page": 165,
+      "standalone_candidates": 17,
+      "inline_candidates": 1,
+      "covered": 18,
+      "missing": []
+    },
+    {
+      "page": 166,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 167,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 168,
+      "standalone_candidates": 8,
+      "inline_candidates": 0,
+      "covered": 8,
+      "missing": []
+    },
+    {
+      "page": 169,
+      "standalone_candidates": 20,
+      "inline_candidates": 0,
+      "covered": 20,
+      "missing": []
+    },
+    {
+      "page": 170,
+      "standalone_candidates": 40,
+      "inline_candidates": 0,
+      "covered": 40,
+      "missing": []
+    },
+    {
+      "page": 171,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 172,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 173,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 174,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 175,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 176,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 177,
+      "standalone_candidates": 10,
+      "inline_candidates": 0,
+      "covered": 10,
+      "missing": []
+    },
+    {
+      "page": 178,
+      "standalone_candidates": 31,
+      "inline_candidates": 0,
+      "covered": 31,
+      "missing": []
+    },
+    {
+      "page": 179,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 180,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 181,
+      "standalone_candidates": 36,
+      "inline_candidates": 0,
+      "covered": 36,
+      "missing": []
+    },
+    {
+      "page": 182,
+      "standalone_candidates": 13,
+      "inline_candidates": 0,
+      "covered": 13,
+      "missing": []
+    },
+    {
+      "page": 183,
+      "standalone_candidates": 21,
+      "inline_candidates": 0,
+      "covered": 21,
+      "missing": []
+    },
+    {
+      "page": 184,
+      "standalone_candidates": 4,
+      "inline_candidates": 1,
+      "covered": 5,
+      "missing": []
+    },
+    {
+      "page": 185,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 186,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 187,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 188,
+      "standalone_candidates": 9,
+      "inline_candidates": 0,
+      "covered": 9,
+      "missing": []
+    },
+    {
+      "page": 189,
+      "standalone_candidates": 25,
+      "inline_candidates": 0,
+      "covered": 25,
+      "missing": []
+    },
+    {
+      "page": 190,
+      "standalone_candidates": 20,
+      "inline_candidates": 0,
+      "covered": 20,
+      "missing": []
+    },
+    {
+      "page": 191,
+      "standalone_candidates": 17,
+      "inline_candidates": 0,
+      "covered": 17,
+      "missing": []
+    },
+    {
+      "page": 192,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 193,
+      "standalone_candidates": 12,
+      "inline_candidates": 0,
+      "covered": 12,
+      "missing": []
+    },
+    {
+      "page": 194,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 195,
+      "standalone_candidates": 19,
+      "inline_candidates": 0,
+      "covered": 19,
+      "missing": []
+    },
+    {
+      "page": 196,
+      "standalone_candidates": 7,
+      "inline_candidates": 1,
+      "covered": 8,
+      "missing": []
+    },
+    {
+      "page": 197,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 198,
+      "standalone_candidates": 12,
+      "inline_candidates": 0,
+      "covered": 12,
+      "missing": []
+    },
+    {
+      "page": 199,
+      "standalone_candidates": 26,
+      "inline_candidates": 1,
+      "covered": 27,
+      "missing": []
+    },
+    {
+      "page": 200,
+      "standalone_candidates": 31,
+      "inline_candidates": 4,
+      "covered": 35,
+      "missing": []
+    },
+    {
+      "page": 201,
+      "standalone_candidates": 14,
+      "inline_candidates": 0,
+      "covered": 14,
+      "missing": []
+    },
+    {
+      "page": 202,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 203,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 204,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 205,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 206,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 207,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 208,
+      "standalone_candidates": 6,
+      "inline_candidates": 0,
+      "covered": 6,
+      "missing": []
+    },
+    {
+      "page": 209,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 210,
+      "standalone_candidates": 0,
+      "inline_candidates": 1,
+      "covered": 1,
+      "missing": []
+    },
+    {
+      "page": 211,
+      "standalone_candidates": 0,
+      "inline_candidates": 4,
+      "covered": 4,
+      "missing": []
+    },
+    {
+      "page": 212,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 213,
+      "standalone_candidates": 3,
+      "inline_candidates": 0,
+      "covered": 3,
+      "missing": []
+    },
+    {
+      "page": 214,
+      "standalone_candidates": 30,
+      "inline_candidates": 1,
+      "covered": 31,
+      "missing": []
+    },
+    {
+      "page": 215,
+      "standalone_candidates": 28,
+      "inline_candidates": 8,
+      "covered": 36,
+      "missing": []
+    },
+    {
+      "page": 216,
+      "standalone_candidates": 23,
+      "inline_candidates": 3,
+      "covered": 26,
+      "missing": []
+    },
+    {
+      "page": 217,
+      "standalone_candidates": 4,
+      "inline_candidates": 0,
+      "covered": 4,
+      "missing": []
+    },
+    {
+      "page": 218,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 219,
+      "standalone_candidates": 0,
+      "inline_candidates": 1,
+      "covered": 1,
+      "missing": []
+    },
+    {
+      "page": 220,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 221,
+      "standalone_candidates": 0,
+      "inline_candidates": 4,
+      "covered": 4,
+      "missing": []
+    },
+    {
+      "page": 222,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 223,
+      "standalone_candidates": 5,
+      "inline_candidates": 1,
+      "covered": 6,
+      "missing": []
+    },
+    {
+      "page": 224,
+      "standalone_candidates": 0,
+      "inline_candidates": 5,
+      "covered": 5,
+      "missing": []
+    },
+    {
+      "page": 225,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 226,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 227,
+      "standalone_candidates": 0,
+      "inline_candidates": 1,
+      "covered": 1,
+      "missing": []
+    },
+    {
+      "page": 228,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 229,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 230,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 231,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 232,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 233,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 234,
+      "standalone_candidates": 0,
+      "inline_candidates": 3,
+      "covered": 3,
+      "missing": []
+    },
+    {
+      "page": 235,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 236,
+      "standalone_candidates": 0,
+      "inline_candidates": 3,
+      "covered": 3,
+      "missing": []
+    },
+    {
+      "page": 237,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 238,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 239,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 240,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 241,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 242,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 243,
+      "standalone_candidates": 19,
+      "inline_candidates": 0,
+      "covered": 19,
+      "missing": []
+    },
+    {
+      "page": 244,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 245,
+      "standalone_candidates": 5,
+      "inline_candidates": 0,
+      "covered": 5,
+      "missing": []
+    },
+    {
+      "page": 246,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 247,
+      "standalone_candidates": 7,
+      "inline_candidates": 0,
+      "covered": 7,
+      "missing": []
+    },
+    {
+      "page": 248,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 249,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 250,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 251,
+      "standalone_candidates": 47,
+      "inline_candidates": 0,
+      "covered": 47,
+      "missing": []
+    },
+    {
+      "page": 252,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 253,
+      "standalone_candidates": 0,
+      "inline_candidates": 1,
+      "covered": 1,
+      "missing": []
+    },
+    {
+      "page": 254,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 255,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 256,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 257,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 258,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 259,
+      "standalone_candidates": 7,
+      "inline_candidates": 0,
+      "covered": 7,
+      "missing": []
+    },
+    {
+      "page": 260,
+      "standalone_candidates": 43,
+      "inline_candidates": 0,
+      "covered": 43,
+      "missing": []
+    },
+    {
+      "page": 261,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 262,
+      "standalone_candidates": 22,
+      "inline_candidates": 0,
+      "covered": 22,
+      "missing": []
+    },
+    {
+      "page": 263,
+      "standalone_candidates": 20,
+      "inline_candidates": 0,
+      "covered": 20,
+      "missing": []
+    },
+    {
+      "page": 264,
+      "standalone_candidates": 9,
+      "inline_candidates": 0,
+      "covered": 9,
+      "missing": []
+    },
+    {
+      "page": 265,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 266,
+      "standalone_candidates": 6,
+      "inline_candidates": 0,
+      "covered": 6,
+      "missing": []
+    },
+    {
+      "page": 267,
+      "standalone_candidates": 10,
+      "inline_candidates": 1,
+      "covered": 11,
+      "missing": []
+    },
+    {
+      "page": 268,
+      "standalone_candidates": 20,
+      "inline_candidates": 1,
+      "covered": 21,
+      "missing": []
+    },
+    {
+      "page": 269,
+      "standalone_candidates": 20,
+      "inline_candidates": 1,
+      "covered": 21,
+      "missing": []
+    },
+    {
+      "page": 270,
+      "standalone_candidates": 8,
+      "inline_candidates": 0,
+      "covered": 8,
+      "missing": []
+    },
+    {
+      "page": 271,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 272,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 273,
+      "standalone_candidates": 53,
+      "inline_candidates": 0,
+      "covered": 53,
+      "missing": []
+    },
+    {
+      "page": 274,
+      "standalone_candidates": 3,
+      "inline_candidates": 0,
+      "covered": 3,
+      "missing": []
+    },
+    {
+      "page": 275,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 276,
+      "standalone_candidates": 14,
+      "inline_candidates": 0,
+      "covered": 14,
+      "missing": []
+    },
+    {
+      "page": 277,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 278,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 279,
+      "standalone_candidates": 18,
+      "inline_candidates": 0,
+      "covered": 18,
+      "missing": []
+    },
+    {
+      "page": 280,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 281,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 282,
+      "standalone_candidates": 3,
+      "inline_candidates": 1,
+      "covered": 4,
+      "missing": []
+    },
+    {
+      "page": 283,
+      "standalone_candidates": 21,
+      "inline_candidates": 0,
+      "covered": 21,
+      "missing": []
+    },
+    {
+      "page": 284,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 285,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 286,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 287,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 288,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 289,
+      "standalone_candidates": 17,
+      "inline_candidates": 0,
+      "covered": 17,
+      "missing": []
+    },
+    {
+      "page": 290,
+      "standalone_candidates": 20,
+      "inline_candidates": 1,
+      "covered": 21,
+      "missing": []
+    },
+    {
+      "page": 291,
+      "standalone_candidates": 24,
+      "inline_candidates": 4,
+      "covered": 28,
+      "missing": []
+    },
+    {
+      "page": 292,
+      "standalone_candidates": 0,
+      "inline_candidates": 4,
+      "covered": 4,
+      "missing": []
+    },
+    {
+      "page": 293,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 294,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 295,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 296,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 297,
+      "standalone_candidates": 19,
+      "inline_candidates": 1,
+      "covered": 20,
+      "missing": []
+    },
+    {
+      "page": 298,
+      "standalone_candidates": 47,
+      "inline_candidates": 0,
+      "covered": 47,
+      "missing": []
+    },
+    {
+      "page": 299,
+      "standalone_candidates": 13,
+      "inline_candidates": 0,
+      "covered": 13,
+      "missing": []
+    },
+    {
+      "page": 300,
+      "standalone_candidates": 8,
+      "inline_candidates": 5,
+      "covered": 13,
+      "missing": []
+    },
+    {
+      "page": 301,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 302,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 303,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 304,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 305,
+      "standalone_candidates": 0,
+      "inline_candidates": 1,
+      "covered": 1,
+      "missing": []
+    },
+    {
+      "page": 306,
+      "standalone_candidates": 20,
+      "inline_candidates": 4,
+      "covered": 24,
+      "missing": []
+    },
+    {
+      "page": 307,
+      "standalone_candidates": 0,
+      "inline_candidates": 4,
+      "covered": 4,
+      "missing": []
+    },
+    {
+      "page": 308,
+      "standalone_candidates": 13,
+      "inline_candidates": 3,
+      "covered": 16,
+      "missing": []
+    },
+    {
+      "page": 309,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 310,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 311,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 312,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 313,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 314,
+      "standalone_candidates": 8,
+      "inline_candidates": 0,
+      "covered": 8,
+      "missing": []
+    },
+    {
+      "page": 315,
+      "standalone_candidates": 26,
+      "inline_candidates": 0,
+      "covered": 26,
+      "missing": []
+    },
+    {
+      "page": 316,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 317,
+      "standalone_candidates": 31,
+      "inline_candidates": 3,
+      "covered": 34,
+      "missing": []
+    },
+    {
+      "page": 318,
+      "standalone_candidates": 3,
+      "inline_candidates": 4,
+      "covered": 7,
+      "missing": []
+    },
+    {
+      "page": 319,
+      "standalone_candidates": 6,
+      "inline_candidates": 3,
+      "covered": 9,
+      "missing": []
+    },
+    {
+      "page": 320,
+      "standalone_candidates": 26,
+      "inline_candidates": 1,
+      "covered": 27,
+      "missing": []
+    },
+    {
+      "page": 321,
+      "standalone_candidates": 44,
+      "inline_candidates": 3,
+      "covered": 47,
+      "missing": []
+    },
+    {
+      "page": 322,
+      "standalone_candidates": 6,
+      "inline_candidates": 1,
+      "covered": 7,
+      "missing": []
+    },
+    {
+      "page": 323,
+      "standalone_candidates": 2,
+      "inline_candidates": 0,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 324,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 325,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 326,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 327,
+      "standalone_candidates": 0,
+      "inline_candidates": 1,
+      "covered": 1,
+      "missing": []
+    },
+    {
+      "page": 328,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 329,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 330,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 331,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 332,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 333,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 334,
+      "standalone_candidates": 0,
+      "inline_candidates": 3,
+      "covered": 3,
+      "missing": []
+    },
+    {
+      "page": 335,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 336,
+      "standalone_candidates": 0,
+      "inline_candidates": 3,
+      "covered": 3,
+      "missing": []
+    },
+    {
+      "page": 337,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 338,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 339,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 340,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 341,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 342,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 343,
+      "standalone_candidates": 46,
+      "inline_candidates": 1,
+      "covered": 47,
+      "missing": []
+    },
+    {
+      "page": 344,
+      "standalone_candidates": 26,
+      "inline_candidates": 3,
+      "covered": 29,
+      "missing": []
+    },
+    {
+      "page": 345,
+      "standalone_candidates": 8,
+      "inline_candidates": 2,
+      "covered": 10,
+      "missing": []
+    },
+    {
+      "page": 346,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 347,
+      "standalone_candidates": 15,
+      "inline_candidates": 0,
+      "covered": 15,
+      "missing": []
+    },
+    {
+      "page": 348,
+      "standalone_candidates": 10,
+      "inline_candidates": 0,
+      "covered": 10,
+      "missing": []
+    },
+    {
+      "page": 349,
+      "standalone_candidates": 26,
+      "inline_candidates": 0,
+      "covered": 26,
+      "missing": []
+    },
+    {
+      "page": 350,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 351,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 352,
+      "standalone_candidates": 40,
+      "inline_candidates": 0,
+      "covered": 40,
+      "missing": []
+    },
+    {
+      "page": 353,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 354,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 355,
+      "standalone_candidates": 16,
+      "inline_candidates": 1,
+      "covered": 17,
+      "missing": []
+    },
+    {
+      "page": 356,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 357,
+      "standalone_candidates": 3,
+      "inline_candidates": 0,
+      "covered": 3,
+      "missing": []
+    },
+    {
+      "page": 358,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 359,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 360,
+      "standalone_candidates": 16,
+      "inline_candidates": 0,
+      "covered": 16,
+      "missing": []
+    },
+    {
+      "page": 361,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 362,
+      "standalone_candidates": 13,
+      "inline_candidates": 1,
+      "covered": 14,
+      "missing": []
+    },
+    {
+      "page": 363,
+      "standalone_candidates": 37,
+      "inline_candidates": 0,
+      "covered": 37,
+      "missing": []
+    },
+    {
+      "page": 364,
+      "standalone_candidates": 5,
+      "inline_candidates": 0,
+      "covered": 5,
+      "missing": []
+    },
+    {
+      "page": 365,
+      "standalone_candidates": 2,
+      "inline_candidates": 1,
+      "covered": 3,
+      "missing": []
+    },
+    {
+      "page": 366,
+      "standalone_candidates": 0,
+      "inline_candidates": 4,
+      "covered": 4,
+      "missing": []
+    },
+    {
+      "page": 367,
+      "standalone_candidates": 0,
+      "inline_candidates": 1,
+      "covered": 1,
+      "missing": []
+    },
+    {
+      "page": 368,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 369,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 370,
+      "standalone_candidates": 8,
+      "inline_candidates": 0,
+      "covered": 8,
+      "missing": []
+    },
+    {
+      "page": 371,
+      "standalone_candidates": 0,
+      "inline_candidates": 1,
+      "covered": 1,
+      "missing": []
+    },
+    {
+      "page": 372,
+      "standalone_candidates": 13,
+      "inline_candidates": 0,
+      "covered": 13,
+      "missing": []
+    },
+    {
+      "page": 373,
+      "standalone_candidates": 8,
+      "inline_candidates": 0,
+      "covered": 8,
+      "missing": []
+    },
+    {
+      "page": 374,
+      "standalone_candidates": 26,
+      "inline_candidates": 0,
+      "covered": 26,
+      "missing": []
+    },
+    {
+      "page": 375,
+      "standalone_candidates": 23,
+      "inline_candidates": 3,
+      "covered": 26,
+      "missing": []
+    },
+    {
+      "page": 376,
+      "standalone_candidates": 7,
+      "inline_candidates": 0,
+      "covered": 7,
+      "missing": []
+    },
+    {
+      "page": 377,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 378,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 379,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 380,
+      "standalone_candidates": 4,
+      "inline_candidates": 0,
+      "covered": 4,
+      "missing": []
+    },
+    {
+      "page": 381,
+      "standalone_candidates": 6,
+      "inline_candidates": 0,
+      "covered": 6,
+      "missing": []
+    },
+    {
+      "page": 382,
+      "standalone_candidates": 61,
+      "inline_candidates": 0,
+      "covered": 61,
+      "missing": []
+    },
+    {
+      "page": 383,
+      "standalone_candidates": 44,
+      "inline_candidates": 0,
+      "covered": 44,
+      "missing": []
+    },
+    {
+      "page": 384,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 385,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 386,
+      "standalone_candidates": 8,
+      "inline_candidates": 0,
+      "covered": 8,
+      "missing": []
+    },
+    {
+      "page": 387,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 388,
+      "standalone_candidates": 4,
+      "inline_candidates": 0,
+      "covered": 4,
+      "missing": []
+    },
+    {
+      "page": 389,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 390,
+      "standalone_candidates": 8,
+      "inline_candidates": 0,
+      "covered": 8,
+      "missing": []
+    },
+    {
+      "page": 391,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 392,
+      "standalone_candidates": 30,
+      "inline_candidates": 0,
+      "covered": 30,
+      "missing": []
+    },
+    {
+      "page": 393,
+      "standalone_candidates": 38,
+      "inline_candidates": 0,
+      "covered": 38,
+      "missing": []
+    },
+    {
+      "page": 394,
+      "standalone_candidates": 40,
+      "inline_candidates": 0,
+      "covered": 40,
+      "missing": []
+    },
+    {
+      "page": 395,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 396,
+      "standalone_candidates": 11,
+      "inline_candidates": 0,
+      "covered": 11,
+      "missing": []
+    },
+    {
+      "page": 397,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 398,
+      "standalone_candidates": 20,
+      "inline_candidates": 0,
+      "covered": 20,
+      "missing": []
+    },
+    {
+      "page": 399,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 400,
+      "standalone_candidates": 37,
+      "inline_candidates": 0,
+      "covered": 37,
+      "missing": []
+    },
+    {
+      "page": 401,
+      "standalone_candidates": 7,
+      "inline_candidates": 0,
+      "covered": 7,
+      "missing": []
+    },
+    {
+      "page": 402,
+      "standalone_candidates": 18,
+      "inline_candidates": 0,
+      "covered": 18,
+      "missing": []
+    },
+    {
+      "page": 403,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 404,
+      "standalone_candidates": 18,
+      "inline_candidates": 0,
+      "covered": 18,
+      "missing": []
+    },
+    {
+      "page": 405,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 406,
+      "standalone_candidates": 4,
+      "inline_candidates": 0,
+      "covered": 4,
+      "missing": []
+    },
+    {
+      "page": 407,
+      "standalone_candidates": 23,
+      "inline_candidates": 1,
+      "covered": 24,
+      "missing": []
+    },
+    {
+      "page": 408,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 409,
+      "standalone_candidates": 0,
+      "inline_candidates": 2,
+      "covered": 2,
+      "missing": []
+    },
+    {
+      "page": 410,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 411,
+      "standalone_candidates": 18,
+      "inline_candidates": 0,
+      "covered": 18,
+      "missing": []
+    },
+    {
+      "page": 412,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    },
+    {
+      "page": 413,
+      "standalone_candidates": 0,
+      "inline_candidates": 0,
+      "covered": 0,
+      "missing": []
+    }
+  ]
+}

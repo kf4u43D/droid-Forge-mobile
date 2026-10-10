@@ -1,0 +1,4 @@
+# Preserve the exact bytes of the official examples and reference assets.
+* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# The Gradle launcher must work directly on Unix checkouts.
+gradlew text eol=lf

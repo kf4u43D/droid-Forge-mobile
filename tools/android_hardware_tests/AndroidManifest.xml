@@ -1,0 +1,18 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="fr.androforge.validation.hardwaretests">
+    <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="36"/>
+    <queries>
+        <package android:name="fr.androforge.validation"/>
+    </queries>
+    <application android:label="Private droid Forge hardware validation" android:hasCode="true" android:allowBackup="false">
+        <service android:name="fr.androforge.validation.hardwaretests.TestControlService"
+            android:exported="true"/>
+        <provider android:name="fr.androforge.validation.hardwaretests.TestDocumentsProvider"
+            android:authorities="fr.androforge.validation.hardwaretests.documents"
+            android:permission="android.permission.MANAGE_DOCUMENTS"
+            android:exported="true" android:grantUriPermissions="true">
+            <intent-filter><action android:name="android.content.action.DOCUMENTS_PROVIDER"/></intent-filter>
+        </provider>
+    </application>
+    <instrumentation android:name="fr.androforge.validation.hardwaretests.HardwareInstrumentation"
+        android:targetPackage="fr.androforge.validation" android:functionalTest="true"/>
+</manifest>

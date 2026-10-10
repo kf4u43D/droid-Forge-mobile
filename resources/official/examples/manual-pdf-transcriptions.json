@@ -1,0 +1,7479 @@
+{
+  "schema_version": 1,
+  "firmware": "blue-7",
+  "source": "https://dermannmitdermaschine.de/download/droid-manual-blue-7.pdf",
+  "source_sha256": "e324801d355524354223d3d0e7528f8077dc330f193f10b7544f01d76a6f94ad",
+  "source_pages": 413,
+  "transcription": "Code blocks from Xpdf 4.04 HTML code-font rows; fragments at the same visual line joined from left to right, PDF columns and page continuations joined explicitly. UTF-8 with LF; no semantic correction, controller declaration or omitted line invented.",
+  "examples": [
+    {
+      "id": "manual-pdf-p015-01",
+      "title": "Prise en main — 1",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 15,
+      "pages": [
+        15
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 15,
+          "column": 2,
+          "top": 518,
+          "bottom": 518
+        }
+      ],
+      "lines": [
+        "hz = P1.2 * 9 + 1"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p016-01",
+      "title": "Prise en main — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 16,
+      "pages": [
+        16
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 16,
+          "column": 1,
+          "top": 332,
+          "bottom": 354
+        }
+      ],
+      "lines": [
+        "[button]",
+        "button = B1.1",
+        "led = L1.1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p016-02",
+      "title": "Prise en main — 2",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 16,
+      "pages": [
+        16
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 16,
+          "column": 2,
+          "top": 168,
+          "bottom": 244
+        }
+      ],
+      "lines": [
+        "[button]",
+        "button = B1.1",
+        "led = L1.1",
+        "[lfo]",
+        "hz = 3",
+        "level = L1.1",
+        "sine = O1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p017-01",
+      "title": "Sélection et fonctions multiples — 1",
+      "kind": "full",
+      "category": "Manuel — introduction",
+      "page": 17,
+      "pages": [
+        17
+      ],
+      "example_number": 1,
+      "context_required": false,
+      "regions": [
+        {
+          "page": 17,
+          "column": 2,
+          "top": 246,
+          "bottom": 344
+        }
+      ],
+      "lines": [
+        "[p2b8]",
+        "[pot]",
+        "pot = P1.1",
+        "output = _ATTACK",
+        "[contour]",
+        "trigger = I1",
+        "output = O1",
+        "attack = _ATTACK"
+      ],
+      "notes": []
+    },
+    {
+      "id": "manual-pdf-p017-02",
+      "title": "Sélection et fonctions multiples — 2",
+      "kind": "full",
+      "category": "Manuel — introduction",
+      "page": 17,
+      "pages": [
+        17
+      ],
+      "example_number": 2,
+      "context_required": false,
+      "regions": [
+        {
+          "page": 17,
+          "column": 3,
+          "top": 241,
+          "bottom": 482
+        }
+      ],
+      "lines": [
+        "[p2b8]",
+        "[button]",
+        "button = B1.1",
+        "led = L1.1",
+        "output = _SELECT_ATTACK",
+        "inverted = _SELECT_RELEASE",
+        "[pot]",
+        "pot = P1.1",
+        "select = _SELECT_ATTACK",
+        "output = _ATTACK",
+        "[pot]",
+        "pot = P1.1",
+        "select = _SELECT_RELEASE",
+        "output = _RELEASE",
+        "[contour]",
+        "trigger = I1",
+        "output = O1",
+        "attack = _ATTACK",
+        "release = _RELEASE"
+      ],
+      "notes": []
+    },
+    {
+      "id": "manual-pdf-p018-01",
+      "title": "Sélection et fonctions multiples — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 18,
+      "pages": [
+        18
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 18,
+          "column": 1,
+          "top": 361,
+          "bottom": 448
+        }
+      ],
+      "lines": [
+        "[buttongroup]",
+        "button1 = B1.1",
+        "button2 = B1.2",
+        "button3 = B1.3",
+        "button4 = B1.4",
+        "led1 = L1.1",
+        "led2 = L1.2",
+        "led3 = L1.3",
+        "led4 = L1.4"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p018-02",
+      "title": "Sélection et fonctions multiples — 2",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 18,
+      "pages": [
+        18
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 18,
+          "column": 2,
+          "top": 101,
+          "bottom": 298
+        }
+      ],
+      "lines": [
+        "[pot]",
+        "pot = P1.1",
+        "select = L1.1",
+        "output = _ATTACK",
+        "[pot]",
+        "pot = P1.1",
+        "select = L1.2",
+        "output = _DECAY",
+        "[pot]",
+        "pot = P1.1",
+        "select = L1.3",
+        "output = _SUSTAIN",
+        "[pot]",
+        "pot = P1.1",
+        "select = L1.4",
+        "output = _RELEASE"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p018-03",
+      "title": "Sélection et fonctions multiples — 3",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 18,
+      "pages": [
+        18
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 18,
+          "column": 2,
+          "top": 474,
+          "bottom": 518
+        },
+        {
+          "page": 18,
+          "column": 3,
+          "top": 60,
+          "bottom": 367
+        }
+      ],
+      "lines": [
+        "[buttongroup]",
+        "button1 = B1.1",
+        "button2 = B1.2",
+        "button3 = B1.3",
+        "button4 = B1.4",
+        "led1 = L1.1",
+        "led2 = L1.2",
+        "led3 = L1.3",
+        "led4 = L1.4",
+        "output = _SELECT",
+        "[pot]",
+        "pot = P1.1",
+        "select = _SELECT",
+        "selectat = 0",
+        "output = _ATTACK",
+        "[pot]",
+        "pot = P1.1",
+        "select = _SELECT",
+        "selectat = 1",
+        "output = _DECAY",
+        "[pot]",
+        "pot = P1.1",
+        "select = _SELECT",
+        "selectat = 2",
+        "output = _SUSTAIN",
+        "[pot]",
+        "pot = P1.1",
+        "select = _SELECT",
+        "selectat = 3",
+        "output = _RELEASE"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p019-01",
+      "title": "Sélection et fonctions multiples — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 19,
+      "pages": [
+        19
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 19,
+          "column": 1,
+          "top": 60,
+          "bottom": 323
+        }
+      ],
+      "lines": [
+        "[s10]",
+        "[pot]",
+        "pot = P1.1",
+        "select = S1.1",
+        "selectat = 0",
+        "output = _ATTACK",
+        "[pot]",
+        "pot = P1.1",
+        "select = S1.1",
+        "selectat = 1",
+        "output = _DECAY",
+        "[pot]",
+        "pot = P1.1",
+        "select = S1.1",
+        "selectat = 2",
+        "output = _SUSTAIN",
+        "[pot]",
+        "pot = P1.1",
+        "select = S1.1",
+        "selectat = 3",
+        "output = _RELEASE"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents.",
+        "La déclaration S10 et les références P1.1 sont celles du manuel, conservées sans ajout de contrôleur."
+      ]
+    },
+    {
+      "id": "manual-pdf-p019-02",
+      "title": "Sélection et fonctions multiples — 2",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 19,
+      "pages": [
+        19
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 19,
+          "column": 2,
+          "top": 178,
+          "bottom": 518
+        },
+        {
+          "page": 19,
+          "column": 3,
+          "top": 60,
+          "bottom": 202
+        }
+      ],
+      "lines": [
+        "[p2b8]",
+        "[b32]",
+        "[buttongroup]",
+        "button1 = B1.1 # select track 1",
+        "button2 = B1.2 # select track 2",
+        "button3 = B1.3 # select track 3",
+        "led1 = L1.1",
+        "led2 = L1.2",
+        "led3 = L1.3",
+        "output = _TRACK",
+        "[algoquencer]",
+        "select = _TRACK",
+        "selectat = 0 # track 1",
+        "button1 = B2.1",
+        "button2 = B2.2",
+        "button3 = B2.3",
+        "button4 = B2.4",
+        "...",
+        "led1 = L2.1",
+        "led2 = L2.2",
+        "led3 = L2.3",
+        "led4 = L2.4",
+        "...",
+        "trigger = O1",
+        "[algoquencer]",
+        "select = _TRACK",
+        "selectat = 1 # track 2",
+        "button1 = B2.1",
+        "button2 = B2.2",
+        "button3 = B2.3",
+        "button4 = B2.4",
+        "...",
+        "led1 = L2.1",
+        "led2 = L2.2",
+        "led3 = L2.3",
+        "led4 = L2.4",
+        "...",
+        "trigger = O2",
+        "[algoquencer]",
+        "select = _TRACK",
+        "selectat = 2 # track 3",
+        "# and so on..."
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p020-01",
+      "title": "Sélection et fonctions multiples — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 20,
+      "pages": [
+        20
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 20,
+          "column": 1,
+          "top": 276,
+          "bottom": 374
+        }
+      ],
+      "lines": [
+        "# Select the instrument",
+        "[buttongroup]",
+        "button1 = B1.1",
+        "button2 = B1.2",
+        "button3 = B1.3",
+        "button4 = B1.4",
+        "led1 = L1.1",
+        "led2 = L1.2",
+        "led3 = L1.3",
+        "led4 = L1.4"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p020-02",
+      "title": "Sélection et fonctions multiples — 2",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 20,
+      "pages": [
+        20
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 20,
+          "column": 1,
+          "top": 496,
+          "bottom": 518
+        },
+        {
+          "page": 20,
+          "column": 2,
+          "top": 60,
+          "bottom": 334
+        }
+      ],
+      "lines": [
+        "# Scale notes of instrument 1",
+        "[buttongroup]",
+        "minactive = 1",
+        "maxactive = 8",
+        "select = L1.1 # first instrument",
+        "button1 = B1.5",
+        "button2 = B1.6",
+        "button3 = B1.7",
+        "button4 = B1.8",
+        "button5 = B1.9",
+        "button6 = B1.10",
+        "button7 = B1.11",
+        "button8 = B1.12",
+        "led1 = L1.5",
+        "led2 = L1.6",
+        "led3 = L1.7",
+        "led4 = L1.8",
+        "led5 = L1.9",
+        "led6 = L1.10",
+        "led7 = L1.11",
+        "led8 = L1.12",
+        "buttonoutput1 = _SEL_INST1_1",
+        "buttonoutput2 = _SEL_INST1_3",
+        "buttonoutput3 = _SEL_INST1_5",
+        "buttonoutput4 = _SEL_INST1_7",
+        "buttonoutput5 = _SEL_INST1_9",
+        "buttonoutput6 = _SEL_INST1_11",
+        "buttonoutput7 = _SEL_INST1_13",
+        "buttonoutput8 = _SEL_INST1_FILL"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p020-03",
+      "title": "Sélection et fonctions multiples — 3",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 20,
+      "pages": [
+        20
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 20,
+          "column": 2,
+          "top": 419,
+          "bottom": 518
+        },
+        {
+          "page": 20,
+          "column": 3,
+          "top": 60,
+          "bottom": 104
+        }
+      ],
+      "lines": [
+        "# Arpeggiator 1",
+        "[arpeggio]",
+        "select1 = _SEL_INST1_1",
+        "select3 = _SEL_INST1_3",
+        "select5 = _SEL_INST1_5",
+        "select7 = _SEL_INST1_7",
+        "select9 = _SEL_INST1_9",
+        "select11 = _SEL_INST1_11",
+        "select13 = _SEL_INST1_13",
+        "selectfill1 = _SEL_INST1_FILL",
+        "selectfill2 = _SEL_INST1_FILL",
+        "selectfill3 = _SEL_INST1_FILL",
+        "selectfill4 = _SEL_INST1_FILL",
+        "selectfill5 = _SEL_INST1_FILL",
+        "... # further stuff here"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p020-04",
+      "title": "Sélection et fonctions multiples — 4",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 20,
+      "pages": [
+        20
+      ],
+      "example_number": 4,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 20,
+          "column": 3,
+          "top": 434,
+          "bottom": 466
+        }
+      ],
+      "lines": [
+        "[select]",
+        "select = _SOME_SELECT",
+        "input = 0",
+        "output = L2.5"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p021-01",
+      "title": "Presets et tempo — 1",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 21,
+      "pages": [
+        21,
+        22
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 21,
+          "column": 3,
+          "top": 507,
+          "bottom": 507
+        },
+        {
+          "page": 22,
+          "column": 1,
+          "top": 60,
+          "bottom": 159
+        }
+      ],
+      "lines": [
+        "[p2b8]",
+        "[pot]",
+        "pot = P1.1",
+        "discrete = 16 # output will be 0 ... 15",
+        "output = _PRESET",
+        "[algoquencer]",
+        "preset = _PRESET",
+        "loadpreset = B1.1",
+        "savepreset = B1.2",
+        "..."
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p022-01",
+      "title": "Presets et tempo — 1",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 22,
+      "pages": [
+        22
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 22,
+          "column": 1,
+          "top": 474,
+          "bottom": 518
+        },
+        {
+          "page": 22,
+          "column": 2,
+          "top": 60,
+          "bottom": 213
+        }
+      ],
+      "lines": [
+        "[p2b8]",
+        "[pot]",
+        "pot = P1.1",
+        "discrete = 16 # output will be 0 ... 15",
+        "output = _PRESET",
+        "[button]",
+        "button = B1.1",
+        "longpress = _LOAD_PRESET",
+        "[button]",
+        "button = B1.2",
+        "longpress = _SAVE_PRESET",
+        "[algoquencer]",
+        "preset = _PRESET",
+        "loadpreset = _LOAD_PRESET",
+        "savepreset = _SAVE_PRESET",
+        "..."
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p022-02",
+      "title": "Presets et tempo — 2",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 22,
+      "pages": [
+        22
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 22,
+          "column": 2,
+          "top": 441,
+          "bottom": 518
+        },
+        {
+          "page": 22,
+          "column": 3,
+          "top": 60,
+          "bottom": 71
+        }
+      ],
+      "lines": [
+        "[p2b8]",
+        "[pot]",
+        "pot = P1.1",
+        "discrete = 16 # output will be 0 ... 15",
+        "output = _PRESET",
+        "[algoquencer]",
+        "preset = _PRESET",
+        "..."
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p022-03",
+      "title": "Presets et tempo — 3",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 22,
+      "pages": [
+        22
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 22,
+          "column": 3,
+          "top": 364,
+          "bottom": 518
+        }
+      ],
+      "lines": [
+        "[mixer]",
+        "input1 = B1.1 * 1",
+        "input2 = B1.2 * 2",
+        "input2 = B1.3 * 3",
+        "output = _LOAD_PRESET",
+        "[mixer]",
+        "input1 = B1.4 * 1",
+        "input2 = B1.5 * 2",
+        "input2 = B1.6 * 3",
+        "output = _SAVE_PRESET",
+        "[algoquencer]",
+        "loadpreset = _LOAD_PRESET",
+        "savepreset = _SAVE_PRESET"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents.",
+        "Les deux paramètres input2 répétés sont ceux du manuel, conservés sans correction."
+      ]
+    },
+    {
+      "id": "manual-pdf-p023-01",
+      "title": "Presets et tempo — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 23,
+      "pages": [
+        23
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 23,
+          "column": 2,
+          "top": 293,
+          "bottom": 359
+        }
+      ],
+      "lines": [
+        "[pot]",
+        "pot = P1.2",
+        "preset = _PRESET",
+        "output = _ACTIVITY",
+        "[algoquencer]",
+        "activity = _ACTIVITY"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p023-02",
+      "title": "Presets et tempo — 2",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 23,
+      "pages": [
+        23
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 23,
+          "column": 3,
+          "top": 115,
+          "bottom": 279
+        }
+      ],
+      "lines": [
+        "[p2b8]",
+        "[pot]",
+        "pot = P1.1",
+        "discrete = 16 # output will be 0 ... 15",
+        "output = _PRESET",
+        "[pot]",
+        "pot = P1.2",
+        "preset = _PRESET",
+        "output = _ACTIVITY",
+        "[algoquencer]",
+        "preset = _PRESET",
+        "activity = _ACTIVITY",
+        "..."
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p023-03",
+      "title": "Presets et tempo — 3",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 23,
+      "pages": [
+        23
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 23,
+          "column": 3,
+          "top": 496,
+          "bottom": 518
+        }
+      ],
+      "lines": [
+        "[lfo]",
+        "taptempo = B1.1",
+        "sine = O1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p051-01",
+      "title": "Syntaxe des patches — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 51,
+      "pages": [
+        51
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 51,
+          "column": 2,
+          "top": 113,
+          "bottom": 189
+        },
+        {
+          "page": 51,
+          "column": 3,
+          "top": 60,
+          "bottom": 71
+        }
+      ],
+      "lines": [
+        "[lfo]",
+        "hz = 0.5",
+        "triangle = _CABLE_1",
+        "[contour]",
+        "gate = I1",
+        "decay = _CABLE_1",
+        "sustain = P1.1",
+        "release = I2",
+        "output = O1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p057-01",
+      "title": "Syntaxe des patches — 1",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 57,
+      "pages": [
+        57
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 57,
+          "column": 1,
+          "top": 194,
+          "bottom": 194
+        }
+      ],
+      "lines": [
+        "pulsewidth = 45%"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p057-02",
+      "title": "Syntaxe des patches — 2",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 57,
+      "pages": [
+        57
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 57,
+          "column": 1,
+          "top": 238,
+          "bottom": 238
+        }
+      ],
+      "lines": [
+        "pulsewidth = 0.45"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p057-03",
+      "title": "Syntaxe des patches — 3",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 57,
+      "pages": [
+        57
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 57,
+          "column": 1,
+          "top": 518,
+          "bottom": 518
+        },
+        {
+          "page": 57,
+          "column": 2,
+          "top": 342,
+          "bottom": 353
+        }
+      ],
+      "lines": [
+        "[lfo]",
+        "level = P1.1",
+        "output = O1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents.",
+        "Le paramètre output du LFO est celui du manuel, conservé sans correction."
+      ]
+    },
+    {
+      "id": "manual-pdf-p057-04",
+      "title": "Syntaxe des patches — 4",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 57,
+      "pages": [
+        57
+      ],
+      "example_number": 4,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 57,
+          "column": 2,
+          "top": 112,
+          "bottom": 112
+        }
+      ],
+      "lines": [
+        "pitch = 2V"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p057-05",
+      "title": "Syntaxe des patches — 5",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 57,
+      "pages": [
+        57
+      ],
+      "example_number": 5,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 57,
+          "column": 2,
+          "top": 156,
+          "bottom": 156
+        }
+      ],
+      "lines": [
+        "pitch = 0.2"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p057-06",
+      "title": "Syntaxe des patches — 6",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 57,
+      "pages": [
+        57
+      ],
+      "example_number": 6,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 57,
+          "column": 2,
+          "top": 431,
+          "bottom": 431
+        }
+      ],
+      "lines": [
+        "level = P1.1 * 0.5"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p057-07",
+      "title": "Syntaxe des patches — 7",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 57,
+      "pages": [
+        57
+      ],
+      "example_number": 7,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 57,
+          "column": 3,
+          "top": 148,
+          "bottom": 170
+        }
+      ],
+      "lines": [
+        "[contour]",
+        "loop = on",
+        "output = O1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p057-08",
+      "title": "Syntaxe des patches — 8",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 57,
+      "pages": [
+        57
+      ],
+      "example_number": 8,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 57,
+          "column": 3,
+          "top": 237,
+          "bottom": 259
+        }
+      ],
+      "lines": [
+        "[contour]",
+        "loop = 1.0",
+        "output = O1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p057-09",
+      "title": "Syntaxe des patches — 9",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 57,
+      "pages": [
+        57
+      ],
+      "example_number": 9,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 57,
+          "column": 3,
+          "top": 342,
+          "bottom": 342
+        }
+      ],
+      "lines": [
+        "level = I1 * P1.1"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p057-10",
+      "title": "Syntaxe des patches — 10",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 57,
+      "pages": [
+        57
+      ],
+      "example_number": 10,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 57,
+          "column": 3,
+          "top": 409,
+          "bottom": 409
+        }
+      ],
+      "lines": [
+        "level = P1.1 * -1"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p057-11",
+      "title": "Syntaxe des patches — 11",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 57,
+      "pages": [
+        57
+      ],
+      "example_number": 11,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 57,
+          "column": 3,
+          "top": 451,
+          "bottom": 451
+        }
+      ],
+      "lines": [
+        "level = -P1.1"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p058-01",
+      "title": "Syntaxe des patches — 1",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 58,
+      "pages": [
+        58
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 58,
+          "column": 1,
+          "top": 135,
+          "bottom": 135
+        }
+      ],
+      "lines": [
+        "pitch = I1 / 12"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p058-02",
+      "title": "Syntaxe des patches — 2",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 58,
+      "pages": [
+        58
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 58,
+          "column": 1,
+          "top": 334,
+          "bottom": 345
+        }
+      ],
+      "lines": [
+        "[lfo]",
+        "level = P1.1 + 0.2"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p058-03",
+      "title": "Syntaxe des patches — 3",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 58,
+      "pages": [
+        58
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 58,
+          "column": 1,
+          "top": 412,
+          "bottom": 412
+        }
+      ],
+      "lines": [
+        "level = P1.1 * 0.8 + 0.2"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p058-04",
+      "title": "Syntaxe des patches — 4",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 58,
+      "pages": [
+        58
+      ],
+      "example_number": 4,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 58,
+          "column": 2,
+          "top": 93,
+          "bottom": 115
+        }
+      ],
+      "lines": [
+        "[lfo]",
+        "square = O1",
+        "rate = 0.05 * P1.2 + P1.1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents.",
+        "Le paramètre rate du LFO est celui du manuel, conservé sans correction."
+      ]
+    },
+    {
+      "id": "manual-pdf-p058-05",
+      "title": "Syntaxe des patches — 5",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 58,
+      "pages": [
+        58
+      ],
+      "example_number": 5,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 58,
+          "column": 2,
+          "top": 193,
+          "bottom": 193
+        }
+      ],
+      "lines": [
+        "input = I1 + I2"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p058-06",
+      "title": "Syntaxe des patches — 6",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 58,
+      "pages": [
+        58
+      ],
+      "example_number": 6,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 58,
+          "column": 2,
+          "top": 346,
+          "bottom": 346
+        }
+      ],
+      "lines": [
+        "input = P1.1 + -0.5"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p058-07",
+      "title": "Syntaxe des patches — 7",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 58,
+      "pages": [
+        58
+      ],
+      "example_number": 7,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 58,
+          "column": 2,
+          "top": 401,
+          "bottom": 401
+        }
+      ],
+      "lines": [
+        "input = P1.1 - 0.5"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p058-08",
+      "title": "Syntaxe des patches — 8",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 58,
+      "pages": [
+        58
+      ],
+      "example_number": 8,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 58,
+          "column": 2,
+          "top": 444,
+          "bottom": 444
+        }
+      ],
+      "lines": [
+        "input = I1 - I2"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p059-01",
+      "title": "Syntaxe des patches — 1",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 59,
+      "pages": [
+        59
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 59,
+          "column": 1,
+          "top": 165,
+          "bottom": 187
+        }
+      ],
+      "lines": [
+        "[display]",
+        "header = \"Voice allocation\"",
+        "..."
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p059-02",
+      "title": "Syntaxe des patches — 2",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 59,
+      "pages": [
+        59
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 59,
+          "column": 1,
+          "top": 406,
+          "bottom": 461
+        }
+      ],
+      "lines": [
+        "[display]",
+        "value = I1",
+        "header = \"Input\"",
+        "[display]",
+        "text = \"Hello world!\""
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p059-03",
+      "title": "Syntaxe des patches — 3",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 59,
+      "pages": [
+        59
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 59,
+          "column": 2,
+          "top": 124,
+          "bottom": 179
+        }
+      ],
+      "lines": [
+        "[display]",
+        "value = I1",
+        "header = 1",
+        "[display]",
+        "text = 2"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents.",
+        "Illustration de la représentation interne des textes, pas un patch avec table de chaînes."
+      ]
+    },
+    {
+      "id": "manual-pdf-p059-04",
+      "title": "Syntaxe des patches — 4",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 59,
+      "pages": [
+        59
+      ],
+      "example_number": 4,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 59,
+          "column": 2,
+          "top": 337,
+          "bottom": 446
+        }
+      ],
+      "lines": [
+        "[switch]",
+        "input1 = \"Bass drum\"",
+        "input2 = \"Snare drum\"",
+        "input3 = \"Open hats\"",
+        "input4 = \"Closed hats\"",
+        "offset = _INSTRUMENT",
+        "output = _INSTRUMENT_NAME",
+        "[display]",
+        "header = \"Instrument\"",
+        "text = _INSTRUMENT_NAME"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p059-05",
+      "title": "Syntaxe des patches — 5",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 59,
+      "pages": [
+        59
+      ],
+      "example_number": 5,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 59,
+          "column": 3,
+          "top": 203,
+          "bottom": 214
+        }
+      ],
+      "lines": [
+        "[display]",
+        "header = 5"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents.",
+        "Illustration de la représentation interne des textes, pas un patch avec table de chaînes."
+      ]
+    },
+    {
+      "id": "manual-pdf-p059-06",
+      "title": "Syntaxe des patches — 6",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 59,
+      "pages": [
+        59
+      ],
+      "example_number": 6,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 59,
+          "column": 3,
+          "top": 370,
+          "bottom": 381
+        }
+      ],
+      "lines": [
+        "[display]",
+        "text = \"Button pressed\" * B1.1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p060-01",
+      "title": "Syntaxe des patches — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 60,
+      "pages": [
+        60
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 60,
+          "column": 1,
+          "top": 182,
+          "bottom": 237
+        }
+      ],
+      "lines": [
+        "[lfo]",
+        "square = _TRIGGER",
+        "[contour]",
+        "trigger = _TRIGGER",
+        "output = O1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p060-02",
+      "title": "Syntaxe des patches — 2",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 60,
+      "pages": [
+        60
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 60,
+          "column": 2,
+          "top": 129,
+          "bottom": 249
+        },
+        {
+          "page": 60,
+          "column": 3,
+          "top": 90,
+          "bottom": 101
+        }
+      ],
+      "lines": [
+        "[lfo]",
+        "square = _TRIGGER",
+        "[contour]",
+        "trigger = _TRIGGER",
+        "attack = 0.0",
+        "release = 0.2",
+        "output = O1",
+        "[contour]",
+        "trigger = _TRIGGER",
+        "attack = 0.5",
+        "release = 0.8",
+        "output = O2"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p060-03",
+      "title": "Syntaxe des patches — 3",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 60,
+      "pages": [
+        60
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 60,
+          "column": 2,
+          "top": 362,
+          "bottom": 384
+        }
+      ],
+      "lines": [
+        "[lfo]",
+        "hz =2",
+        "square = R1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p060-04",
+      "title": "Syntaxe des patches — 4",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 60,
+      "pages": [
+        60
+      ],
+      "example_number": 4,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 60,
+          "column": 2,
+          "top": 499,
+          "bottom": 510
+        },
+        {
+          "page": 60,
+          "column": 3,
+          "top": 453,
+          "bottom": 496
+        }
+      ],
+      "lines": [
+        "[buttongroup]",
+        "button1 = B1.1",
+        "button2 = B1.2",
+        "button3 = B1.3",
+        "led1 = B1.1 # Argr. should be L1.1!",
+        "led2 = B1.2 # Argr. should be L1.2!",
+        "led3 = B1.3 # Argr. should be L1.3!"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents.",
+        "Contre-exemple volontaire du manuel : sorties led affectées aux registres B plutôt que L."
+      ]
+    },
+    {
+      "id": "manual-pdf-p060-05",
+      "title": "Syntaxe des patches — 5",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 60,
+      "pages": [
+        60
+      ],
+      "example_number": 5,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 60,
+          "column": 3,
+          "top": 329,
+          "bottom": 372
+        }
+      ],
+      "lines": [
+        "[euklid]",
+        "clock = R1",
+        "length = 12",
+        "beats = 5",
+        "output = O1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p061-01",
+      "title": "Syntaxe des patches — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 61,
+      "pages": [
+        61
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 61,
+          "column": 2,
+          "top": 170,
+          "bottom": 203
+        },
+        {
+          "page": 61,
+          "column": 3,
+          "top": 170,
+          "bottom": 170
+        }
+      ],
+      "lines": [
+        "[contour]",
+        "trigger = _TRIGGER # wired to sequencer",
+        "attack = 0.5 # another comment",
+        "release = 0.8",
+        "output = O2 # wired to foobar trigger"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p061-02",
+      "title": "Syntaxe des patches — 2",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 61,
+      "pages": [
+        61
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 61,
+          "column": 3,
+          "top": 305,
+          "bottom": 371
+        }
+      ],
+      "lines": [
+        "[algoquencer]",
+        "clock = I1",
+        "reset = I2",
+        "pattern = _PATTERN",
+        "button1 = B1.1",
+        "button2 = B1.2",
+        "..."
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p061-03",
+      "title": "Syntaxe des patches — 3",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 61,
+      "pages": [
+        61
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 61,
+          "column": 3,
+          "top": 434,
+          "bottom": 500
+        }
+      ],
+      "lines": [
+        "[algoquencer]",
+        "c = I1",
+        "r = I2",
+        "pt = _PATTERN",
+        "b1 = B1.1",
+        "b2 = B1.2",
+        "..."
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p064-01",
+      "title": "Contrôleurs P2B8 et P10 — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 64,
+      "pages": [
+        64
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 64,
+          "column": 2,
+          "top": 357,
+          "bottom": 379
+        }
+      ],
+      "lines": [
+        "[p2b8]",
+        "[p2b8]",
+        "[p10]"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p065-01",
+      "title": "Contrôleurs P2B8 et P10 — 1",
+      "kind": "full",
+      "category": "Manuel — introduction",
+      "page": 65,
+      "pages": [
+        65
+      ],
+      "example_number": 1,
+      "context_required": false,
+      "regions": [
+        {
+          "page": 65,
+          "column": 2,
+          "top": 135,
+          "bottom": 222
+        }
+      ],
+      "lines": [
+        "[p2b8]",
+        "[p10]",
+        "[p2b8]",
+        "[contour]",
+        "trigger = G1",
+        "output = O1",
+        "attack = P2.5",
+        "release = P2.6"
+      ],
+      "notes": []
+    },
+    {
+      "id": "manual-pdf-p065-02",
+      "title": "Contrôleurs P2B8 et P10 — 2",
+      "kind": "full",
+      "category": "Manuel — introduction",
+      "page": 65,
+      "pages": [
+        65
+      ],
+      "example_number": 2,
+      "context_required": false,
+      "regions": [
+        {
+          "page": 65,
+          "column": 2,
+          "top": 378,
+          "bottom": 466
+        }
+      ],
+      "lines": [
+        "[p10]",
+        "[contour]",
+        "gate = G1",
+        "output = O1",
+        "attack = P1.3",
+        "decay = P1.4",
+        "sustain = P1.5",
+        "release = P1.6"
+      ],
+      "notes": []
+    },
+    {
+      "id": "manual-pdf-p065-03",
+      "title": "Contrôleurs P2B8 et P10 — 3",
+      "kind": "full",
+      "category": "Manuel — introduction",
+      "page": 65,
+      "pages": [
+        65
+      ],
+      "example_number": 3,
+      "context_required": false,
+      "regions": [
+        {
+          "page": 65,
+          "column": 3,
+          "top": 60,
+          "bottom": 148
+        }
+      ],
+      "lines": [
+        "[p10]",
+        "[contour]",
+        "gate = G1",
+        "output = O1",
+        "attack = P1.3 * 0.3",
+        "decay = P1.4",
+        "sustain = P1.5",
+        "release = P1.6"
+      ],
+      "notes": []
+    },
+    {
+      "id": "manual-pdf-p065-04",
+      "title": "Contrôleurs P2B8 et P10 — 4",
+      "kind": "full",
+      "category": "Manuel — introduction",
+      "page": 65,
+      "pages": [
+        65
+      ],
+      "example_number": 4,
+      "context_required": false,
+      "regions": [
+        {
+          "page": 65,
+          "column": 3,
+          "top": 229,
+          "bottom": 317
+        }
+      ],
+      "lines": [
+        "[p10]",
+        "[contour]",
+        "gate = G1",
+        "output = O1",
+        "attack = P1.3 * 0.3",
+        "decay = P1.3 * 0.5",
+        "sustain = P1.4",
+        "release = P1.3 * 0.7"
+      ],
+      "notes": []
+    },
+    {
+      "id": "manual-pdf-p065-05",
+      "title": "Contrôleurs P2B8 et P10 — 5",
+      "kind": "full",
+      "category": "Manuel — introduction",
+      "page": 65,
+      "pages": [
+        65
+      ],
+      "example_number": 5,
+      "context_required": false,
+      "regions": [
+        {
+          "page": 65,
+          "column": 3,
+          "top": 399,
+          "bottom": 442
+        }
+      ],
+      "lines": [
+        "[p2b8]",
+        "[copy]",
+        "input = P1.1 * 2 - 1",
+        "output = O1"
+      ],
+      "notes": []
+    },
+    {
+      "id": "manual-pdf-p066-01",
+      "title": "Contrôleurs P2B8 et P10 — 1",
+      "kind": "full",
+      "category": "Manuel — introduction",
+      "page": 66,
+      "pages": [
+        66
+      ],
+      "example_number": 1,
+      "context_required": false,
+      "regions": [
+        {
+          "page": 66,
+          "column": 2,
+          "top": 122,
+          "bottom": 210
+        }
+      ],
+      "lines": [
+        "[p2b8]",
+        "[button]",
+        "button = B1.1",
+        "led = L1.1",
+        "[lfo]",
+        "bipolar = L1.1",
+        "sine = O1"
+      ],
+      "notes": []
+    },
+    {
+      "id": "manual-pdf-p071-01",
+      "title": "Contrôleur S10 — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 71,
+      "pages": [
+        71
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 71,
+          "column": 2,
+          "top": 238,
+          "bottom": 348
+        }
+      ],
+      "lines": [
+        "[switch]",
+        "offset = S1.1",
+        "input1 = 0",
+        "input2 = 2",
+        "input3 = 3",
+        "input4 = 5",
+        "input5 = 6",
+        "input6 = 10",
+        "input7 = 11",
+        "input8 = 100",
+        "output1 = _FADERMODE"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents.",
+        "Le paramètre output1 du switch est celui du manuel, conservé sans correction."
+      ]
+    },
+    {
+      "id": "manual-pdf-p071-02",
+      "title": "Contrôleur S10 — 2",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 71,
+      "pages": [
+        71
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 71,
+          "column": 3,
+          "top": 178,
+          "bottom": 299
+        }
+      ],
+      "lines": [
+        "[lfo]",
+        "hz = 3",
+        "sine = _SINE",
+        "saw = _SAW",
+        "square = _SQUARE",
+        "[switch]",
+        "offset = S1.3",
+        "input1 = _SINE",
+        "input2 = _SAW",
+        "input3 = _SQUARE",
+        "output1 = O1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents.",
+        "Le paramètre output1 du switch est celui du manuel, conservé sans correction."
+      ]
+    },
+    {
+      "id": "manual-pdf-p076-01",
+      "title": "Faders M4 — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 76,
+      "pages": [
+        76
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 76,
+          "column": 3,
+          "top": 218,
+          "bottom": 240
+        }
+      ],
+      "lines": [
+        "[droid]",
+        "m4touchgain1 = 0.9",
+        "m4touchgain2 = 0.9"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p076-02",
+      "title": "Faders M4 — 2",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 76,
+      "pages": [
+        76
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 76,
+          "column": 3,
+          "top": 314,
+          "bottom": 336
+        }
+      ],
+      "lines": [
+        "[droid]",
+        "m4touchgain1 = P1.1",
+        "m4touchgain2 = P1.2"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p077-01",
+      "title": "Faders M4 — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 77,
+      "pages": [
+        77
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 77,
+          "column": 2,
+          "top": 177,
+          "bottom": 199
+        }
+      ],
+      "lines": [
+        "[droid]",
+        "m4faderspeed = P1.1",
+        "m4notchpower = P1.2"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p082-01",
+      "title": "Affichage DB8E — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 82,
+      "pages": [
+        82
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 82,
+          "column": 3,
+          "top": 225,
+          "bottom": 258
+        }
+      ],
+      "lines": [
+        "[pot]",
+        "select = _SEL",
+        "pot = P2.1",
+        "output = O1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p083-01",
+      "title": "Affichage DB8E — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 83,
+      "pages": [
+        83
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 83,
+          "column": 1,
+          "top": 103,
+          "bottom": 147
+        }
+      ],
+      "lines": [
+        "[pot]",
+        "select = _SEL",
+        "pot = P2.1",
+        "output = O1",
+        "header = \"Pitch bass\""
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p083-02",
+      "title": "Affichage DB8E — 2",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 83,
+      "pages": [
+        83
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 83,
+          "column": 2,
+          "top": 154,
+          "bottom": 209
+        }
+      ],
+      "lines": [
+        "[copy]",
+        "input = P2.1 * 120",
+        "output = _SPEED",
+        "[display]",
+        "value = _SPEED"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p083-03",
+      "title": "Affichage DB8E — 3",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 83,
+      "pages": [
+        83
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 83,
+          "column": 2,
+          "top": 415,
+          "bottom": 437
+        }
+      ],
+      "lines": [
+        "[display]",
+        "value = _SPEED",
+        "header = \"Speed (BPM)\""
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p084-01",
+      "title": "Affichage DB8E — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 84,
+      "pages": [
+        84
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 84,
+          "column": 3,
+          "top": 243,
+          "bottom": 254
+        }
+      ],
+      "lines": [
+        "[display]",
+        "screensaver = 60"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p084-02",
+      "title": "Affichage DB8E — 2",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 84,
+      "pages": [
+        84
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 84,
+          "column": 3,
+          "top": 411,
+          "bottom": 422
+        }
+      ],
+      "lines": [
+        "[display]",
+        "takeovercontrols = 1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p085-01",
+      "title": "Affichage DB8E — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 85,
+      "pages": [
+        85
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 85,
+          "column": 1,
+          "top": 113,
+          "bottom": 168
+        }
+      ],
+      "lines": [
+        "[button]",
+        "button = B1.9",
+        "output = _TAKEOVER",
+        "[display]",
+        "takeovercontrols = _TAKEOVER"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p085-02",
+      "title": "Affichage DB8E — 2",
+      "kind": "full",
+      "category": "Manuel — introduction",
+      "page": 85,
+      "pages": [
+        85
+      ],
+      "example_number": 2,
+      "context_required": false,
+      "regions": [
+        {
+          "page": 85,
+          "column": 1,
+          "top": 275,
+          "bottom": 352
+        }
+      ],
+      "lines": [
+        "[db8e]",
+        "[display]",
+        "takeovercontrols = 1",
+        "[encoder]",
+        "encoder = 1",
+        "output = O1"
+      ],
+      "notes": []
+    },
+    {
+      "id": "manual-pdf-p092-01",
+      "title": "MIDI et X7 — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 92,
+      "pages": [
+        92
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 92,
+          "column": 3,
+          "top": 333,
+          "bottom": 355
+        }
+      ],
+      "lines": [
+        "[midiin]",
+        "pitch = O1",
+        "gate = O2"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p092-02",
+      "title": "MIDI et X7 — 2",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 92,
+      "pages": [
+        92
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 92,
+          "column": 3,
+          "top": 428,
+          "bottom": 461
+        }
+      ],
+      "lines": [
+        "[midiin]",
+        "usb = 1",
+        "pitch = O1",
+        "gate = O2"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p093-01",
+      "title": "MIDI et X7 — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 93,
+      "pages": [
+        93
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 93,
+          "column": 1,
+          "top": 60,
+          "bottom": 93
+        }
+      ],
+      "lines": [
+        "[midiin]",
+        "channel = 5",
+        "pitch = O1",
+        "gate = O2"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p093-02",
+      "title": "MIDI et X7 — 2",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 93,
+      "pages": [
+        93
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 93,
+          "column": 1,
+          "top": 224,
+          "bottom": 290
+        }
+      ],
+      "lines": [
+        "[midiin]",
+        "pitch1 = O1",
+        "pitch2 = O2",
+        "pitch3 = O3",
+        "gate1 = O5",
+        "gate2 = O6",
+        "gate3 = O7"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p093-03",
+      "title": "MIDI et X7 — 3",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 93,
+      "pages": [
+        93
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 93,
+          "column": 1,
+          "top": 363,
+          "bottom": 517
+        },
+        {
+          "page": 93,
+          "column": 2,
+          "top": 60,
+          "bottom": 71
+        }
+      ],
+      "lines": [
+        "[midiin]",
+        "pitch1 = O1",
+        "pitch2 = O2",
+        "pitch3 = O3",
+        "pitch4 = O4",
+        "pitch5 = O5",
+        "pitch6 = O6",
+        "pitch7 = O7",
+        "pitch8 = O8",
+        "gate1 = G1",
+        "gate2 = G2",
+        "gate3 = G3",
+        "gate4 = G4",
+        "gate5 = G5",
+        "gate6 = G6",
+        "gate7 = G7",
+        "gate8 = G8"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p093-04",
+      "title": "MIDI et X7 — 4",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 93,
+      "pages": [
+        93
+      ],
+      "example_number": 4,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 93,
+          "column": 2,
+          "top": 158,
+          "bottom": 223
+        }
+      ],
+      "lines": [
+        "[midiin]",
+        "pitch = O1",
+        "gate = O2",
+        "volume = O3",
+        "modwheel = O4",
+        "ccnumber1 = 17 # get CC number 17",
+        "cc1 = O5 # output that on O5"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p093-05",
+      "title": "MIDI et X7 — 5",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 93,
+      "pages": [
+        93
+      ],
+      "example_number": 5,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 93,
+          "column": 2,
+          "top": 298,
+          "bottom": 342
+        }
+      ],
+      "lines": [
+        "[midiin]",
+        "clock = G1",
+        "start = G2",
+        "stop = G3",
+        "running = G4 # alternative to start/stop"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p093-06",
+      "title": "MIDI et X7 — 6",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 93,
+      "pages": [
+        93
+      ],
+      "example_number": 6,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 93,
+          "column": 2,
+          "top": 429,
+          "bottom": 472
+        }
+      ],
+      "lines": [
+        "[midiin]",
+        "pitch = _PITCH",
+        "[minifonion]",
+        "root = _PITCH * 120"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p093-07",
+      "title": "MIDI et X7 — 7",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 93,
+      "pages": [
+        93
+      ],
+      "example_number": 7,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 93,
+          "column": 3,
+          "top": 60,
+          "bottom": 148
+        }
+      ],
+      "lines": [
+        "[midiin]",
+        "note1 = 24 # MIDI note number of C-0",
+        "notegate1 = _KEY_C",
+        "[button]",
+        "button = _KEY_C",
+        "onvalue = 0.8",
+        "offvalue = 0.2",
+        "output = O1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p094-01",
+      "title": "MIDI et X7 — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 94,
+      "pages": [
+        94
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 94,
+          "column": 2,
+          "top": 115,
+          "bottom": 137
+        }
+      ],
+      "lines": [
+        "[midiout]",
+        "pitch = I1",
+        "gate = I2"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p094-02",
+      "title": "MIDI et X7 — 2",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 94,
+      "pages": [
+        94
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 94,
+          "column": 2,
+          "top": 211,
+          "bottom": 255
+        }
+      ],
+      "lines": [
+        "[midiout]",
+        "usb = 1",
+        "channel = 7",
+        "pitch = I1",
+        "gate = I2"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p094-03",
+      "title": "MIDI et X7 — 3",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 94,
+      "pages": [
+        94
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 94,
+          "column": 2,
+          "top": 330,
+          "bottom": 396
+        }
+      ],
+      "lines": [
+        "[midiout]",
+        "pitch1 = I1",
+        "pitch2 = I2",
+        "pitch3 = I3",
+        "gate1 = I5",
+        "gate2 = I6",
+        "gate3 = I7"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p094-04",
+      "title": "MIDI et X7 — 4",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 94,
+      "pages": [
+        94
+      ],
+      "example_number": 4,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 94,
+          "column": 2,
+          "top": 494,
+          "bottom": 516
+        },
+        {
+          "page": 94,
+          "column": 3,
+          "top": 60,
+          "bottom": 104
+        }
+      ],
+      "lines": [
+        "[minifonion]",
+        "input = I1",
+        "degree = 7",
+        "output = _PITCH",
+        "[midiout]",
+        "pitch = _PTICH",
+        "gate = I2"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents.",
+        "Le câble _PTICH est orthographié ainsi dans le manuel ; il diffère de _PITCH et reste inchangé."
+      ]
+    },
+    {
+      "id": "manual-pdf-p094-05",
+      "title": "MIDI et X7 — 5",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 94,
+      "pages": [
+        94
+      ],
+      "example_number": 5,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 94,
+          "column": 3,
+          "top": 174,
+          "bottom": 295
+        }
+      ],
+      "lines": [
+        "[midiin]",
+        "pitch = _INPITCH",
+        "gate = _GATE",
+        "[minifonion]",
+        "input = _INPITCH",
+        "degree = 7",
+        "output = _OUTPITCH",
+        "[midiout]",
+        "pitch = _OUTPITCH",
+        "gate = _GATE"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p095-01",
+      "title": "MIDI et X7 — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 95,
+      "pages": [
+        95
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 95,
+          "column": 1,
+          "top": 147,
+          "bottom": 169
+        }
+      ],
+      "lines": [
+        "[midithrough]",
+        "fromusb = 1",
+        "tousb = 0 # means TRS jack for output"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p095-02",
+      "title": "MIDI et X7 — 2",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 95,
+      "pages": [
+        95
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 95,
+          "column": 2,
+          "top": 60,
+          "bottom": 104
+        }
+      ],
+      "lines": [
+        "[midiin]",
+        "clock = G9 # 16th notes",
+        "clock8 = G10 # 8th notes",
+        "clock4 = G11 # quarter notes",
+        "start = G12 # trigger at MIDI start message"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p095-03",
+      "title": "MIDI et X7 — 3",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 95,
+      "pages": [
+        95
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 95,
+          "column": 2,
+          "top": 262,
+          "bottom": 295
+        }
+      ],
+      "lines": [
+        "[p2b8]",
+        "[copy]",
+        "input = P1.1",
+        "output = R49"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p106-01",
+      "title": "États et ordre des circuits — 1",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 106,
+      "pages": [
+        106
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 106,
+          "column": 2,
+          "top": 238,
+          "bottom": 314
+        }
+      ],
+      "lines": [
+        "[bernoulli]",
+        "input = G1",
+        "distribution = P1.1",
+        "output1 = _TRIGGER",
+        "[contour]",
+        "trigger = _TRIGGER",
+        "output = O1"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p106-02",
+      "title": "États et ordre des circuits — 2",
+      "kind": "fragment",
+      "category": "Manuel — introduction",
+      "page": 106,
+      "pages": [
+        106
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 106,
+          "column": 3,
+          "top": 60,
+          "bottom": 82
+        }
+      ],
+      "lines": [
+        "[nudge]",
+        "dontsave = 1 # prevent loading/saving",
+        "..."
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p106-03",
+      "title": "États et ordre des circuits — 3",
+      "kind": "snippet",
+      "category": "Manuel — introduction",
+      "page": 106,
+      "pages": [
+        106
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 106,
+          "column": 3,
+          "top": 192,
+          "bottom": 269
+        }
+      ],
+      "lines": [
+        "[contour]",
+        "trigger = _TRIGGER",
+        "output = O1",
+        "[bernoulli]",
+        "input = G1",
+        "distribution = P1.1",
+        "output1 = _TRIGGER"
+      ],
+      "notes": [
+        "Extrait à intégrer dans un patch et une configuration matérielle adaptés ; les contrôleurs ou câbles extérieurs peuvent être absents."
+      ]
+    },
+    {
+      "id": "manual-pdf-p107-01",
+      "title": "États et ordre des circuits — 1",
+      "kind": "full",
+      "category": "Manuel — introduction",
+      "page": 107,
+      "pages": [
+        107
+      ],
+      "example_number": 1,
+      "context_required": false,
+      "regions": [
+        {
+          "page": 107,
+          "column": 1,
+          "top": 132,
+          "bottom": 241
+        }
+      ],
+      "lines": [
+        "[p2b8]",
+        "[contour]",
+        "attack = P1.1",
+        "release = P1.2",
+        "trigger = B1.1",
+        "output = O1",
+        "[copy]",
+        "input = P1.1",
+        "output = X1"
+      ],
+      "notes": []
+    },
+    {
+      "id": "manual-pdf-p196-01",
+      "title": "delay — fichiers — 1",
+      "kind": "fragment",
+      "category": "Manuel — compléments",
+      "page": 196,
+      "pages": [
+        196
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 196,
+          "column": 1,
+          "top": 279,
+          "bottom": 312
+        }
+      ],
+      "lines": [
+        "[delay]",
+        "save = B1.5",
+        "load = B1.6",
+        "..."
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p196-02",
+      "title": "delay — fichiers — 2",
+      "kind": "fragment",
+      "category": "Manuel — compléments",
+      "page": 196,
+      "pages": [
+        196
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 196,
+          "column": 2,
+          "top": 157,
+          "bottom": 201
+        }
+      ],
+      "lines": [
+        "[delay]",
+        "save = B1.5",
+        "load = B1.6",
+        "filenumber = S2.1",
+        "..."
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p291-01",
+      "title": "midiin — ports — 1",
+      "kind": "fragment",
+      "category": "Manuel — compléments",
+      "page": 291,
+      "pages": [
+        291
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 291,
+          "column": 1,
+          "top": 422,
+          "bottom": 459
+        }
+      ],
+      "lines": [
+        "usb = 1",
+        "trs = 1",
+        "trs = 2"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p291-02",
+      "title": "midiin — ports — 2",
+      "kind": "fragment",
+      "category": "Manuel — compléments",
+      "page": 291,
+      "pages": [
+        291
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 291,
+          "column": 2,
+          "top": 63,
+          "bottom": 136
+        }
+      ],
+      "lines": [
+        "usb = 1",
+        "usb = 2",
+        "trs = 1",
+        "trs = 2",
+        "trs = 3"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p297-01",
+      "title": "midiout — ports — 1",
+      "kind": "fragment",
+      "category": "Manuel — compléments",
+      "page": 297,
+      "pages": [
+        297
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 297,
+          "column": 3,
+          "top": 112,
+          "bottom": 240
+        }
+      ],
+      "lines": [
+        "usb = 1",
+        "usb = 0",
+        "trs = 1",
+        "trs = 0",
+        "usb = 0 trs = 1",
+        "usb = 1 trs = 0",
+        "usb = 1 trs = 1",
+        "usb = 0 trs = 0"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p298-01",
+      "title": "midiout — ports — 1",
+      "kind": "fragment",
+      "category": "Manuel — compléments",
+      "page": 298,
+      "pages": [
+        298
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 298,
+          "column": 1,
+          "top": 168,
+          "bottom": 223
+        }
+      ],
+      "lines": [
+        "usb = 1",
+        "trs = 1",
+        "trs = 2",
+        "trs = 10"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p298-02",
+      "title": "midiout — ports — 2",
+      "kind": "fragment",
+      "category": "Manuel — compléments",
+      "page": 298,
+      "pages": [
+        298
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 298,
+          "column": 1,
+          "top": 268,
+          "bottom": 378
+        }
+      ],
+      "lines": [
+        "usb = 1",
+        "usb = 2",
+        "usb = 10",
+        "trs = 1",
+        "trs = 2",
+        "trs = 3",
+        "trs = 10"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p306-01",
+      "title": "midithrough — ports — 1",
+      "kind": "fragment",
+      "category": "Manuel — compléments",
+      "page": 306,
+      "pages": [
+        306
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 306,
+          "column": 1,
+          "top": 324,
+          "bottom": 360
+        }
+      ],
+      "lines": [
+        "usb = 1",
+        "trs = 1",
+        "trs = 2"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p306-02",
+      "title": "midithrough — ports — 2",
+      "kind": "fragment",
+      "category": "Manuel — compléments",
+      "page": 306,
+      "pages": [
+        306
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 306,
+          "column": 2,
+          "top": 93,
+          "bottom": 167
+        }
+      ],
+      "lines": [
+        "usb = 1",
+        "usb = 2",
+        "trs = 1",
+        "trs = 2",
+        "trs = 3"
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p376-01",
+      "title": "recorder — fichiers — 1",
+      "kind": "fragment",
+      "category": "Manuel — compléments",
+      "page": 376,
+      "pages": [
+        376
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 376,
+          "column": 2,
+          "top": 248,
+          "bottom": 281
+        }
+      ],
+      "lines": [
+        "[recorder]",
+        "save = B1.5",
+        "load = B1.6",
+        "..."
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-pdf-p376-02",
+      "title": "recorder — fichiers — 2",
+      "kind": "fragment",
+      "category": "Manuel — compléments",
+      "page": 376,
+      "pages": [
+        376
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 376,
+          "column": 2,
+          "top": 410,
+          "bottom": 454
+        }
+      ],
+      "lines": [
+        "[recorder]",
+        "save = B1.5",
+        "load = B1.6",
+        "filenumber = S2.1",
+        "..."
+      ],
+      "notes": [
+        "Fragment documentaire : contexte ou lignes volontairement omis ; conserver les points de suspension et les tableaux explicatifs."
+      ]
+    },
+    {
+      "id": "manual-inline-p013-01",
+      "title": "Affectation expliquée p. 13 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 13,
+      "pages": [
+        13
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 13,
+          "column": 3,
+          "top": 173,
+          "bottom": 185
+        }
+      ],
+      "lines": [
+        "root = 11"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p020-01",
+      "title": "Affectation expliquée p. 20 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 20,
+      "pages": [
+        20
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 20,
+          "column": 3,
+          "top": 176,
+          "bottom": 188
+        }
+      ],
+      "lines": [
+        "maxactive = 8"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p023-01",
+      "title": "Affectation expliquée p. 23 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 23,
+      "pages": [
+        23
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 23,
+          "column": 1,
+          "top": 322,
+          "bottom": 322
+        }
+      ],
+      "lines": [
+        "activity = P1.1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p058-01",
+      "title": "Affectation expliquée p. 58 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 58,
+      "pages": [
+        58
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 58,
+          "column": 1,
+          "top": 113,
+          "bottom": 113
+        }
+      ],
+      "lines": [
+        "pitch = I1 * 0.0833333"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p083-01",
+      "title": "Affectation expliquée p. 83 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 83,
+      "pages": [
+        83
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 83,
+          "column": 1,
+          "top": 451,
+          "bottom": 451
+        }
+      ],
+      "lines": [
+        "display = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p084-01",
+      "title": "Affectation expliquée p. 84 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 84,
+      "pages": [
+        84
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 84,
+          "column": 2,
+          "top": 438,
+          "bottom": 495
+        }
+      ],
+      "lines": [
+        "display = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p122-01",
+      "title": "Affectation expliquée p. 122 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 122,
+      "pages": [
+        122
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 122,
+          "column": 1,
+          "top": 332,
+          "bottom": 332
+        }
+      ],
+      "lines": [
+        "somejack = I1 * 10"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p130-01",
+      "title": "Affectation expliquée p. 130 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 130,
+      "pages": [
+        130
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 130,
+          "column": 1,
+          "top": 354,
+          "bottom": 354
+        }
+      ],
+      "lines": [
+        "length = 7"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p130-02",
+      "title": "Affectation expliquée p. 130 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 130,
+      "pages": [
+        130
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 130,
+          "column": 1,
+          "top": 492,
+          "bottom": 492
+        }
+      ],
+      "lines": [
+        "repeats = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p133-01",
+      "title": "Affectation expliquée p. 133 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 133,
+      "pages": [
+        133
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 133,
+          "column": 2,
+          "top": 116,
+          "bottom": 116
+        }
+      ],
+      "lines": [
+        "pattern = P1.1 * 10"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p134-01",
+      "title": "Affectation expliquée p. 134 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 134,
+      "pages": [
+        134
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 134,
+          "column": 2,
+          "top": 90,
+          "bottom": 90
+        }
+      ],
+      "lines": [
+        "bars = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p134-02",
+      "title": "Affectation expliquée p. 134 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 134,
+      "pages": [
+        134
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 134,
+          "column": 2,
+          "top": 140,
+          "bottom": 140
+        }
+      ],
+      "lines": [
+        "repeats = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p134-03",
+      "title": "Affectation expliquée p. 134 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 134,
+      "pages": [
+        134
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 134,
+          "column": 2,
+          "top": 203,
+          "bottom": 203
+        }
+      ],
+      "lines": [
+        "repeats = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p134-04",
+      "title": "Affectation expliquée p. 134 — 4",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 134,
+      "pages": [
+        134
+      ],
+      "example_number": 4,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 134,
+          "column": 2,
+          "top": 203,
+          "bottom": 203
+        }
+      ],
+      "lines": [
+        "alternatebars = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p134-05",
+      "title": "Affectation expliquée p. 134 — 5",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 134,
+      "pages": [
+        134
+      ],
+      "example_number": 5,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 134,
+          "column": 2,
+          "top": 248,
+          "bottom": 248
+        }
+      ],
+      "lines": [
+        "alternaterepeats = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p134-06",
+      "title": "Affectation expliquée p. 134 — 6",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 134,
+      "pages": [
+        134
+      ],
+      "example_number": 6,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 134,
+          "column": 2,
+          "top": 278,
+          "bottom": 278
+        }
+      ],
+      "lines": [
+        "branches = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p134-07",
+      "title": "Affectation expliquée p. 134 — 7",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 134,
+      "pages": [
+        134
+      ],
+      "example_number": 7,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 134,
+          "column": 2,
+          "top": 314,
+          "bottom": 314
+        }
+      ],
+      "lines": [
+        "branches = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p136-01",
+      "title": "Affectation expliquée p. 136 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 136,
+      "pages": [
+        136
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 136,
+          "column": 2,
+          "top": 179,
+          "bottom": 179
+        }
+      ],
+      "lines": [
+        "dejavu = 0.0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p136-02",
+      "title": "Affectation expliquée p. 136 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 136,
+      "pages": [
+        136
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 136,
+          "column": 2,
+          "top": 212,
+          "bottom": 212
+        }
+      ],
+      "lines": [
+        "dejavu = 1.0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p136-03",
+      "title": "Affectation expliquée p. 136 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 136,
+      "pages": [
+        136
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 136,
+          "column": 2,
+          "top": 287,
+          "bottom": 287
+        }
+      ],
+      "lines": [
+        "morphs = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p137-01",
+      "title": "Affectation expliquée p. 137 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 137,
+      "pages": [
+        137
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 137,
+          "column": 2,
+          "top": 280,
+          "bottom": 280
+        }
+      ],
+      "lines": [
+        "rollcount = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p138-01",
+      "title": "Affectation expliquée p. 138 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 138,
+      "pages": [
+        138
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 138,
+          "column": 2,
+          "top": 125,
+          "bottom": 125
+        }
+      ],
+      "lines": [
+        "header = \"\""
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p138-02",
+      "title": "Affectation expliquée p. 138 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 138,
+      "pages": [
+        138
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 138,
+          "column": 2,
+          "top": 125,
+          "bottom": 125
+        }
+      ],
+      "lines": [
+        "header = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p140-01",
+      "title": "Affectation expliquée p. 140 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 140,
+      "pages": [
+        140
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 140,
+          "column": 3,
+          "top": 387,
+          "bottom": 387
+        }
+      ],
+      "lines": [
+        "range = 2V"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p142-01",
+      "title": "Affectation expliquée p. 142 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 142,
+      "pages": [
+        142
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 142,
+          "column": 2,
+          "top": 279,
+          "bottom": 279
+        }
+      ],
+      "lines": [
+        "octaves = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p145-01",
+      "title": "Affectation expliquée p. 145 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 145,
+      "pages": [
+        145
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 145,
+          "column": 2,
+          "top": 354,
+          "bottom": 354
+        }
+      ],
+      "lines": [
+        "autoreset = 5"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p145-02",
+      "title": "Affectation expliquée p. 145 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 145,
+      "pages": [
+        145
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 145,
+          "column": 2,
+          "top": 369,
+          "bottom": 369
+        }
+      ],
+      "lines": [
+        "autoreset = 5"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p156-01",
+      "title": "Affectation expliquée p. 156 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 156,
+      "pages": [
+        156
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 156,
+          "column": 2,
+          "top": 452,
+          "bottom": 452
+        }
+      ],
+      "lines": [
+        "states = 3"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p157-01",
+      "title": "Affectation expliquée p. 157 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 157,
+      "pages": [
+        157
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 157,
+          "column": 2,
+          "top": 463,
+          "bottom": 463
+        }
+      ],
+      "lines": [
+        "header = \"\""
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p157-02",
+      "title": "Affectation expliquée p. 157 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 157,
+      "pages": [
+        157
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 157,
+          "column": 2,
+          "top": 463,
+          "bottom": 463
+        }
+      ],
+      "lines": [
+        "header = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p161-01",
+      "title": "Affectation expliquée p. 161 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 161,
+      "pages": [
+        161
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 161,
+          "column": 2,
+          "top": 445,
+          "bottom": 445
+        }
+      ],
+      "lines": [
+        "startbutton = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p161-02",
+      "title": "Affectation expliquée p. 161 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 161,
+      "pages": [
+        161
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 161,
+          "column": 2,
+          "top": 466,
+          "bottom": 466
+        }
+      ],
+      "lines": [
+        "startbutton = -1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p162-01",
+      "title": "Affectation expliquée p. 162 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 162,
+      "pages": [
+        162
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 162,
+          "column": 2,
+          "top": 188,
+          "bottom": 188
+        }
+      ],
+      "lines": [
+        "header = \"\""
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p162-02",
+      "title": "Affectation expliquée p. 162 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 162,
+      "pages": [
+        162
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 162,
+          "column": 2,
+          "top": 188,
+          "bottom": 188
+        }
+      ],
+      "lines": [
+        "header = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p163-01",
+      "title": "Affectation expliquée p. 163 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 163,
+      "pages": [
+        163
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 163,
+          "column": 2,
+          "top": 134,
+          "bottom": 134
+        }
+      ],
+      "lines": [
+        "maxactive ="
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p163-02",
+      "title": "Affectation expliquée p. 163 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 163,
+      "pages": [
+        163
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 163,
+          "column": 2,
+          "top": 254,
+          "bottom": 254
+        }
+      ],
+      "lines": [
+        "maxactive = 4"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p165-01",
+      "title": "Affectation expliquée p. 165 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 165,
+      "pages": [
+        165
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 165,
+          "column": 3,
+          "top": 291,
+          "bottom": 291
+        }
+      ],
+      "lines": [
+        "forcedisplay = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p166-01",
+      "title": "Affectation expliquée p. 166 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 166,
+      "pages": [
+        166
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 166,
+          "column": 2,
+          "top": 350,
+          "bottom": 350
+        }
+      ],
+      "lines": [
+        "header = \"\""
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p166-02",
+      "title": "Affectation expliquée p. 166 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 166,
+      "pages": [
+        166
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 166,
+          "column": 2,
+          "top": 350,
+          "bottom": 350
+        }
+      ],
+      "lines": [
+        "header = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p184-01",
+      "title": "Affectation expliquée p. 184 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 184,
+      "pages": [
+        184
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 184,
+          "column": 3,
+          "top": 198,
+          "bottom": 198
+        }
+      ],
+      "lines": [
+        "attackshape = 0.0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p196-01",
+      "title": "Affectation expliquée p. 196 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 196,
+      "pages": [
+        196
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 196,
+          "column": 2,
+          "top": 377,
+          "bottom": 377
+        }
+      ],
+      "lines": [
+        "delay = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p200-01",
+      "title": "Affectation expliquée p. 200 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 200,
+      "pages": [
+        200
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 200,
+          "column": 2,
+          "top": 59,
+          "bottom": 59
+        }
+      ],
+      "lines": [
+        "display = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p211-01",
+      "title": "Affectation expliquée p. 211 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 211,
+      "pages": [
+        211
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 211,
+          "column": 2,
+          "top": 360,
+          "bottom": 360
+        }
+      ],
+      "lines": [
+        "ledfill = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p211-02",
+      "title": "Affectation expliquée p. 211 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 211,
+      "pages": [
+        211
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 211,
+          "column": 2,
+          "top": 372,
+          "bottom": 372
+        }
+      ],
+      "lines": [
+        "ledfill = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p211-03",
+      "title": "Affectation expliquée p. 211 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 211,
+      "pages": [
+        211
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 211,
+          "column": 2,
+          "top": 498,
+          "bottom": 498
+        }
+      ],
+      "lines": [
+        "header = \"\""
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p211-04",
+      "title": "Affectation expliquée p. 211 — 4",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 211,
+      "pages": [
+        211
+      ],
+      "example_number": 4,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 211,
+          "column": 2,
+          "top": 498,
+          "bottom": 498
+        }
+      ],
+      "lines": [
+        "header = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p214-01",
+      "title": "Affectation expliquée p. 214 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 214,
+      "pages": [
+        214
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 214,
+          "column": 2,
+          "top": 275,
+          "bottom": 275
+        }
+      ],
+      "lines": [
+        "encoder ="
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p215-01",
+      "title": "Affectation expliquée p. 215 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 215,
+      "pages": [
+        215
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 215,
+          "column": 1,
+          "top": 203,
+          "bottom": 203
+        }
+      ],
+      "lines": [
+        "autozoom = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p215-02",
+      "title": "Affectation expliquée p. 215 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 215,
+      "pages": [
+        215
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 215,
+          "column": 2,
+          "top": 202,
+          "bottom": 202
+        }
+      ],
+      "lines": [
+        "mode = 4"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p215-03",
+      "title": "Affectation expliquée p. 215 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 215,
+      "pages": [
+        215
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 215,
+          "column": 2,
+          "top": 214,
+          "bottom": 214
+        }
+      ],
+      "lines": [
+        "mode = 5"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p216-01",
+      "title": "Affectation expliquée p. 216 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 216,
+      "pages": [
+        216
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 216,
+          "column": 3,
+          "top": 235,
+          "bottom": 235
+        }
+      ],
+      "lines": [
+        "discrete = 1000000"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p221-01",
+      "title": "Affectation expliquée p. 221 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 221,
+      "pages": [
+        221
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 221,
+          "column": 2,
+          "top": 285,
+          "bottom": 285
+        }
+      ],
+      "lines": [
+        "ledfill = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p221-02",
+      "title": "Affectation expliquée p. 221 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 221,
+      "pages": [
+        221
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 221,
+          "column": 2,
+          "top": 297,
+          "bottom": 297
+        }
+      ],
+      "lines": [
+        "ledfill = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p221-03",
+      "title": "Affectation expliquée p. 221 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 221,
+      "pages": [
+        221
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 221,
+          "column": 2,
+          "top": 423,
+          "bottom": 423
+        }
+      ],
+      "lines": [
+        "header = \"\""
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p221-04",
+      "title": "Affectation expliquée p. 221 — 4",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 221,
+      "pages": [
+        221
+      ],
+      "example_number": 4,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 221,
+          "column": 2,
+          "top": 423,
+          "bottom": 423
+        }
+      ],
+      "lines": [
+        "header = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p223-01",
+      "title": "Affectation expliquée p. 223 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 223,
+      "pages": [
+        223
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 223,
+          "column": 3,
+          "top": 302,
+          "bottom": 302
+        }
+      ],
+      "lines": [
+        "ledpreview = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p224-01",
+      "title": "Affectation expliquée p. 224 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 224,
+      "pages": [
+        224
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 224,
+          "column": 2,
+          "top": 336,
+          "bottom": 336
+        }
+      ],
+      "lines": [
+        "zorder = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p224-02",
+      "title": "Affectation expliquée p. 224 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 224,
+      "pages": [
+        224
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 224,
+          "column": 2,
+          "top": 378,
+          "bottom": 378
+        }
+      ],
+      "lines": [
+        "numfaders = 8"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p224-03",
+      "title": "Affectation expliquée p. 224 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 224,
+      "pages": [
+        224
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 224,
+          "column": 2,
+          "top": 378,
+          "bottom": 378
+        }
+      ],
+      "lines": [
+        "zorder = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p224-04",
+      "title": "Affectation expliquée p. 224 — 4",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 224,
+      "pages": [
+        224
+      ],
+      "example_number": 4,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 224,
+          "column": 2,
+          "top": 378,
+          "bottom": 378
+        }
+      ],
+      "lines": [
+        "nume4s = 8"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p224-05",
+      "title": "Affectation expliquée p. 224 — 5",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 224,
+      "pages": [
+        224
+      ],
+      "example_number": 5,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 224,
+          "column": 2,
+          "top": 378,
+          "bottom": 378
+        }
+      ],
+      "lines": [
+        "numfaders = 16"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p225-01",
+      "title": "Affectation expliquée p. 225 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 225,
+      "pages": [
+        225
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 225,
+          "column": 2,
+          "top": 191,
+          "bottom": 191
+        }
+      ],
+      "lines": [
+        "numsteps = 4"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p225-02",
+      "title": "Affectation expliquée p. 225 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 225,
+      "pages": [
+        225
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 225,
+          "column": 2,
+          "top": 203,
+          "bottom": 203
+        }
+      ],
+      "lines": [
+        "numfaders = 4"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p227-01",
+      "title": "Affectation expliquée p. 227 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 227,
+      "pages": [
+        227
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 227,
+          "column": 2,
+          "top": 265,
+          "bottom": 265
+        }
+      ],
+      "lines": [
+        "quantize = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p230-01",
+      "title": "Affectation expliquée p. 230 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 230,
+      "pages": [
+        230
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 230,
+          "column": 2,
+          "top": 294,
+          "bottom": 294
+        }
+      ],
+      "lines": [
+        "quantize = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p230-02",
+      "title": "Affectation expliquée p. 230 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 230,
+      "pages": [
+        230
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 230,
+          "column": 2,
+          "top": 335,
+          "bottom": 335
+        }
+      ],
+      "lines": [
+        "quantize = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p231-01",
+      "title": "Affectation expliquée p. 231 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 231,
+      "pages": [
+        231
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 231,
+          "column": 2,
+          "top": 93,
+          "bottom": 93
+        }
+      ],
+      "lines": [
+        "constantlength = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p231-02",
+      "title": "Affectation expliquée p. 231 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 231,
+      "pages": [
+        231
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 231,
+          "column": 2,
+          "top": 149,
+          "bottom": 149
+        }
+      ],
+      "lines": [
+        "constantlength = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p234-01",
+      "title": "Affectation expliquée p. 234 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 234,
+      "pages": [
+        234
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 234,
+          "column": 2,
+          "top": 424,
+          "bottom": 424
+        }
+      ],
+      "lines": [
+        "fadermode = 10"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p234-02",
+      "title": "Affectation expliquée p. 234 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 234,
+      "pages": [
+        234
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 234,
+          "column": 2,
+          "top": 424,
+          "bottom": 424
+        }
+      ],
+      "lines": [
+        "fadermode = 11"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p234-03",
+      "title": "Affectation expliquée p. 234 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 234,
+      "pages": [
+        234
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 234,
+          "column": 2,
+          "top": 436,
+          "bottom": 436
+        }
+      ],
+      "lines": [
+        "fadermode = 20"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p235-01",
+      "title": "Affectation expliquée p. 235 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 235,
+      "pages": [
+        235
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 235,
+          "column": 2,
+          "top": 489,
+          "bottom": 489
+        }
+      ],
+      "lines": [
+        "luckyamount = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p235-02",
+      "title": "Affectation expliquée p. 235 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 235,
+      "pages": [
+        235
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 235,
+          "column": 2,
+          "top": 489,
+          "bottom": 489
+        }
+      ],
+      "lines": [
+        "luckyamount = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p236-01",
+      "title": "Affectation expliquée p. 236 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 236,
+      "pages": [
+        236
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 236,
+          "column": 2,
+          "top": 182,
+          "bottom": 182
+        }
+      ],
+      "lines": [
+        "luckyamount = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p236-02",
+      "title": "Affectation expliquée p. 236 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 236,
+      "pages": [
+        236
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 236,
+          "column": 2,
+          "top": 194,
+          "bottom": 194
+        }
+      ],
+      "lines": [
+        "luckymount = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p236-03",
+      "title": "Affectation expliquée p. 236 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 236,
+      "pages": [
+        236
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 236,
+          "column": 2,
+          "top": 314,
+          "bottom": 314
+        }
+      ],
+      "lines": [
+        "buttonmode = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p248-01",
+      "title": "Affectation expliquée p. 248 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 248,
+      "pages": [
+        248
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 248,
+          "column": 2,
+          "top": 188,
+          "bottom": 188
+        }
+      ],
+      "lines": [
+        "header = \"\""
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p248-02",
+      "title": "Affectation expliquée p. 248 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 248,
+      "pages": [
+        248
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 248,
+          "column": 2,
+          "top": 188,
+          "bottom": 188
+        }
+      ],
+      "lines": [
+        "header = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p254-01",
+      "title": "Affectation expliquée p. 254 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 254,
+      "pages": [
+        254
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 254,
+          "column": 2,
+          "top": 188,
+          "bottom": 188
+        }
+      ],
+      "lines": [
+        "header = \"\""
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p254-02",
+      "title": "Affectation expliquée p. 254 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 254,
+      "pages": [
+        254
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 254,
+          "column": 2,
+          "top": 188,
+          "bottom": 188
+        }
+      ],
+      "lines": [
+        "header = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p282-01",
+      "title": "Affectation expliquée p. 282 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 282,
+      "pages": [
+        282
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 282,
+          "column": 3,
+          "top": 102,
+          "bottom": 102
+        }
+      ],
+      "lines": [
+        "file = 17"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p285-01",
+      "title": "Affectation expliquée p. 285 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 285,
+      "pages": [
+        285
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 285,
+          "column": 2,
+          "top": 433,
+          "bottom": 433
+        }
+      ],
+      "lines": [
+        "notegap = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p290-01",
+      "title": "Affectation expliquée p. 290 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 290,
+      "pages": [
+        290
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 290,
+          "column": 3,
+          "top": 83,
+          "bottom": 83
+        }
+      ],
+      "lines": [
+        "channel = ..."
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p291-01",
+      "title": "Affectation expliquée p. 291 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 291,
+      "pages": [
+        291
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 291,
+          "column": 1,
+          "top": 290,
+          "bottom": 290
+        }
+      ],
+      "lines": [
+        "trs ="
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p291-02",
+      "title": "Affectation expliquée p. 291 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 291,
+      "pages": [
+        291
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 291,
+          "column": 1,
+          "top": 302,
+          "bottom": 302
+        }
+      ],
+      "lines": [
+        "usb ="
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p291-03",
+      "title": "Affectation expliquée p. 291 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 291,
+      "pages": [
+        291
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 291,
+          "column": 2,
+          "top": 263,
+          "bottom": 263
+        }
+      ],
+      "lines": [
+        "trs = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p292-01",
+      "title": "Affectation expliquée p. 292 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 292,
+      "pages": [
+        292
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 292,
+          "column": 2,
+          "top": 81,
+          "bottom": 81
+        }
+      ],
+      "lines": [
+        "trs = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p292-02",
+      "title": "Affectation expliquée p. 292 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 292,
+      "pages": [
+        292
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 292,
+          "column": 2,
+          "top": 110,
+          "bottom": 110
+        }
+      ],
+      "lines": [
+        "usb = 10"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p294-01",
+      "title": "Affectation expliquée p. 294 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 294,
+      "pages": [
+        294
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 294,
+          "column": 2,
+          "top": 161,
+          "bottom": 161
+        }
+      ],
+      "lines": [
+        "notegap = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p302-01",
+      "title": "Affectation expliquée p. 302 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 302,
+      "pages": [
+        302
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 302,
+          "column": 2,
+          "top": 278,
+          "bottom": 278
+        }
+      ],
+      "lines": [
+        "pitchbandrange = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p302-02",
+      "title": "Affectation expliquée p. 302 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 302,
+      "pages": [
+        302
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 302,
+          "column": 2,
+          "top": 290,
+          "bottom": 290
+        }
+      ],
+      "lines": [
+        "pitchbendrange = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p305-01",
+      "title": "Affectation expliquée p. 305 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 305,
+      "pages": [
+        305
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 305,
+          "column": 2,
+          "top": 116,
+          "bottom": 116
+        }
+      ],
+      "lines": [
+        "activesensing = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p306-01",
+      "title": "Affectation expliquée p. 306 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 306,
+      "pages": [
+        306
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 306,
+          "column": 2,
+          "top": 200,
+          "bottom": 200
+        }
+      ],
+      "lines": [
+        "fromusb = 10"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p307-01",
+      "title": "Affectation expliquée p. 307 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 307,
+      "pages": [
+        307
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 307,
+          "column": 2,
+          "top": 81,
+          "bottom": 81
+        }
+      ],
+      "lines": [
+        "fromtrs = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p307-02",
+      "title": "Affectation expliquée p. 307 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 307,
+      "pages": [
+        307
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 307,
+          "column": 2,
+          "top": 110,
+          "bottom": 110
+        }
+      ],
+      "lines": [
+        "fromusb = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p307-03",
+      "title": "Affectation expliquée p. 307 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 307,
+      "pages": [
+        307
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 307,
+          "column": 2,
+          "top": 110,
+          "bottom": 110
+        }
+      ],
+      "lines": [
+        "fromusb = 10"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p308-01",
+      "title": "Affectation expliquée p. 308 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 308,
+      "pages": [
+        308
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 308,
+          "column": 3,
+          "top": 365,
+          "bottom": 365
+        }
+      ],
+      "lines": [
+        "selection = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p308-02",
+      "title": "Affectation expliquée p. 308 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 308,
+      "pages": [
+        308
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 308,
+          "column": 3,
+          "top": 389,
+          "bottom": 389
+        }
+      ],
+      "lines": [
+        "selection = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p308-03",
+      "title": "Affectation expliquée p. 308 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 308,
+      "pages": [
+        308
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 308,
+          "column": 3,
+          "top": 413,
+          "bottom": 413
+        }
+      ],
+      "lines": [
+        "selection = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p317-01",
+      "title": "Affectation expliquée p. 317 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 317,
+      "pages": [
+        317
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 317,
+          "column": 2,
+          "top": 348,
+          "bottom": 348
+        }
+      ],
+      "lines": [
+        "fadermode = 6"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p317-02",
+      "title": "Affectation expliquée p. 317 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 317,
+      "pages": [
+        317
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 317,
+          "column": 2,
+          "top": 348,
+          "bottom": 348
+        }
+      ],
+      "lines": [
+        "buttonmode ="
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p317-03",
+      "title": "Affectation expliquée p. 317 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 317,
+      "pages": [
+        317
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 317,
+          "column": 3,
+          "top": 71,
+          "bottom": 71
+        }
+      ],
+      "lines": [
+        "buttonmode = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p318-01",
+      "title": "Affectation expliquée p. 318 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 318,
+      "pages": [
+        318
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 318,
+          "column": 1,
+          "top": 421,
+          "bottom": 421
+        }
+      ],
+      "lines": [
+        "quantize = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p318-02",
+      "title": "Affectation expliquée p. 318 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 318,
+      "pages": [
+        318
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 318,
+          "column": 1,
+          "top": 445,
+          "bottom": 445
+        }
+      ],
+      "lines": [
+        "quantize = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p318-03",
+      "title": "Affectation expliquée p. 318 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 318,
+      "pages": [
+        318
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 318,
+          "column": 2,
+          "top": 491,
+          "bottom": 491
+        }
+      ],
+      "lines": [
+        "direction = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p318-04",
+      "title": "Affectation expliquée p. 318 — 4",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 318,
+      "pages": [
+        318
+      ],
+      "example_number": 4,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 318,
+          "column": 2,
+          "top": 491,
+          "bottom": 491
+        }
+      ],
+      "lines": [
+        "pingpong = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p319-01",
+      "title": "Affectation expliquée p. 319 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 319,
+      "pages": [
+        319
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 319,
+          "column": 1,
+          "top": 167,
+          "bottom": 167
+        }
+      ],
+      "lines": [
+        "autoreset = 16"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p319-02",
+      "title": "Affectation expliquée p. 319 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 319,
+      "pages": [
+        319
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 319,
+          "column": 1,
+          "top": 238,
+          "bottom": 238
+        }
+      ],
+      "lines": [
+        "autoreset = 7"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p319-03",
+      "title": "Affectation expliquée p. 319 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 319,
+      "pages": [
+        319
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 319,
+          "column": 3,
+          "top": 260,
+          "bottom": 260
+        }
+      ],
+      "lines": [
+        "luckyamount = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p321-01",
+      "title": "Affectation expliquée p. 321 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 321,
+      "pages": [
+        321
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 321,
+          "column": 2,
+          "top": 211,
+          "bottom": 211
+        }
+      ],
+      "lines": [
+        "fadermode = 25"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p321-02",
+      "title": "Affectation expliquée p. 321 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 321,
+      "pages": [
+        321
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 321,
+          "column": 3,
+          "top": 167,
+          "bottom": 167
+        }
+      ],
+      "lines": [
+        "fadermode = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p321-03",
+      "title": "Affectation expliquée p. 321 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 321,
+      "pages": [
+        321
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 321,
+          "column": 3,
+          "top": 191,
+          "bottom": 191
+        }
+      ],
+      "lines": [
+        "fadermode = 11"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p325-01",
+      "title": "Affectation expliquée p. 325 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 325,
+      "pages": [
+        325
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 325,
+          "column": 2,
+          "top": 239,
+          "bottom": 239
+        }
+      ],
+      "lines": [
+        "numsteps = 4"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p325-02",
+      "title": "Affectation expliquée p. 325 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 325,
+      "pages": [
+        325
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 325,
+          "column": 2,
+          "top": 251,
+          "bottom": 251
+        }
+      ],
+      "lines": [
+        "numfaders = 4"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p327-01",
+      "title": "Affectation expliquée p. 327 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 327,
+      "pages": [
+        327
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 327,
+          "column": 2,
+          "top": 265,
+          "bottom": 265
+        }
+      ],
+      "lines": [
+        "quantize = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p330-01",
+      "title": "Affectation expliquée p. 330 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 330,
+      "pages": [
+        330
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 330,
+          "column": 2,
+          "top": 294,
+          "bottom": 294
+        }
+      ],
+      "lines": [
+        "quantize = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p330-02",
+      "title": "Affectation expliquée p. 330 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 330,
+      "pages": [
+        330
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 330,
+          "column": 2,
+          "top": 335,
+          "bottom": 335
+        }
+      ],
+      "lines": [
+        "quantize = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p331-01",
+      "title": "Affectation expliquée p. 331 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 331,
+      "pages": [
+        331
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 331,
+          "column": 2,
+          "top": 93,
+          "bottom": 93
+        }
+      ],
+      "lines": [
+        "constantlength = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p331-02",
+      "title": "Affectation expliquée p. 331 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 331,
+      "pages": [
+        331
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 331,
+          "column": 2,
+          "top": 149,
+          "bottom": 149
+        }
+      ],
+      "lines": [
+        "constantlength = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p334-01",
+      "title": "Affectation expliquée p. 334 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 334,
+      "pages": [
+        334
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 334,
+          "column": 2,
+          "top": 424,
+          "bottom": 424
+        }
+      ],
+      "lines": [
+        "fadermode = 10"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p334-02",
+      "title": "Affectation expliquée p. 334 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 334,
+      "pages": [
+        334
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 334,
+          "column": 2,
+          "top": 424,
+          "bottom": 424
+        }
+      ],
+      "lines": [
+        "fadermode = 11"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p334-03",
+      "title": "Affectation expliquée p. 334 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 334,
+      "pages": [
+        334
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 334,
+          "column": 2,
+          "top": 436,
+          "bottom": 436
+        }
+      ],
+      "lines": [
+        "fadermode = 20"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p335-01",
+      "title": "Affectation expliquée p. 335 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 335,
+      "pages": [
+        335
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 335,
+          "column": 2,
+          "top": 489,
+          "bottom": 489
+        }
+      ],
+      "lines": [
+        "luckyamount = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p335-02",
+      "title": "Affectation expliquée p. 335 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 335,
+      "pages": [
+        335
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 335,
+          "column": 2,
+          "top": 489,
+          "bottom": 489
+        }
+      ],
+      "lines": [
+        "luckyamount = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p336-01",
+      "title": "Affectation expliquée p. 336 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 336,
+      "pages": [
+        336
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 336,
+          "column": 2,
+          "top": 182,
+          "bottom": 182
+        }
+      ],
+      "lines": [
+        "luckyamount = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p336-02",
+      "title": "Affectation expliquée p. 336 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 336,
+      "pages": [
+        336
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 336,
+          "column": 2,
+          "top": 194,
+          "bottom": 194
+        }
+      ],
+      "lines": [
+        "luckymount = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p336-03",
+      "title": "Affectation expliquée p. 336 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 336,
+      "pages": [
+        336
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 336,
+          "column": 2,
+          "top": 314,
+          "bottom": 314
+        }
+      ],
+      "lines": [
+        "buttonmode = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p344-01",
+      "title": "Affectation expliquée p. 344 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 344,
+      "pages": [
+        344
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 344,
+          "column": 2,
+          "top": 458,
+          "bottom": 458
+        }
+      ],
+      "lines": [
+        "notches = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p344-02",
+      "title": "Affectation expliquée p. 344 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 344,
+      "pages": [
+        344
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 344,
+          "column": 3,
+          "top": 87,
+          "bottom": 87
+        }
+      ],
+      "lines": [
+        "notches = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p345-01",
+      "title": "Affectation expliquée p. 345 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 345,
+      "pages": [
+        345
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 345,
+          "column": 2,
+          "top": 518,
+          "bottom": 518
+        }
+      ],
+      "lines": [
+        "header = \"\""
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p345-02",
+      "title": "Affectation expliquée p. 345 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 345,
+      "pages": [
+        345
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 345,
+          "column": 2,
+          "top": 518,
+          "bottom": 518
+        }
+      ],
+      "lines": [
+        "header = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p350-01",
+      "title": "Affectation expliquée p. 350 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 350,
+      "pages": [
+        350
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 350,
+          "column": 2,
+          "top": 266,
+          "bottom": 266
+        }
+      ],
+      "lines": [
+        "header = \"\""
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p350-02",
+      "title": "Affectation expliquée p. 350 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 350,
+      "pages": [
+        350
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 350,
+          "column": 2,
+          "top": 266,
+          "bottom": 266
+        }
+      ],
+      "lines": [
+        "header = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p353-01",
+      "title": "Affectation expliquée p. 353 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 353,
+      "pages": [
+        353
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 353,
+          "column": 2,
+          "top": 474,
+          "bottom": 474
+        }
+      ],
+      "lines": [
+        "header = \"\""
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p353-02",
+      "title": "Affectation expliquée p. 353 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 353,
+      "pages": [
+        353
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 353,
+          "column": 2,
+          "top": 474,
+          "bottom": 474
+        }
+      ],
+      "lines": [
+        "header = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p355-01",
+      "title": "Affectation expliquée p. 355 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 355,
+      "pages": [
+        355
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 355,
+          "column": 1,
+          "top": 422,
+          "bottom": 422
+        }
+      ],
+      "lines": [
+        "fifths = on"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p359-01",
+      "title": "Affectation expliquée p. 359 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 359,
+      "pages": [
+        359
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 359,
+          "column": 2,
+          "top": 188,
+          "bottom": 188
+        }
+      ],
+      "lines": [
+        "header = \"\""
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p359-02",
+      "title": "Affectation expliquée p. 359 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 359,
+      "pages": [
+        359
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 359,
+          "column": 2,
+          "top": 188,
+          "bottom": 188
+        }
+      ],
+      "lines": [
+        "header = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p362-01",
+      "title": "Affectation expliquée p. 362 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 362,
+      "pages": [
+        362
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 362,
+          "column": 2,
+          "top": 360,
+          "bottom": 360
+        }
+      ],
+      "lines": [
+        "slope = 1.0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p365-01",
+      "title": "Affectation expliquée p. 365 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 365,
+      "pages": [
+        365
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 365,
+          "column": 2,
+          "top": 83,
+          "bottom": 83
+        }
+      ],
+      "lines": [
+        "display = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p366-01",
+      "title": "Affectation expliquée p. 366 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 366,
+      "pages": [
+        366
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 366,
+          "column": 2,
+          "top": 170,
+          "bottom": 170
+        }
+      ],
+      "lines": [
+        "outputscale = 2"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p366-02",
+      "title": "Affectation expliquée p. 366 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 366,
+      "pages": [
+        366
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 366,
+          "column": 2,
+          "top": 278,
+          "bottom": 278
+        }
+      ],
+      "lines": [
+        "startvalue = 3"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p366-03",
+      "title": "Affectation expliquée p. 366 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 366,
+      "pages": [
+        366
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 366,
+          "column": 2,
+          "top": 323,
+          "bottom": 323
+        }
+      ],
+      "lines": [
+        "discrete = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p367-01",
+      "title": "Affectation expliquée p. 367 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 367,
+      "pages": [
+        367
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 367,
+          "column": 2,
+          "top": 203,
+          "bottom": 203
+        }
+      ],
+      "lines": [
+        "ledgauge = off"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p368-01",
+      "title": "Affectation expliquée p. 368 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 368,
+      "pages": [
+        368
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 368,
+          "column": 2,
+          "top": 188,
+          "bottom": 188
+        }
+      ],
+      "lines": [
+        "header = \"\""
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p368-02",
+      "title": "Affectation expliquée p. 368 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 368,
+      "pages": [
+        368
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 368,
+          "column": 2,
+          "top": 188,
+          "bottom": 188
+        }
+      ],
+      "lines": [
+        "header = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p375-01",
+      "title": "Affectation expliquée p. 375 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 375,
+      "pages": [
+        375
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 375,
+          "column": 1,
+          "top": 275,
+          "bottom": 275
+        }
+      ],
+      "lines": [
+        "scrub = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p375-02",
+      "title": "Affectation expliquée p. 375 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 375,
+      "pages": [
+        375
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 375,
+          "column": 2,
+          "top": 111,
+          "bottom": 111
+        }
+      ],
+      "lines": [
+        "trimstart = 0.1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p375-03",
+      "title": "Affectation expliquée p. 375 — 3",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 375,
+      "pages": [
+        375
+      ],
+      "example_number": 3,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 375,
+          "column": 2,
+          "top": 122,
+          "bottom": 122
+        }
+      ],
+      "lines": [
+        "trimend = 0.8"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p378-01",
+      "title": "Affectation expliquée p. 378 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 378,
+      "pages": [
+        378
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 378,
+          "column": 2,
+          "top": 436,
+          "bottom": 436
+        }
+      ],
+      "lines": [
+        "header = \"\""
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p378-02",
+      "title": "Affectation expliquée p. 378 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 378,
+      "pages": [
+        378
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 378,
+          "column": 2,
+          "top": 436,
+          "bottom": 436
+        }
+      ],
+      "lines": [
+        "header = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p408-01",
+      "title": "Affectation expliquée p. 408 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 408,
+      "pages": [
+        408
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 408,
+          "column": 3,
+          "top": 116,
+          "bottom": 116
+        }
+      ],
+      "lines": [
+        "display = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p408-02",
+      "title": "Affectation expliquée p. 408 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 408,
+      "pages": [
+        408
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 408,
+          "column": 2,
+          "top": 396,
+          "bottom": 396
+        }
+      ],
+      "lines": [
+        "smooth = 1"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p409-01",
+      "title": "Affectation expliquée p. 409 — 1",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 409,
+      "pages": [
+        409
+      ],
+      "example_number": 1,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 409,
+          "column": 2,
+          "top": 125,
+          "bottom": 125
+        }
+      ],
+      "lines": [
+        "header = \"\""
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    },
+    {
+      "id": "manual-inline-p409-02",
+      "title": "Affectation expliquée p. 409 — 2",
+      "kind": "fragment",
+      "category": "Manuel — paramètres",
+      "page": 409,
+      "pages": [
+        409
+      ],
+      "example_number": 2,
+      "context_required": true,
+      "regions": [
+        {
+          "page": 409,
+          "column": 2,
+          "top": 125,
+          "bottom": 125
+        }
+      ],
+      "lines": [
+        "header = 0"
+      ],
+      "notes": [
+        "Affectation isolée dans la prose du manuel, conservée sans déclaration de circuit inventée. Ce fragment documentaire n’est pas un programme autonome."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+Official graphics reuse permission
+Source: https://dermannmitdermaschine.de/download/droid-blue-7.zip
+Archive member: droid-blue-7/README.txt
+Archive SHA256: e3f3ef93bd70b88e101fbc0254df0c26534a432d241ba6b177d5648a1b68258c
+
+Here you find two subdirectories with PNG images of the face plates of all
+    Droid modules and of the circuit icons from the Forge and from the manual.
+    You are allowed to use these images for private projects and for those that
+    you release as open source projects under GNU GPL or similar licenses. Other
+    use is restricted. Please contact me if you are unsure.

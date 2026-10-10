@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "report_kind": "physical_x7_hardware",
+  "version": "0.5.0",
+  "version_code": 7,
+  "state": "sd_and_android_midi_completed_user_reports_no_error",
+  "passed": true,
+  "passed_scope": "24 instrumented SD/import/cleanup and Android MIDI checks; user reports no error separately",
+  "tests_count": 24,
+  "recorded_at_utc": "2026-10-10T22:57:56.829650+00:00",
+  "device": {
+    "model": "SM-X620",
+    "android": 16
+  },
+  "reference_apk": {
+    "file": "droid-Forge-mobile-0.5.0-arm64-preview.apk",
+    "sha256": "8f66211ff06492839a9894eaa60515564aa9a6553e087c133a1de0d97235599d",
+    "bytes": 9235113,
+    "installed_apk_byte_exact": true,
+    "package": "fr.androforge",
+    "version_name": "0.5.0-preview",
+    "version_code": 7
+  },
+  "hardware": {
+    "product": "DROID X7",
+    "msc_vendor_id": "0483",
+    "msc_product_id": "a416",
+    "firmware_version": null,
+    "card_final_state": "Original bytes restored, then system-ejected",
+    "midi_observed": {
+      "product": "DROID X7 MIDI",
+      "input_ports": 1,
+      "output_ports": 1,
+      "protocol": "USB MIDI 1.0",
+      "firmware_version_read": false
+    }
+  },
+  "checks": [
+    {
+      "id": "msc-device-and-mounted-droid-volume",
+      "status": "passed",
+      "assertion": "Physical DROID X7 MSC and mounted DROID volume observed; tablet SD identified separately."
+    },
+    {
+      "id": "actual-card-saf-grant-and-read",
+      "status": "passed",
+      "assertion": "Android system picker granted the genuine DROID root; 74269 bytes read."
+    },
+    {
+      "id": "original-raw-backup-independent-double-read",
+      "status": "passed",
+      "assertion": "Two identical read-only SAF reads transferred and re-read exactly in private workspace."
+    },
+    {
+      "id": "import-cancel-preserves-editor",
+      "status": "passed",
+      "assertion": "Cancelled card import left the preceding editor source byte-exact."
+    },
+    {
+      "id": "msc-activate-absent-midi-error",
+      "status": "passed",
+      "assertion": "Activate! in MSC mode reported X7 MIDI absent without a false transfer success."
+    },
+    {
+      "id": "accepted-import-source-exact",
+      "status": "passed",
+      "assertion": "Actual main-package editor source exactly matched the 74269-byte saved card file."
+    },
+    {
+      "id": "pre-import-user-document-backup",
+      "status": "passed",
+      "assertion": "Private pre-import backup exactly matched the preceding editor document."
+    },
+    {
+      "id": "import-autosave-exact",
+      "status": "passed",
+      "assertion": "Actual main-package autosave exactly matched the imported card file."
+    },
+    {
+      "id": "import-cold-restart-exact",
+      "status": "passed",
+      "assertion": "Imported source remained byte-exact after the app process restarted."
+    },
+    {
+      "id": "deployment-valid-nonmutating",
+      "status": "passed",
+      "assertion": "454 circuits and 4 controllers; no parse errors; 49163-byte deployment accepted; source/state/history unchanged."
+    },
+    {
+      "id": "actual-sd-save-and-independent-readback",
+      "status": "passed",
+      "assertion": "Confirmed app Save to SD; independent read-only SAF capture matched the 49163-byte C++ deployment exactly."
+    },
+    {
+      "id": "sd-original-private-backup-exact",
+      "status": "passed",
+      "assertion": "App private original backup matched all 74269 bytes of the preceding card file."
+    },
+    {
+      "id": "identical-second-save",
+      "status": "passed",
+      "assertion": "Second Save to SD retained exact deployment bytes and unchanged single-backup inventory."
+    },
+    {
+      "id": "original-raw-export-distinct-file",
+      "status": "passed",
+      "assertion": "App exported the 74269-byte original to a distinct card file and verified exact readback; this did not replace droid.ini."
+    },
+    {
+      "id": "original-card-restoration-private-test-tool",
+      "status": "passed",
+      "assertion": "A private normal-SAF test instrument restored the verified original after strict expected-deployment preflight, sync and readback. This was a test cleanup action, not an app UI feature."
+    },
+    {
+      "id": "original-card-final-independent-readback",
+      "status": "passed",
+      "assertion": "Independent double read after restoration matched the entire original saved file byte-exact."
+    },
+    {
+      "id": "temporary-export-copy-cleanup",
+      "status": "passed",
+      "assertion": "Only the copy created by this test was removed after two exact original-payload checks; other root-entry identities remained unchanged."
+    },
+    {
+      "id": "physical-system-ejection",
+      "status": "passed",
+      "assertion": "App Eject SD opened DocumentsUI; the DROID-specific eject icon changed its volume state from mounted to unmounted."
+    },
+    {
+      "id": "tablet-sd-preserved-during-ejection",
+      "status": "passed",
+      "assertion": "Tablet SD remained mounted after DROID-specific system eject."
+    },
+    {
+      "id": "physical-x7-midi-transfer",
+      "status": "passed",
+      "assertion": "App confirmation selected DROID X7 MIDI; Activate! completed delivery of the 49169-byte frame to the Android MIDI input port. No hardware acknowledgement is claimed."
+    },
+    {
+      "id": "physical-master-execution",
+      "status": "not_run",
+      "reason": "User reports no error after Activate; complete patch behavior was not instrumented or explicitly confirmed. Official protocol provides no hardware acknowledgement."
+    },
+    {
+      "id": "physical-x7-midi-discovery",
+      "status": "passed",
+      "assertion": "Android MIDI service and app identified the physical DROID X7 USB MIDI 1.0 device with one input and one output port."
+    },
+    {
+      "id": "physical-x7-midi-confirmation-cancel",
+      "status": "passed",
+      "assertion": "Confirmation displayed the correct X7 and 49163-byte payload; Cancel left the port unopened and source intact."
+    },
+    {
+      "id": "physical-x7-midi-source-preserved",
+      "status": "passed",
+      "assertion": "Editor source after the confirmed transfer was byte-exact to its pre-transfer source."
+    },
+    {
+      "id": "physical-x7-midi-ports-released",
+      "status": "passed",
+      "assertion": "Android MIDI input-open flag false and device connection count zero after transfer; Activate! remained available."
+    }
+  ],
+  "counts": {
+    "source_bytes": 74269,
+    "active_circuits": 454,
+    "active_controllers": 4,
+    "active_parameters": 2726,
+    "labels": 63,
+    "parse_errors": 0,
+    "parse_warnings": 1,
+    "warning_scope": "Annotated source exceeds 64000 bytes; prepared deployment is within limit",
+    "deployment_bytes": 49163,
+    "prepared_midi_frame_bytes": 49169
+  },
+  "historical_local_reports": [
+    "tablet-audit-0.5.0.json",
+    "android-adapters-audit-0.5.0.json"
+  ],
+  "privacy": {
+    "patch_contents_published": false,
+    "user_patch_name_published": false,
+    "user_patch_hash_published": false,
+    "volume_uuid_or_uri_published": false
+  },
+  "limits": [
+    "Card import retrieves the saved file, not a RAM patch readback.",
+    "Private test instruments are separate from production app features.",
+    "Other directory entries were checked by identity, not all file contents.",
+    "User reports no error after Activate; complete patch behavior remains unverified and Android MIDI send provides no hardware acknowledgement.",
+    "Firmware version is not read by this protocol.",
+    "Preview uses the existing development signature; unsigned release is separate."
+  ],
+  "cleanup": {
+    "temporary_instrumentation_packages_removed": true,
+    "main_package_preserved": true,
+    "temporary_card_copy_removed": true,
+    "midi_screen_timeout_restored": true,
+    "midi_temporary_ui_dump_removed": true,
+    "temporary_instrumentation_packages_rechecked_absent": true
+  },
+  "crash_observation": {
+    "main_app_crash_in_available_crash_buffer": false,
+    "not_a_long_term_stability_claim": true
+  },
+  "editor_final_state": {
+    "imported_original_source_byte_exact": true,
+    "main_app_foreground": true
+  },
+  "midi_transfer": {
+    "deployment_bytes": 49163,
+    "frame_bytes": 49169,
+    "android_send_completed": true,
+    "midi_input_closed_after_send": true,
+    "editor_source_preserved": true,
+    "hardware_acknowledgement_available": false,
+    "master_execution_confirmed": false,
+    "installed_apk_reverified_byte_exact": true
+  },
+  "master_observation": {
+    "status": "user_reported_no_error",
+    "method": "user_report",
+    "original_statement": "pas d'erreur",
+    "recorded_at_utc": "2026-10-10T23:12:45.339242+00:00",
+    "full_patch_behavior_verified": false,
+    "hardware_acknowledgement_received": false
+  }
+}

@@ -1,0 +1,19 @@
+droid Forge mobile
+
+Port Android : Dr Delos.
+
+Basé sur le code source de DROID Forge, de Mathias Kettner,
+aka Der Mann mit der Maschine.
+Référence : Forge 1.7.1, commit
+60cbb7bbf9630c7d4a184e346a3d1120bde4d69f.
+https://github.com/Zarkuun/droidforge
+
+Catalogue, modules et graphismes officiels :
+Der Mann mit der Maschine / Mathias Kettner.
+Firmware pris en charge : blue-7.
+
+Les crédits originaux de DROID Forge sont conservés dans forge/CREDITS.
+Le code est distribué sous GNU GPL version 3 ; les conditions spécifiques
+des graphismes et les licences du runtime C++ sont fournies séparément.
+
+Dépôt Android : https://github.com/kf4u43D/droid-Forge-mobile

@@ -1,0 +1,23 @@
+Exemples officiels DROID blue-7 — Der Mann mit der Maschine
+Provenance : https://shop.dermannmitdermaschine.de/pages/downloads
+Auteur de DROID / Forge PC : Mathias Kettner (Der Mann mit der Maschine).
+Dr Delos : contribution au port Android, selon le crédit demandé pour ce projet.
+
+Les fichiers des répertoires patches et motokit et les corps des 332 extraits TXT
+sont conservés à l'octet, sans correction. Les 262 extraits PDF supplémentaires
+sont des transcriptions de blocs de code, identifiées comme telles et référencées
+par page/colonne. Aucune ligne omise ou configuration matérielle n'est inventée.
+
+Le README officiel accompagne le corpus. Il propose les snippets pour copie dans
+vos patches. Il ne fournit pas de licence autonome explicite pour ces exemples :
+ne pas assimiler l'autorisation des graphismes à une licence GPL sur les patches.
+La GPLv3 du logiciel Android/Forge PC ne change pas l'attribution du corpus.
+
+Plusieurs fichiers officiels sont anciens ou nécessitent les contrôleurs déclarés
+dans l'ordre donné. Les deux grands INI Moto Kit sont destinés à l'étude dans un
+éditeur ; le README officiel dit qu'ils sont trop grands pour chargement direct
+sur le master et renvoie aux patches matériels compressés du fournisseur.
+
+Les fragments, points de suspension, placeholders et contre-exemples restent
+volontairement inchangés. Réussir le test de lecture/export ne prouve ni la validité
+complète du firmware ni le fonctionnement sur le matériel DROID.

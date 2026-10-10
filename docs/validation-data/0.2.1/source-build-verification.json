@@ -1,0 +1,79 @@
+{
+  "verified": true,
+  "version": "0.2.1",
+  "source_archive": {
+    "name": "AndroForge-0.2.1-source.zip",
+    "sha256": "ebf8f6b640787d2c491fbfe07f86111dc6a3c76d51642bb1e1abaeeda4736fdd",
+    "bytes": 5804464,
+    "source_files": 177
+  },
+  "reference_apk": {
+    "name": "AndroForge-0.2.1-arm64-release-unsigned.apk",
+    "sha256": "5aecc9359b2079d64cccb19542e95e0fe2477b6b48479e1c8ead1a848e34b81d",
+    "bytes": 7247879,
+    "production_signed": false
+  },
+  "fresh_project_build": {
+    "successful": true,
+    "command": "gradlew.bat --offline --no-daemon --console=plain :app:assembleRelease",
+    "duration_seconds": 29,
+    "executed_tasks": 49,
+    "dependencies_and_sdk_already_cached": true,
+    "rebuilt_apk_sha256": "472b46b95a07e22dad90486ff9451a45ecc807ec66e7d2d7fa8a5901274f8659"
+  },
+  "final_source_archive_comparison": {
+    "build_inputs_identical_to_rebuilt_source_snapshot": true,
+    "documentation_only_changes": [
+      "README.md",
+      "docs/PORTING.md",
+      "docs/VALIDATION.md",
+      "docs/audit-release.md"
+    ]
+  },
+  "apk_comparison": {
+    "bit_for_bit_identical": false,
+    "different_zip_entries": [
+      "lib/arm64-v8a/libandroforge.so"
+    ]
+  },
+  "native_comparison": {
+    "bytes": 1648176,
+    "reference_sha256": "a63c016528bd50504f18171a918e36d45f846a52ffa438aebfc791731ed7bf33",
+    "rebuilt_sha256": "ddcdc952ecab5d4f4731aeac663e8d3cbf47f0ff0737a766809c7cb16cd8eb68",
+    "reference_gnu_build_id": "f2688477f736c6d0ffb54efe5b327a3359158a65",
+    "rebuilt_gnu_build_id": "6de9a367423ef30220e98088d2577aee94f44a3b",
+    "differing_byte_count": 19,
+    "differing_offsets": [
+      736,
+      737,
+      738,
+      739,
+      740,
+      741,
+      742,
+      743,
+      744,
+      745,
+      746,
+      747,
+      748,
+      749,
+      751,
+      752,
+      753,
+      754,
+      755
+    ],
+    "identical_except_gnu_build_id": true
+  },
+  "tablet_audit": {
+    "report": "tablet-audit-0.2.1.json",
+    "passed_checks": 42,
+    "preview_apk_sha256": "9191832221b90eb8750fc55165ffab537dd156794889fed74eb034dbc9f022f4"
+  },
+  "limits": [
+    "The rebuild uses previously cached Gradle dependencies and an installed Android SDK/NDK.",
+    "The native GNU build ID differs; this is not a bit-for-bit reproducibility claim.",
+    "Public production signing remains to be configured."
+  ]
+}

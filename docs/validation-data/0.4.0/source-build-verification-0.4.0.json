@@ -1,0 +1,90 @@
+{
+  "verified": true,
+  "version": "0.4.0",
+  "source_archive": {
+    "file": "droid-Forge-mobile-0.4.0-source.zip",
+    "bytes": 8040451,
+    "sha256": "42f753688947290eec886419c27196e6464644dc7959d737b53a6bf5d90a9363",
+    "source_files": 1690
+  },
+  "reference_apk": {
+    "file": "droid-Forge-mobile-0.4.0-arm64-release-unsigned.apk",
+    "bytes": 9180953,
+    "sha256": "400805eb8a8af37ba7d354b5d2ae4bcfb49caf39453b790bff3c8a3330468dad",
+    "production_signed": false
+  },
+  "fresh_project_build": {
+    "successful": true,
+    "command": "gradlew.bat --offline --no-daemon --console=plain :app:assembleRelease",
+    "duration_seconds": 36,
+    "actionable_tasks": 49,
+    "executed_tasks": 49,
+    "dependencies_and_sdk_already_cached": true
+  },
+  "final_source_archive_comparison": {
+    "entire_archive_identical_to_rebuilt_source_snapshot": true,
+    "all_manifest_files_verified_before_extraction_and_after_build": true,
+    "all_manifest_files_match_current_source_tree": true,
+    "documentation_only_changes": []
+  },
+  "apk_payload_comparison": {
+    "reference": {
+      "file": "droid-Forge-mobile-0.4.0-arm64-release-unsigned.apk",
+      "sha256": "400805eb8a8af37ba7d354b5d2ae4bcfb49caf39453b790bff3c8a3330468dad",
+      "bytes": 9180953
+    },
+    "rebuilt": {
+      "file": "app-release-unsigned.apk",
+      "sha256": "3be95d26baa2a72fc6a45242d933c98d4a72ffca69f6c750b1e411b6e3653a65",
+      "bytes": 9180953
+    },
+    "same_apk_bytes": false,
+    "identical_zip_payload_entries": 977,
+    "different_zip_payload_entries": [
+      "lib/arm64-v8a/libandroforge.so"
+    ],
+    "removed_zip_entries": [],
+    "added_zip_entries": [],
+    "native_libraries": [
+      {
+        "entry": "lib/arm64-v8a/libandroforge.so",
+        "reference": {
+          "bytes": 1958208,
+          "sha256": "1da16b5ed96b91a9ba0bc3da1c5d3a7bb63bde983f77b145208e15e64b5035f7",
+          "build_id": {
+            "value": "9f78ffd7991bea1f50bae4a284020b5bdfa1c279",
+            "offset": 736,
+            "bytes": 20
+          }
+        },
+        "rebuilt": {
+          "bytes": 1958208,
+          "sha256": "b88c51e7154615427b5b1be9891819f4b9bc4a6579a4ee959df3b2ce789abfcb",
+          "build_id": {
+            "value": "f07693fa8e61f2749d64e8c45f5994e68fe11de6",
+            "offset": 736,
+            "bytes": 20
+          }
+        },
+        "same_bytes": false,
+        "same_bytes_outside_gnu_build_id": true,
+        "differing_byte_count": 20,
+        "normalization": "Only the discovered GNU/type-3 descriptor bytes are zeroed; note headers and every other byte are compared"
+      }
+    ],
+    "comparison_matches_allowing_only_gnu_build_ids": true,
+    "scope": "Unsigned APK ZIP payloads and complete ARM64 ELF bytes; comparison alone does not certify fresh-source build provenance or bit-for-bit APK reproducibility"
+  },
+  "tablet_audit": {
+    "report": "tablet-audit-0.4.0.json",
+    "passed_checks": 64,
+    "validation_apk_sha256": "cfb8085d2f403788de41d23dca820764bbf71df60e3f4e3d59c2a95cf28afeb0",
+    "normal_preview_apk_sha256": "c4ba5d7874cae414cc090d382538d173288d726f7a2db8c3f605d9e1226ce0fc"
+  },
+  "delivery_hash_inventory_verified": 8,
+  "limits": [
+    "Fresh-source compilation used installed SDK/NDK and cached Gradle dependencies.",
+    "Only GNU ELF build-ID descriptor differences are allowed; this is not a bit-for-bit reproducibility claim.",
+    "Production signing remains to be configured."
+  ]
+}

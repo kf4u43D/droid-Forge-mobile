@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "apk": "droid-Forge-mobile-0.4.0-arm64-validation.apk",
+  "apk_sha256": "cfb8085d2f403788de41d23dca820764bbf71df60e3f4e3d59c2a95cf28afeb0",
+  "manifest_sha256": "30b246488c8b98200a193879941fca3f0347c0e9e108760087e87e4cc01ee4e3",
+  "examples_verified": 630,
+  "ini_bytes_verified": 845074,
+  "notices_verified": 3,
+  "meaning": "Packaged bytes and provenance match pinned corpus; no firmware/hardware validation."
+}

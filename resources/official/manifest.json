@@ -1,0 +1,830 @@
+{
+  "firmware_version": "blue-7",
+  "downloads_page": "https://shop.dermannmitdermaschine.de/pages/downloads",
+  "archive": {
+    "url": "https://dermannmitdermaschine.de/download/droid-blue-7.zip",
+    "bytes": 38243756,
+    "sha256": "e3f3ef93bd70b88e101fbc0254df0c26534a432d241ba6b177d5648a1b68258c"
+  },
+  "catalog": {
+    "circuits": 76,
+    "available_memory": {
+      "master16": 112867,
+      "master18": 109015
+    }
+  },
+  "files": [
+    {
+      "path": "resources/official/circuits.blue-7.json",
+      "archive_path": "droid-blue-7/utilities/editors/circuits.json",
+      "bytes": 1067384,
+      "sha256": "1deacfd4c5593bcea11559ca100505c9c07d382e1743e3df8a4f9f1694d0a240",
+      "circuits": 76
+    },
+    {
+      "path": "app/src/main/assets/modules/b32.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/b32.png",
+      "bytes": 228178,
+      "sha256": "3640ce165308811711d0ebc07ec4f4757afc44e00ea3b213129d749797f111b4",
+      "width": 1153,
+      "height": 2915
+    },
+    {
+      "path": "app/src/main/assets/modules/bling.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/bling.png",
+      "bytes": 33597,
+      "sha256": "d5b10e95716d855d018939680bb4ed8e7a5c7e7cafb4c08e637e9adb9c4d2295",
+      "width": 116,
+      "height": 2915
+    },
+    {
+      "path": "app/src/main/assets/modules/db8e.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/db8e.png",
+      "bytes": 157423,
+      "sha256": "919e57591aba2796b9cc5591fae1761859f5abe2fb6c4c0085b1d3c8fa82dbd0",
+      "width": 692,
+      "height": 2918
+    },
+    {
+      "path": "app/src/main/assets/modules/e4.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/e4.png",
+      "bytes": 141978,
+      "sha256": "4168544c607ccbd419a9268ad725337600f029b696097e95d6e32b6ddfbfcf00",
+      "width": 692,
+      "height": 2915
+    },
+    {
+      "path": "app/src/main/assets/modules/g8.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/g8.png",
+      "bytes": 248759,
+      "sha256": "a6edc0f55c876967f064407b2c965f0280b63724c6d78be91f8c96dd72c276d2",
+      "width": 461,
+      "height": 2915
+    },
+    {
+      "path": "app/src/main/assets/modules/m4.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/m4.png",
+      "bytes": 129832,
+      "sha256": "6754826207f8806f2b07f7cdb09a963628e3ca86ddbee2313283809aa1822718",
+      "width": 1614,
+      "height": 2915
+    },
+    {
+      "path": "app/src/main/assets/modules/master.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/master.png",
+      "bytes": 469429,
+      "sha256": "4f8c092617bcbd875bbe594bade02fc09cf827ecc11d6d792cfcec725c318bb7",
+      "width": 928,
+      "height": 2917
+    },
+    {
+      "path": "app/src/main/assets/modules/master18.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/master18.png",
+      "bytes": 558764,
+      "sha256": "eec69e0bffe52f8f53d99562688981ee321d25a4158c542399640d8faf1826c5",
+      "width": 692,
+      "height": 2917
+    },
+    {
+      "path": "app/src/main/assets/modules/motokit.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/motokit.png",
+      "bytes": 129368,
+      "sha256": "aeedcaa36a1989ee15950f5263b070a74f5396165419f0f72a1b2340c64e4804",
+      "width": 737,
+      "height": 366
+    },
+    {
+      "path": "app/src/main/assets/modules/motokit2.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/motokit2.png",
+      "bytes": 658481,
+      "sha256": "2def63885de45e08b86b587c78d999c84672173ba648f04bda9e066cc1e20099",
+      "width": 2880,
+      "height": 1459
+    },
+    {
+      "path": "app/src/main/assets/modules/p10.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/p10.png",
+      "bytes": 186891,
+      "sha256": "86968c9a14c5f5f52d45befd17487643696e651fc24ba009646390e348b65ff3",
+      "width": 576,
+      "height": 2915
+    },
+    {
+      "path": "app/src/main/assets/modules/p2b8.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/p2b8.png",
+      "bytes": 173574,
+      "sha256": "f07350831d35b060916cc3b00117235397b6a6886ef85303c48fb42ae53dcadc",
+      "width": 577,
+      "height": 2915
+    },
+    {
+      "path": "app/src/main/assets/modules/p4b2.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/p4b2.png",
+      "bytes": 206534,
+      "sha256": "14d490c733b462f82edddfeaefa87819b2c591893c77ae04fca2dd7baa51ad79",
+      "width": 577,
+      "height": 2915
+    },
+    {
+      "path": "app/src/main/assets/modules/p8s8.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/p8s8.png",
+      "bytes": 281602,
+      "sha256": "814659d4def1b1d8148eb193b90a16fc2ab91872bdfa51c0518eca19522745c8",
+      "width": 923,
+      "height": 2915
+    },
+    {
+      "path": "app/src/main/assets/modules/r2c.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/r2c.png",
+      "bytes": 86956,
+      "sha256": "b8ae83c75e1b9f344344346e9b9bf00fd3f1e36b4cca329a872c7ef422b30cf6",
+      "width": 232,
+      "height": 2915
+    },
+    {
+      "path": "app/src/main/assets/modules/r2m.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/r2m.png",
+      "bytes": 89844,
+      "sha256": "8b22e8044f1fac8c04565d7cb99b304ea1d79a6b3c9906d358295329ab2443b8",
+      "width": 231,
+      "height": 2915
+    },
+    {
+      "path": "app/src/main/assets/modules/s10.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/s10.png",
+      "bytes": 319489,
+      "sha256": "42ba8c31b1931c94726a0c9c88198628c4ce19b088c21cd1e198820a41c05a41",
+      "width": 577,
+      "height": 2915
+    },
+    {
+      "path": "app/src/main/assets/modules/x7.png",
+      "archive_path": "droid-blue-7/graphics/faceplates/x7.png",
+      "bytes": 230406,
+      "sha256": "5bfe083a68a704ffe24ee9d2051229925e3013b81ade8ed019fcb6bd71589aef",
+      "width": 462,
+      "height": 2915
+    },
+    {
+      "path": "app/src/main/assets/circuits/adc.png",
+      "archive_path": "droid-blue-7/graphics/circuits/adc.png",
+      "bytes": 5901,
+      "sha256": "e7d433b19311d86fd7c76bf007f6460d0c67f42450a6dd0ef799150aaa22359b",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/algoquencer.png",
+      "archive_path": "droid-blue-7/graphics/circuits/algoquencer.png",
+      "bytes": 21580,
+      "sha256": "4b370a23579061c1044422b4bb60c5437e3afb862b73df74b2878ec2f57cee63",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/arpeggio.png",
+      "archive_path": "droid-blue-7/graphics/circuits/arpeggio.png",
+      "bytes": 16252,
+      "sha256": "b5d1ad20236e56c253053c8ffbf62b715c842555586704d34a6ed8a882f0b918",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/bernoulli.png",
+      "archive_path": "droid-blue-7/graphics/circuits/bernoulli.png",
+      "bytes": 6855,
+      "sha256": "aa302def655568e7114144acddd809e16488dcc940d2a725a4e56bc744358b7b",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/burst.png",
+      "archive_path": "droid-blue-7/graphics/circuits/burst.png",
+      "bytes": 7290,
+      "sha256": "ec6227ad36892d83b1b3bbbe610a810050a75a8f0da8f9533c0e7514afff9abb",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/button.png",
+      "archive_path": "droid-blue-7/graphics/circuits/button.png",
+      "bytes": 18749,
+      "sha256": "a3694b4993227f5a76f0ffdadfa45151cf32f8539c56173562b99a141bae5205",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/buttongroup.png",
+      "archive_path": "droid-blue-7/graphics/circuits/buttongroup.png",
+      "bytes": 24175,
+      "sha256": "feffab6a86a9ba9c8806d0be8472c4ab404ce4b33cac4a7008833002dfba5c34",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/calibrator.png",
+      "archive_path": "droid-blue-7/graphics/circuits/calibrator.png",
+      "bytes": 14258,
+      "sha256": "ba63bbd9d8cd8065dfa0f13e4874e4818f21b8088794209080d2f5e2d0ccb8c3",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/case.png",
+      "archive_path": "droid-blue-7/graphics/circuits/case.png",
+      "bytes": 1981,
+      "sha256": "9258e6e40a3aea6a6705bbda91cd6868318d3cc46be66b94205027f0d7b53e23",
+      "width": 600,
+      "height": 600
+    },
+    {
+      "path": "app/src/main/assets/circuits/chord.png",
+      "archive_path": "droid-blue-7/graphics/circuits/chord.png",
+      "bytes": 18928,
+      "sha256": "2473c6beda5a141e30a110fae3a22df93c6f06d870b9d1d28e4db99064cd2f53",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/clockedtrigger.png",
+      "archive_path": "droid-blue-7/graphics/circuits/clockedtrigger.png",
+      "bytes": 4975,
+      "sha256": "6e6988b04c99f7da75fc51829485707d65bf1e0e6bc5eb6876fb5065151974e8",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/clocktool.png",
+      "archive_path": "droid-blue-7/graphics/circuits/clocktool.png",
+      "bytes": 11523,
+      "sha256": "48e550eec8346343bf3ab71af896d4f286571bedcfbc980d31dbeec913a7b490",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/compare.png",
+      "archive_path": "droid-blue-7/graphics/circuits/compare.png",
+      "bytes": 15712,
+      "sha256": "37a9adac13a3f9be30dbc1c9f9fb619bdcafd22212d20681240058fdd88745b9",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/contour.png",
+      "archive_path": "droid-blue-7/graphics/circuits/contour.png",
+      "bytes": 7896,
+      "sha256": "99b33cf8ea20682420f9facaf26dd2413e4d0ccb9ff9f17e821724602cb4bc5c",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/copy.png",
+      "archive_path": "droid-blue-7/graphics/circuits/copy.png",
+      "bytes": 7839,
+      "sha256": "05c125225c1945c4266ac5b9ec36ac661ec889cfd43914c8a30b56370e2d29dc",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/crossfader.png",
+      "archive_path": "droid-blue-7/graphics/circuits/crossfader.png",
+      "bytes": 14045,
+      "sha256": "aeacfbd5846c001249f68a2e91a44fef3ac3e8fc30c5c3e056340efd226e8f87",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/cvlooper.png",
+      "archive_path": "droid-blue-7/graphics/circuits/cvlooper.png",
+      "bytes": 11117,
+      "sha256": "f476334558690c08de5881fdf937d0660ee0d18450a51a5ccc1ebd5d2f26b80f",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/dac.png",
+      "archive_path": "droid-blue-7/graphics/circuits/dac.png",
+      "bytes": 6137,
+      "sha256": "06cd31b623b85e407ac3b472f40ab8238a86f18aa300205bc86896ca68777873",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/delay.png",
+      "archive_path": "droid-blue-7/graphics/circuits/delay.png",
+      "bytes": 13594,
+      "sha256": "023b5b9863b7f64fed970dc14ad84e63d8f80972d0680ae3c2120772ed9ace2a",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/detune.png",
+      "archive_path": "droid-blue-7/graphics/circuits/detune.png",
+      "bytes": 11001,
+      "sha256": "cafc7d8213c21374a332c8b680b553ff274cc20d08d6afcb9366e0fb660ccf10",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/display.png",
+      "archive_path": "droid-blue-7/graphics/circuits/display.png",
+      "bytes": 8837,
+      "sha256": "f6458708f9d8ae91a6daed987fc894026b0b6b67570d1c42d33eea17dd2bb624",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/droid.png",
+      "archive_path": "droid-blue-7/graphics/circuits/droid.png",
+      "bytes": 2503,
+      "sha256": "18098a4b306fe94bdca61ae7889834c3c387ae501b5be5aef00eeddf0eec59c1",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/encoder.png",
+      "archive_path": "droid-blue-7/graphics/circuits/encoder.png",
+      "bytes": 12857,
+      "sha256": "55b67447e41779e2c8f3dd94533499f415ddc19d4397e4ce1edbbd98ac959e2b",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/encoderbank.png",
+      "archive_path": "droid-blue-7/graphics/circuits/encoderbank.png",
+      "bytes": 13636,
+      "sha256": "ae900db54f5f18a9851550a5aac8efe814e596d8671e67d3f9cb0cdffcdd4bc1",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/encoquencer.png",
+      "archive_path": "droid-blue-7/graphics/circuits/encoquencer.png",
+      "bytes": 8435,
+      "sha256": "1a406b77805ee6ea56532959a85a88f40c3571133afbd9c57f7806c1f03564e6",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/euklid.png",
+      "archive_path": "droid-blue-7/graphics/circuits/euklid.png",
+      "bytes": 27702,
+      "sha256": "25e9fc8a8bf373aecc8ac54ea143b4743e8fda7ad1594e3541e9cdd5aeecef49",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/explin.png",
+      "archive_path": "droid-blue-7/graphics/circuits/explin.png",
+      "bytes": 7951,
+      "sha256": "a1eeaa759ec942e4c262c623f2b2093929fc9ce195df0a3daefbf046cb6793c1",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/faderbank.png",
+      "archive_path": "droid-blue-7/graphics/circuits/faderbank.png",
+      "bytes": 2524,
+      "sha256": "c2703fd788a1be87608653ab28c7158309144eff53270f0c13ebe08337b61601",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/fadermatrix.png",
+      "archive_path": "droid-blue-7/graphics/circuits/fadermatrix.png",
+      "bytes": 2941,
+      "sha256": "e3e1280598a4212644989ee95fa524e90afeea3a8fbf4c42fac0d6e97984d97f",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/firefacecontrol.png",
+      "archive_path": "droid-blue-7/graphics/circuits/firefacecontrol.png",
+      "bytes": 6606,
+      "sha256": "7b5394e540ee2a5c435a2a13c780f358f68c04583d22e741fa296507580cf0e7",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/flipflop.png",
+      "archive_path": "droid-blue-7/graphics/circuits/flipflop.png",
+      "bytes": 2575,
+      "sha256": "6a4ab64e7c4d463ea68c931000e6de2e893063acd04cc98a913b09b1f47e8cbc",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/fold.png",
+      "archive_path": "droid-blue-7/graphics/circuits/fold.png",
+      "bytes": 9574,
+      "sha256": "9298681b25ee975d1ac1e726d2e52c8e0188e928df974f647704cbd1b3249b64",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/fourstatebutton.png",
+      "archive_path": "droid-blue-7/graphics/circuits/fourstatebutton.png",
+      "bytes": 27752,
+      "sha256": "c4d9b49577775eca4f0ba843ee52896cce56c797c9e63397b821779dba1718fb",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/gatetool.png",
+      "archive_path": "droid-blue-7/graphics/circuits/gatetool.png",
+      "bytes": 2594,
+      "sha256": "4a28dcbcf3ff5452360de0789f964cd86b5a32ee33be804267c9a9609bb22bbe",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/ifequal.png",
+      "archive_path": "droid-blue-7/graphics/circuits/ifequal.png",
+      "bytes": 15123,
+      "sha256": "2b20c395b26ad4a8b18eb18ce9b71e6fef39b2cc692b2becae10f3589342828c",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/lfo.png",
+      "archive_path": "droid-blue-7/graphics/circuits/lfo.png",
+      "bytes": 15113,
+      "sha256": "060c62d77dfb1dcf40906eabdb5eabf39892c567de0076192385bc545524e29b",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/logic.png",
+      "archive_path": "droid-blue-7/graphics/circuits/logic.png",
+      "bytes": 13531,
+      "sha256": "e52a968e49ef5ff75927a88594af2a62887c8d1432c95b482470d23888e38534",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/looper.png",
+      "archive_path": "droid-blue-7/graphics/circuits/looper.png",
+      "bytes": 12354,
+      "sha256": "dc3a218d8b99a5bf4e617261ee5427cfc9e70042d621f3c2732fb9636284cc12",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/math.png",
+      "archive_path": "droid-blue-7/graphics/circuits/math.png",
+      "bytes": 13670,
+      "sha256": "572e1477eeb907ca007d900b34b7bb560a0a3e80bdcaee30ba757b59de9628d1",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/matrixmixer.png",
+      "archive_path": "droid-blue-7/graphics/circuits/matrixmixer.png",
+      "bytes": 17840,
+      "sha256": "29489aab4e671b75eec078fc3b824458c635de94cfe2fcbbc8e320a7e8e2c4ca",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/midifileplayer.png",
+      "archive_path": "droid-blue-7/graphics/circuits/midifileplayer.png",
+      "bytes": 3767,
+      "sha256": "90487718c395691ae365af56d69ab324da461fb8b90ecf3700fb7a97cbc8e1f5",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/midiin.png",
+      "archive_path": "droid-blue-7/graphics/circuits/midiin.png",
+      "bytes": 15314,
+      "sha256": "ef3b53f45f92a66ff894cdf28f9a65f06a220f0620208349a7ebf7358b07d98d",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/midiout.png",
+      "archive_path": "droid-blue-7/graphics/circuits/midiout.png",
+      "bytes": 15034,
+      "sha256": "11ab4d2eb1c563b6a29720016240b730fa0b1acf61cd52108aa28c6b9cdc754d",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/midithrough.png",
+      "archive_path": "droid-blue-7/graphics/circuits/midithrough.png",
+      "bytes": 15244,
+      "sha256": "a4ca0f66a64e5dc361ff46582bc0092bcfbdefb06b87b2ec14ef1b207208d601",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/minifonion.png",
+      "archive_path": "droid-blue-7/graphics/circuits/minifonion.png",
+      "bytes": 12773,
+      "sha256": "f29f43eb6a0cea36f56787adb9789af4385b065c0bc6bfa4cc4a340414d8f576",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/missing.png",
+      "archive_path": "droid-blue-7/graphics/circuits/missing.png",
+      "bytes": 1981,
+      "sha256": "9258e6e40a3aea6a6705bbda91cd6868318d3cc46be66b94205027f0d7b53e23",
+      "width": 600,
+      "height": 600
+    },
+    {
+      "path": "app/src/main/assets/circuits/mixer.png",
+      "archive_path": "droid-blue-7/graphics/circuits/mixer.png",
+      "bytes": 17467,
+      "sha256": "94f7f16f01719f176af6d018b50317bfa5bf2c0d23327a01efec98bb3acfddfa",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/motoquencer.png",
+      "archive_path": "droid-blue-7/graphics/circuits/motoquencer.png",
+      "bytes": 3363,
+      "sha256": "9158d854beb48260488ff4eaf010b90f222b5985e8bab0500b44644edccf7a7e",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/motorfader.png",
+      "archive_path": "droid-blue-7/graphics/circuits/motorfader.png",
+      "bytes": 2506,
+      "sha256": "7d3f39918a7924f26cf8f5f4d3053cf47f5e2613b16e0937507796f2716d67b5",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/multicompare.png",
+      "archive_path": "droid-blue-7/graphics/circuits/multicompare.png",
+      "bytes": 1981,
+      "sha256": "9258e6e40a3aea6a6705bbda91cd6868318d3cc46be66b94205027f0d7b53e23",
+      "width": 600,
+      "height": 600
+    },
+    {
+      "path": "app/src/main/assets/circuits/noicon.png",
+      "archive_path": "droid-blue-7/graphics/circuits/noicon.png",
+      "bytes": 3588,
+      "sha256": "5af94b8c7412fed924417fa02e759bd38fce74caeb948b28def64f41fbd1d053",
+      "width": 256,
+      "height": 256
+    },
+    {
+      "path": "app/src/main/assets/circuits/notchedpot.png",
+      "archive_path": "droid-blue-7/graphics/circuits/notchedpot.png",
+      "bytes": 19731,
+      "sha256": "371cb65e8739b9958c23e323834799ae7f31964fdef4ef2b9356c98e887a4b89",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/notebuttons.png",
+      "archive_path": "droid-blue-7/graphics/circuits/notebuttons.png",
+      "bytes": 34376,
+      "sha256": "e326aa68d760af4a771b1e3c60b5a4e48ef0994521a6cfc44e0f292ee55b2fba",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/nudge.png",
+      "archive_path": "droid-blue-7/graphics/circuits/nudge.png",
+      "bytes": 14052,
+      "sha256": "49fda6670226a24f7d95ac01348f4456f7556ff96be54edfdefaf12677b7c757",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/octave.png",
+      "archive_path": "droid-blue-7/graphics/circuits/octave.png",
+      "bytes": 13334,
+      "sha256": "aff6cd81e50d3403a1959623ac37b769e6115d91c08dd6967ab999fce0749e9d",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/once.png",
+      "archive_path": "droid-blue-7/graphics/circuits/once.png",
+      "bytes": 4307,
+      "sha256": "6a5858761001b7dcd777ab6dbd8f072db813fab611c5e10f611f5086cbd835e8",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/outputcalibrator.png",
+      "archive_path": "droid-blue-7/graphics/circuits/outputcalibrator.png",
+      "bytes": 12786,
+      "sha256": "cb34b77a39ea3bc4fb0ad59eeff6a9bdc117db0a6349b6abb26bbb0a5f713217",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/polytool.png",
+      "archive_path": "droid-blue-7/graphics/circuits/polytool.png",
+      "bytes": 21321,
+      "sha256": "bf4dfda5c37bec66827ac966e4735038cf404e98f0e9046ea1bb7c60a68db74a",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/pot.png",
+      "archive_path": "droid-blue-7/graphics/circuits/pot.png",
+      "bytes": 17631,
+      "sha256": "7c5817f4cf4a013367d28b79783fbaa714295fafa126316b07db6fbcb4f646df",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/potbank.png",
+      "archive_path": "droid-blue-7/graphics/circuits/potbank.png",
+      "bytes": 29469,
+      "sha256": "9b6ee5002317bfafa736589d3a38477a68964f39b9d3e014e2183b76d997896a",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/quantizer.png",
+      "archive_path": "droid-blue-7/graphics/circuits/quantizer.png",
+      "bytes": 10355,
+      "sha256": "0af672a56d9c1348b05e5c073dcb4dab365fddaf04a588142bce1b2d8c1226c5",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/queue.png",
+      "archive_path": "droid-blue-7/graphics/circuits/queue.png",
+      "bytes": 10059,
+      "sha256": "a9b42d9378792629a1edbad361f0cd3cbffb65ba7c47073b31b3b3800fbc2ef0",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/random.png",
+      "archive_path": "droid-blue-7/graphics/circuits/random.png",
+      "bytes": 2519,
+      "sha256": "346d44c4460a3fd6e26c3391e64242befcd10ec075e0e9dff4a55cfef75109e8",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/recorder.png",
+      "archive_path": "droid-blue-7/graphics/circuits/recorder.png",
+      "bytes": 14035,
+      "sha256": "d31ca445c56aea851db93a7ef6a59af26094d252d8e0e369d7570780fb00f3b4",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/sample.png",
+      "archive_path": "droid-blue-7/graphics/circuits/sample.png",
+      "bytes": 10530,
+      "sha256": "d8091d346684b5bc3fc4ebc9f714d911091cffc192ae9a6ad48c257d74a35a5d",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/select.png",
+      "archive_path": "droid-blue-7/graphics/circuits/select.png",
+      "bytes": 7798,
+      "sha256": "2edee4545b09b868246deee135e5da595cb8cffe7f541e5deb1be6228b2cca8e",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/sequencer.png",
+      "archive_path": "droid-blue-7/graphics/circuits/sequencer.png",
+      "bytes": 22744,
+      "sha256": "1c864208d4934afa41d808ebdcdc416a94662e0d238bf38907c408afffe90ef0",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/sinfonionlink.png",
+      "archive_path": "droid-blue-7/graphics/circuits/sinfonionlink.png",
+      "bytes": 8900,
+      "sha256": "4ca8cfd5198d645e98cfb465c95613943e396275e872f703d62245d673960455",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/slew.png",
+      "archive_path": "droid-blue-7/graphics/circuits/slew.png",
+      "bytes": 9698,
+      "sha256": "a175797ca449f97abfc091931371537c36d38d171e46d55b0ef81e3aedd1aa31",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/spring.png",
+      "archive_path": "droid-blue-7/graphics/circuits/spring.png",
+      "bytes": 16752,
+      "sha256": "e6e83aa56b672ed8c8617aa470d0c60a74e02af74181a9d5404cb4fafaa70bd6",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/superjust.png",
+      "archive_path": "droid-blue-7/graphics/circuits/superjust.png",
+      "bytes": 8261,
+      "sha256": "6e564d516e6b3101755b98f4fc86e98e7a3e942b6143c72cbb066baa7f6e0477",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/switch.png",
+      "archive_path": "droid-blue-7/graphics/circuits/switch.png",
+      "bytes": 7253,
+      "sha256": "ad4f17dc9b8a4f5d1ca20de610ca5da28a9b09ef1c21b8143cef05536c475ac5",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/switchedpot.png",
+      "archive_path": "droid-blue-7/graphics/circuits/switchedpot.png",
+      "bytes": 20448,
+      "sha256": "27030a1bff03f9c4a2021d785e7b37ebe2d1b6d6440dca128bbfac06a67f4a18",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/timing copy.png",
+      "archive_path": "droid-blue-7/graphics/circuits/timing copy.png",
+      "bytes": 4307,
+      "sha256": "6a5858761001b7dcd777ab6dbd8f072db813fab611c5e10f611f5086cbd835e8",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/timing.png",
+      "archive_path": "droid-blue-7/graphics/circuits/timing.png",
+      "bytes": 6219,
+      "sha256": "7e2864d739f731aff8969573ae641906690f52a5f34342b988707f5b84391ac8",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/togglebutton.png",
+      "archive_path": "droid-blue-7/graphics/circuits/togglebutton.png",
+      "bytes": 22055,
+      "sha256": "1edb08af6b0596886273ab20fbeadc8dd2eac758f3ae4f69dab3a44388f614dd",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/transient.png",
+      "archive_path": "droid-blue-7/graphics/circuits/transient.png",
+      "bytes": 4683,
+      "sha256": "63ff0f77b496e4eb17db0495464cfe4ab2d459fbfe692e546b54443810e36d22",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/triggerdelay.png",
+      "archive_path": "droid-blue-7/graphics/circuits/triggerdelay.png",
+      "bytes": 7395,
+      "sha256": "9d16f233b8cec0069fdbea6b7ea573b949a93046e4560960aaf54e2227da7cd1",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/unusedfaders.png",
+      "archive_path": "droid-blue-7/graphics/circuits/unusedfaders.png",
+      "bytes": 1981,
+      "sha256": "9258e6e40a3aea6a6705bbda91cd6868318d3cc46be66b94205027f0d7b53e23",
+      "width": 600,
+      "height": 600
+    },
+    {
+      "path": "app/src/main/assets/circuits/vcotuner.png",
+      "archive_path": "droid-blue-7/graphics/circuits/vcotuner.png",
+      "bytes": 9617,
+      "sha256": "36c36200ad6a5276e0ccb3577102d23ed1fb6422c62733270d7dc4777e8e4b3c",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "app/src/main/assets/circuits/watch.png",
+      "archive_path": "droid-blue-7/graphics/circuits/watch.png",
+      "bytes": 10828,
+      "sha256": "c8a170c615fda3481c55ee7f435107fcf487340416f2f5a76266d5783f932135",
+      "width": 512,
+      "height": 512
+    },
+    {
+      "path": "resources/official/droid-manual-blue-7.pdf",
+      "archive_path": "droid-blue-7/manual/droid-manual-blue-7.pdf",
+      "bytes": 33730813,
+      "sha256": "e324801d355524354223d3d0e7528f8077dc330f193f10b7544f01d76a6f94ad"
+    },
+    {
+      "path": "resources/official/GRAPHICS-LICENSE.txt",
+      "archive_path": "droid-blue-7/README.txt",
+      "bytes": 599,
+      "sha256": "f1e351a4475a7175b7c9d4ee788b3400bc9ce8f5379e19bdb2bdef36cf87fa9c",
+      "transformation": "graphics permission paragraph with provenance"
+    }
+  ]
+}

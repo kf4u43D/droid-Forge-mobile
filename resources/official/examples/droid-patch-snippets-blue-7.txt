@@ -1,0 +1,5108 @@
++==============================================+
+|                                              |
+|                 adc                          |
+|                                              |
++==============================================+
+| Page 125                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[adc]
+    input = I1
+    bit1 = O1
+    bit2 = O2
+    bit3 = O3
+------------------------------
+
+
+Example 2:
+------------------------------
+[adc]
+    input = I1
+    minimum = 0.1 # 1V
+    maximum = 0.5 # 4V
+    bit1 = O1
+    bit2 = O2
+    bit3 = O3
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 algoquencer                  |
+|                                              |
++==============================================+
+| Page 127                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[algoquencer]
+    clock  = G1 # Some clock signal
+    pitch  = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[algoquencer]
+    clock  = G1 # Some clock signal
+    pitch  = O1
+    length = 12
+------------------------------
+
+
+Example 3:
+------------------------------
+[algoquencer]
+    clock     = G1 # Some clock signal
+    pitchlow  = 1V
+    pitchhigh = 4V
+    pitch     = O1
+------------------------------
+
+
+Example 4:
+------------------------------
+[algoquencer]
+    clock     = G1 # Some clock signal
+    pitchlow  = 1V
+    pitchhigh = 4V
+    pitch     = _PITCH
+
+[minifonion]
+    input    = _PITCH
+    output   = O1
+------------------------------
+
+
+Example 5:
+------------------------------
+[algoquencer]
+    clock     = G1 # Some clock signal
+    pitchlow  = 1V
+    pitchhigh = 4V
+    pitch     = _PITCH
+    dejavu    = P1.1 # Some potentiometer
+
+[minifonion]
+    input    = _PITCH
+    output   = O1
+------------------------------
+
+
++==============================================+
+| Page 128                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[algoquencer]
+    clock   = G1
+    pitch   = O1
+    length  = 12
+    pattern = 5
+------------------------------
+
+
+Example 2:
+------------------------------
+[algoquencer]
+    clock       = G1
+    pitch       = O1
+    length      = 12
+    dejavu      = 1
+    nextpattern = B1.1
+------------------------------
+
+
+Example 3:
+------------------------------
+[algoquencer]
+    clock = G1
+    pitch = O1
+    dejavu = 0
+------------------------------
+
+
+Example 4:
+------------------------------
+[algoquencer]
+    clock = G1
+    reset = G2
+------------------------------
+
+
++==============================================+
+| Page 129                                     |
++==============================================+
+
+Example 1:
+------------------------------
+    button1 = B1.1
+    button2 = B1.2
+    button3 = B1.3
+    button4 = B1.4
+------------------------------
+
+
+Example 2:
+------------------------------
+    led1 = L1.1
+    led2 = L1.2
+    led3 = L1.3
+    led4 = L1.4
+------------------------------
+
+
+Example 3:
+------------------------------
+    trigger = O1
+------------------------------
+
+
+Example 4:
+------------------------------
+[p2b8]
+
+[algoquencer]
+    clock   = I1
+    reset   = I2
+    button1 = B1.1
+    button2 = B1.2
+    button3 = B1.3
+    button4 = B1.4
+    led1    = L1.1
+    led2    = L1.2
+    led3    = L1.3
+    led4    = L1.4
+    trigger = O1
+------------------------------
+
+
+Example 5:
+------------------------------
+    accentbutton = B1.5
+    accent       = O3
+------------------------------
+
+
+Example 6:
+------------------------------
+[button]
+   button        = B1.5
+   led           = L1.5
+   output        = _ACCENTS
+
+[algoquencer]
+    # ... the other stuff
+    accentbutton = _ACCENTS
+    accent       = O3
+------------------------------
+
+
+Example 7:
+------------------------------
+   alternatebutton = B1.7
+------------------------------
+
+
+Example 8:
+------------------------------
+   alternatebutton = B1.7
+   alternatebars = 4
+------------------------------
+
+
++==============================================+
+| Page 130                                     |
++==============================================+
+
+Example 1:
+------------------------------
+   lengthbutton = B1.6
+------------------------------
+
+
+Example 2:
+------------------------------
+    fills = P1.1
+------------------------------
+
+
+Example 3:
+------------------------------
+[algoquencer]
+    preset = P1.1 * 15
+    ...
+------------------------------
+
+
+Example 4:
+------------------------------
+[algoquencer]
+    preset = P1.1 * 15
+    loadpreset = B1.1
+    savepreset = B1.2
+    ...
+------------------------------
+
+
++==============================================+
+| Page 131                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[mixer]
+   input1 = B1.1 * 1
+   input2 = B1.2 * 2
+   input2 = B1.3 * 3
+   output = _LOAD_PRESET
+
+[mixer]
+   input1 = B1.4 * 1
+   input2 = B1.5 * 2
+   input2 = B1.6 * 3
+   output = _SAVE_PRESET
+
+[algoquencer]
+    loadpreset = _LOAD_PRESET
+    savepreset = _SAVE_PRESET
+------------------------------
+
+
+Example 2:
+------------------------------
+[algoquencer]
+    select = _SELECT_1
+    button1 = B1.1
+    button2 = B1.2
+    ...
+    led1    = L1.1
+    led2    = L1.2
+    ...
+
+[algoquencer]
+    select = _SELECT_2
+    button1 = B1.1
+    button2 = B1.2
+    ...
+    led1    = L1.1
+    led2    = L1.2
+    ...
+------------------------------
+
+
+Example 3:
+------------------------------
+[buttongroup]
+    button1 = B2.7 # select track 1
+    button2 = B2.8 # select track 2
+    led1 = L2.7
+    led2 = L2.8
+
+[algoquencer]
+    select =  L2.7 # becomes 1 if B2.7 is selected
+    button1 = B1.1
+    button2 = B1.2
+    ...
+    led1    = L1.1
+    led2    = L1.2
+    ...
+
+[algoquencer]
+    select =  L2.8 # becomes 1 if B2.8 is selected
+    button1 = B1.1
+    button2 = B1.2
+    ...
+    led1    = L1.1
+    led2    = L1.2
+    ...
+------------------------------
+
+
++==============================================+
+| Page 132                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[algoquencer]
+    header = "Kickdrum"
+    ...
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 arpeggio                     |
+|                                              |
++==============================================+
+| Page 140                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[arpeggio]
+    clock = I1
+    output = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[arpeggio]
+    clock = I1
+    output = O1
+    root = 2
+    degree = 7
+------------------------------
+
+
+Example 3:
+------------------------------
+[arpeggio]
+    clock = I1
+    output = O1
+    root = 2
+    degree = 7
+    pitch = 2/120
+    range = 1V
+------------------------------
+
+
++==============================================+
+| Page 141                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[arpeggio]
+    clock = I1
+    output = O1
+    root = 2
+    degree = 7
+    pitch = 2/120
+    range = 1V
+    pattern = 1
+------------------------------
+
+
+Example 2:
+------------------------------
+[p2b8]
+
+[arpeggio]
+    clock = I1
+    output = O1
+    pitch = P1.1
+    range = P1.2
+------------------------------
+
+
+Example 3:
+------------------------------
+[p2b8]
+
+[button]
+    button = B1.1
+    led = L1.1
+    output = _DIRECTION
+
+[arpeggio]
+    clock = I1
+    output = O1
+    pitch = P1.1
+    range = P1.2
+    direction = _DIRECTION
+------------------------------
+
+
++==============================================+
+| Page 142                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[arpeggio]
+    clock = I1
+    output = O1
+    pingpong = 1
+    pitch = 0
+    range = 7/120
+------------------------------
+
+
+Example 2:
+------------------------------
+[arpeggio]
+    clock = I1
+    output = O1
+    range = 1V
+    octaves = 1
+------------------------------
+
+
+Example 3:
+------------------------------
+[arpeggio]
+    clock = I1
+    output = O1
+    drop = 1
+------------------------------
+
+
+Example 4:
+------------------------------
+[arpeggio]
+    clock = I1
+    output = O1
+    drop = 1
+    pattern = 1
+------------------------------
+
+
++==============================================+
+| Page 143                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[arpeggio]
+    clock = I1
+    output = O1
+    select1 = 1
+    select3 = 1
+    select5 = 1
+    pingpong = 1
+------------------------------
+
+
+Example 2:
+------------------------------
+[p2b8]
+
+[button]
+    button = B1.1
+    led = L1.1
+
+[button]
+    button = B1.2
+    led = L1.2
+
+[button]
+    button = B1.3
+    led = L1.3
+
+[button]
+    button = B1.4
+    led = L1.4
+
+[button]
+    button = B1.5
+    led = L1.5
+
+[button]
+    button = B1.6
+    led = L1.6
+
+[button]
+    button = B1.7
+    led = L1.7
+
+[arpeggio]
+    clock = I1
+    select1 = L1.1
+    select3 = L1.2
+    select5 = L1.3
+    select7 = L1.4
+    select9 = L1.5
+    select11 = L1.6
+    select13 = L1.7
+    output = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 bernoulli                    |
+|                                              |
++==============================================+
+| Page 151                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[bernoulli]
+    input        = G1
+    distribution = P1.1
+    output1      = G2
+    output2      = G4
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 burst                        |
+|                                              |
++==============================================+
+| Page 152                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[burst]
+    trigger  = I1
+    hz       = 10
+    count    = 5
+    output   = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[burst]
+    taptempo = I2
+    count    = 4
+    trigger  = I1
+    output   = O1
+------------------------------
+
+
+Example 3:
+------------------------------
+[burst]
+    taptempo = I2
+    rate     = -1V
+    count    = 4
+    trigger  = I1
+    output   = O1
+------------------------------
+
+
+Example 4:
+------------------------------
+[burst]
+    hz = 5000
+    skip = 5
+    count = 3
+    trigger  = I1
+    output   = O1
+------------------------------
+
+
+Example 5:
+------------------------------
+[burst]
+    trigger = _MIDI_RUNNING
+    output = _RESET
+------------------------------
+
+
+Example 6:
+------------------------------
+[burst]
+    taptempo = I1
+    trigger = I2
+    skip = 7
+    output = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 button                       |
+|                                              |
++==============================================+
+| Page 154                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[button]
+    button      = B1.4
+    led         = L1.4
+
+[cvlooper]
+    loop        = L1.4
+------------------------------
+
+
+Example 2:
+------------------------------
+[button]
+    button     = B1.4
+    led        = L1.4
+    dontsave   = 1
+
+[cvlooper]
+    loop       = L1.4
+------------------------------
+
+
+Example 3:
+------------------------------
+[button]
+    button      = B1.4
+    led         = L1.4
+    offvalue    = 2
+    onvalue     = 4
+    output      = _CLOCK_DIV
+
+[clocktool]
+    input       = G1 # external clock
+    output      = G2
+    divide      = _CLOCK_DIV
+------------------------------
+
+
+Example 4:
+------------------------------
+[lfo]
+    hz          = 2
+    sawtooth    = _SAWTOOTH
+    sine        = _SINE
+
+[button]
+    button      = B3.1
+    led         = L3.1
+    offvalue    = _SAWTOOTH
+    onvalue     = _SINE
+    output      = O1
+------------------------------
+
+
+Example 5:
+------------------------------
+[button]
+    button = B1.1
+    led = L1.1
+    states = 4
+    output = _SOMETHING
+------------------------------
+
+
++==============================================+
+| Page 155                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[lfo]
+    hz          = 2
+    sawtooth    = _SAWTOOTH
+    sine        = _SINE
+    square      = _SQUARE
+    triangle    = _TRIANGLE
+
+[button]
+    button      = B3.1
+    led         = L3.1
+    value1      = _SAWTOOTH
+    value2      = _SINE
+    value3      = _SQUARE
+    value4      = _TRIANGLE
+    output      = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[algoquencer]
+    nextpattern = B1.1
+------------------------------
+
+
+Example 3:
+------------------------------
+[button]
+    states = 1
+    button = B1.1
+    led = L1.1
+
+[algoquencer]
+    nextpattern = L1.1
+------------------------------
+
+
+Example 4:
+------------------------------
+[button]
+    button    = B1.1
+    led       = L1.1
+    output    = _SOME_STATE
+    longpress = _LONG
+------------------------------
+
+
+Example 5:
+------------------------------
+[button]
+    button     = B1.1
+    longpress  = _LONG
+    shortpress = _SHORT
+------------------------------
+
+
+Example 6:
+------------------------------
+[button]
+    button     = B1.1
+    led        = L1.1
+    states     = 1
+    longpress  = _LONG
+    shortpress = _SHORT
+------------------------------
+
+
++==============================================+
+| Page 156                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[button]
+    button = B1.1
+    led = L1.1
+    output = _BANK1
+    negated = _BANK2
+
+[button]
+    select = _BANK1
+    button = B3.1
+    led = L3.1
+    output = _VIRTUAL_BUTTON_1
+
+[button]
+    select = _BANK2
+    button = B3.1
+    led = L3.1
+    output = _VIRTUAL_BUTTON_2
+------------------------------
+
+
+Example 2:
+------------------------------
+[droid]
+    uislowdown = 0
+------------------------------
+
+
+Example 3:
+------------------------------
+[button]
+    button = B2.1
+    led = L2.1
+    states = 4
+    output = _WAVEFORM
+
+[switch]
+    input1 = "Square"
+    input2 = "Triangle"
+    input3 = "Sawtooth"
+    input4 = "Sine"
+    offset = _WAVEFORM
+    output = _WAVEFORM_NAME
+
+[display]
+    header = "Waveform"
+    text = _WAVEFORM_NAME
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 buttongroup                  |
+|                                              |
++==============================================+
+| Page 160                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[buttongroup]
+    button1   = B2.1
+    button2   = B2.2
+    button3   = B2.3
+    button4   = B2.4
+    led1      = L2.1 # LED in button 2.1
+    led2      = L2.2
+    led3      = L2.3
+    led4      = L2.4
+    value1    = 0V
+    value2    = 1V
+    value3    = 2V
+    value4    = -1V
+    output    = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[buttongroup]
+    button1   = B2.1
+    button2   = B2.2
+    button3   = B2.3
+    led1      = L2.1 # LED in button 2.1
+    led2      = L2.2
+    led3      = L2.3
+    value1    = 1
+    value2    = 2
+    value3    = 4
+    minactive = 0 # allow all buttons to be off
+    maxactive = 3 # allow all buttons to be on
+    output    = O1
+------------------------------
+
+
+Example 3:
+------------------------------
+[p2b8]
+
+[buttongroup]
+    button1 = B1.1
+    button2 = B1.2
+    led1    = L1.1
+    led2    = L1.2
+
+------------------------------
+
+
+Example 4:
+------------------------------
+[buttongroup]
+    select = L1.1 # be active only when L1.1 is active
+    button1 = B1.3
+    button2 = B1.4
+    button3 = B1.5
+    button4 = B1.6
+    button5 = B1.7
+    button6 = B1.8
+    led1 = L1.3
+    led2 = L1.4
+    led3 = L1.5
+    led4 = L1.6
+    led5 = L1.7
+    led6 = L1.8
+    value1 = 0  # C
+    value2 = 2  # D
+    value3 = 5  # F
+    value4 = 7  # G
+    value5 = 9  # A
+    value6 = 10 # Bb
+    output = _ROOT
+
+[buttongroup]
+    select = L1.2 # be active only when L1.2 is active
+    button1 = B1.3
+    button2 = B1.4
+    button3 = B1.5
+    button4 = B1.6
+    button5 = B1.7
+    button6 = B1.8
+    led1 = L1.3
+    led2 = L1.4
+    led3 = L1.5
+    led4 = L1.6
+    led5 = L1.7
+    led6 = L1.8
+    value1 = 1  # major
+    value2 = 6  # dorian minor
+    value3 = 7  # natural minor
+    value4 = 9  # phrygian minor
+    value5 = 10 # diminished scale
+    value6 = 2  # mixolydian
+    output = _DEGREE
+
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 calibrator                   |
+|                                              |
++==============================================+
+| Page 164                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[calibrator]
+    input     = I1
+    output    = O1
+    nudgeup   = B1.1
+    nudgedown = B1.3
+    ledup     = L1.1
+    leddown   = L1.3
+------------------------------
+
+
++==============================================+
+| Page 165                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[calibrator]
+    input = I1
+    output = O4
+    nudgeup = _UP
+    nudgedown = _DOWN
+    correction = _CORRECTION
+    clearhere = _CLEARHERE
+    nudgeamount = 0.01
+
+[encoder]
+    encoder = 4
+    movedup = _UP
+    moveddown = _DOWN
+    override = _CORRECTION * 2
+    button = _CLEARHERE
+    mode = 2 # make it bipolar
+    color = 0.4 # green
+    negativecolor = 0.8 # red
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 case                         |
+|                                              |
++==============================================+
+| Page 168                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[case]
+    case1  = _INTERNAL_CLOCK_PRESENT
+    value1 = _INTERNAL_CLOCK
+    case2  = _EXTERNAL_CLOCK_PRESENT
+    value2 = _EXTERNAL_CLOCK
+    case3  = _MIDI_CLOCK_PRESENT
+    value3 = _MIDI_CLOCK
+    output = _CLOCK
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 chord                        |
+|                                              |
++==============================================+
+| Page 169                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[chord]
+    output1 = O1
+    output2 = O2
+    output3 = O3
+    output4 = O4
+------------------------------
+
+
+Example 2:
+------------------------------
+[chord]
+    output1 = O1
+    output2 = O2
+    output3 = O3
+    output4 = O4
+    root    = 2
+    degree  = 7
+------------------------------
+
+
+Example 3:
+------------------------------
+[chord]
+    pitch = I1
+    output1 = O1
+    output2 = O2
+    output3 = O3
+    output4 = O4
+    root    = 2
+    degree  = 7
+------------------------------
+
+
++==============================================+
+| Page 170                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[p2b8]
+
+[button]
+    button = B1.1
+    led = L1.1
+
+[button]
+    button = B1.2
+    led = L1.2
+
+[button]
+    button = B1.3
+    led = L1.3
+
+[button]
+    button = B1.4
+    led = L1.4
+
+[button]
+    button = B1.5
+    led = L1.5
+
+[button]
+    button = B1.6
+    led = L1.6
+
+[button]
+    button = B1.7
+    led = L1.7
+
+[chord]
+    select1 = L1.1
+    select3 = L1.2
+    select5 = L1.3
+    select7 = L1.4
+    select9 = L1.5
+    select11 = L1.6
+    select13 = L1.7
+    output1 = O1
+    output2 = O2
+    output3 = O3
+    output4 = O4
+------------------------------
+
+
+Example 2:
+------------------------------
+[chord]
+    output1 = O1
+    output2 = O2
+    output3 = O3
+    root    = 2
+    degree  = 7
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 clockedtrigger               |
+|                                              |
++==============================================+
+| Page 177                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[clockedtrigger]
+    clock = _CLOCK
+    trigger = B1.1
+    clockedtrigger = _BUTTON_PRESSED
+------------------------------
+
+
+Example 2:
+------------------------------
+[clockedtrigger]
+    clock = _CLOCK
+    trigger = B1.1
+    clockedtrigger = _BUTTON_PRESSED
+    value = P1.1
+    clockedvalue = _VALUE
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 clocktool                    |
+|                                              |
++==============================================+
+| Page 178                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[clocktool]
+    clock    = I1 # patch a clock here
+    output   = O1
+    divide   = 7
+------------------------------
+
+
+Example 2:
+------------------------------
+[clocktool]
+    clock    = I1 # patch a clock here
+    output   = O1
+    multiply = 2
+------------------------------
+
+
+Example 3:
+------------------------------
+[clocktool]
+    clock    = I1 # patch a clock here
+    output   = O1
+    divide   = 3
+    multiply = 2
+------------------------------
+
+
+Example 4:
+------------------------------
+[clocktool]
+    clock     = I1 # patch a clock here
+    output    = O1
+    dutycycle = 20% # same as 0.2
+------------------------------
+
+
+Example 5:
+------------------------------
+[clocktool]
+    clock     = I1 # patch a clock here
+    output    = O1
+    delay     = 0.1 # same as 10%
+------------------------------
+
+
+Example 6:
+------------------------------
+[clocktool]
+    clock     = I1 # patch a clock here
+    output    = O1
+    delay     = -0.1
+------------------------------
+
+
+Example 7:
+------------------------------
+[clocktool]
+    clock     = I1 # patch a clock here
+    output    = _SHIFTED_CLOCK
+    delay     = P1.1 * 0.2 - 0.1 # limit to +/- 10%
+
+[algoquencer]
+    clock     = _SHIFTED_CLOCK
+    ...
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 compare                      |
+|                                              |
++==============================================+
+| Page 181                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[compare]
+    input = P1.1
+    compare = 0.5
+    ifless = 1
+    output = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[compare]
+    input = P1.1
+    compare = 0.5
+    ifless = 1
+    else = -1
+    output = O1
+------------------------------
+
+
+Example 3:
+------------------------------
+[compare]
+    input = B1.1
+    compare = 1
+    ifequal = 4
+    else = 8
+    output = O1
+------------------------------
+
+
+Example 4:
+------------------------------
+[compare]
+    input = I1
+    compare = I2
+    ifequal = 1 # will never happen!
+    output = O1 # This wonunhbox voidb-x kern z- char `tchar "0301relax  work!
+------------------------------
+
+
+Example 5:
+------------------------------
+[compare]
+    input = I1
+    compare = I2
+    precision = 0.1
+    ifequal = 1
+    output = O1
+------------------------------
+
+
+Example 6:
+------------------------------
+[compare]
+    input = I1
+    compare = I2
+    precision = 0.1
+    ifless = 0
+    ifequal = 1
+    ifgreater = 2
+    output = O1
+------------------------------
+
+
+Example 7:
+------------------------------
+    input = B1.1
+    compare = 0
+    output = O1
+------------------------------
+
+
++==============================================+
+| Page 182                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[lfo]
+    hz = 2
+    sine = _SINE
+    square = _SQUARE
+
+[compare]
+    input = P1.1
+    compare = 0.5
+    ifless = _SINE
+    else = _SQUARE
+    output = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 contour                      |
+|                                              |
++==============================================+
+| Page 183                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[contour]
+    gate   = I1
+    output = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[p2b8]
+[p2b8]
+
+[contour]
+    gate    = I1
+    attack  = P1.1
+    decay   = P1.2
+    sustain = P2.1
+    release = P2.2
+    output  = O1
+------------------------------
+
+
+Example 3:
+------------------------------
+[p2b8]
+[p2b8]
+
+[contour]
+    gate    = I1
+    attack  = P1.1 * 20
+    decay   = P1.2
+    sustain = P2.1
+    release = P2.2
+    output  = O1
+------------------------------
+
+
++==============================================+
+| Page 184                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[contour]
+    gate        = I1
+    decayshape  = P1.1
+    output      = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 copy                         |
+|                                              |
++==============================================+
+| Page 188                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[copy]
+    input = I1 + I2
+    output = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[copy]
+    input = I1 * 0.5
+    output = _INPUT_CV
+------------------------------
+
+
+Example 3:
+------------------------------
+[copy]
+    input = 10V - I1
+    output = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 crossfader                   |
+|                                              |
++==============================================+
+| Page 189                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[crossfader]
+    input1 = I1
+    input2 = I2
+    fade   = P1.1
+    output = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[lfo]
+    hz           = 0.1
+    sawtooth     = _FADE
+
+[crossfader]
+    input1       = I1
+    input2       = I2
+    input3       = I3
+    input4       = I4
+    fade         = _FADE
+    output       = O1
+------------------------------
+
+
+Example 3:
+------------------------------
+[lfo]
+    hz           = 0.1
+    sawtooth     = _FADE
+
+[crossfader]
+    input1       = I1
+    input2       = I2
+    input3       = I3
+    input4       = I4
+    fade         = _FADE * 1.3333
+    output       = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 cvlooper                     |
+|                                              |
++==============================================+
+| Page 190                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[button]
+    button     = B1.1
+    led        = L1.1
+
+[cvlooper]
+    cvin       = I1
+    clock      = I8    # steady clock
+    cvout      = O1
+    length     = 16    # 16 clock ticks
+    loopswitch = L1.1
+------------------------------
+
+
+Example 2:
+------------------------------
+[button]
+    button     = B1.1
+    led        = L1.1
+
+[cvlooper]
+    cvin       = I1
+    gatein     = I2
+    clock      = I8    # steady clock
+    cvout      = O1
+    gateout    = O2
+    length     = 16    # 16 clock ticks
+    loopswitch = L1.1
+------------------------------
+
+
++==============================================+
+| Page 191                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[cvlooper]
+    cvin = _INPUT_CV / 10
+    cvout = _OUT
+    ...
+
+[copy]
+    input = _OUT * 10
+    output = _OUTPUT_CV
+------------------------------
+
+
+Example 2:
+------------------------------
+[clocktool]
+    clock        = G1
+    divide       = 2
+    output       = _LOOP_CLOCK
+
+[cvlooper]
+    clock        = _LOOP_CLOCK
+    cvin         = I5
+    tapespeed    = 0.2 # max loop five x longer
+    cvout        = O5
+    length       = 128 # = 256 original ticks
+    loopswitch   = _SOME_BUTTON
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 dac                          |
+|                                              |
++==============================================+
+| Page 193                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[dac]
+    bit1 = I1
+    bit2 = I2
+    bit3 = I3
+    output = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[dac]
+    bit1 = I1
+    bit2 = I2
+    bit3 = I3
+    minimum = 0.1 # 1V
+    maximum = 0.5 # 5V
+    output = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 delay                        |
+|                                              |
++==============================================+
+| Page 195                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[delay]
+    cvin = I1
+    cvout = O1
+    delay = 0.5
+------------------------------
+
+
+Example 2:
+------------------------------
+[delay]
+    cvin = I1
+    cvout = O1
+    clock = G1 # input clock
+    delay = 4 # delay by 4 ticks
+------------------------------
+
+
+Example 3:
+------------------------------
+[delay]
+    gatein1 = G1
+    gatein2 = G2
+    gatein3 = G3
+    gatein4 = G4
+    gateout1 = G5
+    gateout2 = G6
+    gateout3 = G7
+    gateout4 = G8
+    delay = 0.5
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 detune                       |
+|                                              |
++==============================================+
+| Page 198                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[detune]
+    detune = P1.1
+    input1 = _PITCH1 # from somewhere
+    input2 = _PITCH2 # from somewhere
+    input3 = _PITCH3 # from somewhere
+    input4 = _PITCH4 # from somewhere
+    input5 = _PITCH5 # from somewhere
+    output1 = O1
+    output2 = O2
+    output3 = O3
+    output4 = O4
+    output5 = O5
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 display                      |
+|                                              |
++==============================================+
+| Page 199                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[display]
+    text = "Hello world!"
+------------------------------
+
+
+Example 2:
+------------------------------
+[db8e]
+[p2b8]
+
+[button]
+    button = B2.1
+    led = L2.1
+    output = _RUNNING
+    inverted = _NOT_RUNNING
+
+[display]
+    text = "Started" * _RUNNING
+
+[display]
+    text = "Stopped" * _NOT_RUNNING
+------------------------------
+
+
+Example 3:
+------------------------------
+[db8e]
+[p2b8]
+
+[pot]
+    pot = P2.1
+    discrete = 7
+    output = _WAVEFORM
+
+[lfo]
+    hz = 2
+    waveform = _WAVEFORM
+    output = O1
+
+[switch]
+    input1 = "square"
+    input2 = "sawtooth"
+    input3 = "triangle"
+    input4 = "ramp"
+    input5 = "paraboloid"
+    input6 = "sine"
+    input7 = "cosine"
+    offset = _WAVEFORM
+    output1 = _TEXT
+
+[display]
+    text = _TEXT
+    linger = 1
+------------------------------
+
+
++==============================================+
+| Page 200                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[db8e]
+[p2b8]
+
+[pot]
+    pot = P2.1
+    outputscale = 0.1V
+    output = _FINE
+
+[pot]
+    pot = P2.2
+    outputscale = 5.0V
+    output = _COARSE
+
+[copy]
+    input = _FINE + _COARSE
+    output = _TUNING
+
+[display]
+    value = _TUNING
+    linger = 1
+    threshold = 0.001V
+------------------------------
+
+
+Example 2:
+------------------------------
+[db8e]
+[display]
+    takeovercontrols = 1
+------------------------------
+
+
+Example 3:
+------------------------------
+[db8e]
+
+[display]
+    takeovercontrols = 1
+
+[encoder]
+    encoder = 1
+    output = O1
+------------------------------
+
+
++==============================================+
+| Page 201                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[db8e]
+
+[button]
+    button = B1.9
+    output = _TAKEOVER
+
+[display]
+    takeovercontrols = _TAKEOVER
+
+[encoder]
+    encoder = 1
+    output = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 encoderbank                  |
+|                                              |
++==============================================+
+| Page 208                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[encoderbank]
+    firstencoder = E2.1
+    output1 = O1
+    output2 = O2
+    output3 = O3
+    outputscale = 2V
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 encoder                      |
+|                                              |
++==============================================+
+| Page 213                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[encoder]
+    encoder = E1.1
+    output = O1
+------------------------------
+
+
++==============================================+
+| Page 214                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[p2b8]
+[e4]
+
+[buttongroup]
+    button1 = B1.1
+    button2 = B1.2
+    button3 = B1.3
+    led1 = L1.1
+    led2 = L1.2
+    led3 = L1.3
+
+[encoder]
+    encoder = E1.1
+    select = L1.1
+    output = O1
+
+[encoder]
+    encoder = E1.1
+    select = L1.2
+    output = O2
+
+[encoder]
+    encoder = E1.1
+    select = L1.3
+    output = O3
+------------------------------
+
+
+Example 2:
+------------------------------
+[encoder]
+    encoder = E1.1
+    output = O1
+    outputscale = 0.3
+    outputoffset = 0.2
+------------------------------
+
+
+Example 3:
+------------------------------
+[encoder]
+    encoder = E1.1
+    output = O1
+    sensivity = 10%
+------------------------------
+
+
+Example 4:
+------------------------------
+[encoder]
+    encoder = E1.1
+    output = O1
+    button = _BUTTON
+    sensivity = _BUTTON * 90% + 10%
+------------------------------
+
+
++==============================================+
+| Page 215                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[encoder]
+    encoder = E1.1
+    output = O1
+    autozoom = 0.5
+------------------------------
+
+
+Example 2:
+------------------------------
+[encoder]
+    encoder = E1.1
+    output = O1
+    mode = 2
+    outputscale = 2V
+------------------------------
+
+
+Example 3:
+------------------------------
+[encoder]
+    encoder = E1.1
+    output = O1
+    mode = 3 # positive infinity
+    button = _BUTTON
+    clear = _BUTTON
+------------------------------
+
+
+Example 4:
+------------------------------
+[encoder]
+    encoder = E1.1
+    output = O1 # always in range 0 ... 1
+    mode = 6 # circular infinity
+------------------------------
+
+
+Example 5:
+------------------------------
+[encoder]
+    encoder = E1.1
+    color = 0.4 # green
+    output = O1
+
+------------------------------
+
+
+Example 6:
+------------------------------
+[encoder]
+    encoder = E1.1
+    output = O1
+    mode = 2
+    outputscale = 2V
+    color = 1.2 # blue
+    negativecolor = 0.8 # red
+------------------------------
+
+
++==============================================+
+| Page 216                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[encoder]
+    encoder = E1.1
+    discrete = 4 # values 0unhbox voidb-x kern z- char `protect relax kern .16667em  1unhbox voidb-x kern z- char `protect relax kern .16667em  2unhbox voidb-x kern z- char `protect relax kern .16667em  3
+    output = _SELECT # goes somewhere
+------------------------------
+
+
+Example 2:
+------------------------------
+[encoder]
+    encoder = E1.1
+    output = O1
+    discrete = 5
+    outputscale = 4V
+    outputoffset = -2V
+------------------------------
+
+
+Example 3:
+------------------------------
+[encoder]
+    encoder = E1.1
+    output = O1 # output is optional
+    movementticks = 8
+    moveddown = O2 # CCW
+    movedup = O3 # CW
+------------------------------
+
+
++==============================================+
+| Page 217                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[encoder]
+    encoder = E1.1
+    output = O1 # output is optional
+    valuechanged = O2
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 encoquencer                  |
+|                                              |
++==============================================+
+| Page 223                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[e4]
+
+[encoquencer]
+    clock = I1
+    cv = O1
+    gate = O2
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 euklid                       |
+|                                              |
++==============================================+
+| Page 243                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[euklid]
+    clock   = G1
+    reset   = G2
+    length  = 16
+    beats   = 5
+    offset  = 0
+    output  = G3
+------------------------------
+
+
+Example 2:
+------------------------------
+[euklid]
+    clock   = G1
+    reset   = G2
+    length  = 16
+    beats   = P1.1 * 15 + 1
+    offset  = 0
+    output  = G3
+------------------------------
+
+
+Example 3:
+------------------------------
+[euklid]
+    clock   = G1
+    reset   = G2
+    beats   = P1.1 * 15 + 1
+    output  = G3
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 explin                       |
+|                                              |
++==============================================+
+| Page 245                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[explin]
+    input   = I1
+    output  = O2
+    startvalue = 8V
+    endvalue = 0.5V
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 faderbank                    |
+|                                              |
++==============================================+
+| Page 247                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[p2b8]
+[m4]
+
+[faderbank]
+    preset = P1.1 * 6
+    output1 = O1
+    output2 = O2
+    output3 = O3
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 fadermatrix                  |
+|                                              |
++==============================================+
+| Page 250                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[p2b8]
+[m4]
+
+[buttongroup]
+    button1 = B1.1
+    button2 = B1.3
+    button3 = B1.5
+    button4 = B1.7
+    button5 = B1.2
+    button6 = B1.4
+    button7 = B1.6
+    button8 = B1.8
+    led1 = L1.1
+    led2 = L1.3
+    led3 = L1.5
+    led4 = L1.7
+    led5 = L1.2
+    led6 = L1.4
+    led7 = L1.6
+    led8 = L1.8
+    output = _ROWCOLUMN
+------------------------------
+
+
++==============================================+
+| Page 251                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[fadermatrix]
+    rowcolumn = _ROWCOLUMN
+    output11 = _ATTACK_1
+    output12 = _DECAY_1
+    output13 = _SUSTAIN_1
+    output14 = _RELEASE_1
+    output21 = _ATTACK_2
+    output22 = _DECAY_2
+    output23 = _SUSTAIN_2
+    output24 = _RELEASE_2
+    output31 = _ATTACK_3
+    output32 = _DECAY_3
+    output33 = _SUSTAIN_3
+    output34 = _RELEASE_3
+    output41 = _ATTACK_4
+    output42 = _DECAY_4
+    output43 = _SUSTAIN_4
+    output44 = _RELEASE_4
+------------------------------
+
+
+Example 2:
+------------------------------
+[contour]
+    gate = I1
+    attack = _ATTACK_1
+    decay = _DECAY_1
+    sustain = _SUSTAIN_1
+    release = _RELEASE_1
+    output = O1
+------------------------------
+
+
+Example 3:
+------------------------------
+    rowcolumn = P1.1 * 7
+------------------------------
+
+
+Example 4:
+------------------------------
+    notches3 = 8
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 flipflop                     |
+|                                              |
++==============================================+
+| Page 259                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[flipflop]
+    toggle  = I1
+    output  = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[flipflop]
+    set  = I1
+    reset = I2
+    output  = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 fold                         |
+|                                              |
++==============================================+
+| Page 260                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[fold]
+    input = I1
+    output = O1
+    foldby = 1V # one octave
+    minimum = 1.2V
+    maximum = 2.5V
+------------------------------
+
+
+Example 2:
+------------------------------
+[fold]
+    input = I1
+    output = O1
+    foldby = 1V
+    minimum = 1.1V
+    maximum = 1.3V
+------------------------------
+
+
+Example 3:
+------------------------------
+[fold]
+    input = I1
+    output = O1
+    foldby = 1V
+    minimum = 2.5V
+    maximum = 1.5V
+------------------------------
+
+
+Example 4:
+------------------------------
+[p2b8]
+[p2b8]
+
+[lfo]
+    hz = 2 * P1.1
+    triangle = _CV
+
+[lfo]
+    hz = 2 * P1.2
+    triangle = _MIN
+
+[lfo]
+    hz = 2 * P2.1
+    triangle = _MAX
+
+[lfo]
+    hz = 2 * P2.2
+    triangle = _FOLDBY
+    level = 2V
+
+[fold]
+    input = _CV
+    minimum = _MIN
+    maximum = _MAX
+    foldby = _FOLDBY
+    output = O1
+
+[lfo]
+    rate = O1 * 0.2
+    hz = 110
+    output = O2
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 fourstatebutton              |
+|                                              |
++==============================================+
+| Page 262                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[fourstatebutton]
+    button  = B1.1
+    led     = L1.1
+    value1  = I1 + 0V
+    value2  = I1 + 1V
+    value3  = I1 + 2V
+    value4  = I1 + 3V
+    output  = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[lfo]
+    hz       = 2
+    square   = _W1
+    triangle = _W2
+    sawtooth = _W3
+    sine     = _W4
+
+[fourstatebutton]
+    button   = B1.1
+    led      = L1.1
+    value1   = _W1
+    value2   = _W2
+    value3   = _W3
+    value4   = _W4
+    output   = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 gatetool                     |
+|                                              |
++==============================================+
+| Page 263                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[gatetool]
+    inputtrigger = I1
+    outputgate = O1
+    gatelength = 0.5 # 500 ms
+------------------------------
+
+
+Example 2:
+------------------------------
+[gatetool]
+    inputtrigger = I1
+    taptempo = I2 # some steady clock
+    gatelength = 0.3 # 30% of one clock tick
+    outputgate = O1
+------------------------------
+
+
+Example 3:
+------------------------------
+[gatetool]
+    inputgate = I1
+    outputgate = O1 # keep gate length
+------------------------------
+
+
+Example 4:
+------------------------------
+[gatetool]
+    inputgate = I1
+    outputgate = O1
+    gatelength = 0.5 # 500 ms
+------------------------------
+
+
+Example 5:
+------------------------------
+[gatetool]
+    inputgate = I1
+    outputgate = O1
+    gatestretch = 0.3 # make gate 30% longer
+------------------------------
+
+
+Example 6:
+------------------------------
+[gatetool]
+    inputgate = I1
+    taptempo = I2 # steady clock
+    outputgate = O1
+    mingatelength = 0.1
+    maxgatelength = 0.9
+------------------------------
+
+
++==============================================+
+| Page 264                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[gatetool]
+    inputtrigger = I1
+    outputedge = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 ifequal                      |
+|                                              |
++==============================================+
+| Page 266                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[ifequal]
+    input1 = _TRACK
+    input2 = 2
+    ifequal = _TRACK2_GATES
+    else = 0
+    output = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 lfo                          |
+|                                              |
++==============================================+
+| Page 267                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[lfo]
+    hz       = 4
+    triangle = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[lfo]
+    hz       = 4
+    sawtooth = O1
+------------------------------
+
+
+Example 3:
+------------------------------
+[lfo]
+    hz       = 4
+    bipolar  = on
+    triangle = O1
+------------------------------
+
+
++==============================================+
+| Page 268                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[lfo]
+    hz          = 5
+    level       = 1.5V
+    offset      = 2V
+    sine        = O4
+------------------------------
+
+
+Example 2:
+------------------------------
+[lfo]
+    hz         = 1.5
+    rectangle  = O3
+------------------------------
+
+
+Example 3:
+------------------------------
+[lfo]
+    rate     = 2V
+    bipolar  = on
+    triangle = O1
+------------------------------
+
+
+Example 4:
+------------------------------
+[lfo]
+    taptempo   = G1 # steady clock here
+    rate       = -1V # run at half clock speed
+    sawtooth   = O2
+------------------------------
+
+
+Example 5:
+------------------------------
+[lfo]
+    taptempo = G1
+    hz = 3
+    sawtooth = O2
+------------------------------
+
+
++==============================================+
+| Page 269                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[lfo]
+    hz        = 0.5
+    randomize = 0.8
+    sine      = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[lfo]
+    hz        = 0.5
+    randomize = 0.8
+    sine      = O1
+    bipolar   = 1
+------------------------------
+
+
+Example 3:
+------------------------------
+[lfo]
+    hz = 2
+    output = G1
+------------------------------
+
+
+Example 4:
+------------------------------
+[lfo]
+    hz = 2
+    output = G1
+    waveform = 2
+------------------------------
+
+
+Example 5:
+------------------------------
+[lfo]
+    hz = 4
+    output = O1
+    waveform = 0.0
+------------------------------
+
+
+Example 6:
+------------------------------
+[lfo]
+    hz = 4
+    output = O1
+    waveform = 1.0
+------------------------------
+
+
++==============================================+
+| Page 270                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[lfo]
+    hz = 4
+    output = O1
+    waveform = 0.5
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 logic                        |
+|                                              |
++==============================================+
+| Page 273                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[logic]
+    input1  = I1
+    input2  = I2
+    input3  = I3
+    and     = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[logic]
+    input   = I1
+    negated = O1
+------------------------------
+
+
+Example 3:
+------------------------------
+[logic]
+    input     = I1
+    negated   = O1
+    threshold = 5V
+------------------------------
+
+
+Example 4:
+------------------------------
+[button]
+    button = B1.1
+    led    = L1.1
+
+[lfo]
+    hz     = 2
+    square = _LFO
+
+[logic]
+    input1 = L1.1
+    input2 = _LFO
+    and    = O1
+------------------------------
+
+
+Example 5:
+------------------------------
+[button]
+    button = B1.1
+    led    = L1.1
+
+[lfo]
+    hz     = 2
+    square = _LFO
+
+[copy]
+    input  = _LFO * L1.1
+    output = O1
+------------------------------
+
+
+Example 6:
+------------------------------
+[button]
+    button  = B1.1
+    led     = L1.1
+
+[lfo]
+    hz      = 2
+    square  = _LFO
+    level   = L1.1
+------------------------------
+
+
+Example 7:
+------------------------------
+[lfo]
+    hz       = 2
+    square   = _LFO
+
+[button]
+    button   = B1.1
+    led      = L1.1
+    onvalue  = _LFO
+------------------------------
+
+
+Example 8:
+------------------------------
+[euklid]
+    length = 16
+    beats  = 3
+    output = _E1
+
+[euklid]
+    length = 13
+    beats  = 2
+    output = _E2
+
+[copy]
+    input  = _E1 + _E2
+    output = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 math                         |
+|                                              |
++==============================================+
+| Page 276                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[math]
+    input1   = I1
+    input2   = I2
+    quotient = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[math]
+    input   = I1
+    root    = O1
+------------------------------
+
+
+Example 3:
+------------------------------
+[math]
+    input1 = I1
+    input2 = P1.2
+    product = O1
+------------------------------
+
+
+Example 4:
+------------------------------
+[math]
+    input1 = I1
+    # input2 = P1.2
+    product = O1 # will be set to I1unhbox voidb-x kern z- char `protect relax kern .16667em  not 0
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 matrixmixer                  |
+|                                              |
++==============================================+
+| Page 279                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[matrixmixer]
+    input1   = I1
+    input2   = I2
+    input3   = I3
+    output1  = O1
+    output2  = O2
+    button11 = B1.1
+    button12 = B1.2
+    button21 = B2.1
+    button22 = B1.3
+    button31 = B1.4
+    button32 = B2.3
+    led11    = L1.1
+    led12    = L1.2
+    led21    = L2.1
+    led22    = L1.3
+    led31    = L1.4
+    led32    = L2.3
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 midifileplayer               |
+|                                              |
++==============================================+
+| Page 282                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[midifileplayer]
+    pitch = O1
+    gate = O2
+------------------------------
+
+
++==============================================+
+| Page 283                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[midifileplayer]
+    file = 2
+    track = 1
+    pitch1 = O1
+    pitch2 = O2
+    pitch3 = O3
+    gate1 = G1
+    gate2 = G2
+    gate3 = G3
+------------------------------
+
+
+Example 2:
+------------------------------
+[midifileplayer]
+    pitch = O1
+    gate = O2
+    speed = P1.1 * 2
+------------------------------
+
+
+Example 3:
+------------------------------
+[midifileplayer]
+    pitch = O1
+    gate = O2
+    clock = G1
+------------------------------
+
+
+Example 4:
+------------------------------
+[midifileplayer]
+    pitch = O1
+    gate = O2
+    error = R1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 midiin                       |
+|                                              |
++==============================================+
+| Page 289                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[midiin]
+    pitch = O1
+    gate = O2
+------------------------------
+
+
+Example 2:
+------------------------------
+[midiin]
+    pitch1 = O1
+    pitch2 = O2
+    pitch3 = O3
+    gate1 = G1
+    gate2 = G2
+    gate3 = G3
+------------------------------
+
+
+Example 3:
+------------------------------
+[midiin]
+    note1 = 24
+    note2 = 25
+    notegate1 = O1
+    notegate2 = O2
+    notegatevelocity1 = O3
+    notegatevelocity2 = O4
+------------------------------
+
+
+Example 4:
+------------------------------
+[midiin]
+    note1 = 24
+    notegate1 = _NOTE24
+
+[button]
+    button = _NOTE24
+    led = R1
+    output = _SOMETHING # ...
+------------------------------
+
+
++==============================================+
+| Page 290                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[midiin]
+    clock = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[midiin]
+    clock = _CLOCK
+    start = _RESET
+
+[sequencer]
+    clock = _CLOCK
+    reset = _RESET
+    ...
+------------------------------
+
+
+Example 3:
+------------------------------
+[midiin]
+    volume = O1
+    modwheel = O2
+    ccnumber1 = 10 # get update from CC#10
+    cc1 = O3 # send current CC value to O3
+------------------------------
+
+
++==============================================+
+| Page 291                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[midiin]
+    pitch = O1
+    gate = O2
+    ...
+------------------------------
+
+
+Example 2:
+------------------------------
+[midiin]
+    usb = 1
+------------------------------
+
+
+Example 3:
+------------------------------
+[midiin]
+    trs = 1
+------------------------------
+
+
+Example 4:
+------------------------------
+[midiin]
+    usb = 0 # disable USBunhbox voidb-x kern z- char `protect relax kern .16667em  enable TRS
+------------------------------
+
+
+Example 5:
+------------------------------
+[midiin]
+    trs = 3
+------------------------------
+
+
+Example 6:
+------------------------------
+[midiin]
+    usb = 1
+    trs = 10 # auto detection
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 midiout                      |
+|                                              |
++==============================================+
+| Page 297                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[midiout]
+    pitch = I1
+    gate = I2
+------------------------------
+
+
+Example 2:
+------------------------------
+[random]
+    minimum = 0.5 # minimum allowed velocity
+    maximum = 1.0 # maximum allowed velocity
+    output = _VELOCITY
+
+[midiout]
+    pitch = I1
+    gate = I2
+    velocity = _VELOCITY
+------------------------------
+
+
++==============================================+
+| Page 298                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[midiout]
+    pitch1 = I1
+    pitch2 = I2
+    pitch3 = I3
+    gate1 = I5
+    gate2 = I6
+    gate3 = I7
+------------------------------
+
+
+Example 2:
+------------------------------
+[midiout]
+    pitch1 = I1
+    pitch2 = I2
+    pitch3 = I3
+    gate1 = I5
+    gate2 = I6
+    gate3 = I7
+    velocity1 = 0.6
+    velocity2 = 0.8
+    velocity3 = 1.0
+------------------------------
+
+
+Example 3:
+------------------------------
+[midiout]
+    pitch = I1
+    gate = I2
+    ccnumber1 = 17
+    cc1 = I3
+    volume = P1.1
+    modwheel = P1.2
+------------------------------
+
+
+Example 4:
+------------------------------
+[midiout]
+    note1 = 24
+    note2 = 25
+    notegate1 = I1
+    notegate2 = I2
+------------------------------
+
+
+Example 5:
+------------------------------
+[lfo]
+    hz = 8 # 120 BPM
+    square = _CLOCK
+
+[midiout]
+    clock = _CLOCK
+------------------------------
+
+
++==============================================+
+| Page 299                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[lfo]
+    hz = 48 # 120 BPM MIDI clock
+    square = _MIDICLOCK
+
+[midiout]
+    midiclock = _MIDICLOCK
+------------------------------
+
+
+Example 2:
+------------------------------
+[midiout]
+    pitch = I1
+    gate = I2
+    pitchstabilization = 0
+------------------------------
+
+
+Example 3:
+------------------------------
+[midiout]
+    pitch = I1
+    gate = I2
+    triggerdelay = 3.5 # delay gate by 3.5 ms
+------------------------------
+
+
++==============================================+
+| Page 300                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[midiout]
+    pitch = I1
+    gate = I2
+    triggerdelay = 2
+    pitchstabilization = 1
+------------------------------
+
+
+Example 2:
+------------------------------
+[midiout]
+    pitch = _SOMENUMBER / 120
+    gate = _SOMEGATE
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 midithrough                  |
+|                                              |
++==============================================+
+| Page 306                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[midithrough]
+    fromusb = 1
+    totrs = 2
+------------------------------
+
+
+Example 2:
+------------------------------
+[midithrough]
+    fromtrs = 10 # auto detect
+    totrs = 1
+------------------------------
+
+
+Example 3:
+------------------------------
+[midithrough]
+    fromtrs = 1
+    totrs = 10 # all TRS ports
+    tousb = 10 # all USB ports
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 minifonion                   |
+|                                              |
++==============================================+
+| Page 308                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[minifonion]
+    input  = I1
+    output = O2
+------------------------------
+
+
+Example 2:
+------------------------------
+[minifonion]
+    input  = I1
+    output = O2
+    root   = 2
+    degree = 7
+------------------------------
+
+
+Example 3:
+------------------------------
+[minifonion]
+    input  = I1
+    output = O2
+    root   = I2 * 120 # base on semitones
+    degree = I3 * 120 # base on semitones
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 mixer                        |
+|                                              |
++==============================================+
+| Page 314                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[mixer]
+    input1 = I1
+    input2 = I2
+    output = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[mixer]
+    input1 = I1 + I2
+    input2 = I3 + I4
+    output = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 motoquencer                  |
+|                                              |
++==============================================+
+| Page 315                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[m4]
+
+[motoquencer]
+    clock = I1
+    cv = O1
+    gate = O2
+------------------------------
+
+
+Example 2:
+------------------------------
+[p2b8]
+[m4]
+
+[buttongroup]
+    button1 = B1.1
+    button2 = B1.2
+    button3 = B1.3
+    button4 = B1.4
+    led1 = L1.1
+    led2 = L1.2
+    led3 = L1.3
+    led4 = L1.4
+    output = _PAGE
+
+[lfo]
+    hz = 20 * P1.1
+    square = _CLOCK
+
+[motoquencer]
+    clock = _CLOCK
+    page = _PAGE
+    numsteps = 16
+    cv = O1
+    gate = O5
+------------------------------
+
+
++==============================================+
+| Page 317                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[p2b8]
+[m4]
+
+[buttongroup]
+    button1 = B1.1
+    button2 = B1.2
+    button3 = B1.3
+    button4 = B1.4
+    button5 = B1.5
+    button6 = B1.6
+    button7 = B1.7
+    button8 = B1.8
+    led1 = L1.1
+    led2 = L1.2
+    led3 = L1.3
+    led4 = L1.4
+    led5 = L1.5
+    led6 = L1.6
+    led7 = L1.7
+    led8 = L1.8
+    output = _FADERMODE
+
+[lfo]
+    hz = 20 * P1.1
+    square = _CLOCK
+
+[motoquencer]
+    clock = _CLOCK
+    fadermode = _FADERMODE
+    cv = O1
+    gate = O5
+------------------------------
+
+
+Example 2:
+------------------------------
+[motoquencer]
+    ...
+    startstep = 5
+    endstep = 8
+------------------------------
+
+
++==============================================+
+| Page 318                                     |
++==============================================+
+
+Example 1:
+------------------------------
+    direction = 1 # backwards
+------------------------------
+
+
+Example 2:
+------------------------------
+    pingpong = 1 # enable ping pong
+------------------------------
+
+
+Example 3:
+------------------------------
+    pattern = 3 # set pattern 3
+------------------------------
+
+
++==============================================+
+| Page 319                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[motoquencer]
+    ... usual stuff goes here ...
+    luckychance = P1.1
+    luckyamount = P1.2
+    luckycvs = B1.1 # press to reroll CVs
+------------------------------
+
+
+Example 2:
+------------------------------
+[motoquencer]
+    accumulatorrange = 4
+    ...
+------------------------------
+
+
++==============================================+
+| Page 320                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[p2b8]
+[m4]
+
+[buttongroup]
+    button1 = B1.7
+    button2 = B1.8
+    led1 = L1.7
+    led2 = L1.8
+
+[lfo]
+    hz = 20 * P1.1
+    square = _CLOCK
+
+[motoquencer]
+    clock = _CLOCK
+    select = L1.7
+    cv = O1
+    gate = O5
+
+[motoquencer]
+    clock = _CLOCK
+    select = L1.8
+    cv = O2
+    gate = O6
+------------------------------
+
+
+Example 2:
+------------------------------
+    linktonext = 1
+------------------------------
+
+
+Example 3:
+------------------------------
+[p2b8]
+[m4]
+
+[buttongroup]
+    button1 = B1.1
+    button2 = B1.2
+    button3 = B1.3
+    button4 = B1.4
+    button5 = B1.5
+    button6 = B1.6
+    button7 = B1.7
+    button8 = B1.8
+    led1 = L1.1
+    led2 = L1.2
+    led3 = L1.3
+    led4 = L1.4
+    led5 = L1.5
+    led6 = L1.6
+    led7 = L1.7
+    led8 = L1.8
+    output = _FADERMODE
+    value7 = 10 # CV of sequencer 2
+    value8 = 16 # gate of sequencer 2
+
+[lfo]
+    hz = 20 * P1.1
+    square = _CLOCK
+
+[motoquencer]
+    clock = _CLOCK
+    fadermode = _FADERMODE
+    linktonext = 1
+    cv = O1
+    gate = O5
+
+[motoquencer]
+    cv = O2
+    gate = O6
+------------------------------
+
+
++==============================================+
+| Page 321                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[motoquencer]
+    clock = _CLOCK
+    fadermode = _FADERMODE
+    linktonext = 1
+    cv = O1
+    gate = O5
+
+[motoquencer]
+    linktonext = 1
+    cv = O2
+    gate = O6
+
+[motoquencer]
+    cv = O3
+    gate = O7
+------------------------------
+
+
+Example 2:
+------------------------------
+[midiin]
+    cv = _CV
+    gate = _GATE
+
+[motoquencer]
+    keyboardcv = _CV
+    keyboardgate = _GATE
+    ...
+------------------------------
+
+
++==============================================+
+| Page 322                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[motoquencer]
+    ...
+    doublerange = B2.23
+------------------------------
+
+
++==============================================+
+| Page 323                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[motoquencer]
+    ...
+    stepcopy = B2.24
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 motorfader                   |
+|                                              |
++==============================================+
+| Page 343                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[p2b8]
+[m4]
+------------------------------
+
+
+Example 2:
+------------------------------
+[buttongroup]
+    button1 = B1.1
+    button2 = B1.2
+    button3 = B1.3
+    button4 = B1.4
+    led1 = L1.1
+    led2 = L1.2
+    led3 = L1.3
+    led4 = L1.4
+    output = _PRESET
+------------------------------
+
+
+Example 3:
+------------------------------
+[motorfader]
+    fader = 1
+    preset = _PRESET
+    output = O1
+------------------------------
+
+
+Example 4:
+------------------------------
+[buttongroup]
+    button1 = B1.1
+    button2 = B1.2
+    button3 = B1.3
+    button4 = B1.4
+    led1 = L1.1
+    led2 = L1.2
+    led3 = L1.3
+    led4 = L1.4
+    output = _FUNCTION
+------------------------------
+
+
+Example 5:
+------------------------------
+[motorfader]
+    fader = 1
+    select = _FUNCTION
+    selectat = 0
+    output = O1
+
+[motorfader]
+    fader = 1
+    select = _FUNCTION
+    selectat = 1
+    output = O2
+
+[motorfader]
+    fader = 1
+    select = _FUNCTION
+    selectat = 2
+    output = O3
+
+[motorfader]
+    fader = 1
+    select = _FUNCTION
+    selectat = 3
+    output = O4
+------------------------------
+
+
+Example 6:
+------------------------------
+[buttongroup]
+    button1 = B1.1
+    button2 = B1.2
+    button3 = B1.3
+    button4 = B1.4
+    led1 = L1.1
+    led2 = L1.2
+    led3 = L1.3
+    led4 = L1.4
+
+[motorfader]
+    fader = 1
+    select = L1.1
+    output = O1
+
+[motorfader]
+    fader = 1
+    select = L1.2
+    output = O2
+
+[motorfader]
+    fader = 1
+    select = L1.3
+    output = O3
+
+[motorfader]
+    fader = 1
+    select = L1.4
+    output = O4
+------------------------------
+
+
++==============================================+
+| Page 344                                     |
++==============================================+
+
+Example 1:
+------------------------------
+    notches = 8
+------------------------------
+
+
+Example 2:
+------------------------------
+[motorfader]
+    fader = 1
+    select = _GLOBAL
+    sharewithnext = 1
+
+[motorfader]
+    fader = 3
+    select = _DRILLDOWN_3
+    output = _VOLUME_3
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 multicompare                 |
+|                                              |
++==============================================+
+| Page 347                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[lfo]
+    sawtooth = _SAWTOOTH
+    triangle = _TRIANGLE
+    square = _SQUARE
+    sine = sine
+
+[multicompare]
+    input = _WAVEFORMSWITCH # from somewhere
+    compare1 = 5
+    ifequal1 = _SAWTOOTH
+    compare1 = 7
+    ifequal1 = _TRIANGLE
+    compare1 = 98
+    ifequal1 = _SQUARE
+    else = _SINE
+    output = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 notchedpot                   |
+|                                              |
++==============================================+
+| Page 348                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[notchedpot]
+    pot      = P1.1
+    notch    = 15%
+    output   = _ACTIVITY
+
+[algoquencer]
+    activity = _ACTIVITY
+    ...
+------------------------------
+
+
+Example 2:
+------------------------------
+[notchedpot]
+    pot      = P1.1
+    notch    = 0
+    bipolar  = O1 # Send -10V ... +10V to O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 notebuttons                  |
+|                                              |
++==============================================+
+| Page 349                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[notebuttons]
+    button1  = B1.1
+    button2  = B1.2
+    button3  = B2.1
+    button4  = B1.3
+    button5  = B1.4
+    button6  = B2.3
+    button7  = B1.5
+    button8  = B1.6
+    button9  = B2.5
+    button10 = B1.7
+    button11 = B1.8
+    button12 = B2.7
+    led1     = L1.1
+    led2     = L1.2
+    led3     = L2.1
+    led4     = L1.3
+    led5     = L1.4
+    led6     = L2.3
+    led7     = L1.5
+    led8     = L1.6
+    led9     = L2.5
+    led10    = L1.7
+    led11    = L1.8
+    led12    = L2.7
+    semitone = O7
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 nudge                        |
+|                                              |
++==============================================+
+| Page 352                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[nudge]
+    minimum    = -2V
+    maximum    = 2V
+    amount     = 1V
+    buttonup   = B1.1
+    buttondown = B1.3
+    ledup      = L1.1
+    leddown    = L1.3
+    output     = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[nudge]
+    minimum    = -2V
+    maximum    = 2V
+    amount     = 1V
+    buttonup   = B1.1
+    buttondown = B1.3
+    ledup      = L1.1
+    leddown    = L1.3
+    output     = O1
+    offset     = I1
+------------------------------
+
+
+Example 3:
+------------------------------
+[nudge]
+    amount     = 1V / 1200
+    buttonup   = B1.1
+    buttondown = B1.3
+    ledup      = L1.1
+    leddown    = L1.3
+    output     = O1
+    offset     = I1
+------------------------------
+
+
+Example 4:
+------------------------------
+[nudge]
+    amount = 1
+    buttonup = B1.1
+    ledup = L1.1
+    minimum = 3
+    maximum = 7
+    wrap = 1
+    output = _BEATS
+
+[euklid]
+    clock   = G1
+    length  = 16
+    beats   = _BEATS
+    output  = G3
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 octave                       |
+|                                              |
++==============================================+
+| Page 355                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[octave]
+    input    = I1
+    output1  = O1
+    output2  = O2
+    output3  = O3
+    spread   = P1.1
+    detune   = P1.2
+------------------------------
+
+
+Example 2:
+------------------------------
+[random]
+    trigger  = I1
+    output   = _RANDOM
+
+[octave]
+    input    = I1
+    output1  = O1
+    output2  = O2
+    output3  = O3
+    spread   = _RANDOM * P1.1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 once                         |
+|                                              |
++==============================================+
+| Page 357                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[once]
+    delay    = 0.2 # 200 ms
+    trigger  = _DO_ONCE
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 polytool                     |
+|                                              |
++==============================================+
+| Page 360                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[polytool]
+    pitchinput1 = _PITCH_1
+    pitchinput2 = _PITCH_2
+    pitchinput3 = _PITCH_3
+    gateinput1 = _GATE_1
+    gateinput2 = _GATE_2
+    gateinput3 = _GATE_3
+    pitchoutput1 = O1
+    gateoutput1 = O2
+------------------------------
+
+
+Example 2:
+------------------------------
+[polytool]
+    pitchinput1 = _PITCH
+    gateinput1 = _GATE
+    pitchoutput1 = O1
+    pitchoutput2 = O2
+    gateoutput1 = O3
+    gateoutput2 = O4
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 pot                          |
+|                                              |
++==============================================+
+| Page 362                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[pot]
+    pot      = P1.1
+    bipolar  = O1 # Send -10V ... +10V to O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[pot]
+    pot      = P1.1
+    notch    = 10%
+    output   = _ACTIVITY
+
+[algoquencer]
+    activity = _ACTIVITY
+    ...
+------------------------------
+
+
+Example 3:
+------------------------------
+[pot]
+    pot = P1.1
+    lefthalf = O1
+    righthalf = O2
+------------------------------
+
+
++==============================================+
+| Page 363                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[p2b8]
+
+[buttongroup]
+    button1 = B1.1
+    button2 = B1.2
+    button3 = B1.3
+    button4 = B1.4
+    led1 = L1.1
+    led2 = L1.2
+    led3 = L1.3
+    led4 = L1.4
+------------------------------
+
+
+Example 2:
+------------------------------
+[pot]
+    pot = P1.1
+    select = L1.1
+    output = _RELEASE1
+
+[pot]
+    pot = P1.1
+    select = L1.2
+    output = _RELEASE2
+
+[pot]
+    pot = P1.1
+    select = L1.3
+    output = _RELEASE3
+
+[pot]
+    pot = P1.1
+    select = L1.4
+    output = _RELEASE4
+
+------------------------------
+
+
+Example 3:
+------------------------------
+[contour]
+    trigger = I1
+    release = _RELEASE1
+    output = O1
+
+[contour]
+    trigger = I2
+    release = _RELEASE2
+    output = O2
+
+[contour]
+    trigger = I3
+    release = _RELEASE3
+    output = O3
+
+[contour]
+    trigger = I4
+    release = _RELEASE4
+    output = O4
+------------------------------
+
+
++==============================================+
+| Page 365                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[droid]
+    uislowdown = 0
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 quantizer                    |
+|                                              |
++==============================================+
+| Page 370                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[quantizer]
+    input  = P1.1 * 1V
+    output = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[quantizer]
+    input   = I1
+    steps   = 0
+    trigger = I2
+    output  = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 queue                        |
+|                                              |
++==============================================+
+| Page 372                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[queue]
+    input = I1
+    clock = I2
+    output4 = O4
+------------------------------
+
+
+Example 2:
+------------------------------
+[queue]
+    input = I1
+    clock = I2
+    outputpos1 = 3
+    outputpos2 = 24
+    outputpos3 = 64
+    output1 = O1
+    output2 = O2
+    output3 = O3
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 random                       |
+|                                              |
++==============================================+
+| Page 373                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[random]
+    clock   = I1
+    output  = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[random]
+    clock   = I1
+    output  = O1
+    minimum = 1V
+    maximum = 3V
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 recorder                     |
+|                                              |
++==============================================+
+| Page 374                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[p2b8]
+
+[recorder]
+    cvin = I1
+    cvout = O1
+    recordbutton = B1.1
+    playbutton = B1.2
+    stopbutton = B1.3
+    recordled = L1.1
+    playled = L1.2
+    stopled = L1.3
+------------------------------
+
+
+Example 2:
+------------------------------
+[recorder]
+    cvin = P1.1 # record pot P1.1
+------------------------------
+
+
+Example 3:
+------------------------------
+[p2b8]
+
+[button]
+    button = B1.4
+    led = L1.4
+
+[recorder]
+    cvin = I1
+    cvout = O1
+    record = B1.1
+    play = B1.2
+    stop = B1.3
+    recordled = L1.1
+    playled = L1.2
+    stopled = L1.3
+    pause = L1.4
+------------------------------
+
+
++==============================================+
+| Page 375                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[recorder]
+    playbackspeed = P1.1 * 10 - 5
+    ...
+------------------------------
+
+
+Example 2:
+------------------------------
+[button]
+    button = B1.5
+    led = L1.5
+
+[recorder]
+    scrub = L1.5
+    scrubposition = P1.1
+    ...
+------------------------------
+
+
+Example 3:
+------------------------------
+[recorder]
+    trimstart = P1.1
+    trimend = P1.2
+    ...
+------------------------------
+
+
+Example 4:
+------------------------------
+[recorder]
+    gatein1 = I1
+    gatein2 = I2
+    gatein3 = I3
+    gatein4 = I4
+    gateout1 = O1
+    gateout2 = O2
+    gateout3 = O3
+    gateout4 = O4
+    ...
+------------------------------
+
+
+Example 5:
+------------------------------
+[recorder]
+    numberin = I1
+    numberout = O1
+    ...
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 sample                       |
+|                                              |
++==============================================+
+| Page 380                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[sample]
+    input       = I1
+    sample      = I2
+    output      = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 select                       |
+|                                              |
++==============================================+
+| Page 381                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[lfo]
+    output = _FLASH
+
+[select]
+    select = _SELECT
+    input = _FLASH
+    output = L1.1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 sequencer                    |
+|                                              |
++==============================================+
+| Page 382                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[sequencer]
+    clock       = I1
+    pitchoutput = O1
+    pitch1      = 1V
+    pitch2      = 3.5V
+    pitch3      = 8V
+    pitch4      = -2V
+------------------------------
+
+
+Example 2:
+------------------------------
+[sequencer]
+    clock       = I1
+    pitchoutput = O1
+    outputscale = 1/120
+    pitch1      = 0
+    pitch2      = 12
+    pitch3      = 10
+    pitch4      = 7
+    pitch5      = 5
+    pitch6      = 3
+    pitch7      = 5
+    pitch8      = 7
+------------------------------
+
+
+Example 3:
+------------------------------
+[p2b8]
+[p2b8]
+
+[lfo]
+    hz = 4
+    square = _CLOCK
+
+[button]
+    button = B1.1
+    led    = L1.1
+
+[button]
+    button = B1.2
+    led    = L1.2
+
+[button]
+    button = B1.3
+    led    = L1.3
+
+[button]
+    button = B1.4
+    led    = L1.4
+
+[sequencer]
+    clock       = _CLOCK
+    pitchoutput = O1
+    gateoutput  = O2
+    pitch1      = P1.1 * 3V
+    pitch2      = P1.2 * 3V
+    pitch3      = P2.1 * 3V
+    pitch4      = P2.2 * 3V
+    gate1       = L1.1
+    gate2       = L1.2
+    gate3       = L1.3
+    gate4       = L1.4
+------------------------------
+
+
+Example 4:
+------------------------------
+[p2b8]
+
+[lfo]
+    hz = P1.1 * 30
+    output = _CLOCK
+
+[sequencer]
+    clock = _CLOCK
+    reset = B1.1
+    pitchoutput = O1
+    gateoutput = O2
+    outputscaling = 1/120
+    pitch1 = 1
+    pitch2 = 8
+    pitch3 = 13
+    pitch4 = 25
+    pitch5 = 4
+    pitch6 = 11
+    pitch7 = 7
+    pitch8 = 21
+    chaintonext = 1 # continue at next sequencer
+
+[sequencer]
+    pitch1 = 2
+    pitch2 = 9
+    pitch3 = 14
+    pitch4 = 26
+------------------------------
+
+
++==============================================+
+| Page 383                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[p2b8]
+
+[lfo]
+    hz = P1.1 * 30
+    output = _CLOCK
+
+[sequencer]
+    clock = _CLOCK
+    reset = B1.1
+    pitchoutput = O1
+    gateoutput = O2
+    outputscaling = 1/120
+    pitch1 = 1
+    pitch2 = 8
+    pitch3 = 13
+    pitch4 = 25
+    pitch5 = 4
+    pitch6 = 11
+    pitch7 = 7
+    pitch8 = 21
+    chaintonext = 1 # continue at next sequencer
+
+[sequencer]
+    pitch1 = 2
+    pitch2 = 9
+    pitch3 = 14
+    pitch4 = 26
+    pitch5 = 2
+    pitch6 = 9
+    pitch7 = 14
+    pitch8 = 26
+    chaintonext = 1 # continue at next sequencer
+
+[sequencer]
+    pitch1 = 3
+    pitch2 = 10
+    pitch3 = 15
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 sinfonionlink                |
+|                                              |
++==============================================+
+| Page 386                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[sinfonionlink]
+    root = _ROOT
+    degree = _DEGREE
+
+[minifonion]
+    input = I1
+    output = O2
+    root = _ROOT
+    degree = _DEGREE
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 slew                         |
+|                                              |
++==============================================+
+| Page 388                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[slew]
+    input       = I1
+    slew        = P1.1
+    exponential = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 spring                       |
+|                                              |
++==============================================+
+| Page 390                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[spring]
+    position = O1
+    velocity = O2
+------------------------------
+
+
+Example 2:
+------------------------------
+[spring]
+    flowresistance = 0.5
+    reset = I1
+    position = O1
+    velocity = O2
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 superjust                    |
+|                                              |
++==============================================+
+| Page 392                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[superjust]
+    input1 = I1
+    input2 = I2
+    input3 = I3
+    output1 = O1
+    output2 = O2
+    output3 = O3
+------------------------------
+
+
+Example 2:
+------------------------------
+[button]
+    button = B1.1
+    led = L1.1
+
+[superjust]
+    input1 = I1
+    input2 = I2
+    input3 = I3
+    output1 = O1
+    output2 = O2
+    output3 = O3
+    tuningmode = L1.1
+------------------------------
+
+
+Example 3:
+------------------------------
+[button]
+    button = B1.1
+    led = L1.1
+
+[superjust]
+    input1 = I1
+    input2 = I2
+    input3 = I3
+    output1 = O1
+    output2 = O2
+    output3 = O3
+    tuningmode = L1.1
+    tuningpitch = 2V
+------------------------------
+
+
+Example 4:
+------------------------------
+[button]
+    button = B1.1
+    led = L1.1
+
+[quantizer]
+    input = P1.1
+    steps = 1 # 1 step per octave
+    output = _TUNINGPITCH
+
+[superjust]
+    input1 = I1
+    input2 = I2
+    input3 = I3
+    output1 = O1
+    output2 = O2
+    output3 = O3
+    tuningmode = L1.1
+    tuningpitch = _TUNINGPITCH
+------------------------------
+
+
++==============================================+
+| Page 393                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[superjust]
+    input1 = I1
+    input2 = I2
+    input3 = I3
+    output1 = _O1
+    output2 = _O2
+    output3 = _O3
+
+[calibrator]
+    input = _O1
+    output = O1
+    nudgeup = B1.1
+    nudgedown = B1.3
+
+[calibrator]
+    input = _O2
+    output = O2
+    nudgeup = B1.2
+    nudgedown = B1.4
+
+[calibrator]
+    input = _O3
+    output = O3
+    nudgeup = B1.5
+    nudgedown = B1.7
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 switch                       |
+|                                              |
++==============================================+
+| Page 394                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[switch]
+    input1  = I1
+    input2  = I2
+    input3  = I3
+    input4  = I4
+    output  = O1
+    forward = I8
+------------------------------
+
+
+Example 2:
+------------------------------
+[switch]
+    input = I1
+    output1 = O1
+    output2 = O2
+    output3 = O3
+    output4 = O4
+    forward = I8
+------------------------------
+
+
+Example 3:
+------------------------------
+[switch]
+    input1 = I1
+    input2 = I2
+    input3 = I3
+    output1 = O1
+    output2 = O2
+    output3 = O3
+    forward = I8
+------------------------------
+
+
+Example 4:
+------------------------------
+[switch]
+    input   = I1
+    output1 = O1
+    output2 = O2
+    offset  = I7
+------------------------------
+
+
+Example 5:
+------------------------------
+[switch]
+    input1  = I1
+    input2  = I2
+    output1 = O1
+    output2 = O2
+    offset  = I7
+------------------------------
+
+
+Example 6:
+------------------------------
+[switch]
+    input1  = I1
+    input2  = I2
+    input3  = I3
+    input4  = I4
+    output1 = O1
+    offset = I7 * 10 # 1 V per switch step
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 switchedpot                  |
+|                                              |
++==============================================+
+| Page 396                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[switchedpot]
+    pot       = P1.1
+    switch1   = B1.1
+    switch2   = B1.2
+    output1   = _DECAY
+    output2   = _RELEASE
+
+[contour]
+    gate      = I1
+    decay     = _DECAY
+    release   = _RELEASE
+    output    = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 timing                       |
+|                                              |
++==============================================+
+| Page 398                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[timing]
+    clock = G1
+    output = G2
+    timing1 = 0.0
+    timing2 = 0.3
+------------------------------
+
+
+Example 2:
+------------------------------
+[timing]
+    clock = G1
+    output = G2
+    timing1 = 0.0
+    timing2 = -0.3
+------------------------------
+
+
+Example 3:
+------------------------------
+[timing]
+    clock = G1
+    output = G2
+    timing1 = 0.0
+    timing2 = 0.2
+    timing3 = 0.1
+------------------------------
+
+
+Example 4:
+------------------------------
+[timing]
+    clock = G1
+    output = G2
+    timing1 = -0.03
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 togglebutton                 |
+|                                              |
++==============================================+
+| Page 400                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[togglebutton]
+    button      = B1.4
+    led         = L1.4
+
+[cvlooper]
+    loop        = L1.4
+------------------------------
+
+
+Example 2:
+------------------------------
+[togglebutton]
+    button     = B1.4
+    led        = L1.4
+    startvalue = off
+
+[cvlooper]
+    loop       = L1.4
+------------------------------
+
+
+Example 3:
+------------------------------
+[togglebutton]
+    button      = B1.4
+    led         = L1.4
+
+[lfo]
+    level       = L1.4 # 0 or 1
+    sine        = O1
+------------------------------
+
+
+Example 4:
+------------------------------
+[togglebutton]
+    button      = B1.4
+    led         = L1.4
+    offvalue    = 2
+    onvalue     = 4
+    output      = _CLOCK_DIV
+
+[clocktool]
+    input       = G1 # external clock
+    output      = G2
+    divide      = _CLOCK_DIV
+------------------------------
+
+
+Example 5:
+------------------------------
+[lfo]
+    hz          = 2
+    sawtooth    = _SAWTOOTH
+    sine        = _SINE
+
+[togglebutton]
+    button      = B3.1
+    led         = L3.1
+    offvalue    = _SAWTOOTH
+    onvalue     = _SINE
+    output      = O1
+------------------------------
+
+
+Example 6:
+------------------------------
+[togglebutton]
+    button    = B1.4
+    led       = L1.4
+    output1   = _ENABLE_LOOP
+    output2   = _FANCY_STUFF
+    output3   = _FOO_BAR
+    switch    = I1 * 2
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 transient                    |
+|                                              |
++==============================================+
+| Page 402                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[transient]
+    start = 1V
+    end = 3V
+    duration = 600
+    output = O1
+------------------------------
+
+
+Example 2:
+------------------------------
+[transient]
+    start = 1V
+    end = 3V
+    duration = 600
+    output = O1
+    reset = G1
+    loop = 1
+------------------------------
+
+
+Example 3:
+------------------------------
+[transient]
+    start = 0.2
+    end = 0.7
+    duration = 32
+    clock = I1
+    output = O1
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 triggerdelay                 |
+|                                              |
++==============================================+
+| Page 404                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[triggerdelay]
+    input      = G1
+    output     = G2
+------------------------------
+
+
+Example 2:
+------------------------------
+[triggerdelay]
+    input      = G1
+    output     = G2
+    delay      = 0.1 # 0.1 seconds
+    gatelength = 0.05 # 50 ms
+------------------------------
+
+
+Example 3:
+------------------------------
+[triggerdelay]
+    input      = G1
+    output     = G2
+    clock      = G3
+------------------------------
+
+
+Example 4:
+------------------------------
+[triggerdelay]
+    input      = G1
+    output     = G2
+    clock      = G3
+    delay      = 16 # clock cycles
+    gatelength = 0.5 # half a clock cycle
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 unusedfaders                 |
+|                                              |
++==============================================+
+| Page 406                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[unusedfaders]
+    select = _MENU_ACTIVE
+    firstfader = 6
+    numfaders = 3
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 vcotuner                     |
+|                                              |
++==============================================+
+| Page 407                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[p2b8]
+
+[vcotuner]
+    ledsharp = L1.1
+    ledintune = L1.3
+    ledflat = L1.5
+------------------------------
+
+
+Example 2:
+------------------------------
+[vcotuner]
+    ledsharp = L1.1
+    ledintune = L1.3
+    ledflat = L1.5
+    tuningnote = 0 # any C
+    precision = 2 # 2 cents max deviation
+------------------------------
+
+
+Example 3:
+------------------------------
+[e4]
+
+[vcotuner]
+    tuningnote = 0
+    cents = _CENTS
+    ledintune = L1.1
+
+[encoder]
+    encoder = 1
+    override = _CENTS / 50
+    rangemode = 1 # bipolar
+    negativecolor = 0.8 # red
+------------------------------
+
+
+Example 4:
+------------------------------
+[vcotuner]
+    pitch = O1 # patch to 2nd VCO
+------------------------------
+
+
+
+
++==============================================+
+|                                              |
+|                 watch                        |
+|                                              |
++==============================================+
+| Page 411                                     |
++==============================================+
+
+Example 1:
+------------------------------
+[watch]
+    input = I1
+    histeresis = 0.01V # 10 mV
+    changed = G1
+------------------------------
+
+
+Example 2:
+------------------------------
+[watch]
+    input = _SOME_CV
+    edgesize = 0.01V
+    edgeup = G1
+    edgedown = G2
+------------------------------
+
+
+Example 3:
+------------------------------
+[watch]
+    input = _SOME_CV
+    stepsize = 0.0833333~V # 1 semitone
+    step = G1
+------------------------------
+
+
+Example 4:
+------------------------------
+[watch]
+    input = I1
+    threshold = 0.1V # per second
+    movingup = G1
+    movingdown = G2
+------------------------------
+
+
+
+

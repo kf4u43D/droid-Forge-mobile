@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="fr">
+    <string name="mobile_rack_description">Rack DROID · déplacer et pincer pour agrandir les modules</string>
+    <string name="mobile_rack_module">Module %1$s%2$s</string>
+    <string name="mobile_rack_zoom_out">Réduire le zoom du rack</string>
+    <string name="mobile_rack_zoom_in">Agrandir le zoom du rack</string>
+    <string name="mobile_rack_zoom_reset" formatted="false">Réinitialiser le zoom du rack à 100 %</string>
+    <string name="mobile_rack_zoom_percent">%1$d %%</string>
+    <string name="mobile_labels">Labels</string>
+    <string name="mobile_labels_edit">Modifier les labels…</string>
+    <string name="mobile_module_parameters">Paramètres du module…</string>
+    <string name="mobile_rack_partial">L’inventaire du rack est incomplet. Utilisez le texte source pour modifier les labels.</string>
+    <string name="mobile_label_help">Le raccourci apparaît sur la façade. Sans raccourci, le début de la description est affiché.</string>
+    <string name="mobile_label_title">Label de %1$s</string>
+    <string name="mobile_label_short">Raccourci · 18 caractères maximum</string>
+    <string name="mobile_label_full">Description</string>
+    <string name="mobile_label_short_description">Raccourci du registre %1$s</string>
+    <string name="mobile_label_full_description">Description du registre %1$s</string>
+    <string name="mobile_comment_edit">Éditer le commentaire…</string>
+    <string name="mobile_comment_title">Commentaire de %1$s</string>
+    <string name="mobile_comment_hint">Commentaire du circuit</string>
+    <string name="mobile_comment_description">Commentaire du circuit %1$s</string>
+    <string name="mobile_comment_excerpt">…suite dans le texte source</string>
+    <string name="mobile_controller_drafts_title">Des paramètres ne sont pas appliqués</string>
+    <string name="mobile_controller_drafts">Appliquez ou abandonnez les brouillons des paramètres avant de supprimer un contrôleur. Ses registres et ceux des contrôleurs suivants devront être renumérotés.</string>
+    <string name="mobile_annotation_unavailable">Édition indisponible</string>
+    <string name="mobile_annotation_source">Le texte source et l’export restent disponibles pour cette annotation.</string>
+    <string name="mobile_annotation_source_pending">Appliquez ou abandonnez le brouillon du texte source avant de modifier les labels ou commentaires.</string>
+    <string name="mobile_annotation_pending">Annotation conservée</string>
+    <string name="mobile_annotation_pending_menu">Reprendre l’annotation conservée…</string>
+    <string name="mobile_annotation_replace">Une annotation non appliquée est conservée. Reprenez-la ou abandonnez-la avant d’en modifier une autre.</string>
+    <string name="mobile_annotation_resume">Reprendre</string>
+    <string name="mobile_annotation_discard">Abandonner le brouillon</string>
+    <string name="mobile_annotation_changed">La cible ou son contenu a changé. Cette annotation reste disponible à copier.</string>
+    <string name="mobile_annotation_saving">Enregistrement de l’annotation…</string>
+    <string name="mobile_annotation_limit">Saisie refusée : le raccourci accepte 18 caractères, la description 4 Kio et le commentaire 16 Kio ou 256 lignes. Le raccourci ne peut pas contenir ] ; les labels ne peuvent pas contenir de retour à la ligne.</string>
+    <string name="mobile_about_text">Basé sur le code source de DROID Forge, de Mathias Kettner (Der Mann mit der Maschine).\n\nFirmware pris en charge : %1$s\n\nPort Android : Dr Delos\nCatalogue et graphismes issus des ressources officielles.</string>
+    <string name="mobile_android_credits">droid Forge mobile · Dr Delos</string>
+    <string name="mobile_examples_menu">Exemples du manuel…</string>
+    <string name="mobile_examples_title">Exemples officiels</string>
+    <string name="mobile_examples_unavailable">Exemples indisponibles</string>
+    <string name="mobile_example_metadata">Firmware %1$s · %2$s%3$s</string>
+    <string name="mobile_example_page">\u0020· page %1$d</string>
+    <string name="mobile_example_context">Cet extrait nécessite le contexte décrit dans le manuel. Son texte sera ouvert tel quel.</string>
+    <string name="mobile_example_full">Patch complet</string>
+    <string name="mobile_example_snippet">Extrait du manuel</string>
+    <string name="mobile_example_fragment">Fragment à compléter</string>
+    <string name="mobile_example_provenance">Source : %1$s\n%2$s</string>
+    <string name="mobile_example_preview_excerpt">Aperçu limité. Le texte complet sera conservé à l’ouverture.</string>
+    <string name="mobile_example_open">Ouvrir cet exemple</string>
+    <string name="mobile_example_replace_title">Remplacer le patch par cet exemple ?</string>
+    <string name="mobile_example_replace">Le patch courant, son historique et les brouillons non appliqués seront remplacés. Exportez d’abord votre patch pour le conserver.</string>
+    <string name="mobile_example_copy_limit">Cet exemple est trop grand pour le presse-papiers. Ouvrez-le puis exportez le patch pour conserver son texte complet.</string>
+</resources>

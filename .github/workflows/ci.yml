@@ -1,0 +1,71 @@
+name: Build and test
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  core-and-tools:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Build C++17 engine and test executables
+        run: |
+          cmake -S . -B build-host -G Ninja -DCMAKE_BUILD_TYPE=Release
+          cmake --build build-host --parallel 2
+      - name: Run engine, deployment and official corpus tests
+        run: ctest --test-dir build-host --output-on-failure
+      - name: Run Python delivery tool tests without signing material
+        run: |
+          python3 -B -m unittest discover -s tools -p 'test_package_source.py' -v
+          python3 -B -m unittest discover -s tools -p 'test_verify_*.py' -v
+
+  android-unsigned:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Select the runner's JDK 17
+        run: |
+          test -n "${JAVA_HOME_17_X64:?JDK 17 is required}"
+          echo "JAVA_HOME=$JAVA_HOME_17_X64" >> "$GITHUB_ENV"
+          echo "$JAVA_HOME_17_X64/bin" >> "$GITHUB_PATH"
+      - name: Install the project's Android toolchain
+        run: |
+          test -n "${ANDROID_HOME:?Android SDK is required}"
+          set +o pipefail
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null
+          set -o pipefail
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --sdk_root="$ANDROID_HOME" \
+            'platforms;android-36' 'build-tools;36.0.0' 'ndk;28.2.13676358' 'cmake;3.22.1'
+      - name: Build unsigned release APK and run Android Lint
+        run: bash ./gradlew --no-daemon :app:assembleRelease :app:lintRelease
+      - name: Verify ARM64, 16 KiB alignment, notices and official assets
+        run: |
+          python3 -B tools/verify_apk.py app/build/outputs/apk/release/app-release-unsigned.apk
+          python3 -B tools/verify_example_assets.py app/build/outputs/apk/release/app-release-unsigned.apk
+          python3 -B - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, 'tools')
+          from verify_apk import signing_material
+          apk = Path('app/build/outputs/apk/release/app-release-unsigned.apk')
+          assert not signing_material(apk)['present'], 'The CI release APK must remain unsigned'
+          PY

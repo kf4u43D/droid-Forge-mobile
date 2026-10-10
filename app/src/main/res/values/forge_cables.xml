@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:locale="fr">
+    <string name="mobile_forge_name">droid Forge mobile</string>
+    <string name="forge_cable_menu">Câbles du paramètre %1$s</string>
+    <string name="forge_factor_description">Multiplicateur du paramètre %1$s</string>
+    <string name="forge_offset_description">Décalage du paramètre %1$s</string>
+    <string name="forge_connection_start">Commencer la connexion</string>
+    <string name="forge_connection_finish">Terminer la connexion</string>
+    <string name="forge_connection_abort">Annuler la connexion</string>
+    <string name="forge_connection_follow">Suivre le câble</string>
+    <string name="forge_cable_choose">Choisir un câble…</string>
+    <string name="forge_cable_create">Créer un câble…</string>
+    <string name="forge_cable_rename">Renommer le câble…</string>
+    <string name="forge_cell_clear">Supprimer cette valeur</string>
+    <string name="forge_expression_raw">Éditer la valeur brute…</string>
+    <string name="forge_expression_complex">Expression conservée en édition brute</string>
+    <string name="forge_connection_pending">Connexion depuis %1$s.%2$s · toucher la cellule de destination</string>
+    <string name="forge_cable_summary">%1$s · %2$s · %3$s</string>
+    <plurals name="forge_cable_inputs"><item quantity="one">%1$d entrée</item><item quantity="many">%1$d entrées</item><item quantity="other">%1$d entrées</item></plurals>
+    <plurals name="forge_cable_outputs"><item quantity="one">%1$d sortie</item><item quantity="many">%1$d sorties</item><item quantity="other">%1$d sorties</item></plurals>
+    <string name="forge_initial_parameters">Paramètres initiaux</string>
+    <string name="forge_initial_all">Tous les paramètres</string>
+    <string name="forge_initial_typical">Exemple typique</string>
+    <string name="forge_initial_essential">Paramètres essentiels</string>
+    <string name="forge_initial_none">Aucun paramètre</string>
+    <string name="forge_connection_incompatible">Une connexion relie une sortie à une entrée. Choisissez une cellule de type opposé.</string>
+</resources>

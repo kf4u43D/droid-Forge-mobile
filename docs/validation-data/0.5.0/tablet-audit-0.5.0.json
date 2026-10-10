@@ -1,0 +1,80 @@
+{
+  "device": "SM-X620",
+  "android": 16,
+  "version": "0.5.0-validation",
+  "version_code": 7,
+  "package": "fr.androforge.validation",
+  "tests": [
+    "validation-fixture-import-byte-exact",
+    "three-droid-deployment-buttons-visible",
+    "activate-without-x7-fails-clearly-without-sending",
+    "save-saf-tree-grant-and-explicit-confirmation",
+    "save-saf-original-backup-and-write-readback",
+    "deployment-refuses-unapplied-parameter-draft",
+    "sd-import-distinguishes-saved-file-and-backs-up-current-document",
+    "sd-import-byte-exact-prepared-droid-file",
+    "recovery-restores-previous-full-source-and-unapplied-draft",
+    "recovered-draft-survives-activity-recreation",
+    "recovered-source-and-draft-survive-real-process-stop",
+    "byte-identical-save-has-no-redundant-backup",
+    "verified-original-is-listed-once-with-byte-length",
+    "raw-backup-export-picker-survives-real-background-process-death",
+    "raw-backup-export-resumes-after-cold-start-and-verifies-original-bytes",
+    "backup-open-restores-original-crlf-source-byte-exact",
+    "eject-documentsui-return-does-not-claim-ejection",
+    "save-tree-picker-keeps-request-after-real-background-process-death",
+    "save-tree-result-waits-for-cold-editor-and-still-requires-confirmation",
+    "cold-save-cancellation-preserves-editor-document",
+    "read-tree-result-resumes-after-cold-start-with-import-confirmation",
+    "sd-import-cancellation-preserves-document"
+  ],
+  "passed": true,
+  "reference_apk": {
+    "file": "droid-Forge-mobile-0.5.0-arm64-validation.apk",
+    "bytes": 9235121,
+    "sha256": "df3d4ee9c24a319aa77887ebd23a7f28fdf6b92e5b329b7766258647ccf7067f"
+  },
+  "normal_app_update": {
+    "package": "fr.androforge",
+    "version": "0.5.0-preview",
+    "private_files_preserved_byte_exact": true,
+    "private_file_count": 3,
+    "existing_document_preserved_byte_exact": true,
+    "existing_patch_filename_preserved": true,
+    "verification": "private file inventory before/after installation, then source/name read-only UI checks twice"
+  },
+  "hardware": {
+    "initial_x7_mode": "MSC detected, VID0483/PIDa416",
+    "final_x7_usb_detected": false,
+    "final_droid_volume_mounted": false,
+    "final_usb_midi_ports": 0,
+    "hardware_patch_imported": false,
+    "hardware_written": false,
+    "midi_activation_sent": false,
+    "physical_ejection_performed": false
+  },
+  "tests_count": 22,
+  "limits": [
+    "Interactive SD scenarios used a test-owned DocumentsProvider, not a physical DROID card.",
+    "Physical DROID import/save/ejection/MIDI activation could not be tested after X7 disappeared from Android USB inventory.",
+    "Preview and validation use the existing development certificate; production signing is not configured.",
+    "Android API 26, runtime with 16 KiB memory pages, physical S Pen, multi-window and prolonged sessions were not validated in this campaign."
+  ],
+  "native_arm64": {
+    "engine_checks": 86340,
+    "deployment_checks": 138,
+    "official_documents": 630,
+    "official_checks": 59307,
+    "load_json_ms_per_op": 2.963,
+    "edit_parse_json_ms_per_op": 2.812
+  },
+  "cleanup": {
+    "provider_uuid_fixture_removed_and_grants_revoked": true,
+    "headless_test_files_removed": true,
+    "temporary_packages_removed": true,
+    "own_download_fixture_removed": true,
+    "screen_timeout_restored": true,
+    "rotation_restored": true
+  },
+  "java_dex_and_native_library_identical_between_all_three_variants": true
+}
