@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "version": "0.5.1",
+  "version_code": 8,
+  "scope": "Launcher artwork, Android build/lint, binary checks and existing editor-source preservation. Historical X7 transport checks remain assigned to 0.5.0.",
+  "passed": true,
+  "official_logo_source_url": "https://dermannmitdermaschine.de/images/Logo.png",
+  "official_logo_source_sha256": "9bec7c36c12a0daad6dbf3a03672b3d4eeb7d62909d23502739b64fa84dda0a3",
+  "original_logo_png_byte_exact": true,
+  "adaptive_foreground_dimensions_at_108dp": [
+    50,
+    41.549295775
+  ],
+  "safe_circle_dp": 66,
+  "bitmap_aspect_ratio_preserved": true,
+  "device_model": "SM-X620",
+  "android": 16,
+  "preview_and_release_build_and_lint_passed": true,
+  "preview_apk_signature_verified_existing_development_certificate": true,
+  "apk_arm64_and_16k_alignment_verified": true,
+  "official_example_assets_verified": 630,
+  "native_engine_bytes_identical_to_0_5_0_preview": true,
+  "installed_apk": {
+    "name": "droid-Forge-mobile-0.5.1-arm64-preview.apk",
+    "sha256": "6c8e35610e7a87a5d2dd9f891b4fe5535889b85af36117f3aa4c1dc9533014a4",
+    "bytes": 9266377,
+    "byte_exact_to_local_artifact": true
+  },
+  "editor_source_text_preserved_byte_exact_after_update_and_launcher_start": true,
+  "samsung_settings_icon_visually_verified": true,
+  "samsung_launcher_icon_visually_verified": true,
+  "launching_from_new_icon_passed": true,
+  "user_patch_contents_name_and_hash_published": false,
+  "new_droid_hardware_transfer_performed": false,
+  "temporary_device_screenshot_and_ui_dump_removed": true,
+  "main_application_left_foreground": true,
+  "limits": [
+    "Monochrome themed icon is not supplied.",
+    "Launcher shapes other than the tested Samsung launcher were not exercised on device; the layout fits the documented 66dp safe circle."
+  ]
+}

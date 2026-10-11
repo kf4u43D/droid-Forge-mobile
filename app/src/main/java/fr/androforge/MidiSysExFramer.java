@@ -53,13 +53,13 @@ final class MidiSysExFramer {
 
     static String activationProblem(byte[] frame) {
         if (frame == null || frame.length < 6 || frame.length > MAX_ACTIVATION_BYTES)
-            return "La trame DROID dépasse la limite de 64 000 octets de patch ou est vide.";
+            return "The DROID frame exceeds the 64,000-byte patch limit or is empty.";
         if ((frame[0] & 255) != 0xf0 || frame[1] != 0 || frame[2] != 0x66 || frame[3] != 0x66
                 || frame[4] != 'P' || (frame[frame.length - 1] & 255) != 0xf7)
-            return "La trame ne correspond pas au transfert officiel de patch DROID.";
+            return "The frame does not match the official DROID patch transfer.";
         for (int index = 5; index < frame.length - 1; index++)
             if ((frame[index] & 255) >= 128)
-                return "Le transfert DROID requiert une charge ASCII MIDI de 7 bits.";
+                return "DROID transfer requires a 7-bit MIDI ASCII payload.";
         return "";
     }
 }

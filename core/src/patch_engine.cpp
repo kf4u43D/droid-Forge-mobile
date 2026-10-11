@@ -281,7 +281,7 @@ std::string cableName(std::string_view value) {
     value = trim(value);
     std::string result(value);
     if (result.empty() || result.front() != '_') result.insert(result.begin(), '_');
-    if (result.size() > 256 || !Expression::cable(result)) throw std::invalid_argument("Nom de câble invalide (lettres, chiffres et _ ; 256 octets maximum).");
+    if (result.size() > 256 || !Expression::cable(result)) throw std::invalid_argument("Invalid cable name (letters, digits and _; maximum 256 bytes).");
     for (char& c : result) if (c >= 'a' && c <= 'z') c = char(c + 'A' - 'a');
     return result;
 }
@@ -472,7 +472,7 @@ std::vector<RegisterToken> registerTokens(std::string_view value) {
             if (registerName(value.substr(start, i - start), reg, true)) result.push_back({{start, i}, std::move(reg)});
         } else ++i;
     }
-    if (quotedText) throw std::invalid_argument("Références de contrôleur ambiguës : corriger la chaîne non terminée dans le texte source.");
+    if (quotedText) throw std::invalid_argument("Ambiguous controller references: fix the unterminated quoted string in the source text.");
     return result;
 }
 
@@ -528,7 +528,7 @@ std::size_t annotationUnits(std::string_view value, bool multiline) {
         valid = valid && (count == 1 || cp >= (count == 2 ? 0x80u : count == 3 ? 0x800u : 0x10000u)) &&
             cp <= 0x10ffff && !(cp >= 0xd800 && cp <= 0xdfff);
         if (!valid || (cp < 32 && cp != '\t' && !(multiline && (cp == '\r' || cp == '\n'))) || cp == 127)
-            throw std::invalid_argument("Texte d'annotation invalide : Unicode ou caractère de contrôle.");
+            throw std::invalid_argument("Invalid annotation text: malformed Unicode or control character.");
         units += cp >= 0x10000 ? 2 : 1;
         i += count;
     }
@@ -541,7 +541,7 @@ PatchEngine::PatchEngine(std::size_t historyLimit, std::size_t historyByteLimit)
     : firmware_(kFirmware), historyLimit_(historyLimit), historyByteLimit_(historyByteLimit) {}
 
 std::string PatchEngine::load(std::string source) {
-    if (source.size() > kMaxSourceBytes) throw std::invalid_argument("Le patch dépasse la limite de 4 Mio de l'éditeur.");
+    if (source.size() > kMaxSourceBytes) throw std::invalid_argument("The patch exceeds the editor's 4 MiB limit.");
     PatchEngine parsed;
     parsed.source_ = std::move(source);
     parsed.parse();
@@ -582,13 +582,13 @@ void PatchEngine::parse() {
         if (!analysisComplete_) return;
         if (diagnostics_.size() + 1 >= kMaxDiagnostics) {
             analysisComplete_ = false;
-            diagnostics_.push_back({line, "error", "Analyse interrompue : trop de diagnostics pour l'éditeur. Le texte intégral est conservé ; utiliser l'édition du texte source."});
+            diagnostics_.push_back({line, "error", "Analysis stopped: too many diagnostics for the editor. The full text is preserved; use the source editor."});
             return;
         }
         // One enormous unknown block name can otherwise be repeated in every
         // parameter warning, multiplying a small input into huge diagnostic JSON.
         if (message.size() > kMaxDiagnosticMessageBytes) {
-            constexpr std::string_view suffix = "… [message abrégé]";
+            constexpr std::string_view suffix = "… [message truncated]";
             auto end = kMaxDiagnosticMessageBytes - suffix.size();
             while (end && (static_cast<unsigned char>(message[end]) & 0xc0) == 0x80) --end;
             message.resize(end);
@@ -597,10 +597,10 @@ void PatchEngine::parse() {
         diagnostics_.push_back({line, severity, std::move(message)});
     };
     auto stopAnalysis = [&](std::size_t line, const char* reason) {
-        diagnostic(line, "error", std::string("Analyse interrompue : ") + reason + ". Le texte intégral est conservé ; utiliser l'édition du texte source.");
+        diagnostic(line, "error", std::string("Analysis stopped: ") + reason + ". The full text is preserved; use the source editor.");
         analysisComplete_ = false;
     };
-    if (source_.size() > 64000) diagnostic(1, "warning", "Le patch dépasse 64 000 octets : vérifier les limites du firmware avant transfert.");
+    if (source_.size() > 64000) diagnostic(1, "warning", "The patch exceeds 64,000 bytes: check firmware limits before transferring.");
 
     std::size_t start = 0;
     std::size_t lineNumber = 0;
@@ -631,16 +631,16 @@ void PatchEngine::parse() {
                 if (key.size() == 8 && lowercase(key) == "firmware") {
                     const auto declaredFirmware = trim(label.substr(equal + 1));
                     if (declaredFirmware.size() > kMaxAnalyzedFieldBytes) {
-                        stopAnalysis(lineNumber, "un champ analysé dépasse 8 Kio");
+                        stopAnalysis(lineNumber, "an analyzed field exceeds 8 KiB");
                         break;
                     }
                     if (declaredFirmware.size() > kMaxAnalyzedTextBytes - analyzedTextBytes) {
-                        stopAnalysis(lineNumber, "volume des champs analysés trop élevé");
+                        stopAnalysis(lineNumber, "the analyzed fields exceed the memory budget");
                         break;
                     }
                     analyzedTextBytes += declaredFirmware.size();
                     firmware_ = std::string(declaredFirmware);
-                    if (firmware_ != kFirmware) diagnostic(lineNumber, "warning", "Firmware déclaré " + firmware_ + " ; catalogue chargé " + kFirmware + ".");
+                    if (firmware_ != kFirmware) diagnostic(lineNumber, "warning", "Declared firmware " + firmware_ + "; loaded catalogue " + kFirmware + ".");
                 }
                 if (separator == std::string_view::npos) break;
                 labels.remove_prefix(separator + 1);
@@ -653,21 +653,21 @@ void PatchEngine::parse() {
             const auto name = close == std::string_view::npos ? std::string_view{} : body.substr(1, close - 1);
             if (close == std::string_view::npos || !identifier(name) || (!tail.empty() && tail.front() != '#')) {
                 controllerReferencesComplete_ = false;
-                diagnostic(lineNumber, "error", "En-tête de bloc invalide.");
+                diagnostic(lineNumber, "error", "Invalid block header.");
                 active = -1;
                 start = end;
                 continue;
             }
             if (blocks_.size() >= kMaxAnalyzedBlocks) {
-                stopAnalysis(lineNumber, "trop de blocs pour l'éditeur");
+                stopAnalysis(lineNumber, "too many blocks for the editor");
                 break;
             }
             if (name.size() > kMaxAnalyzedFieldBytes) {
-                stopAnalysis(lineNumber, "un champ analysé dépasse 8 Kio");
+                stopAnalysis(lineNumber, "an analyzed field exceeds 8 KiB");
                 break;
             }
             if (name.size() > kMaxAnalyzedTextBytes - analyzedTextBytes) {
-                stopAnalysis(lineNumber, "volume des champs analysés trop élevé");
+                stopAnalysis(lineNumber, "the analyzed fields exceed the memory budget");
                 break;
             }
             auto canonicalName = lowercase(name);
@@ -675,13 +675,13 @@ void PatchEngine::parse() {
             const auto* schema = circuitSchema(canonicalName);
             if (schema) canonicalName = schema->name;
             if (canonicalName.size() > kMaxAnalyzedTextBytes - analyzedTextBytes) {
-                stopAnalysis(lineNumber, "volume des champs analysés trop élevé");
+                stopAnalysis(lineNumber, "the analyzed fields exceed the memory budget");
                 break;
             }
             analyzedTextBytes += canonicalName.size();
-            if (!controller && !identifier(canonicalName, true)) diagnostic(lineNumber, "error", "Nom de circuit invalide : " + canonicalName + ".");
-            else if (!controller && !schema) diagnostic(lineNumber, "warning", "Circuit inconnu du catalogue : " + canonicalName + ". Source conservée.");
-            if (controller && disabled) diagnostic(lineNumber, "warning", "La désactivation d'un contrôleur n'est pas prise en charge par Forge.");
+            if (!controller && !identifier(canonicalName, true)) diagnostic(lineNumber, "error", "Invalid circuit name: " + canonicalName + ".");
+            else if (!controller && !schema) diagnostic(lineNumber, "warning", "Circuit not found in the catalogue: " + canonicalName + ". Source preserved.");
+            if (controller && disabled) diagnostic(lineNumber, "warning", "Forge does not support disabling controllers.");
             const auto headerStart = start == 0 && source_.compare(0, 3, "\xef\xbb\xbf") == 0 ? 3 : start;
             Block parsedBlock;
             parsedBlock.name = std::move(canonicalName);
@@ -704,28 +704,28 @@ void PatchEngine::parse() {
         }
         if (equal == std::string_view::npos || !identifier(trim(body.substr(0, equal)))) {
             controllerReferencesComplete_ = false;
-            diagnostic(lineNumber, "error", "Ligne invalide : attendu [circuit] ou paramètre = valeur.");
+            diagnostic(lineNumber, "error", "Invalid line: expected [circuit] or parameter = value.");
             start = end;
             continue;
         }
         if (active < 0) {
             controllerReferencesComplete_ = false;
-            diagnostic(lineNumber, "error", "Affectation avant la déclaration d'un circuit.");
+            diagnostic(lineNumber, "error", "Parameter assignment before a circuit declaration.");
             start = end;
             continue;
         }
         if (parameterCount >= kMaxAnalyzedParameters) {
-            stopAnalysis(lineNumber, "trop d'affectations pour l'éditeur");
+            stopAnalysis(lineNumber, "too many assignments for the editor");
             break;
         }
         auto& block = blocks_[static_cast<std::size_t>(active)];
         const auto rawName = trim(body.substr(0, equal));
         if (rawName.size() > kMaxAnalyzedFieldBytes) {
-            stopAnalysis(lineNumber, "un champ analysé dépasse 8 Kio");
+            stopAnalysis(lineNumber, "an analyzed field exceeds 8 KiB");
             break;
         }
         if (rawName.size() > kMaxAnalyzedTextBytes - analyzedTextBytes) {
-            stopAnalysis(lineNumber, "volume des champs analysés trop élevé");
+            stopAnalysis(lineNumber, "the analyzed fields exceed the memory budget");
             break;
         }
         auto name = lowercase(rawName);
@@ -737,11 +737,11 @@ void PatchEngine::parse() {
         auto rawValue = noncomment.substr(equal + 1);
         const auto value = trim(rawValue);
         if (value.size() > kMaxAnalyzedFieldBytes) {
-            stopAnalysis(lineNumber, "un champ analysé dépasse 8 Kio");
+            stopAnalysis(lineNumber, "an analyzed field exceeds 8 KiB");
             break;
         }
         if (name.size() + value.size() > kMaxAnalyzedTextBytes - analyzedTextBytes) {
-            stopAnalysis(lineNumber, "volume des champs analysés trop élevé");
+            stopAnalysis(lineNumber, "the analyzed fields exceed the memory budget");
             break;
         }
         analyzedTextBytes += name.size() + value.size();
@@ -754,19 +754,19 @@ void PatchEngine::parse() {
                                     valueStart, valueStart + value.size()});
         const bool inactive = disabled || block.disabled;
         const auto valueSeverity = inactive ? "warning" : "error";
-        const std::string valuePrefix = inactive ? "Valeur désactivée : " : "";
-        if (block.controller) diagnostic(lineNumber, valueSeverity, valuePrefix + "Un contrôleur n'accepte pas d'affectations de paramètres.");
-        else if (!schema) diagnostic(lineNumber, "warning", "Paramètre inconnu pour " + block.name + " : " + name + ". Source conservée.");
+        const std::string valuePrefix = inactive ? "Disabled value: " : "";
+        if (block.controller) diagnostic(lineNumber, valueSeverity, valuePrefix + "Controllers do not accept parameter assignments.");
+        else if (!schema) diagnostic(lineNumber, "warning", "Unknown parameter for " + block.name + " : " + name + ". Source preserved.");
         else {
             const auto direction = lowercase(schema->direction ? schema->direction : "");
             const bool output = direction == "output" || direction == "outputs";
-            if (value.empty()) diagnostic(lineNumber, "warning", valuePrefix + "Valeur non renseignée pour " + name + ".");
-            else if (!Expression{value}.valid(output)) diagnostic(lineNumber, valueSeverity, valuePrefix + "Expression DROID invalide pour " + name + ".");
+            if (value.empty()) diagnostic(lineNumber, "warning", valuePrefix + "Value not set for " + name + ".");
+            else if (!Expression{value}.valid(output)) diagnostic(lineNumber, valueSeverity, valuePrefix + "Invalid DROID expression for " + name + ".");
         }
-        if (unterminated) diagnostic(lineNumber, valueSeverity, valuePrefix + "Chaîne entre guillemets non terminée.");
-        if (!disabled && !block.disabled && noncomment.size() > 63) diagnostic(lineNumber, "warning", "Cette affectation dépasse 63 octets : vérifier la limite du firmware.");
+        if (unterminated) diagnostic(lineNumber, valueSeverity, valuePrefix + "Unterminated quoted string.");
+        if (!disabled && !block.disabled && noncomment.size() > 63) diagnostic(lineNumber, "warning", "This assignment exceeds 63 bytes: check the firmware limit.");
         if (!inactive) {
-            if (!assignedNames.insert(name).second) diagnostic(lineNumber, "warning", "Paramètre affecté plusieurs fois : " + name + ".");
+            if (!assignedNames.insert(name).second) diagnostic(lineNumber, "warning", "Parameter assigned multiple times: " + name + ".");
         }
         start = end;
     }
@@ -774,21 +774,21 @@ void PatchEngine::parse() {
     if (analysisComplete_) {
         const auto inventory = cableInventory(blocks_, true);
         if (!inventory.complete) {
-            diagnostic(1, "warning", "Validation des câbles partielle : inventaire trop volumineux. Le texte intégral est conservé.");
+            diagnostic(1, "warning", "Cable validation is partial: the inventory is too large. The full text is preserved.");
         } else for (const auto& entry : inventory.cables) {
             const auto& cable = entry.second;
             const auto active = std::find_if(cable.occurrences.begin(), cable.occurrences.end(),
                 [](const auto& occurrence) { return !occurrence.disabled; });
             if (active == cable.occurrences.end()) continue;
             if (cable.unknown) {
-                diagnostic(active->parameter->line, "warning", "Validation partielle du câble " + entry.first +
-                    " : une affectation inconnue empêche de vérifier les connexions.");
+                diagnostic(active->parameter->line, "warning", "Partial validation of cable " + entry.first +
+                    ": an unknown assignment prevents connection validation.");
             } else if (cable.outputs == 0 && cable.inputs != 0) {
-                diagnostic(active->parameter->line, "error", "Aucune sortie n'est connectée au câble " + entry.first + ".");
+                diagnostic(active->parameter->line, "error", "No output is connected to cable " + entry.first + ".");
             } else if (cable.outputs > 1) {
-                diagnostic(active->parameter->line, "error", "Plusieurs sorties sont connectées au câble " + entry.first + ".");
+                diagnostic(active->parameter->line, "error", "Multiple outputs are connected to cable " + entry.first + ".");
             } else if (cable.outputs != 0 && cable.inputs == 0) {
-                diagnostic(active->parameter->line, "warning", "Aucune entrée n'est connectée au câble " + entry.first + ".");
+                diagnostic(active->parameter->line, "warning", "No input is connected to cable " + entry.first + ".");
             }
             if (!analysisComplete_) break;
         }
@@ -817,8 +817,8 @@ void PatchEngine::parseAnnotations() {
     auto stop = [&](std::size_t line, const char* reason) {
         analysisComplete_ = false;
         if (diagnostics_.size() < kMaxDiagnostics)
-            diagnostics_.push_back({line, "error", std::string("Analyse interrompue : ") + reason +
-                ". Le texte intégral est conservé ; utiliser l'édition du texte source."});
+            diagnostics_.push_back({line, "error", std::string("Analysis stopped: ") + reason +
+                ". The full text is preserved; use the source editor."});
     };
     auto append = [&](std::string_view text, SourceRange range) {
         ++pendingLines;
@@ -861,7 +861,7 @@ void PatchEngine::parseAnnotations() {
                 }
                 while (!pending.empty() && pending.back() == '\n') pending.pop_back();
                 if (overflow || pending.size() > kMaxAnalyzedTextBytes - std::min(copied, kMaxAnalyzedTextBytes)) {
-                    stop(lineNumber, "commentaires de circuits trop volumineux"); break;
+                    stop(lineNumber, "circuit comments exceed the memory budget"); break;
                 }
                 copied += pending.size();
                 block.comment = std::move(pending);
@@ -897,7 +897,7 @@ void PatchEngine::parseAnnotations() {
                     if (registerLabels_.size() >= kMaxRegisterLabels || shorthand.size() > kMaxAnalyzedFieldBytes ||
                         description.size() > kMaxAnalyzedFieldBytes || reg.canonical.size() + shorthand.size() + description.size() >
                         kMaxAnalyzedTextBytes - std::min(copied, kMaxAnalyzedTextBytes)) {
-                        stop(lineNumber, "labels de registres trop volumineux"); break;
+                        stop(lineNumber, "register labels exceed the memory budget"); break;
                     }
                     copied += reg.canonical.size() + shorthand.size() + description.size();
                     const auto bodyPosition = static_cast<std::size_t>(body.data() - source_.data());
@@ -1041,23 +1041,23 @@ std::string PatchEngine::composeExpression(const std::string& baseText, const st
     const auto base = trim(baseText), factor = trim(factorText), offset = trim(offsetText);
     for (const auto value : {base, factor, offset})
         if (value.size() > kMaxAnalyzedFieldBytes || !inlineSafe(value))
-            throw std::invalid_argument("Une cellule doit tenir sur une ligne et au plus 8 Kio.");
+            throw std::invalid_argument("A cell must fit on one line and be at most 8 KiB.");
     if (output) {
         if (!factor.empty() || !offset.empty() || (!base.empty() && !Expression{base}.valid(true)))
-            throw std::invalid_argument("Une sortie accepte seulement un câble ou un registre dans la cellule valeur.");
+            throw std::invalid_argument("An output only accepts a cable or register in its value cell.");
         return std::string(base);
     }
     if ((!base.empty() && !singleAtom(base)) || (!offset.empty() && !singleAtom(offset)))
-        throw std::invalid_argument("Valeur ou ajout invalide : saisir un seul nombre, câble, registre ou texte.");
+        throw std::invalid_argument("Invalid value or offset: enter a single number, cable, register or quoted text.");
     std::string_view denominator;
     if (!factor.empty() && !singleAtom(factor)) {
         const auto slash = factor.find('/');
         if (slash == std::string_view::npos || trim(factor.substr(0, slash)) != "1")
-            throw std::invalid_argument("Facteur invalide : saisir un atome ou une fraction 1 / nombre.");
+            throw std::invalid_argument("Invalid factor: enter a single value or a fraction in the form 1 / number.");
         denominator = trim(factor.substr(slash + 1));
         if (!Expression{denominator}.number(denominator) || denominator.find_first_of("V%") != std::string_view::npos ||
             std::none_of(denominator.begin(), denominator.end(), [](char c) { return c >= '1' && c <= '9'; }))
-            throw std::invalid_argument("Le diviseur de la fraction doit être un nombre non nul sans unité.");
+            throw std::invalid_argument("The fraction's denominator must be a nonzero number without a unit.");
     }
     std::string result;
     if (!base.empty()) result = base;
@@ -1076,8 +1076,8 @@ std::string PatchEngine::composeExpression(const std::string& baseText, const st
             result += " - "; result += offset.substr(1);
         } else { result += " + "; result += offset; }
     }
-    if (result.size() > kMaxAnalyzedFieldBytes) throw std::invalid_argument("L'expression composée dépasse 8 Kio.");
-    if (!result.empty() && !Expression{result}.valid(false)) throw std::invalid_argument("Expression composée invalide.");
+    if (result.size() > kMaxAnalyzedFieldBytes) throw std::invalid_argument("The combined expression exceeds 8 KiB.");
+    if (!result.empty() && !Expression{result}.valid(false)) throw std::invalid_argument("Invalid combined expression.");
     return result;
 }
 
@@ -1103,7 +1103,7 @@ void PatchEngine::trimHistory() noexcept {
 }
 
 void PatchEngine::commit(std::string changed) {
-    if (changed.size() > kMaxSourceBytes) throw std::invalid_argument("Le patch dépasse la limite de 4 Mio de l'éditeur.");
+    if (changed.size() > kMaxSourceBytes) throw std::invalid_argument("The patch exceeds the editor's 4 MiB limit.");
     if (changed == source_) return;
     PatchEngine parsed;
     parsed.source_ = std::move(changed);
@@ -1118,19 +1118,19 @@ void PatchEngine::commit(std::string changed) {
 }
 
 const Block& PatchEngine::checkedBlock(int index) const {
-    if (!analysisComplete_) throw std::invalid_argument("Analyse incomplète : modifier le texte source avant une édition structurée.");
-    if (index < 0 || static_cast<std::size_t>(index) >= blocks_.size()) throw std::invalid_argument("Bloc introuvable.");
+    if (!analysisComplete_) throw std::invalid_argument("Analysis is incomplete: fix the source text before using structured editing.");
+    if (index < 0 || static_cast<std::size_t>(index) >= blocks_.size()) throw std::invalid_argument("Block not found.");
     return blocks_[static_cast<std::size_t>(index)];
 }
 
 std::string PatchEngine::addCircuit(const std::string& name, int selection) {
-    if (!analysisComplete_) throw std::invalid_argument("Analyse incomplète : modifier le texte source avant une édition structurée.");
-    if (!identifier(name, true)) throw std::invalid_argument("Nom de circuit invalide.");
-    if (selection < 0 || selection > 3) throw std::invalid_argument("Choix des paramètres de création invalide.");
+    if (!analysisComplete_) throw std::invalid_argument("Analysis is incomplete: fix the source text before using structured editing.");
+    if (!identifier(name, true)) throw std::invalid_argument("Invalid circuit name.");
+    if (selection < 0 || selection > 3) throw std::invalid_argument("Invalid initial parameter selection.");
     auto canonical = lowercase(name);
     const auto* schema = circuitSchema(canonical);
     const bool controller = controllerExists(canonical);
-    if (!schema && !controller) throw std::invalid_argument("Circuit absent du catalogue du firmware.");
+    if (!schema && !controller) throw std::invalid_argument("Circuit not found in the firmware catalogue.");
     if (schema) canonical = schema->name;
     auto changed = source_;
     std::size_t position = changed.size();
@@ -1165,9 +1165,9 @@ std::string PatchEngine::setParameter(int index, const std::string& name, const 
 std::string PatchEngine::parameterChange(int index, const std::string& name, const std::string& value,
                                         std::string changed) const {
     const auto& block = checkedBlock(index);
-    if (block.controller) throw std::invalid_argument("Un contrôleur n'a pas de paramètres de circuit.");
-    if (!identifier(name)) throw std::invalid_argument("Nom de paramètre invalide.");
-    if (!inlineSafe(value) || commentMark(value) != std::string_view::npos) throw std::invalid_argument("La valeur doit tenir sur une ligne ; placer les # de texte entre guillemets.");
+    if (block.controller) throw std::invalid_argument("Controllers do not have circuit parameters.");
+    if (!identifier(name)) throw std::invalid_argument("Invalid parameter name.");
+    if (!inlineSafe(value) || commentMark(value) != std::string_view::npos) throw std::invalid_argument("The value must fit on one line; enclose any literal # in quotes.");
     auto canonical = lowercase(name);
     const auto* schema = parameterSchema(circuitSchema(block.name), canonical);
     if (schema) canonical = schema->name;
@@ -1175,7 +1175,7 @@ std::string PatchEngine::parameterChange(int index, const std::string& name, con
     for (const auto& param : block.parameters) {
         if (param.name == canonical && (!existing || !param.disabled || existing->disabled)) existing = &param;
     }
-    if (!existing && !schema) throw std::invalid_argument("Paramètre absent du catalogue du circuit.");
+    if (!existing && !schema) throw std::invalid_argument("Parameter not found in the circuit catalogue.");
     if (existing) {
         std::string replacement = value;
         if (existing->valueStart == existing->valueEnd && !value.empty()) replacement.insert(replacement.begin(), ' ');
@@ -1195,7 +1195,7 @@ std::string PatchEngine::setParameterExpression(int index, const std::string& na
                                                const std::string& factor, const std::string& offset) {
     const auto& block = checkedBlock(index);
     const auto* schema = parameterSchema(circuitSchema(block.name), lowercase(name));
-    if (block.controller || !schema) throw std::invalid_argument("Ce paramètre ne possède pas de cellules documentées.");
+    if (block.controller || !schema) throw std::invalid_argument("This parameter has no documented cells.");
     const bool output = std::string_view(schema->direction) == "output";
     const auto composed = composeExpression(base, factor, offset, output);
     // An unchanged cell edit must not normalize the original whitespace or
@@ -1222,7 +1222,7 @@ std::string PatchEngine::connectParameters(int fromBlock, const std::string& fro
     const auto from = decomposeExpression(fromDraftValue, firstSchema && std::string_view(firstSchema->direction) == "output");
     const auto to = decomposeExpression(toDraftValue, secondSchema && std::string_view(secondSchema->direction) == "output");
     if (!from.editable || !to.editable)
-        throw std::invalid_argument("Cette expression ne permet pas une connexion automatique ; utiliser le texte source.");
+        throw std::invalid_argument("This expression cannot be connected automatically; use the source editor.");
     return connectParameterExpressions(fromBlock, fromName, fromColumn, from.base, from.factor, from.offset,
         toBlock, toName, toColumn, to.base, to.factor, to.offset, name);
 }
@@ -1239,13 +1239,13 @@ std::string PatchEngine::connectParameterExpressions(int fromBlock, const std::s
     const auto* secondSchema = parameterSchema(circuitSchema(second.name), lowercase(toName));
     if (first.controller || second.controller || !firstSchema || !secondSchema ||
         std::string_view(firstSchema->direction) == secondSchema->direction)
-        throw std::invalid_argument("Une connexion doit relier une entrée et une sortie documentées.");
+        throw std::invalid_argument("A connection must link a documented input and output.");
     const auto cable = cableName(name);
     auto connectionValue = [&](const ParameterSchema* schema, int column, const std::string& base,
                                const std::string& factor, const std::string& offset) {
         const bool output = std::string_view(schema->direction) == "output";
         if (column < 0 || column > 2 || (output && column != 0))
-            throw std::invalid_argument("Cette cellule ne permet pas une connexion automatique ; utiliser le texte source.");
+            throw std::invalid_argument("This cell cannot be connected automatically; use the source editor.");
         // The explicit triplet preserves empty-cell roles, but never silently
         // discards an invalid/complex imported value in the replaced cell.
         (void)composeExpression(base, factor, offset, output);
@@ -1264,7 +1264,7 @@ std::string PatchEngine::connectParameterExpressions(int fromBlock, const std::s
     };
     const auto* firstParameter = effective(first, firstSchema->name);
     const auto* secondParameter = effective(second, secondSchema->name);
-    if (!firstParameter || !secondParameter) throw std::invalid_argument("Appliquer le paramètre avant de le connecter.");
+    if (!firstParameter || !secondParameter) throw std::invalid_argument("Apply the parameter before connecting it.");
     auto changed = source_;
     if (firstParameter->valueStart > secondParameter->valueStart) {
         changed = parameterChange(fromBlock, fromName, firstValue, std::move(changed));
@@ -1305,7 +1305,7 @@ std::string PatchEngine::cables() const {
 }
 
 std::string PatchEngine::renameCable(const std::string& oldName, const std::string& newName, bool allowMerge) {
-    if (!analysisComplete_) throw std::invalid_argument("Analyse incomplète : utiliser le texte source pour les câbles.");
+    if (!analysisComplete_) throw std::invalid_argument("Analysis is incomplete: use the source editor for cables.");
     const auto oldCable = cableName(oldName), newCable = cableName(newName);
     if (oldCable == newCable) return state();
     struct Change { std::size_t start, length; };
@@ -1316,14 +1316,14 @@ std::string PatchEngine::renameCable(const std::string& oldName, const std::stri
         for (const auto token : cableTokens(parameter.value)) {
             const auto value = parameter.value.substr(token.start, token.length);
             if (!allowMerge && lowercase(value) == lowercase(newCable))
-                throw std::invalid_argument("Le nom du câble existe déjà ; confirmer explicitement la fusion.");
+                throw std::invalid_argument("The cable name already exists; explicitly confirm the merge.");
             if (lowercase(value) == lowercase(oldCable))
                 changes.push_back({parameter.valueStart + token.start, token.length});
         }
-    if (changes.empty()) throw std::invalid_argument("Câble introuvable.");
+    if (changes.empty()) throw std::invalid_argument("Cable not found.");
     if (newCable.size() > oldCable.size() && changes.size() >
         (kMaxSourceBytes - source_.size()) / (newCable.size() - oldCable.size()))
-        throw std::invalid_argument("Le renommage dépasserait la limite de 4 Mio.");
+        throw std::invalid_argument("Renaming would exceed the 4 MiB limit.");
     auto changed = source_;
     for (auto change = changes.rbegin(); change != changes.rend(); ++change)
         changed.replace(change->start, change->length, newCable);
@@ -1332,7 +1332,7 @@ std::string PatchEngine::renameCable(const std::string& oldName, const std::stri
 }
 
 std::string PatchEngine::deleteCable(const std::string& name) {
-    if (!analysisComplete_) throw std::invalid_argument("Analyse incomplète : utiliser le texte source pour les câbles.");
+    if (!analysisComplete_) throw std::invalid_argument("Analysis is incomplete: use the source editor for cables.");
     const auto wanted = cableName(name);
     struct Change { std::size_t start, length; std::string replacement; };
     std::vector<Change> changes;
@@ -1344,13 +1344,13 @@ std::string PatchEngine::deleteCable(const std::string& name) {
         const auto direction = directionOf(block, parameter);
         auto parts = decomposeExpression(parameter.value, direction == "output");
         if (direction == "unknown" || !parts.editable)
-            throw std::invalid_argument("Ce câble intervient dans une expression complexe ou inconnue ; utiliser le texte source.");
+            throw std::invalid_argument("This cable is used in a complex or unknown expression; use the source editor.");
         for (auto* cell : {&parts.base, &parts.factor, &parts.offset})
             if (lowercase(*cell) == lowercase(wanted)) cell->clear();
         changes.push_back({parameter.valueStart, parameter.valueEnd - parameter.valueStart,
                            composeExpression(parts.base, parts.factor, parts.offset, direction == "output")});
     }
-    if (changes.empty()) throw std::invalid_argument("Câble introuvable.");
+    if (changes.empty()) throw std::invalid_argument("Cable not found.");
     auto changed = source_;
     for (auto change = changes.rbegin(); change != changes.rend(); ++change)
         changed.replace(change->start, change->length, change->replacement);
@@ -1360,26 +1360,26 @@ std::string PatchEngine::deleteCable(const std::string& name) {
 
 std::string PatchEngine::setRegisterLabel(const std::string& registerText, const std::string& shortText,
                                            const std::string& descriptionText) {
-    if (!analysisComplete_) throw std::invalid_argument("Analyse incomplète : modifier le texte source avant une édition structurée.");
+    if (!analysisComplete_) throw std::invalid_argument("Analysis is incomplete: fix the source text before using structured editing.");
     RegisterName reg;
-    if (registerText.size() > 64 || !registerName(registerText, reg, true)) throw std::invalid_argument("Registre de label invalide.");
+    if (registerText.size() > 64 || !registerName(registerText, reg, true)) throw std::invalid_argument("Invalid label register.");
     if (shortText.size() > kMaxAnalyzedFieldBytes || descriptionText.size() > 4096)
-        throw std::invalid_argument("Label trop volumineux : description limitée à 4 Kio.");
+        throw std::invalid_argument("Label too large: the description is limited to 4 KiB.");
     if (annotationUnits(shortText, false) > 18 || shortText.find(']') != std::string::npos)
-        throw std::invalid_argument("Le raccourci est limité à 18 caractères UTF-16 et ne peut pas contenir ].");
+        throw std::invalid_argument("The short label is limited to 18 UTF-16 characters and cannot contain ].");
     annotationUnits(descriptionText, false);
     const auto shorthand = trim(shortText), description = trim(descriptionText);
     if (shorthand.empty() && !description.empty() && description.front() == '[') {
         const auto close = description.find(']');
         if (close != std::string_view::npos && close > 1)
-            throw std::invalid_argument("Une description commençant par [texte] serait relue comme raccourci ; renseigner le raccourci explicitement.");
+            throw std::invalid_argument("A description starting with [text] would be read as a short label; set the short label explicitly.");
     }
     const RegisterLabel* effective = nullptr;
     for (const auto& label : registerLabels_) if (label.reg == reg.canonical) effective = &label;
     if (effective && (!shorthand.empty() || !description.empty()) &&
         effective->shorthand == shorthand && effective->description == description) return state();
     if (!effective && (!shorthand.empty() || !description.empty()) && registerLabels_.size() >= kMaxRegisterLabels)
-        throw std::invalid_argument("Nombre maximal de labels atteint : retirer un label avant d'en ajouter un.");
+        throw std::invalid_argument("Maximum number of labels reached: remove a label before adding another.");
     auto changed = source_;
     if (shorthand.empty() && description.empty()) {
         for (auto label = registerLabels_.rbegin(); label != registerLabels_.rend(); ++label)
@@ -1406,9 +1406,9 @@ std::string PatchEngine::setRegisterLabel(const std::string& registerText, const
 
 std::string PatchEngine::setBlockComment(int index, const std::string& text) {
     const auto& block = checkedBlock(index);
-    if (block.controller) throw std::invalid_argument("Les commentaires structurés appartiennent aux circuits ; utiliser les labels pour les contrôleurs.");
-    if (!block.commentPrefixAllowed) throw std::invalid_argument("En-tête de section incomplet : corriger le texte source avant d'éditer ce commentaire.");
-    if (text.size() > kMaxCircuitCommentBytes) throw std::invalid_argument("Le commentaire dépasse 16 Kio.");
+    if (block.controller) throw std::invalid_argument("Structured comments belong to circuits; use labels for controllers.");
+    if (!block.commentPrefixAllowed) throw std::invalid_argument("Incomplete section header: fix the source text before editing this comment.");
+    if (text.size() > kMaxCircuitCommentBytes) throw std::invalid_argument("The comment exceeds 16 KiB.");
     annotationUnits(text, true);
     std::string normalized;
     normalized.reserve(text.size());
@@ -1432,8 +1432,8 @@ std::string PatchEngine::setBlockComment(int index, const std::string& text) {
         if ((!body.empty() && body.front() == '[') || sectionSeparator(body) ||
             (equal != std::string_view::npos && identifier(trim(body.substr(0, equal)))) ||
             (block.commentInDescription && (metaComment(body) || registerLabelParts(body, reg, shorthand, description, valuePosition))))
-            throw std::invalid_argument("Une ligne de commentaire ressemble à un bloc, une affectation, une section ou un label ; utiliser le texte source pour cette syntaxe.");
-        if (++lines > kMaxCircuitCommentLines) throw std::invalid_argument("Le commentaire dépasse 256 lignes.");
+            throw std::invalid_argument("A comment line looks like a block, assignment, section or label; use the source editor for this syntax.");
+        if (++lines > kMaxCircuitCommentLines) throw std::invalid_argument("The comment exceeds 256 lines.");
         added += "# "; added += line; added += newline_;
         if (newline == std::string::npos) break;
         start = newline + 1;
@@ -1458,15 +1458,15 @@ std::string PatchEngine::removeCircuit(int index) {
     std::vector<Change> changes;
     if (block.controller && !block.disabled) {
         if (!controllerReferencesComplete_)
-            throw std::invalid_argument("Références de contrôleur ambiguës : corriger les lignes non analysées dans le texte source.");
+            throw std::invalid_argument("Ambiguous controller references: fix the unanalyzed lines in the source text.");
         unsigned number = 0;
         for (int i = 0; i <= index; ++i) if (blocks_[i].controller && !blocks_[i].disabled) ++number;
         std::size_t occurrences = 0;
         for (std::size_t i = 0; i < blocks_.size(); ++i) for (const auto& parameter : blocks_[i].parameters) {
             for (const auto& token : registerTokens(parameter.value)) {
-                if (++occurrences > 8192) throw std::invalid_argument("Inventaire des registres trop volumineux : utiliser le texte source pour supprimer ce contrôleur.");
+                if (++occurrences > 8192) throw std::invalid_argument("Register inventory too large: use the source editor to delete this controller.");
                 if (token.reg.controller == number)
-                    throw std::invalid_argument("Ce contrôleur est référencé par un paramètre actif ou désactivé. Retirer ses références avant de le supprimer.");
+                    throw std::invalid_argument("This controller is referenced by an active or disabled parameter. Remove its references before deleting it.");
                 if (token.reg.controller > number && i != static_cast<std::size_t>(index)) {
                     const auto raw = std::string_view(parameter.value).substr(token.range.start, token.range.end - token.range.start);
                     changes.push_back({parameter.valueStart + token.range.start + 1,
@@ -1493,7 +1493,7 @@ std::string PatchEngine::removeCircuit(int index) {
     auto previous = source_.size();
     for (const auto& change : changes) {
         if (change.end > previous || change.start > change.end)
-            throw std::invalid_argument("Lignes ambiguës : utiliser le texte source pour supprimer ce bloc.");
+            throw std::invalid_argument("Ambiguous lines: use the source editor to delete this block.");
         previous = change.start;
     }
     auto changed = source_;

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Keep the supplied square pictogram intact inside the adaptive icon's safe circle. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="29.166667%" android:insetRight="29.166667%"
+    android:insetTop="29.166667%" android:insetBottom="29.166667%">
+    <bitmap android:src="@drawable/dmmdm_logo"
+        android:gravity="fill" android:filter="true" />
+</inset>

@@ -1,0 +1,37 @@
+{
+  "apk": "dist\\droid-Forge-mobile-0.5.3-arm64-release-unsigned.apk",
+  "bytes": 9236044,
+  "sha256": "4dc6434fa1e0c9222e47a174ee1cf2ab30d6a08599e943d50325e85fe19b3dbe",
+  "native_libraries": [
+    {
+      "name": "lib/arm64-v8a/libandroforge.so",
+      "bytes": 1974824,
+      "elf_load_alignments": [
+        16384,
+        16384,
+        16384
+      ],
+      "elf_relro_ends": [
+        1998848
+      ],
+      "non_executable_stack": true,
+      "immediate_binding": true,
+      "apk_offset": 114688
+    }
+  ],
+  "packaged_notices": [
+    "assets/legal/GPL-3.0.txt",
+    "assets/legal/GRAPHICS-LICENSE.txt",
+    "assets/legal/NDK-NOTICES.txt",
+    "assets/legal/NDK-RUNTIME-LICENSES.txt",
+    "assets/forge/LICENSE",
+    "assets/forge/CREDITS"
+  ],
+  "signing_material": {
+    "present": false,
+    "jar_signature_entries": [],
+    "apk_signing_block_magic": false,
+    "central_directory_gap_bytes": 0,
+    "unexplained_nonzero_gap": false
+  }
+}

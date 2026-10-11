@@ -64,43 +64,43 @@ final class DroidSdIo {
             byte[] original = backend.read();
             if (original != null) {
                 if (original.length > MAX_READ_BYTES)
-                    throw new IOException("Le fichier droid.ini dépasse la limite de lecture (4 Mio).");
+                    throw new IOException("The droid.ini file exceeds the read limit (4 MiB).");
                 original = original.clone();
                 if (Arrays.equals(original, deployed))
                     return new Outcome(deployed, null, false, false);
                 Backup backup = backend.backup(original.clone());
                 if (backup == null || backup.file == null)
-                    throw new IOException("La sauvegarde de sécurité de droid.ini n’est pas disponible.");
+                    throw new IOException("The safety backup of droid.ini is unavailable.");
                 backupFile = backup.file;
                 if (!Arrays.equals(original, backup.reread))
-                    throw new IOException("La relecture de la sauvegarde de sécurité ne correspond pas à l’original.");
+                    throw new IOException("The safety backup read back does not match the original.");
             }
             if (!Arrays.equals(original, backend.read()))
-                throw new IOException("droid.ini a changé pendant la préparation. Relisez la carte avant de sauvegarder.");
+                throw new IOException("droid.ini changed during preparation. Read the card again before saving.");
             mayHaveChanged = true;
             backend.write(deployed.clone());
             if (!Arrays.equals(deployed, backend.read()))
-                throw new IOException("La relecture de droid.ini ne correspond pas aux octets écrits.");
+                throw new IOException("The droid.ini file read back does not match the bytes written.");
             return new Outcome(deployed, backupFile, original != null, true);
         } catch (IOException | RuntimeException exception) {
             String message = exception.getMessage();
-            if (message == null || message.isEmpty()) message = "L’accès à la carte SD a échoué.";
+            if (message == null || message.isEmpty()) message = "SD card access failed.";
             if (mayHaveChanged) message += backupFile == null
-                    ? " Le fichier peut être incomplet ; ne rechargez pas le master avant de le vérifier."
-                    : " Le fichier peut être incomplet ; l’original est conservé dans la sauvegarde privée.";
+                    ? " The file may be incomplete; do not reload the MASTER before checking it."
+                    : " The file may be incomplete; the original is retained in the private backup.";
             throw new Failure(message, exception, backupFile, mayHaveChanged);
         }
     }
 
     static void validateDeployment(byte[] bytes) throws IOException {
         if (bytes == null || bytes.length == 0)
-            throw new IOException("Le patch de déploiement est vide.");
+            throw new IOException("The deployment patch is empty.");
         if (bytes.length > MAX_DEPLOY_BYTES)
-            throw new IOException("Le patch de déploiement dépasse 64 000 octets.");
+            throw new IOException("The deployment patch exceeds 64,000 bytes.");
         for (byte value : bytes) {
             int character = value & 255;
             if (character != '\n' && character != '\t' && (character < 32 || character > 126))
-                throw new IOException("Le patch de déploiement doit être un texte ASCII préparé par le moteur.");
+                throw new IOException("The deployment patch must be ASCII text prepared by the engine.");
         }
     }
 
@@ -120,7 +120,7 @@ final class DroidSdIo {
                 count = 1;
             }
             if (count > limit - total)
-                throw new IOException("Le fichier dépasse la limite de lecture autorisée.");
+                throw new IOException("The file exceeds the allowed read limit.");
             total += count;
             result.write(chunk, 0, count);
         }

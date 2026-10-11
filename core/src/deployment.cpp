@@ -26,14 +26,14 @@ const ParameterSchema* parameterFor(const CircuitSchema& circuit, const std::str
 
 void validateBytes(std::string_view text) {
     if (text.size() > kMaxDeploymentBytes)
-        throw std::invalid_argument("Le patch de déploiement dépasse 64 000 octets.");
+        throw std::invalid_argument("The deployment patch exceeds 64,000 bytes.");
     std::size_t lineBytes = 0;
     for (unsigned char c : text) {
         if (c == '\n') { lineBytes = 0; continue; }
         if (c < 32 || c > 126)
-            throw std::invalid_argument("Le déploiement doit contenir uniquement des caractères ASCII imprimables et LF.");
+            throw std::invalid_argument("The deployment must contain only printable ASCII characters and LF line breaks.");
         if (++lineBytes > kMaxDeploymentLineBytes)
-            throw std::invalid_argument("Une ligne du patch de déploiement dépasse 63 octets.");
+            throw std::invalid_argument("A deployment patch line exceeds 63 bytes.");
     }
 }
 
@@ -45,7 +45,7 @@ std::string withoutSpaces(std::string_view text) {
         if (c == '"') quoted = !quoted;
         if (quoted || (c != ' ' && c != '\t' && c != '\r')) result += c;
     }
-    if (quoted) throw std::invalid_argument("Chaîne non terminée dans le patch de déploiement.");
+    if (quoted) throw std::invalid_argument("Unterminated quoted string in the deployment patch.");
     return result;
 }
 
@@ -83,7 +83,7 @@ std::string canonicalAtom(std::string atom) {
 void appendLine(std::string& result, const std::string& line) {
     validateBytes(line);
     if (line.size() + 1 > kMaxDeploymentBytes - result.size())
-        throw std::invalid_argument("Le patch de déploiement dépasse 64 000 octets.");
+        throw std::invalid_argument("The deployment patch exceeds 64,000 bytes.");
     result += line;
     result += '\n';
 }
@@ -100,10 +100,10 @@ void countCable(const std::string& atom, bool output, std::map<std::string, Cabl
 
 std::string prepareDeployment(const PatchEngine& engine) {
     if (!engine.analysisComplete())
-        throw std::invalid_argument("Analyse incomplète : le déploiement est impossible.");
+        throw std::invalid_argument("Analysis is incomplete: deployment is unavailable.");
     for (const auto& diagnostic : engine.diagnostics())
         if (diagnostic.severity == "error")
-            throw std::invalid_argument("Corriger les erreurs du patch avant le déploiement (ligne " +
+            throw std::invalid_argument("Fix the patch errors before deployment (line " +
                                         std::to_string(diagnostic.line) + ").");
 
     std::string result;
@@ -116,21 +116,21 @@ std::string prepareDeployment(const PatchEngine& engine) {
     for (const auto& block : engine.blocks()) {
         if (block.controller || block.disabled) continue;
         const auto* circuit = schemaFor(block.name);
-        if (!circuit) throw std::invalid_argument("Circuit actif inconnu : " + block.name + ".");
+        if (!circuit) throw std::invalid_argument("Unknown active circuit: " + block.name + ".");
         appendLine(result, "[" + block.name + "]");
         std::unordered_set<std::string_view> assigned;
         for (const auto& parameter : block.parameters) {
             if (parameter.disabled) continue;
             const auto* schema = parameterFor(*circuit, parameter.name);
-            if (!schema) throw std::invalid_argument("Paramètre actif inconnu : " + block.name + "." + parameter.name + ".");
+            if (!schema) throw std::invalid_argument("Unknown active parameter: " + block.name + "." + parameter.name + ".");
             if (!assigned.insert(parameter.name).second)
-                throw std::invalid_argument("Paramètre actif affecté plusieurs fois : " + parameter.name + ".");
+                throw std::invalid_argument("Active parameter assigned multiple times: " + parameter.name + ".");
             if (parameter.value.empty())
-                throw std::invalid_argument("Valeur non renseignée : " + block.name + "." + parameter.name + ".");
+                throw std::invalid_argument("Value not set: " + block.name + "." + parameter.name + ".");
             const bool output = std::string_view(schema->direction) == "output";
             auto expression = PatchEngine::decomposeExpression(parameter.value, output);
             if (!expression.editable)
-                throw std::invalid_argument("Expression incompatible avec Forge : " + block.name + "." + parameter.name + ".");
+                throw std::invalid_argument("Expression incompatible with Forge: " + block.name + "." + parameter.name + ".");
             expression.base = canonicalAtom(std::move(expression.base));
             expression.factor = canonicalAtom(std::move(expression.factor));
             expression.offset = canonicalAtom(std::move(expression.offset));
@@ -145,7 +145,7 @@ std::string prepareDeployment(const PatchEngine& engine) {
     // that the editor may have capped. Disabled/quoted references never count.
     for (const auto& entry : cables) {
         if (entry.second.outputs != 1 || entry.second.inputs == 0)
-            throw std::invalid_argument("Connexion incomplète ou sorties multiples du câble " + entry.first + ".");
+            throw std::invalid_argument("Incomplete connection or multiple outputs for cable " + entry.first + ".");
     }
     return result;
 }

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": 68,
+  "scope": "Production rack source with Android gesture detectors and lifecycle cancellation in isolated standalone package",
+  "application_user_data_accessed": false,
+  "schema_version": 1,
+  "version": "0.5.3",
+  "device_model": "SM-X620",
+  "android": 16,
+  "production_view_sha256": "a6141db81e29214ff1e68790cbb86a5d442ee14c85d830dd9af0c32e4ff3a640",
+  "reproducible_harness": "tools/android_rack_tests",
+  "physical_droid_write_or_transfer": false
+}

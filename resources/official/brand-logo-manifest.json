@@ -1,0 +1,15 @@
+{
+  "name": "Der Mann mit der Maschine square pictogram",
+  "version_introduced": "0.5.2",
+  "source_kind": "user_supplied_attachment",
+  "source_description": "Square black and white pictogram supplied by the project owner for the Android launcher icon.",
+  "brand_reference_page": "https://dermannmitdermaschine.de/",
+  "attribution": "Der Mann mit der Maschine / Mathias Kettner",
+  "path": "app/src/main/res/drawable-nodpi/dmmdm_logo.png",
+  "bytes": 8758,
+  "sha256": "bfd426c81dd0b444a08a806c2dd6140c29a97ebd75d5014687a85487aed0f3bc",
+  "width": 465,
+  "height": 465,
+  "transformation": "None: the supplied PNG is copied byte for byte. Android XML scales it proportionally to a nominal 45 by 45 dp square on a 108 dp adaptive layer, over a black background. Symmetric insets leave room for Android pixel rounding.",
+  "rights_notice": "Brand artwork retains its author's rights. The graphics permission in GRAPHICS-LICENSE.txt concerns the blue-7 archive's module faceplates and circuit icons."
+}

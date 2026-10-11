@@ -36,10 +36,10 @@ void appendUtf8(std::string& result, std::uint32_t cp) {
 }
 
 std::string fromJava(JNIEnv* env, jstring value) {
-    if (!value) throw std::invalid_argument("Texte manquant.");
+    if (!value) throw std::invalid_argument("Missing text.");
     const auto length = env->GetStringLength(value);
     if (static_cast<std::size_t>(length) > androforge::PatchEngine::kMaxSourceBytes)
-        throw std::invalid_argument("Texte trop volumineux : limite de 4 Mio.");
+        throw std::invalid_argument("Text too large: the limit is 4 MiB.");
     const jchar* chars = env->GetStringChars(value, nullptr);
     if (!chars) throw std::bad_alloc();
     // Java's modified UTF-8 represents supplementary characters as two encoded
@@ -58,13 +58,13 @@ std::string fromJava(JNIEnv* env, jstring value) {
             if (i + 1 < length && chars[i + 1] >= 0xdc00 && chars[i + 1] <= 0xdfff) {
                 cp = 0x10000 + ((cp - 0xd800) << 10) + (chars[++i] - 0xdc00);
             }
-            else throw std::invalid_argument("Texte Unicode invalide : paire UTF-16 incomplète.");
+            else throw std::invalid_argument("Invalid Unicode text: incomplete UTF-16 surrogate pair.");
         }
         else if (cp >= 0xdc00 && cp <= 0xdfff)
-            throw std::invalid_argument("Texte Unicode invalide : paire UTF-16 incomplète.");
+            throw std::invalid_argument("Invalid Unicode text: incomplete UTF-16 surrogate pair.");
         const std::size_t bytes = cp < 0x80 ? 1 : cp < 0x800 ? 2 : cp < 0x10000 ? 3 : 4;
         if (result.size() > androforge::PatchEngine::kMaxSourceBytes - bytes)
-            throw std::invalid_argument("Texte trop volumineux : limite de 4 Mio.");
+            throw std::invalid_argument("Text too large: the limit is 4 MiB.");
         appendUtf8(result, cp);
     }
     return result;
@@ -99,7 +99,7 @@ jstring toJava(JNIEnv* env, const std::string& value) {
             chars.push_back(static_cast<jchar>(0xdc00 + (cp & 0x3ff)));
         }
     }
-    if (chars.size() > static_cast<std::size_t>(std::numeric_limits<jsize>::max())) throw std::length_error("Texte trop volumineux.");
+    if (chars.size() > static_cast<std::size_t>(std::numeric_limits<jsize>::max())) throw std::length_error("Text too large.");
     const jchar empty = 0;
     return env->NewString(chars.empty() ? &empty : chars.data(), static_cast<jsize>(chars.size()));
 }
@@ -138,9 +138,9 @@ jstring guarded(JNIEnv* env, Work&& work) {
         return toJava(env, work());
     }
     catch (const std::invalid_argument& error) { javaError(env, "java/lang/IllegalArgumentException", error.what()); }
-    catch (const std::bad_alloc&) { javaError(env, "java/lang/OutOfMemoryError", "Mémoire insuffisante pour le patch."); }
+    catch (const std::bad_alloc&) { javaError(env, "java/lang/OutOfMemoryError", "Insufficient memory for the patch."); }
     catch (const std::exception& error) { javaError(env, "java/lang/IllegalStateException", error.what()); }
-    catch (...) { javaError(env, "java/lang/IllegalStateException", "Erreur inattendue du moteur de patch."); }
+    catch (...) { javaError(env, "java/lang/IllegalStateException", "Unexpected patch engine error."); }
     return nullptr;
 }
 } // namespace
@@ -174,16 +174,16 @@ Java_fr_androforge_NativeBridge_activationMessage(JNIEnv* env, jclass, jstring d
     try {
         const auto bytes = androforge::encodeActivation(fromJava(env, deployment));
         if (bytes.size() > static_cast<std::size_t>(std::numeric_limits<jsize>::max()))
-            throw std::length_error("Message MIDI trop volumineux.");
+            throw std::length_error("MIDI message too large.");
         auto result = env->NewByteArray(static_cast<jsize>(bytes.size()));
         if (result && !bytes.empty()) env->SetByteArrayRegion(result, 0, static_cast<jsize>(bytes.size()),
                 reinterpret_cast<const jbyte*>(bytes.data()));
         return result;
     }
     catch (const std::invalid_argument& error) { javaError(env, "java/lang/IllegalArgumentException", error.what()); }
-    catch (const std::bad_alloc&) { javaError(env, "java/lang/OutOfMemoryError", "Mémoire insuffisante pour le transfert MIDI."); }
+    catch (const std::bad_alloc&) { javaError(env, "java/lang/OutOfMemoryError", "Insufficient memory for the MIDI transfer."); }
     catch (const std::exception& error) { javaError(env, "java/lang/IllegalStateException", error.what()); }
-    catch (...) { javaError(env, "java/lang/IllegalStateException", "Erreur inattendue de préparation MIDI."); }
+    catch (...) { javaError(env, "java/lang/IllegalStateException", "Unexpected MIDI preparation error."); }
     return nullptr;
 }
 extern "C" JNIEXPORT jstring JNICALL

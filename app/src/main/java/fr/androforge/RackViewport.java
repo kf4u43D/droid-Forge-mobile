@@ -13,6 +13,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityNodeProvider;
@@ -50,6 +51,7 @@ final class RackViewport extends View {
     }
 
     interface Listener {
+        void addModule();
         void openModule(Module module);
         void editLabel(Module module, String register);
         void viewportChanged();
@@ -62,11 +64,16 @@ final class RackViewport extends View {
     private final GestureDetector gestures;
     private final ScaleGestureDetector scales;
     private final float density;
+    private final int touchSlopSquared;
     private List<Module> modules = Collections.emptyList();
     private Map<String, String> labels = Collections.emptyMap();
     private float[] starts = new float[0];
     private float widthHp, zoom = 1, leftHp, topHp;
-    private boolean scaledGesture;
+    private boolean gestureBlocked, doubleTapCandidate, doubleTapPanning;
+    private float doubleTapX, doubleTapY, lastDoubleTapX, lastDoubleTapY;
+    private Module pendingTapModule;
+    private String pendingTapRegister;
+    private int pendingTapIndex = -1;
     private Module pressedModule;
     private String pressedRegister;
     private int pressedIndex = -1, accessibilityFocus = -1, hovered = -1;
@@ -75,6 +82,8 @@ final class RackViewport extends View {
     RackViewport(Context context) {
         super(context);
         density = getResources().getDisplayMetrics().density;
+        int touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+        touchSlopSquared = touchSlop * touchSlop;
         setBackgroundColor(0xff1c1c1c);
         setFocusable(true);
         setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_YES);
@@ -86,32 +95,77 @@ final class RackViewport extends View {
                 capturePoint(event.getX(), event.getY()); return true;
             }
             @Override public boolean onSingleTapUp(MotionEvent event) {
-                if (scaledGesture) return true;
-                capturePoint(event.getX(), event.getY()); return pressedModule == null || performClick();
+                if (gestureBlocked) return true;
+                capturePoint(event.getX(), event.getY());
+                pendingTapModule = pressedModule; pendingTapRegister = pressedRegister; pendingTapIndex = pressedIndex;
+                return true;
+            }
+            @Override public boolean onSingleTapConfirmed(MotionEvent event) {
+                Module module = pendingTapModule;
+                if (module != null && modules.contains(module)) {
+                    pressedModule = module; pressedRegister = pendingTapRegister; pressedIndex = pendingTapIndex;
+                    clearPendingTap(); performClick();
+                } else clearPendingTap();
+                return true;
+            }
+            @Override public boolean onDoubleTap(MotionEvent event) {
+                clearPendingTap(); return true;
+            }
+            @Override public boolean onDoubleTapEvent(MotionEvent event) {
+                int action = event.getActionMasked();
+                if (action == MotionEvent.ACTION_DOWN) {
+                    doubleTapCandidate = !gestureBlocked;
+                    doubleTapX = lastDoubleTapX = event.getX(); doubleTapY = lastDoubleTapY = event.getY();
+                } else if (action == MotionEvent.ACTION_MOVE) {
+                    if (doubleTapCandidate && movedFromDoubleTap(event)) {
+                        doubleTapCandidate = false; gestureBlocked = true; doubleTapPanning = true;
+                    }
+                    // GestureDetector sends double-tap moves here rather than to onScroll.
+                    if (doubleTapPanning && !scales.isInProgress()) {
+                        leftHp += (lastDoubleTapX - event.getX()) / unit();
+                        topHp += (lastDoubleTapY - event.getY()) / unit(); changed();
+                    }
+                    lastDoubleTapX = event.getX(); lastDoubleTapY = event.getY();
+                } else if (action == MotionEvent.ACTION_UP) {
+                    boolean add = doubleTapCandidate && !gestureBlocked && !movedFromDoubleTap(event);
+                    doubleTapCandidate = false; doubleTapPanning = false;
+                    if (add) addModule();
+                } else if (action == MotionEvent.ACTION_CANCEL) {
+                    doubleTapCandidate = false; doubleTapPanning = false;
+                }
+                return true;
             }
             @Override public void onLongPress(MotionEvent event) {
-                if (!scaledGesture) { capturePoint(event.getX(), event.getY()); performLongClick(); }
+                doubleTapCandidate = false; clearPendingTap();
+                if (!gestureBlocked) { capturePoint(event.getX(), event.getY()); performLongClick(); }
             }
             @Override public boolean onContextClick(MotionEvent event) {
+                doubleTapCandidate = false; clearPendingTap();
                 capturePoint(event.getX(), event.getY()); return performLongClick();
             }
             @Override public boolean onScroll(MotionEvent from, MotionEvent to, float dx, float dy) {
+                gestureBlocked = true; doubleTapCandidate = false; clearPendingTap();
                 if (scales.isInProgress()) return true;
                 leftHp += dx / unit(); topHp += dy / unit();
                 changed(); return true;
             }
         });
         scales = new ScaleGestureDetector(context, new ScaleGestureDetector.SimpleOnScaleGestureListener() {
-            @Override public boolean onScaleBegin(ScaleGestureDetector detector) { scaledGesture = true; return true; }
+            @Override public boolean onScaleBegin(ScaleGestureDetector detector) {
+                gestureBlocked = true; doubleTapCandidate = false; doubleTapPanning = false; clearPendingTap(); return true;
+            }
             @Override public boolean onScale(ScaleGestureDetector detector) {
                 scaleTo(zoom * detector.getScaleFactor(), detector.getFocusX(), detector.getFocusY()); return true;
             }
         });
+        // Double tap belongs to the module picker, while two-finger scaling keeps zooming.
+        scales.setQuickScaleEnabled(false);
     }
 
     void setListener(Listener listener) { this.listener = listener; }
 
     void setModules(List<Module> modules, Map<String, String> labels) {
+        cancelGestures(android.os.SystemClock.uptimeMillis());
         if (accessibilityFocus >= 0) sendVirtualEvent(accessibilityFocus, AccessibilityEvent.TYPE_VIEW_ACCESSIBILITY_FOCUS_CLEARED);
         accessibilityFocus = -1; hovered = -1; pressedModule = null; pressedRegister = null; pressedIndex = -1;
         this.modules = new ArrayList<>(modules); this.labels = labels;
@@ -239,14 +293,49 @@ final class RackViewport extends View {
         }
     }
 
-    // GestureDetector routes only taps to performClick and long/context presses to
-    // performLongClick. Calling click on every ACTION_UP would also activate pans.
+    private void clearPendingTap() {
+        pendingTapModule = null; pendingTapRegister = null; pendingTapIndex = -1;
+    }
+
+    private boolean movedFromDoubleTap(MotionEvent event) {
+        for (int index = 0; index < event.getHistorySize(); index++)
+            if (outsideTouchSlop(event.getHistoricalX(index), event.getHistoricalY(index))) return true;
+        return outsideTouchSlop(event.getX(), event.getY());
+    }
+
+    private boolean outsideTouchSlop(float x, float y) {
+        float dx = x - doubleTapX, dy = y - doubleTapY;
+        return dx * dx + dy * dy > touchSlopSquared;
+    }
+
+    private boolean addModule() {
+        if (!isEnabled() || listener == null) return false;
+        sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_CLICKED);
+        listener.addModule(); return true;
+    }
+
+    private void cancelGestures(long now) {
+        MotionEvent cancel = MotionEvent.obtain(now, now, MotionEvent.ACTION_CANCEL, 0, 0, 0);
+        gestures.onTouchEvent(cancel); scales.onTouchEvent(cancel); cancel.recycle();
+        gestureBlocked = true; doubleTapCandidate = false; doubleTapPanning = false; clearPendingTap();
+    }
+
+    // Confirmed single taps select modules; completed double taps add a module.
+    // Movement, extra pointers and cancellation must not activate either action.
     @SuppressLint("ClickableViewAccessibility")
     @Override public boolean onTouchEvent(MotionEvent event) {
-        if (event.getActionMasked() == MotionEvent.ACTION_DOWN) scaledGesture = false;
+        if (!isEnabled()) { cancelGestures(event.getEventTime()); return false; }
+        int action = event.getActionMasked();
+        if (action == MotionEvent.ACTION_DOWN) {
+            gestureBlocked = false; doubleTapCandidate = false; doubleTapPanning = false;
+        } else if (action == MotionEvent.ACTION_POINTER_DOWN || event.getPointerCount() > 1) {
+            gestureBlocked = true; doubleTapCandidate = false; doubleTapPanning = false; clearPendingTap();
+        } else if (action == MotionEvent.ACTION_CANCEL) {
+            gestureBlocked = true; doubleTapCandidate = false; doubleTapPanning = false; clearPendingTap();
+        }
         scales.onTouchEvent(event);
         gestures.onTouchEvent(event);
-        if (event.getActionMasked() == MotionEvent.ACTION_UP || event.getActionMasked() == MotionEvent.ACTION_CANCEL)
+        if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_CANCEL)
             if (listener != null) listener.viewportChanged();
         return true;
     }
@@ -271,6 +360,7 @@ final class RackViewport extends View {
     }
 
     @Override public boolean performClick() {
+        if (!isEnabled()) return false;
         super.performClick();
         if (pressedModule == null && !modules.isEmpty()) pressedModule = modules.get(Math.min(firstVisible(), modules.size() - 1));
         if (pressedModule != null && listener != null) listener.openModule(pressedModule);
@@ -278,19 +368,36 @@ final class RackViewport extends View {
     }
 
     @Override public boolean performLongClick() {
+        if (!isEnabled()) return false;
         super.performLongClick();
         if (pressedModule != null && listener != null) listener.editLabel(pressedModule, pressedRegister);
         return true;
     }
 
     @Override protected void onDetachedFromWindow() {
-        long now = android.os.SystemClock.uptimeMillis();
-        MotionEvent cancel = MotionEvent.obtain(now, now, MotionEvent.ACTION_CANCEL, 0, 0, 0);
-        gestures.onTouchEvent(cancel); scales.onTouchEvent(cancel); cancel.recycle();
+        cancelGestures(android.os.SystemClock.uptimeMillis());
         super.onDetachedFromWindow();
     }
 
+    @Override public void onWindowFocusChanged(boolean hasWindowFocus) {
+        super.onWindowFocusChanged(hasWindowFocus);
+        if (!hasWindowFocus) cancelGestures(android.os.SystemClock.uptimeMillis());
+    }
+
+    @Override public void onCancelPendingInputEvents() {
+        super.onCancelPendingInputEvents();
+        cancelGestures(android.os.SystemClock.uptimeMillis());
+    }
+
+    @Override public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo node) {
+        super.onInitializeAccessibilityNodeInfo(node);
+        if (isEnabled()) node.addAction(new AccessibilityNodeInfo.AccessibilityAction(
+                R.id.mobile_rack_add_module_action, getContext().getString(R.string.mobile_rack_add_module)));
+    }
+
     @Override public boolean performAccessibilityAction(int action, Bundle arguments) {
+        if (!isEnabled()) return false;
+        if (action == R.id.mobile_rack_add_module_action) return addModule();
         if (action == AccessibilityNodeInfo.ACTION_SCROLL_FORWARD || action == AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD) {
             leftHp += (action == AccessibilityNodeInfo.ACTION_SCROLL_FORWARD ? 1 : -1) * getWidth() * .8f / unit();
             changed(); sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_SCROLLED); return true;

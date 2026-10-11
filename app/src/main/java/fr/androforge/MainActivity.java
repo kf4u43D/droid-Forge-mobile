@@ -158,6 +158,13 @@ public final class MainActivity extends Activity {
     private BlockAdapter blockAdapter;
     private CatalogueAdapter catalogueAdapter;
 
+    @Override protected void attachBaseContext(Context base) {
+        Configuration configuration = new Configuration();
+        configuration.setLocale(Locale.ENGLISH);
+        configuration.setLayoutDirection(Locale.ENGLISH);
+        super.attachBaseContext(base.createConfigurationContext(configuration));
+    }
+
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         WORKER.setRemoveOnCancelPolicy(true);
@@ -265,10 +272,10 @@ public final class MainActivity extends Activity {
         brand.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
         brand.setPadding(dp(12), 0, dp(16), 0);
         titlebar.addView(brand);
-        fileLabel = label("Chargement du moteur DROID…", 13, TEXT);
+        fileLabel = label("Loading the DROID engine…", 13, TEXT);
         fileLabel.setMaxLines(1);
         titlebar.addView(fileLabel, new LinearLayout.LayoutParams(0, -1, 1));
-        menuButton = action("⋮", "Actions du fichier", false);
+        menuButton = action("⋮", "File actions", false);
         menuButton.setOnClickListener(this::showFileMenu);
         titlebar.addView(menuButton, new LinearLayout.LayoutParams(dp(48), dp(48)));
         root.addView(titlebar, new LinearLayout.LayoutParams(-1, dp(48)));
@@ -283,27 +290,27 @@ public final class MainActivity extends Activity {
         toolRail.setPadding(dp(2), dp(4), dp(2), dp(4));
         railScroll.addView(toolRail);
         editor.addView(railScroll, new LinearLayout.LayoutParams(dp(76), -1));
-        addTool("Nouveau", "new", "Créer un nouveau patch", this::newPatch);
-        addTool("Ouvrir", "open", "Importer un patch .ini", this::openPatch);
-        addTool("Sauver", "save", "Exporter le patch .ini", this::confirmExport);
+        addTool("New", "new", "Create a new patch", this::newPatch);
+        addTool("Open", "open", "Import an .ini patch", this::openPatch);
+        addTool("Save", "save", "Export the .ini patch", this::confirmExport);
         addToolDivider();
-        addTool("Circuit", "new_circuit", "Ouvrir le catalogue des circuits", this::showCatalogue);
-        addTool("Paramètre", "add_jack", "Ajouter un paramètre au circuit sélectionné", this::showSelectedParameter);
-        addTool("Module", "add_controller", "Ajouter un contrôleur matériel", this::addController);
+        addTool("Circuit", "new_circuit", "Open the circuit catalog", this::showCatalogue);
+        addTool("Parameter", "add_jack", "Add a parameter to the selected circuit", this::showSelectedParameter);
+        addTool("Module", "add_controller", "Add a hardware controller", this::addController);
         addToolDivider();
-        addTool("Problèmes", "problems", "Ouvrir les diagnostics locaux", this::showDiagnostics);
-        addTool("Activate!", "upload_to_droid", "Activer le patch sur le DROID par MIDI", () -> droidActions.activate());
-        addTool("Save to SD", "save_to_sd", "Sauvegarder droid.ini sur la carte DROID", () -> droidActions.savePatch());
-        addTool("Eject SD", "eject_sd", "Éjecter la carte DROID", () -> droidActions.eject());
-        undoButton = action("↶", "Annuler la dernière modification", false);
+        addTool("Problems", "problems", "Open local diagnostics", this::showDiagnostics);
+        addTool("Activate!", "upload_to_droid", "Activate the patch on DROID over MIDI", () -> droidActions.activate());
+        addTool("Save to SD", "save_to_sd", "Save droid.ini to the DROID card", () -> droidActions.savePatch());
+        addTool("Eject SD", "eject_sd", "Eject the DROID card", () -> droidActions.eject());
+        undoButton = action("↶", "Undo the last change", false);
         undoButton.setTextSize(24);
         undoButton.setOnClickListener(v -> mutateHistory(false));
         toolRail.addView(undoButton, new LinearLayout.LayoutParams(-1, dp(48)));
-        redoButton = action("↷", "Rétablir la modification", false);
+        redoButton = action("↷", "Redo the change", false);
         redoButton.setTextSize(24);
         redoButton.setOnClickListener(v -> mutateHistory(true));
         toolRail.addView(redoButton, new LinearLayout.LayoutParams(-1, dp(48)));
-        addTool("Info", "info", "À propos de droid Forge mobile", this::showAbout);
+        addTool("Info", "info", "About droid Forge mobile", this::showAbout);
 
         workspace = vertical();
         editor.addView(workspace, new LinearLayout.LayoutParams(0, -1, 1));
@@ -311,6 +318,7 @@ public final class MainActivity extends Activity {
         rackViewport = new RackViewport(this);
         rackViewport.setListener(new RackViewport.Listener() {
             @Override public void openModule(RackViewport.Module module) { showRackModule(module); }
+            @Override public void addModule() { addController(); }
             @Override public void editLabel(RackViewport.Module module, String register) {
                 if (register == null) chooseModuleLabel(module); else editRegisterLabel(register, module);
             }
@@ -339,9 +347,9 @@ public final class MainActivity extends Activity {
         separator.setBackgroundColor(BORDER);
         workspace.addView(separator, new LinearLayout.LayoutParams(-1, dp(1)));
         paneTabs = horizontal();
-        Button sectionsTab = action("Sections", "Afficher les sections du patch", false);
+        Button sectionsTab = action("Sections", "Show patch sections", false);
         sectionsTab.setOnClickListener(v -> { activePane = 1; arrangePanels(); });
-        Button circuitsTab = action("Circuits", "Afficher les circuits du patch", false);
+        Button circuitsTab = action("Circuits", "Show patch circuits", false);
         circuitsTab.setOnClickListener(v -> { activePane = 2; arrangePanels(); });
         paneTabs.addView(sectionsTab, new LinearLayout.LayoutParams(0, dp(48), 1));
         paneTabs.addView(circuitsTab, new LinearLayout.LayoutParams(0, dp(48), 1));
@@ -351,7 +359,7 @@ public final class MainActivity extends Activity {
         buildCatalogue();
         buildPatch();
         buildInspector();
-        statusLabel = label("Initialisation…", 12, MUTED);
+        statusLabel = label("Initializing…", 12, MUTED);
         statusLabel.setGravity(Gravity.CENTER_VERTICAL);
         statusLabel.setMinHeight(dp(44));
         statusLabel.setPadding(dp(12), dp(4), dp(12), dp(4));
@@ -359,7 +367,7 @@ public final class MainActivity extends Activity {
         statusLabel.setOnClickListener(v -> {
             if (pendingConnection != null) showDialog(new AlertDialog.Builder(this)
                     .setTitle(R.string.forge_connection_start).setMessage(statusLabel.getText())
-                    .setNegativeButton("Continuer", null).setPositiveButton(R.string.forge_connection_abort, (dialog, which) -> abortConnection()));
+                    .setNegativeButton("Continue", null).setPositiveButton(R.string.forge_connection_abort, (dialog, which) -> abortConnection()));
             else if (orphanDrafts.isEmpty()) showDiagnostics(); else showOrphanDrafts();
         });
         root.addView(statusLabel, new LinearLayout.LayoutParams(-1, -2));
@@ -397,17 +405,17 @@ public final class MainActivity extends Activity {
     private void buildCatalogue() {
         cataloguePanel = panel();
         LinearLayout heading = horizontal();
-        heading.addView(label("Catalogue", 18, TEXT), new LinearLayout.LayoutParams(0, dp(48), 1));
+        heading.addView(label("Catalog", 18, TEXT), new LinearLayout.LayoutParams(0, dp(48), 1));
         catalogueCount = label("", 12, CYAN);
         catalogueCount.setGravity(Gravity.CENTER_VERTICAL);
         heading.addView(catalogueCount);
         cataloguePanel.addView(heading);
-        EditText search = edit("Rechercher un circuit…");
+        EditText search = edit("Search circuits…");
         catalogueSearch = search;
         search.setSingleLine(true);
         search.setText(query);
         search.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        search.setContentDescription("Rechercher dans le catalogue officiel des circuits");
+        search.setContentDescription("Search the official circuit catalog");
         search.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -416,7 +424,7 @@ public final class MainActivity extends Activity {
             @Override public void afterTextChanged(Editable editable) {}
         });
         cataloguePanel.addView(search, new LinearLayout.LayoutParams(-1, dp(50)));
-        TextView hint = label("Touchez un circuit pour voir ses paramètres.", 12, MUTED);
+        TextView hint = label("Tap a circuit to view its parameters.", 12, MUTED);
         hint.setPadding(0, dp(10), 0, dp(10));
         cataloguePanel.addView(hint);
         ListView list = list();
@@ -458,7 +466,7 @@ public final class MainActivity extends Activity {
         circuitList = list(true);
         circuitList.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
         circuitList.setItemsCanFocus(true);
-        circuitList.setContentDescription("Circuits de la section du patch");
+        circuitList.setContentDescription("Circuits in this patch section");
         circuitCardAdapter = new CircuitCardAdapter();
         circuitList.setAdapter(circuitCardAdapter);
         inspectorPanel.addView(circuitList, new LinearLayout.LayoutParams(-1, 0, 1));
@@ -500,8 +508,8 @@ public final class MainActivity extends Activity {
         if (!loaded || operations != 0) return;
         detach(cataloguePanel);
         dialogType = "catalogue";
-        catalogueDialog = trackDialog(new AlertDialog.Builder(this).setTitle("Ajouter un circuit")
-                .setView(cataloguePanel).setNegativeButton("Fermer", null).create());
+        catalogueDialog = trackDialog(new AlertDialog.Builder(this).setTitle("Add a circuit")
+                .setView(cataloguePanel).setNegativeButton("Close", null).create());
         catalogueDialog.setOnDismissListener(dialog -> {
             detach(cataloguePanel); catalogueDialog = null;
             if (!destroyed && "catalogue".equals(dialogType)) { dialogType = ""; requestUiSave(); }
@@ -533,7 +541,7 @@ public final class MainActivity extends Activity {
         inspectorGeneration++;
         engineButtons.clear();
         renderCircuitPreview(circuit);
-        previewDialog = trackDialog(new AlertDialog.Builder(this).setView(body).setNegativeButton("Fermer", null).create());
+        previewDialog = trackDialog(new AlertDialog.Builder(this).setView(body).setNegativeButton("Close", null).create());
         previewDialog.setOnDismissListener(dialog -> {
             selectedCircuit = null; inspectorBody = null; previewDialog = null; engineButtons.clear();
             if (!destroyed) { dialogType = ""; requestUiSave(); }
@@ -547,13 +555,13 @@ public final class MainActivity extends Activity {
     private void showSelectedParameter() {
         Block block = findBlock(selectedBlock);
         if (block == null && !visibleBlocks.isEmpty()) { block = visibleBlocks.get(0); selectedBlock = block.index; }
-        if (block == null) { toast("Ajoutez ou sélectionnez d’abord un circuit."); return; }
+        if (block == null) { toast("Add or select a circuit first."); return; }
         showParameterDialog(block);
     }
 
     private void showParameterDialog(Block block) {
         Circuit circuit = circuitByName.get(block.name);
-        if (circuit == null) { toast("Paramètres non documentés. Utilisez le texte source."); return; }
+        if (circuit == null) { toast("Undocumented parameters. Use the source editor."); return; }
         if (dialogBlock != block.index || !"parameter".equals(dialogType)) { newParameterName = ""; newParameterValue = ""; }
         dialogType = "parameter"; dialogBlock = block.index;
         LinearLayout body = panel();
@@ -564,10 +572,10 @@ public final class MainActivity extends Activity {
         renderAddParameter(block, circuit);
         if (inspectorBody.getChildCount() == 0) {
             inspectorBody = null;
-            toast("Tous les paramètres documentés sont déjà présents dans ce circuit."); return;
+            toast("All documented parameters are already present in this circuit."); return;
         }
-        previewDialog = trackDialog(new AlertDialog.Builder(this).setTitle("Paramètre · " + block.name.toUpperCase(Locale.ROOT))
-                .setView(body).setNegativeButton("Fermer", null).create());
+        previewDialog = trackDialog(new AlertDialog.Builder(this).setTitle("Parameter · " + block.name.toUpperCase(Locale.ROOT))
+                .setView(body).setNegativeButton("Close", null).create());
         previewDialog.setOnDismissListener(dialog -> {
             inspectorBody = null; previewDialog = null; engineButtons.clear();
             if (!destroyed) { dialogType = ""; requestUiSave(); }
@@ -604,7 +612,7 @@ public final class MainActivity extends Activity {
                                 new File(application.getFilesDir(), "patch-autosave-recovery.ini").toPath(),
                                 java.nio.file.StandardCopyOption.REPLACE_EXISTING);
                         try (InputStream input = application.getAssets().open("examples/starter.ini")) { text = readUtf8(input); }
-                        notice = "La sauvegarde locale est illisible. Une copie de récupération a été conservée et l’exemple a été ouvert : " + errorMessage(badSave);
+                        notice = "The local autosave could not be read. A recovery copy was kept and the example was opened: " + errorMessage(badSave);
                     }
                     sourceForRecovery = text;
                     result = parsePatch(NativeBridge.load(text));
@@ -663,7 +671,7 @@ public final class MainActivity extends Activity {
                     filterCatalogue();
                     renderPatch();
                     restoreDialog();
-                    if (!message.isEmpty()) showError("Sauvegarde locale", message);
+                    if (!message.isEmpty()) showError("Local autosave", message);
                     droidActions.onHostReady();
                 });
             } catch (Exception | LinkageError | OutOfMemoryError exception) {
@@ -682,7 +690,7 @@ public final class MainActivity extends Activity {
                         fileLabel.setText(R.string.forge_engine_unavailable);
                         statusLabel.setText(R.string.forge_patch_load_failed);
                     }
-                    showError("Chargement impossible", errorMessage(exception));
+                    showError("Unable to load", errorMessage(exception));
                 });
             }
         });
@@ -714,7 +722,7 @@ public final class MainActivity extends Activity {
     }
 
     private void mutateHistory(boolean redo) {
-        mutate(redo ? "Rétablissement…" : "Annulation…", -2,
+        mutate(redo ? "Redoing…" : "Undoing…", -2,
                 redo ? NativeBridge::redo : NativeBridge::undo, null, EditMode.HISTORY);
     }
 
@@ -729,11 +737,11 @@ public final class MainActivity extends Activity {
     private void mutate(String progress, int selection, EngineAction action, Runnable afterSuccess, EditMode mode) {
         if (!loaded || operations != 0) return;
         if (sourceDialog == null && sourceDraft != null && sourceSnapshot.equals(sourceDraftBase)) {
-            showDialog(new AlertDialog.Builder(this).setTitle("Un brouillon du texte source est en attente")
-                    .setMessage("Cette modification changerait le patch sur lequel votre brouillon est basé. Vous pouvez reprendre ce brouillon ou l’abandonner avant de continuer.")
-                    .setNegativeButton("Revenir au patch", null)
-                    .setPositiveButton("Éditer le brouillon", (dialog, which) -> editSource(sourceLine))
-                    .setNeutralButton("Abandonner et continuer", (dialog, which) -> {
+            showDialog(new AlertDialog.Builder(this).setTitle("A source draft is pending")
+                    .setMessage("This change would alter the patch your draft is based on. Resume or discard the draft before continuing.")
+                    .setNegativeButton("Return to patch", null)
+                    .setPositiveButton("Edit draft", (dialog, which) -> editSource(sourceLine))
+                    .setNeutralButton("Discard and continue", (dialog, which) -> {
                         sourceDraft = null; sourceDraftBase = null;
                         mutate(progress, selection, action, afterSuccess, mode);
                     }));
@@ -806,7 +814,7 @@ public final class MainActivity extends Activity {
                         recoveryRequired = recoveryPatch == null;
                     }
                     updateEnabled(); updateDiagnostics();
-                    showError(exception instanceof OutOfMemoryError ? "Opération interrompue" : "Modification refusée", errorMessage(exception));
+                    showError(exception instanceof OutOfMemoryError ? "Operation interrupted" : "Change rejected", errorMessage(exception));
                 });
             }
         });
@@ -889,7 +897,7 @@ public final class MainActivity extends Activity {
     // source mutations continue to use the original engine block indices and exact bytes.
     private void parseSections() {
         sections.clear();
-        sections.add(new Section("Section sans titre", 1));
+        sections.add(new Section("Untitled section", 1));
         int lineCount = 1;
         simplifiedNavigation = sourceSnapshot.length() > 512 * 1024;
         if (!simplifiedNavigation) for (int i = 0; i < sourceSnapshot.length(); i++) {
@@ -899,7 +907,7 @@ public final class MainActivity extends Activity {
         }
         if (simplifiedNavigation) {
             sourceLines = new String[0];
-            sections.set(0, new Section("Patch · vue simplifiée", 1));
+            sections.set(0, new Section("Patch · simplified view", 1));
             for (Block block : patch.blocks) if (!block.controller) sections.get(0).blocks.add(block);
             selectedSection = 0;
             return;
@@ -1103,7 +1111,7 @@ public final class MainActivity extends Activity {
             ForgeCells cells = entry.getValue();
             String value = cells.draftExpression();
             if (value.length() > MAX_EDITOR_CHARACTERS) {
-                Toast.makeText(this, "Cette expression dépasserait la limite de l’éditeur. Choisissez un nom plus court ou utilisez le texte source.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "This expression would exceed the editor limit. Choose a shorter name or use the source editor.", Toast.LENGTH_LONG).show();
                 return false;
             }
             // Native composition may insert operator spaces, e.g. "1/2" -> "1 / 2".
@@ -1112,7 +1120,7 @@ public final class MainActivity extends Activity {
             characters += (long) entry.getKey().length() + cells.characters() + canonicalLength; count++;
         }
         if (count <= MAX_APPLIED_CELLS && characters <= MAX_APPLIED_CHARACTERS) return true;
-        Toast.makeText(this, "La limite des cellules mémorisées est atteinte. Renseignez la valeur de base ou utilisez l’édition brute avant de continuer.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "The limit for remembered cells has been reached. Enter a base value or use the raw editor before continuing.", Toast.LENGTH_LONG).show();
         return false;
     }
 
@@ -1171,12 +1179,12 @@ public final class MainActivity extends Activity {
                 cells.addView(operation, new LinearLayout.LayoutParams(dp(20), dp(48)));
             }
             final int selectedColumn = column;
-            EditText field = edit(separate ? (column == 0 ? "A" : column == 1 ? "1" : "0") : "Valeur ou câble (_nom)");
+            EditText field = edit(separate ? (column == 0 ? "A" : column == 1 ? "1" : "0") : "Value or cable (_name)");
             fields[column] = field;
             field.setTypeface(Typeface.MONOSPACE);
             field.setSingleLine(true);
             field.setImeOptions(EditorInfo.IME_ACTION_DONE);
-            field.setContentDescription(column == 0 ? "Valeur du paramètre " + parameter.name
+            field.setContentDescription(column == 0 ? "Value of parameter " + parameter.name
                     : getString(column == 1 ? R.string.forge_factor_description : R.string.forge_offset_description, parameter.name));
             field.setEnabled(loaded && operations == 0 && patch.analysisComplete && !recoveryRequired);
             ConnectionPoint point = new ConnectionPoint(block.index, block.name, parameter.name, column, parameter.direction);
@@ -1210,7 +1218,7 @@ public final class MainActivity extends Activity {
                     characters += entry.getValue().characters(entry.getKey());
                 for (OrphanDraft orphan : orphanDrafts) characters += orphan.draft.characters(orphan.key);
                 if (candidate.draftExpression().length() <= MAX_EDITOR_CHARACTERS && characters <= MAX_DRAFT_CHARACTERS) return null;
-                field.setError("La limite de cette expression ou des brouillons est atteinte. Appliquez les valeurs déjà saisies.");
+                field.setError("The expression or draft limit has been reached. Apply the values already entered.");
                 return destination.subSequence(replaceStart, replaceEnd);
             };
             field.setFilters(filters);
@@ -1242,7 +1250,7 @@ public final class MainActivity extends Activity {
             showCellMenu(view, new ConnectionPoint(block.index, block.name, parameter.name, focusedColumn[0], parameter.direction)); return true;
         });
         row.addView(port, new LinearLayout.LayoutParams(dp(48), dp(48)));
-        Button apply = action("✓", "Appliquer " + parameter.name, false);
+        Button apply = action("✓", "Apply " + parameter.name, false);
         apply.setTextColor(TEXT);
         apply.setEnabled(loaded && operations == 0 && patch.analysisComplete && !recoveryRequired);
         Runnable commit = () -> {
@@ -1250,7 +1258,7 @@ public final class MainActivity extends Activity {
             if (separate) {
                 ForgeCells edited = cellsFrom(fields);
                 if (edited.equals(baseline) || !canRememberCells(Collections.singletonMap(key, edited))) return;
-                mutate("Modification de " + parameter.name + "…", -2,
+                mutate("Updating " + parameter.name + "…", -2,
                         () -> NativeBridge.setParameterExpression(block.index, parameter.name, edited.base, edited.factor, edited.offset),
                         () -> {
                             editDrafts.remove(key);
@@ -1259,7 +1267,7 @@ public final class MainActivity extends Activity {
             } else {
                 String value = fields[0].getText().toString();
                 if (value.equals(parameter.value)) return;
-                mutate("Modification de " + parameter.name + "…", -2,
+                mutate("Updating " + parameter.name + "…", -2,
                         () -> NativeBridge.setParameter(block.index, parameter.name, value), () -> { editDrafts.remove(key); appliedCells.remove(key); });
             }
         };
@@ -1349,7 +1357,7 @@ public final class MainActivity extends Activity {
     private boolean cableEditingReady(ConnectionPoint point) {
         if (!loaded || operations != 0 || !patch.analysisComplete || recoveryRequired || !currentPoint(point)) return false;
         if (sourceDialog != null || (sourceDraft != null && sourceSnapshot.equals(sourceDraftBase))) {
-            Toast.makeText(this, "Appliquez ou abandonnez le brouillon du texte source avant de modifier les câbles.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Apply or discard the source draft before editing cables.", Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
@@ -1380,7 +1388,7 @@ public final class MainActivity extends Activity {
                 case 3: abortConnection(); break;
                 case 4: followCable(point, cable); break;
                 case 5: chooseCable(point); break;
-                case 6: chooseCableName("Créer un câble", "", point, null, "create"); break;
+                case 6: chooseCableName("Create a cable", "", point, null, "create"); break;
                 case 7: renameCable(point, cable); break;
                 case 8: applyCell(point, ""); break;
                 case 9: editRawValue(point); break;
@@ -1403,10 +1411,10 @@ public final class MainActivity extends Activity {
         if ("input".equals(parameter.direction) && cells != null) {
             ForgeCells edited = cells.with(point.column, value);
             if (!canRememberCells(Collections.singletonMap(key, edited))) return;
-            mutate("Modification de " + point.parameter + "…", -2,
+            mutate("Updating " + point.parameter + "…", -2,
                     () -> NativeBridge.setParameterExpression(point.block, point.parameter, edited.base, edited.factor, edited.offset),
                     () -> { editDrafts.remove(key); rememberCells(point, edited); });
-        } else if (point.column == 0) mutate("Modification de " + point.parameter + "…", -2,
+        } else if (point.column == 0) mutate("Updating " + point.parameter + "…", -2,
                 () -> NativeBridge.setParameter(point.block, point.parameter, value), () -> { editDrafts.remove(key); appliedCells.remove(key); });
     }
 
@@ -1420,7 +1428,7 @@ public final class MainActivity extends Activity {
         String sourceCable = ForgeCells.cableName(pointAtom(source));
         String destinationCable = ForgeCells.cableName(pointAtom(destination));
         String chosen = !sourceCable.isEmpty() ? sourceCable : destinationCable;
-        if (chosen.isEmpty()) chooseCableName("Nom du nouveau câble", "", destination, source, "connect");
+        if (chosen.isEmpty()) chooseCableName("New cable name", "", destination, source, "connect");
         else connect(source, destination, chosen);
     }
 
@@ -1433,7 +1441,7 @@ public final class MainActivity extends Activity {
         Map<String, ForgeCells> remembered = new HashMap<>();
         remembered.put(pointKey(source), fromConnected); remembered.put(pointKey(destination), toConnected);
         if (!canRememberCells(remembered)) return;
-        mutate("Connexion de " + cable + "…", -2,
+        mutate("Connecting " + cable + "…", -2,
                 () -> NativeBridge.connectParameterExpressions(source.block, source.parameter, source.column,
                         fromCells.base, fromCells.factor, fromCells.offset, destination.block, destination.parameter,
                         destination.column, toCells.base, toCells.factor, toCells.offset, cable), () -> {
@@ -1449,9 +1457,9 @@ public final class MainActivity extends Activity {
                 ? cellDialog : new CellDialogState(operation, title, existing, point, from);
         cellDialog = state; dialogType = "cable_name";
         String dialogSource = sourceSnapshot;
-        EditText name = edit("Nom du câble");
+        EditText name = edit("Cable name");
         name.setSingleLine(true);
-        name.setContentDescription("Nom du câble");
+        name.setContentDescription("Cable name");
         name.setFilters(new InputFilter[]{new InputFilter.LengthFilter(255)});
         name.setText(state.name);
         name.addTextChangedListener(new TextWatcher() {
@@ -1460,15 +1468,15 @@ public final class MainActivity extends Activity {
             @Override public void afterTextChanged(Editable text) {}
         });
         LinearLayout body = vertical(); body.setPadding(dp(20), dp(12), dp(20), 0); body.addView(name);
-        body.addView(label("Les espaces deviennent des traits de soulignement. Les autres caractères spéciaux sont retirés.", 12, MUTED));
+        body.addView(label("Spaces become underscores. Other special characters are removed.", 12, MUTED));
         AlertDialog dialog = new AlertDialog.Builder(this).setTitle(title).setView(body)
-                .setNegativeButton("Annuler", null).setPositiveButton("Valider", null).create();
+                .setNegativeButton("Cancel", null).setPositiveButton("OK", null).create();
         trackDialog(dialog);
         dialog.setOnShowListener(ignored -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(view -> {
-            if (!dialogSource.equals(sourceSnapshot)) { dialog.dismiss(); Toast.makeText(this, "Le patch a changé ; choisissez de nouveau la cellule.", Toast.LENGTH_LONG).show(); return; }
+            if (!dialogSource.equals(sourceSnapshot)) { dialog.dismiss(); Toast.makeText(this, "The patch has changed. Select the cell again.", Toast.LENGTH_LONG).show(); return; }
             String cleaned = name.getText().toString().trim().replace(' ', '_').replaceAll("[^A-Za-z0-9_]", "").toUpperCase(Locale.ROOT);
             while (cleaned.startsWith("_")) cleaned = cleaned.substring(1);
-            if (cleaned.isEmpty() || cleaned.length() > 255) { name.setError("Choisissez un nom de 1 à 255 lettres, chiffres ou traits de soulignement."); return; }
+            if (cleaned.isEmpty() || cleaned.length() > 255) { name.setError("Choose a name with 1 to 255 letters, digits or underscores."); return; }
             dialog.dismiss();
             String cable = "_" + cleaned;
             if ("connect".equals(operation)) connect(from, point, cable);
@@ -1491,7 +1499,7 @@ public final class MainActivity extends Activity {
                     if (operations == 0 && capturedSource.equals(sourceSnapshot)) action.accept(inventory);
                 });
             } catch (Exception | LinkageError | OutOfMemoryError exception) {
-                deliver(() -> Toast.makeText(this, "Inventaire des câbles indisponible : " + errorMessage(exception), Toast.LENGTH_LONG).show());
+                deliver(() -> Toast.makeText(this, "Cable inventory unavailable: " + errorMessage(exception), Toast.LENGTH_LONG).show());
             }
         });
     }
@@ -1502,9 +1510,9 @@ public final class MainActivity extends Activity {
             JSONArray cables = inventory.optJSONArray("cables");
             if (cables == null || cables.length() == 0) {
                 showDialog(new AlertDialog.Builder(this).setTitle(R.string.forge_cable_choose)
-                        .setMessage(inventory.optBoolean("analysisComplete", false) ? "Aucun câble disponible."
-                                : "Inventaire partiel : aucun câble présentable dans cette vue. Le texte source conserve toutes les occurrences.").setNegativeButton("Annuler", null)
-                        .setPositiveButton(R.string.forge_cable_create, (dialog, which) -> chooseCableName("Créer un câble", "", point, null, "create")));
+                        .setMessage(inventory.optBoolean("analysisComplete", false) ? "No cables available."
+                                : "Partial inventory: no cables can be shown in this view. All occurrences are preserved in the source.").setNegativeButton("Cancel", null)
+                        .setPositiveButton(R.string.forge_cable_create, (dialog, which) -> chooseCableName("Create a cable", "", point, null, "create")));
                 return;
             }
             showCablePicker(point, cables, inventory.optBoolean("analysisComplete", false), 0);
@@ -1524,13 +1532,13 @@ public final class MainActivity extends Activity {
                     getResources().getQuantityString(R.plurals.forge_cable_outputs, outputs, outputs));
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.forge_cable_choose) + (complete ? "" : " · inventaire partiel"))
+                .setTitle(getString(R.string.forge_cable_choose) + (complete ? "" : " · partial inventory"))
                 .setItems(labels, (dialog, which) -> {
                     JSONObject cable = cables.optJSONObject(first + which);
                     if (cable != null && dialogSource.equals(sourceSnapshot)) applyCell(point, cable.optString("name"));
-                }).setNegativeButton("Annuler", null);
-        if (first + count < cables.length()) builder.setPositiveButton("Suivants", (dialog, which) -> showCablePicker(point, cables, complete, page + 1));
-        if (page > 0) builder.setNeutralButton("Précédents", (dialog, which) -> showCablePicker(point, cables, complete, page - 1));
+                }).setNegativeButton("Cancel", null);
+        if (first + count < cables.length()) builder.setPositiveButton("Next", (dialog, which) -> showCablePicker(point, cables, complete, page + 1));
+        if (page > 0) builder.setNeutralButton("Previous", (dialog, which) -> showCablePicker(point, cables, complete, page - 1));
         showDialog(builder);
     }
 
@@ -1582,8 +1590,8 @@ public final class MainActivity extends Activity {
             });
             int found = destinations.indexOf(current);
             ConnectionPoint next = destinations.isEmpty() ? null : destinations.get((found + 1) % destinations.size());
-            if (next == null) { Toast.makeText(this, "Aucune autre cellule affichable pour ce câble. Consultez le texte source.", Toast.LENGTH_LONG).show(); return; }
-            if (!inventory.optBoolean("analysisComplete", false)) Toast.makeText(this, "Inventaire partiel : seules les occurrences analysées peuvent être suivies.", Toast.LENGTH_LONG).show();
+            if (next == null) { Toast.makeText(this, "No other displayable cell was found for this cable. Check the source.", Toast.LENGTH_LONG).show(); return; }
+            if (!inventory.optBoolean("analysisComplete", false)) Toast.makeText(this, "Partial inventory: only analyzed occurrences can be followed.", Toast.LENGTH_LONG).show();
             navigateToCell(next, name);
         });
     }
@@ -1626,8 +1634,8 @@ public final class MainActivity extends Activity {
         if (!cableEditingReady(point)) return;
         CellDialogState state = new CellDialogState("raw", "", "", point, null);
         cellDialog = state; dialogType = "raw_value";
-        EditText value = edit("Expression complète");
-        value.setContentDescription("Valeur brute du paramètre " + point.parameter);
+        EditText value = edit("Full expression");
+        value.setContentDescription("Raw value of parameter " + point.parameter);
         value.setText(pointValue(point));
         String key = pointKey(point);
         addDraftBudgetFilter(value, () -> key, () -> pointParameter(point) == null ? "" : pointParameter(point).value);
@@ -1644,7 +1652,7 @@ public final class MainActivity extends Activity {
         });
         LinearLayout body = vertical(); body.setPadding(dp(20), dp(12), dp(20), 0); body.addView(value);
         AlertDialog dialog = new AlertDialog.Builder(this).setTitle(R.string.forge_expression_raw).setView(body)
-                .setNegativeButton("Fermer", null).setPositiveButton("Appliquer", null).create();
+                .setNegativeButton("Close", null).setPositiveButton("Apply", null).create();
         trackDialog(dialog);
         dialog.setOnDismissListener(ignored -> {
             clearCellDialog(state);
@@ -1654,7 +1662,7 @@ public final class MainActivity extends Activity {
             if (!cableEditingReady(point)) return;
             String typed = value.getText().toString();
             if (typed.equals(pointParameter(point).value)) { dialog.dismiss(); return; }
-            dialog.dismiss(); mutate("Modification de " + point.parameter + "…", -2,
+            dialog.dismiss(); mutate("Updating " + point.parameter + "…", -2,
                     () -> NativeBridge.setParameter(point.block, point.parameter, typed), () -> { editDrafts.remove(key); appliedCells.remove(key); });
         }));
         dialog.show(); requestUiSave();
@@ -1669,7 +1677,7 @@ public final class MainActivity extends Activity {
     }
 
     private void renameCable(ConnectionPoint point, String oldName) {
-        chooseCableName("Renommer le câble " + oldName, oldName, point, null, "rename");
+        chooseCableName("Rename cable " + oldName, oldName, point, null, "rename");
     }
 
     private void renameCableTo(ConnectionPoint point, String oldName, String newName) {
@@ -1677,9 +1685,9 @@ public final class MainActivity extends Activity {
         String capturedSource = sourceSnapshot;
         withCableInventory(inventory -> {
             if (!inventory.optBoolean("analysisComplete", false)) {
-                showDialog(new AlertDialog.Builder(this).setTitle("Inventaire des câbles partiel")
-                        .setMessage("Le renommage graphique est indisponible car toutes les occurrences ne peuvent pas être présentées. Le texte source conserve le patch intégral.")
-                        .setPositiveButton("Fermer", null)); return;
+                showDialog(new AlertDialog.Builder(this).setTitle("Partial cable inventory")
+                        .setMessage("Cable renaming is unavailable in this view because not all occurrences can be shown. The complete patch is preserved in the source.")
+                        .setPositiveButton("Close", null)); return;
             }
             JSONArray cables = inventory.optJSONArray("cables");
             boolean oldPresent = false, newPresent = false;
@@ -1690,11 +1698,11 @@ public final class MainActivity extends Activity {
                 if (newName.equalsIgnoreCase(cable.optString("name"))) newPresent = true;
             }
             final boolean renameSource = oldPresent;
-            if (newPresent) showDialog(new AlertDialog.Builder(this).setTitle("Fusionner les câbles ?")
-                    .setMessage(newName + " existe déjà. Toutes les occurrences de " + oldName + " seront reliées à " + newName
-                            + ". Cette fusion peut relier plusieurs sorties ; vérifiez ensuite les diagnostics.")
-                    .setNegativeButton("Annuler", null)
-                    .setPositiveButton("Fusionner", (dialog, which) -> {
+            if (newPresent) showDialog(new AlertDialog.Builder(this).setTitle("Merge cables?")
+                    .setMessage(newName + " already exists. All occurrences of " + oldName + " will be connected to " + newName
+                            + ". This merge may connect multiple outputs. Check the diagnostics afterwards.")
+                    .setNegativeButton("Cancel", null)
+                    .setPositiveButton("Merge", (dialog, which) -> {
                         if (capturedSource.equals(sourceSnapshot)) applyCableRename(point, oldName, newName, renameSource, true);
                     }));
             else applyCableRename(point, oldName, newName, renameSource, false);
@@ -1721,14 +1729,14 @@ public final class MainActivity extends Activity {
                     ForgeCells.renameCableTokens(draft.cells.offset, oldName, newName));
             String value = cells == null ? ForgeCells.renameCableTokens(draft.value, oldName, newName) : cells.draftExpression();
             if (value.length() > MAX_EDITOR_CHARACTERS || renamedBase.length() > MAX_EDITOR_CHARACTERS) {
-                Toast.makeText(this, "Ce nom dépasserait la limite d’une expression en cours. Choisissez un nom plus court ou appliquez le brouillon.", Toast.LENGTH_LONG).show(); return;
+                Toast.makeText(this, "This name would exceed the limit of an expression being edited. Choose a shorter name or apply the draft.", Toast.LENGTH_LONG).show(); return;
             }
             Draft renamed = new Draft(renamedBase, value, cells);
             changed.put(entry.getKey(), renamed); characters += renamed.characters(entry.getKey());
         }
         for (OrphanDraft orphan : orphanDrafts) characters += orphan.draft.characters(orphan.key);
-        if (characters > MAX_DRAFT_CHARACTERS) { Toast.makeText(this, "Ce nom dépasserait la limite des brouillons. Choisissez un nom plus court.", Toast.LENGTH_LONG).show(); return; }
-        mutate("Renommage de " + oldName + "…", -2,
+        if (characters > MAX_DRAFT_CHARACTERS) { Toast.makeText(this, "This name would exceed the draft limit. Choose a shorter name.", Toast.LENGTH_LONG).show(); return; }
+        mutate("Renaming " + oldName + "…", -2,
                 () -> renameSource ? NativeBridge.renameCableWithMerge(oldName, newName, merge) : NativeBridge.state(), () -> {
                     for (Map.Entry<String, ForgeCells> entry : remembered.entrySet()) {
                         String[] parts = entry.getKey().split(":", 3);
@@ -1767,7 +1775,7 @@ public final class MainActivity extends Activity {
             for (OrphanDraft orphan : orphanDrafts)
                 characters += orphan.draft.characters(orphan.key);
             if (characters <= MAX_DRAFT_CHARACTERS) return null;
-            field.setError("La limite des brouillons est atteinte. Appliquez les valeurs déjà saisies avant de continuer.");
+            field.setError("The draft limit has been reached. Apply the values already entered before continuing.");
             return destination.subSequence(replaceStart, replaceEnd);
         };
         field.setFilters(filters);
@@ -1783,10 +1791,10 @@ public final class MainActivity extends Activity {
         if (!loaded || operations != 0) return;
         selectedBlock = block.index;
         PopupMenu menu = new PopupMenu(this, anchor);
-        menu.getMenu().add(0, 1, 0, "Ajouter un paramètre…");
-        menu.getMenu().add(0, 2, 1, "Informations du circuit…");
-        menu.getMenu().add(0, 3, 2, "Éditer le texte source…");
-        menu.getMenu().add(0, 4, 3, "Supprimer ce bloc…");
+        menu.getMenu().add(0, 1, 0, "Add a parameter…");
+        menu.getMenu().add(0, 2, 1, "Circuit information…");
+        menu.getMenu().add(0, 3, 2, "Edit source…");
+        menu.getMenu().add(0, 4, 3, "Delete this block…");
         menu.getMenu().add(0, 5, 2, R.string.mobile_comment_edit);
         menu.getMenu().findItem(1).setEnabled(patch.analysisComplete);
         menu.getMenu().findItem(4).setEnabled(patch.analysisComplete);
@@ -1797,9 +1805,9 @@ public final class MainActivity extends Activity {
                 case 2:
                     Circuit circuit = circuitByName.get(block.name);
                     showDialog(new AlertDialog.Builder(this).setTitle(displayText(block.name.toUpperCase(Locale.ROOT), 256))
-                            .setMessage((circuit == null ? "Bloc non documenté." : circuit.title + "\n\n" + circuit.description)
-                                    + "\n\nLigne " + block.line + (block.disabled ? " · désactivé" : ""))
-                            .setPositiveButton("Fermer", null)); break;
+                            .setMessage((circuit == null ? "Undocumented block." : circuit.title + "\n\n" + circuit.description)
+                                    + "\n\nLine " + block.line + (block.disabled ? " · disabled" : ""))
+                            .setPositiveButton("Close", null)); break;
                 case 3: editSource(block.line); break;
                 case 4: confirmDeleteBlock(block); break;
                 case 5: editBlockComment(block); break;
@@ -1815,10 +1823,10 @@ public final class MainActivity extends Activity {
             showError(getString(R.string.mobile_controller_drafts_title), getString(R.string.mobile_controller_drafts)); return;
         }
         selectedBlock = block.index;
-        showDialog(new AlertDialog.Builder(this).setTitle("Supprimer [" + displayText(block.name, 256) + "] ?")
-                .setMessage("Le bloc et ses paramètres seront retirés du patch. Vous pourrez annuler cette modification.")
-                .setNegativeButton("Conserver", null)
-                .setPositiveButton("Supprimer", (dialog, which) -> mutate("Suppression…", -1,
+        showDialog(new AlertDialog.Builder(this).setTitle("Delete [" + displayText(block.name, 256) + "]?")
+                .setMessage("The block and its parameters will be removed from the patch. You can undo this change.")
+                .setNegativeButton("Keep", null)
+                .setPositiveButton("Delete", (dialog, which) -> mutate("Deleting…", -1,
                         () -> NativeBridge.removeCircuit(block.index))));
     }
 
@@ -1829,18 +1837,18 @@ public final class MainActivity extends Activity {
         category.setPadding(0, dp(8), 0, dp(10));
         inspectorBody.addView(category);
         if (!circuit.description.isEmpty()) addParagraph(circuit.description);
-        Button add = action("+ Ajouter au patch", "Ajouter le circuit " + circuit.name, true);
+        Button add = action("+ Add to patch", "Add circuit " + circuit.name, true);
         add.setOnClickListener(v -> addCircuit(circuit));
         inspectorBody.addView(add, new LinearLayout.LayoutParams(-1, dp(52)));
         ImageView illustration = new ImageView(this);
         illustration.setVisibility(View.GONE);
         illustration.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        illustration.setContentDescription("Illustration officielle du circuit " + circuit.name);
+        illustration.setContentDescription("Official illustration of circuit " + circuit.name);
         inspectorBody.addView(illustration, new LinearLayout.LayoutParams(-1, dp(160)));
         loadPreviewImage("circuits/" + circuit.name + ".png", illustration, inspectorGeneration);
-        if (circuit.manualPage > 0) addParagraph("Manuel DROID · page " + circuit.manualPage);
-        addSection("Paramètres disponibles · " + circuit.parameters.size());
-        if (circuit.parameters.isEmpty()) addParagraph("Ce circuit ne possède pas de paramètre documenté.");
+        if (circuit.manualPage > 0) addParagraph("DROID manual · page " + circuit.manualPage);
+        addSection("Available parameters · " + circuit.parameters.size());
+        if (circuit.parameters.isEmpty()) addParagraph("This circuit has no documented parameters.");
         int shown = 0;
         for (Definition definition : circuit.parameters) {
             if (++shown > 24) break;
@@ -1850,18 +1858,18 @@ public final class MainActivity extends Activity {
             if (!definition.description.isEmpty()) card.addView(label(definition.description, 13, TEXT));
             inspectorBody.addView(card, spacedParams());
         }
-        if (circuit.parameters.size() > 24) addParagraph("Les 24 premiers paramètres sont présentés ici. Tous les paramètres du catalogue sont disponibles après l’ajout du circuit.");
+        if (circuit.parameters.size() > 24) addParagraph("The first 24 parameters are shown here. All catalog parameters are available after adding the circuit.");
     }
 
     private void renderBlockInspector(Block block) {
         inspectorTitle.setText(getString(R.string.forge_block_brackets, displayText(block.name, 256)));
         Circuit circuit = circuitByName.get(block.name);
         if (circuit != null && !circuit.title.isEmpty()) inspectorBody.addView(label(circuit.title, 17, TEXT));
-        String details = "Bloc " + (block.index + 1) + " · ligne " + block.line;
-        if (block.controller) details += " · module matériel";
-        if (block.disabled) details += " · désactivé";
+        String details = "Block " + (block.index + 1) + " · line " + block.line;
+        if (block.controller) details += " · hardware module";
+        if (block.disabled) details += " · disabled";
         addParagraph(details);
-        if (block.disabled) addParagraph("Ce bloc est désactivé dans le texte du patch.");
+        if (block.disabled) addParagraph("This block is disabled in the patch source.");
         // JNI identifies a parameter by name, selecting the last enabled occurrence.
         // Show exactly that occurrence so duplicate source lines cannot misdirect an edit.
         Map<String, Parameter> effective = new LinkedHashMap<>();
@@ -1876,14 +1884,14 @@ public final class MainActivity extends Activity {
             if (++shown > PARAMETER_PAGE_SIZE) break;
             Definition definition = circuit == null ? null : circuit.find(parameter.name);
             LinearLayout card = parameterCard();
-            TextView name = label(parameter.name + (parameter.disabled ? " · désactivé" : ""), 14, parameterColor(definition, parameter.disabled));
+            TextView name = label(parameter.name + (parameter.disabled ? " · disabled" : ""), 14, parameterColor(definition, parameter.disabled));
             name.setTypeface(Typeface.MONOSPACE);
             card.addView(name);
             int duplicates = occurrences.get(parameter.name);
-            if (duplicates > 1) card.addView(label(duplicates + " occurrences · édition de la dernière occurrence active. Utilisez le texte source pour les autres.", 12, COPPER));
+            if (duplicates > 1) card.addView(label(duplicates + " occurrences · editing the last active occurrence. Use the source editor for the others.", 12, COPPER));
             if (definition != null && !definition.description.isEmpty()) card.addView(label(definition.description, 12, MUTED));
             if (parameter.value.length() > MAX_EDITOR_CHARACTERS || parameter.name.length() > 256 || block.name.length() > 256) {
-                card.addView(label(displayText(parameter.value, 256) + "\nValeur intégrale conservée. Consultez le texte source.", 13, MUTED));
+                card.addView(label(displayText(parameter.value, 256) + "\nThe full value is preserved. Check the source.", 13, MUTED));
                 inspectorBody.addView(card, spacedParams());
                 continue;
             }
@@ -1892,10 +1900,10 @@ public final class MainActivity extends Activity {
             card.addView(editRow);
             inspectorBody.addView(card, spacedParams());
         }
-        if (block.parameters.isEmpty()) addParagraph("Aucun paramètre renseigné dans ce bloc.");
-        if (effective.size() > PARAMETER_PAGE_SIZE) addParagraph("Les 32 premiers paramètres du module sont présentés ici. Le texte source conserve tous les paramètres.");
+        if (block.parameters.isEmpty()) addParagraph("No parameters have been entered in this block.");
+        if (effective.size() > PARAMETER_PAGE_SIZE) addParagraph("The first 32 module parameters are shown here. All parameters are preserved in the source.");
         renderAddParameter(block, circuit);
-        Button delete = action("Supprimer ce bloc…", "Supprimer le bloc " + block.name, true);
+        Button delete = action("Delete this block…", "Delete block " + block.name, true);
         delete.setTextColor(RED);
         delete.setOnClickListener(v -> confirmDeleteBlock(block));
         inspectorBody.addView(delete, spacedParams());
@@ -1910,7 +1918,7 @@ public final class MainActivity extends Activity {
             }
         }
         if (available.isEmpty()) return;
-        addSection("Ajouter un paramètre");
+        addSection("Add a parameter");
         LinearLayout card = parameterCard();
         Spinner parameter = new Spinner(this);
         List<String> names = new ArrayList<>();
@@ -1919,14 +1927,14 @@ public final class MainActivity extends Activity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         parameter.setAdapter(adapter);
         parameter.setBackground(background(RAISED, BORDER, 0));
-        parameter.setContentDescription("Paramètre à ajouter depuis le catalogue officiel");
+        parameter.setContentDescription("Parameter to add from the official catalog");
         card.addView(parameter, new LinearLayout.LayoutParams(-1, dp(48)));
         TextView help = label("", 12, MUTED);
         help.setPadding(0, dp(8), 0, dp(8));
         card.addView(help);
-        EditText value = edit("Valeur ou câble (_nom)");
+        EditText value = edit("Value or cable (_name)");
         value.setSingleLine(true);
-        value.setContentDescription("Valeur du nouveau paramètre");
+        value.setContentDescription("Value of the new parameter");
         String[] selectedName = {""};
         boolean[] settingValue = {false};
         addDraftBudgetFilter(value, () -> block.index + ":" + block.name + ":" + selectedName[0], () -> "");
@@ -1961,16 +1969,16 @@ public final class MainActivity extends Activity {
         if (!newParameterName.isEmpty()) for (int i = 0; i < available.size(); i++)
             if (newParameterName.equals(available.get(i).name)) { parameter.setSelection(i); break; }
         card.addView(value, new LinearLayout.LayoutParams(-1, dp(50)));
-        Button add = action("Ajouter le paramètre", "Ajouter le paramètre choisi à ce bloc", true);
+        Button add = action("Add parameter", "Add the selected parameter to this block", true);
         add.setOnClickListener(v -> {
             Definition definition = available.get(parameter.getSelectedItemPosition());
             String text = value.getText().toString();
             if (text.trim().isEmpty()) {
-                value.setError("Saisissez une valeur ou un câble.");
+                value.setError("Enter a value or cable.");
                 value.requestFocus();
                 return;
             }
-            mutate("Ajout de " + definition.name + "…", -2,
+            mutate("Adding " + definition.name + "…", -2,
                     () -> NativeBridge.setParameter(block.index, definition.name, text),
                     () -> editDrafts.remove(block.index + ":" + block.name + ":" + definition.name));
         });
@@ -2026,7 +2034,7 @@ public final class MainActivity extends Activity {
                         Block block = findBlock(module.block);
                         if (block != null && block.controller) showController(block);
                     }
-                }).setNegativeButton("Fermer", null));
+                }).setNegativeButton("Close", null));
     }
 
     private String moduleTitle(RackViewport.Module module) {
@@ -2041,7 +2049,7 @@ public final class MainActivity extends Activity {
         for (int index = 0; index < modules.size(); index++) titles[index] = moduleTitle(modules.get(index));
         showDialog(new AlertDialog.Builder(this).setTitle(R.string.mobile_labels_edit)
                 .setItems(titles, (dialog, position) -> chooseModuleLabel(modules.get(position)))
-                .setNegativeButton("Fermer", null));
+                .setNegativeButton("Close", null));
     }
 
     private void chooseModuleLabel(RackViewport.Module module) {
@@ -2056,7 +2064,7 @@ public final class MainActivity extends Activity {
         }
         showDialog(new AlertDialog.Builder(this).setTitle(moduleTitle(module))
                 .setItems(titles, (dialog, position) -> editRegisterLabel(ports.get(position).register, module))
-                .setNegativeButton("Fermer", null));
+                .setNegativeButton("Close", null));
     }
 
     private boolean annotationEditingAvailable() {
@@ -2074,7 +2082,7 @@ public final class MainActivity extends Activity {
         if (annotationDraft == null || annotationDraft.matches(kind, block, register)) return false;
         showDialog(new AlertDialog.Builder(this).setTitle(R.string.mobile_annotation_pending)
                 .setMessage(R.string.mobile_annotation_replace)
-                .setNegativeButton("Conserver", null)
+                .setNegativeButton("Keep", null)
                 .setPositiveButton(R.string.mobile_annotation_resume, (dialog, which) -> showAnnotationDraft())
                 .setNeutralButton(R.string.mobile_annotation_discard, (dialog, which) -> {
                     annotationDraft = null; requestUiSave(); next.run();
@@ -2131,8 +2139,8 @@ public final class MainActivity extends Activity {
         if (!annotationCurrent(draft)) {
             showDialog(new AlertDialog.Builder(this).setTitle(R.string.mobile_annotation_pending)
                     .setMessage(getString(R.string.mobile_annotation_changed) + "\n\n" + draft.readable())
-                    .setNegativeButton("Conserver", null)
-                    .setPositiveButton("Copier", (dialog, which) -> {
+                    .setNegativeButton("Keep", null)
+                    .setPositiveButton("Copy", (dialog, which) -> {
                         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                         if (clipboard != null) clipboard.setPrimaryClip(ClipData.newPlainText(getString(R.string.mobile_annotation_pending), draft.readable()));
                     }).setNeutralButton(R.string.mobile_annotation_discard, (dialog, which) -> {
@@ -2171,7 +2179,7 @@ public final class MainActivity extends Activity {
         ScrollView form = new ScrollView(this); form.addView(body);
         AlertDialog dialog = trackDialog(new AlertDialog.Builder(this)
                 .setTitle(label ? getString(R.string.mobile_label_title, draft.register) : getString(R.string.mobile_comment_title, draft.moduleName.toUpperCase(Locale.ROOT)))
-                .setView(form).setNegativeButton("Fermer", null).setPositiveButton("Appliquer", null)
+                .setView(form).setNegativeButton("Close", null).setPositiveButton("Apply", null)
                 .setNeutralButton(R.string.mobile_annotation_discard, null).create());
         dialog.setOnDismissListener(closed -> {
             if (annotationDialog == dialog) annotationDialog = null;
@@ -2246,7 +2254,7 @@ public final class MainActivity extends Activity {
         body.addView(scroll, new LinearLayout.LayoutParams(-1, 0, 1));
         engineButtons.clear();
         renderBlockInspector(block);
-        previewDialog = trackDialog(new AlertDialog.Builder(this).setView(body).setNegativeButton("Fermer", null).create());
+        previewDialog = trackDialog(new AlertDialog.Builder(this).setView(body).setNegativeButton("Close", null).create());
         previewDialog.setOnDismissListener(dialog -> {
             inspectorBody = null; previewDialog = null; engineButtons.clear();
             if (!destroyed) { dialogType = ""; requestUiSave(); }
@@ -2272,39 +2280,39 @@ public final class MainActivity extends Activity {
 
     private void addCircuit(Circuit circuit) {
         final int selection = initialSelection;
-        mutate("Ajout de " + circuit.name + "…", -3, () -> NativeBridge.addCircuitWithSelection(circuit.name, selection));
+        mutate("Adding " + circuit.name + "…", -3, () -> NativeBridge.addCircuitWithSelection(circuit.name, selection));
     }
 
     private String parameterMeta(Definition definition) {
         String meta = definition.type;
         if (!definition.direction.isEmpty()) meta += (meta.isEmpty() ? "" : " · ") + definition.direction;
-        if (!definition.defaultValue.isEmpty()) meta += " · défaut : " + definition.defaultValue;
+        if (!definition.defaultValue.isEmpty()) meta += " · default: " + definition.defaultValue;
         return meta;
     }
 
     private void showFileMenu(View anchor) {
         if (!loaded || operations != 0) return;
         PopupMenu menu = new PopupMenu(this, anchor);
-        menu.getMenu().add(0, 6, 0, "Nouveau patch…");
-        menu.getMenu().add(0, 1, 1, "Importer un patch .ini…");
-        menu.getMenu().add(0, 2, 2, "Exporter le patch .ini…");
-        menu.getMenu().add(0, 7, 3, "Ajouter un contrôleur matériel…");
+        menu.getMenu().add(0, 6, 0, "New patch…");
+        menu.getMenu().add(0, 1, 1, "Import an .ini patch…");
+        menu.getMenu().add(0, 2, 2, "Export the .ini patch…");
+        menu.getMenu().add(0, 7, 3, "Add a hardware controller…");
         menu.getMenu().add(0, 9, 4, R.string.forge_initial_parameters);
         menu.getMenu().add(0, 10, 4, R.string.mobile_labels_edit);
         menu.getMenu().add(0, 12, 4, R.string.mobile_examples_menu);
-        menu.getMenu().add(0, 13, 4, "Connexion DROID…");
-        menu.getMenu().add(0, 14, 4, "Importer droid.ini de la carte DROID…");
-        menu.getMenu().add(0, 15, 4, "Activate! — envoyer au DROID…");
-        menu.getMenu().add(0, 16, 4, "Save to SD — écrire droid.ini…");
+        menu.getMenu().add(0, 13, 4, "DROID connection…");
+        menu.getMenu().add(0, 14, 4, "Import droid.ini from the DROID card…");
+        menu.getMenu().add(0, 15, 4, "Activate! — send to DROID…");
+        menu.getMenu().add(0, 16, 4, "Save to SD — write droid.ini…");
         menu.getMenu().add(0, 17, 4, "Eject SD…");
-        menu.getMenu().add(0, 18, 4, "Sauvegardes DROID…");
+        menu.getMenu().add(0, 18, 4, "DROID backups…");
         if (new File(getFilesDir(), "droid-import-backups/latest.json").isFile())
-            menu.getMenu().add(0, 19, 4, "Récupérer le document avant import DROID…");
-        menu.getMenu().add(0, 3, 4, "Éditer le texte source…");
-        menu.getMenu().add(0, 4, 5, "Voir les diagnostics locaux…");
+            menu.getMenu().add(0, 19, 4, "Recover the document saved before DROID import…");
+        menu.getMenu().add(0, 3, 4, "Edit source…");
+        menu.getMenu().add(0, 4, 5, "View local diagnostics…");
         if (!orphanDrafts.isEmpty()) menu.getMenu().add(0, 8, 6, R.string.forge_orphan_drafts_menu);
         if (annotationDraft != null && annotationDraft.dirty()) menu.getMenu().add(0, 11, 6, R.string.mobile_annotation_pending_menu);
-        menu.getMenu().add(0, 5, 6, "À propos et licences…");
+        menu.getMenu().add(0, 5, 6, "About and licenses…");
         menu.getMenu().findItem(7).setEnabled(patch.analysisComplete && !recoveryRequired);
         menu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
@@ -2341,9 +2349,9 @@ public final class MainActivity extends Activity {
         WORKER.execute(() -> {
             try (InputStream input = application.getAssets().open("examples/manifest.json")) {
                 JSONObject manifest = new JSONObject(readUtf8(input, 2 * 1024 * 1024));
-                if (manifest.optInt("schema_version") != 1) throw new IOException("Index des exemples non reconnu.");
+                if (manifest.optInt("schema_version") != 1) throw new IOException("Unrecognized example index.");
                 JSONArray entries = manifest.optJSONArray("examples");
-                if (entries == null || entries.length() > 1024) throw new IOException("Index des exemples incomplet ou trop volumineux.");
+                if (entries == null || entries.length() > 1024) throw new IOException("The example index is incomplete or too large.");
                 Map<String, List<Example>> categories = new LinkedHashMap<>();
                 String firmware = manifest.optString("firmware");
                 for (int index = 0; index < entries.length(); index++) {
@@ -2353,9 +2361,11 @@ public final class MainActivity extends Activity {
                 deliver(() -> {
                     if (operations != 0 || !sourceBefore.equals(sourceSnapshot)) return;
                     List<String> names = new ArrayList<>(categories.keySet());
+                    String[] categoryLabels = new String[names.size()];
+                    for (int index = 0; index < names.size(); index++) categoryLabels[index] = ExampleText.category(names.get(index));
                     showDialog(new AlertDialog.Builder(this).setTitle(R.string.mobile_examples_title)
-                            .setItems(names.toArray(new String[0]), (dialog, position) -> chooseExample(names.get(position), categories.get(names.get(position))))
-                            .setNegativeButton("Fermer", null));
+                            .setItems(categoryLabels, (dialog, position) -> chooseExample(names.get(position), categories.get(names.get(position))))
+                            .setNegativeButton("Close", null));
                 });
             } catch (Exception | OutOfMemoryError exception) {
                 deliver(() -> showError(getString(R.string.mobile_examples_unavailable), errorMessage(exception)));
@@ -2367,18 +2377,18 @@ public final class MainActivity extends Activity {
         String[] titles = new String[examples.size()];
         for (int index = 0; index < examples.size(); index++) {
             Example example = examples.get(index);
-            titles[index] = example.title + (example.page > 0 ? getString(R.string.mobile_example_page, example.page) : "");
+            titles[index] = ExampleText.title(example.title) + (example.page > 0 ? getString(R.string.mobile_example_page, example.page) : "");
         }
-        showDialog(new AlertDialog.Builder(this).setTitle(category).setItems(titles, (dialog, position) -> previewExample(examples.get(position)))
-                .setNegativeButton("Fermer", null));
+        showDialog(new AlertDialog.Builder(this).setTitle(ExampleText.category(category)).setItems(titles, (dialog, position) -> previewExample(examples.get(position)))
+                .setNegativeButton("Close", null));
     }
 
     private static String readExample(Context context, Example example) throws IOException {
-        if (!example.file.matches("examples/[a-zA-Z0-9_./-]+\\.ini") || example.file.contains("..")) throw new IOException("Chemin de l’exemple invalide.");
+        if (!example.file.matches("examples/[a-zA-Z0-9_./-]+\\.ini") || example.file.contains("..")) throw new IOException("Invalid example path.");
         try (InputStream input = context.getAssets().open(example.file)) {
             String text = readUtf8(input);
             if (!example.sha256.isEmpty() && !PatchTextCodec.sha256(text).equalsIgnoreCase(example.sha256))
-                throw new IOException("Le texte de l’exemple ne correspond pas à son index.");
+                throw new IOException("The example text does not match its index.");
             return text;
         }
     }
@@ -2393,11 +2403,11 @@ public final class MainActivity extends Activity {
                 deliver(() -> {
                     if (operations != 0 || !sourceBefore.equals(sourceSnapshot)) return;
                     LinearLayout body = vertical(), details = panel();
-                    details.addView(label(getString(R.string.mobile_example_metadata, example.firmware, example.category,
+                    details.addView(label(getString(R.string.mobile_example_metadata, example.firmware, ExampleText.category(example.category),
                             example.page > 0 ? getString(R.string.mobile_example_page, example.page) : ""), 12, MUTED));
                     details.addView(label(getString("full".equals(example.kind) ? R.string.mobile_example_full
                             : "fragment".equals(example.kind) ? R.string.mobile_example_fragment : R.string.mobile_example_snippet), 13, TEXT));
-                    if (!example.note.isEmpty()) details.addView(label(example.note, 12, MUTED));
+                    if (!example.note.isEmpty()) details.addView(label(ExampleText.note(example.note), 12, MUTED));
                     TextView provenance = label(getString(R.string.mobile_example_provenance, example.source, example.sourcePath), 11, MUTED);
                     provenance.setTextIsSelectable(true); details.addView(provenance);
                     if (example.contextRequired) details.addView(label(getString(R.string.mobile_example_context), 13, CYAN));
@@ -2406,11 +2416,11 @@ public final class MainActivity extends Activity {
                     code.setTypeface(Typeface.MONOSPACE); code.setTextIsSelectable(true);
                     code.setPadding(dp(8), dp(12), dp(8), dp(8)); details.addView(code); scroll.addView(details);
                     body.addView(scroll, new LinearLayout.LayoutParams(-1, dp(Math.max(120, Math.min(480, getResources().getConfiguration().screenHeightDp - 180)))));
-                    showDialog(new AlertDialog.Builder(this).setTitle(example.title).setView(body).setNegativeButton("Fermer", null)
-                            .setNeutralButton("Copier", (dialog, which) -> {
+                    showDialog(new AlertDialog.Builder(this).setTitle(ExampleText.title(example.title)).setView(body).setNegativeButton("Close", null)
+                            .setNeutralButton("Copy", (dialog, which) -> {
                                 if (text.length() > 128 * 1024) { toast(getString(R.string.mobile_example_copy_limit)); return; }
                                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                                if (clipboard != null) clipboard.setPrimaryClip(ClipData.newPlainText(example.title, text));
+                                if (clipboard != null) clipboard.setPrimaryClip(ClipData.newPlainText(ExampleText.title(example.title), text));
                             }).setPositiveButton(R.string.mobile_example_open, (dialog, which) -> confirmExample(example)));
                 });
             } catch (IOException | OutOfMemoryError exception) {
@@ -2430,8 +2440,8 @@ public final class MainActivity extends Activity {
     private void confirmExample(Example example) {
         showDialog(new AlertDialog.Builder(this).setTitle(R.string.mobile_example_replace_title)
                 .setMessage(getString(R.string.mobile_example_replace) + (example.contextRequired ? "\n\n" + getString(R.string.mobile_example_context) : ""))
-                .setNegativeButton("Conserver le patch", null)
-                .setNeutralButton("Exporter d’abord", (dialog, which) -> confirmExport())
+                .setNegativeButton("Keep current patch", null)
+                .setNeutralButton("Export first", (dialog, which) -> confirmExport())
                 .setPositiveButton(R.string.mobile_example_open, (dialog, which) -> {
                     Context application = getApplicationContext();
                     mutate(getString(R.string.forge_read_patch), -1, () -> replaceDocument(readExample(application, example), true), () -> {
@@ -2444,11 +2454,11 @@ public final class MainActivity extends Activity {
     }
 
     private void openPatch() {
-        showDialog(new AlertDialog.Builder(this).setTitle("Importer un autre patch ?")
-                .setMessage("Le fichier choisi remplacera le patch courant, sa sauvegarde locale et les brouillons non appliqués. L’historique Annuler / Rétablir sera réinitialisé. Exportez d’abord votre patch si vous souhaitez le conserver et récupérez vos brouillons.")
-                .setNegativeButton("Conserver le patch", null)
-                .setNeutralButton("Exporter d’abord", (dialog, which) -> confirmExport())
-                .setPositiveButton("Choisir un fichier", (dialog, which) -> choosePatch())
+        showDialog(new AlertDialog.Builder(this).setTitle("Import another patch?")
+                .setMessage("The selected file will replace the current patch, its local autosave and unapplied drafts. Undo/Redo history will be reset. Export your patch first if you want to keep it, and recover your drafts.")
+                .setNegativeButton("Keep current patch", null)
+                .setNeutralButton("Export first", (dialog, which) -> confirmExport())
+                .setPositiveButton("Choose a file", (dialog, which) -> choosePatch())
                 );
     }
 
@@ -2461,7 +2471,7 @@ public final class MainActivity extends Activity {
         showDialog(new AlertDialog.Builder(this).setTitle(R.string.forge_initial_parameters)
                 .setSingleChoiceItems(initialParameterChoices(), initialSelection, (dialog, which) -> {
                     initialSelection = which; requestUiSave(); dialog.dismiss();
-                }).setNegativeButton("Fermer", null));
+                }).setNegativeButton("Close", null));
     }
 
     private void choosePatch() {
@@ -2481,7 +2491,7 @@ public final class MainActivity extends Activity {
         final JSONObject previousUi;
         try { previousUi = captureUi(); }
         catch (JSONException | OutOfMemoryError failure) {
-            showError("Import refusé", "Les brouillons actuels n’ont pas pu être sauvegardés : " + errorMessage(failure));
+            showError("Import rejected", "The current drafts could not be saved: " + errorMessage(failure));
             return;
         }
         main.removeCallbacks(saveUi);
@@ -2489,15 +2499,15 @@ public final class MainActivity extends Activity {
         final String previousName = patchName;
         final String previousSource = sourceSnapshot;
         final java.util.concurrent.atomic.AtomicReference<String> importWarning = new java.util.concurrent.atomic.AtomicReference<>("");
-        mutate("Import de droid.ini…", -1, () -> {
+        mutate("Importing droid.ini…", -1, () -> {
             if (!previousSource.equals(NativeBridge.source()))
-                throw new IOException("Le document a changé : recommencez l’import.");
+                throw new IOException("The document has changed. Start the import again.");
             File directory = new File(application.getFilesDir(), "droid-import-backups");
             if (!directory.isDirectory() && !directory.mkdirs())
-                throw new IOException("La sauvegarde du document précédent n’a pas pu être créée.");
+                throw new IOException("The backup of the previous document could not be created.");
             String previousState = previousUi.toString();
             File[] saved = directory.listFiles();
-            if (saved == null) throw new IOException("Les sauvegardes précédentes sont inaccessibles.");
+            if (saved == null) throw new IOException("Previous backups are inaccessible.");
             long savedBytes = 0;
             int documents = 0;
             for (File file : saved) {
@@ -2507,19 +2517,19 @@ public final class MainActivity extends Activity {
             long requiredBytes = previousSource.getBytes(StandardCharsets.UTF_8).length
                     + previousState.getBytes(StandardCharsets.UTF_8).length;
             if (documents >= 128 || savedBytes + requiredBytes > 64L * 1024 * 1024)
-                throw new IOException("La limite des copies avant import est atteinte (128 documents / 64 Mio). Exportez les documents à conserver avant un nouvel import.");
+                throw new IOException("The pre-import backup limit has been reached (128 documents / 64 MiB). Export any documents you want to keep before importing another patch.");
             String identity = java.util.UUID.randomUUID().toString();
             File sourceCopy = new File(directory, identity + ".ini");
             writeAtomic(new AtomicFile(sourceCopy), NativeBridge.source());
             try (InputStream input = new AtomicFile(sourceCopy).openRead()) {
                 if (!readUtf8(input).equals(NativeBridge.source()))
-                    throw new IOException("La sauvegarde du document précédent n’a pas pu être vérifiée.");
+                    throw new IOException("The backup of the previous document could not be verified.");
             }
             File sessionCopy = new File(directory, identity + ".json");
             writeAtomic(new AtomicFile(sessionCopy), previousState);
             try (InputStream input = new AtomicFile(sessionCopy).openRead()) {
                 if (!previousState.equals(readUtf8(input, 32 * 1024 * 1024)))
-                    throw new IOException("La sauvegarde des brouillons n’a pas pu être vérifiée.");
+                    throw new IOException("The draft backup could not be verified.");
             }
             writeAtomic(new AtomicFile(new File(directory, "latest.json")),
                     new JSONObject().put("id", identity).put("name", previousName).toString());
@@ -2533,7 +2543,7 @@ public final class MainActivity extends Activity {
             writeAtomic(uiTransition(application), journal);
             try (InputStream input = uiTransition(application).openRead()) {
                 if (!journal.equals(readUtf8(input, 64 * 1024 * 1024)))
-                    throw new IOException("L’état de récupération de l’import n’a pas pu être vérifié.");
+                    throw new IOException("The import recovery state could not be verified.");
             }
             try {
                 String result = replaceDocument(text, true);
@@ -2543,7 +2553,7 @@ public final class MainActivity extends Activity {
                     writeAtomic(uiTransition(application), committed);
                     try (InputStream input = uiTransition(application).openRead()) {
                         if (!committed.equals(readUtf8(input, 64 * 1024 * 1024)))
-                            throw new IOException("Le journal d’import n’a pas pu être vérifié après chargement.");
+                            throw new IOException("The import journal could not be verified after loading.");
                     }
                 } catch (IOException failure) {
                     importWarning.set(errorMessage(failure));
@@ -2560,7 +2570,7 @@ public final class MainActivity extends Activity {
             pendingConnection = null; annotationDraft = null; sourceDraft = null; sourceDraftBase = null;
             if (restoredUi != null) restoreUi(restoredUi, false);
             if (!importWarning.get().isEmpty())
-                showError("Sauvegarde de récupération incomplète", importWarning.get() + " Les copies du document précédent sont conservées.");
+                showError("Incomplete recovery backup", importWarning.get() + " Copies of the previous document have been kept.");
         }, EditMode.RESET);
     }
 
@@ -2577,7 +2587,7 @@ public final class MainActivity extends Activity {
                 }
                 String identity = record.getString("id");
                 if (!identity.matches("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"))
-                    throw new IOException("Identifiant de sauvegarde invalide.");
+                    throw new IOException("Invalid backup identifier.");
                 String text;
                 JSONObject ui;
                 try (InputStream input = new AtomicFile(new File(directory, identity + ".ini")).openRead()) { text = readUtf8(input); }
@@ -2585,41 +2595,42 @@ public final class MainActivity extends Activity {
                     ui = new JSONObject(readUtf8(input, 32 * 1024 * 1024));
                 }
                 if (!PatchTextCodec.sha256(text).equals(ui.optString("sourceHash")))
-                    throw new IOException("Le document et ses brouillons sauvegardés ne correspondent pas.");
+                    throw new IOException("The saved document and its drafts do not match.");
                 String name = safeDocumentName(record.optString("name", "droid.ini"));
                 deliver(() -> {
                     operations--; updateEnabled(); updateDiagnostics();
-                    showDialog(new AlertDialog.Builder(this).setTitle("Récupérer le document précédent ?")
-                            .setMessage("Le document et ses brouillons sauvegardés avant l’import DROID seront restaurés. Le document courant sera à son tour sauvegardé. La carte DROID reste inchangée.")
-                            .setNegativeButton("Annuler", null)
-                            .setPositiveButton("Récupérer", (dialog, which) -> importDroidSource(text, name, ui)));
+                    showDialog(new AlertDialog.Builder(this).setTitle("Recover the previous document?")
+                            .setMessage("The document and drafts saved before the DROID import will be restored. The current document will be backed up in turn. The DROID card will remain unchanged.")
+                            .setNegativeButton("Cancel", null)
+                            .setPositiveButton("Recover", (dialog, which) -> importDroidSource(text, name, ui)));
                 });
             } catch (Exception | OutOfMemoryError exception) {
-                deliver(() -> { operations--; updateEnabled(); updateDiagnostics(); showError("Récupération impossible", errorMessage(exception)); });
+                deliver(() -> { operations--; updateEnabled(); updateDiagnostics(); showError("Unable to recover", errorMessage(exception)); });
             }
         });
     }
 
     private void newPatch() {
-        showDialog(new AlertDialog.Builder(this).setTitle("Créer un nouveau patch ?")
-                .setMessage("La sauvegarde locale actuelle et les brouillons non appliqués seront remplacés. Exportez d’abord votre patch pour le conserver et récupérez vos brouillons. L’historique Annuler / Rétablir sera réinitialisé.")
-                .setNegativeButton("Conserver le patch", null)
-                .setNeutralButton("Exporter d’abord", (dialog, which) -> confirmExport())
-                .setPositiveButton("Nouveau patch", (dialog, which) -> mutate("Création du patch…", -1,
-                        () -> replaceDocument("# Nouveau patch droid Forge mobile\n# LABELS: master=18; firmware=blue-7\n", true),
-                        () -> { patchName = "nouveau-droid.ini"; activePane = 1; editDrafts.clear(); orphanDrafts.clear(); appliedCells.clear(); pendingConnection = null; annotationDraft = null; sourceDraft = null; sourceDraftBase = null; }, EditMode.RESET))
+        showDialog(new AlertDialog.Builder(this).setTitle("Create a new patch?")
+                .setMessage("The current local autosave and unapplied drafts will be replaced. Export your patch first if you want to keep it, and recover your drafts. Undo/Redo history will be reset.")
+                .setNegativeButton("Keep current patch", null)
+                .setNeutralButton("Export first", (dialog, which) -> confirmExport())
+                .setPositiveButton("New patch", (dialog, which) -> mutate("Creating patch…", -1,
+                        () -> replaceDocument("# New patch droid Forge mobile\n# LABELS: master=18; firmware=blue-7\n", true),
+                        () -> { patchName = "new-droid.ini"; activePane = 1; editDrafts.clear(); orphanDrafts.clear(); appliedCells.clear(); pendingConnection = null; annotationDraft = null; sourceDraft = null; sourceDraftBase = null; }, EditMode.RESET))
                 );
     }
 
     private void addController() {
-        showDialog(new AlertDialog.Builder(this).setTitle("Ajouter un contrôleur DROID")
+        if (!loaded || operations != 0 || !patch.analysisComplete || recoveryRequired) return;
+        showDialog(new AlertDialog.Builder(this).setTitle("Add a DROID controller")
                 .setItems(CONTROLLERS, (dialog, position) -> {
                     String name = CONTROLLERS[position];
                     int index = patch.blocks.size();
                     for (Block block : patch.blocks) if (!block.controller) { index = block.index; break; }
-                    mutate("Ajout du contrôleur " + name + "…", index, () -> NativeBridge.addCircuit(name));
+                    mutate("Adding controller " + name + "…", index, () -> NativeBridge.addCircuit(name));
                 })
-                .setNegativeButton("Fermer", null));
+                .setNegativeButton("Close", null));
     }
 
     private void confirmExport() {
@@ -2628,18 +2639,19 @@ public final class MainActivity extends Activity {
 
     private void confirmExport(boolean draftsAcknowledged) {
         if (!draftsAcknowledged && (!editDrafts.isEmpty() || !orphanDrafts.isEmpty() || annotationDraft != null && annotationDraft.dirty() || (sourceDraft != null && sourceSnapshot.equals(sourceDraftBase)))) {
-            showDialog(new AlertDialog.Builder(this).setTitle("Des saisies ne sont pas appliquées")
-                    .setMessage("L’export contient le patch appliqué. Vos brouillons sont conservés localement ; appliquez les valeurs ou le texte source pour les inclure dans le fichier exporté.")
-                    .setNegativeButton("Revenir au patch", null)
-                    .setPositiveButton("Exporter le patch appliqué", (dialog, which) -> confirmExport(true)));
+            showDialog(new AlertDialog.Builder(this).setTitle("Some edits have not been applied")
+                    .setMessage("The export contains the applied patch. Your drafts are saved locally. Apply the values or source text to include them in the exported file.")
+                    .setNegativeButton("Return to patch", null)
+                    .setPositiveButton("Export applied patch", (dialog, which) -> confirmExport(true)));
             return;
         }
         if (patch.errorCount() > 0) {
-            showDialog(new AlertDialog.Builder(this).setTitle("Exporter avec des erreurs locales ?")
-                    .setMessage(patch.errorCount() + " erreur(s) sont signalées. L’export conserve le texte actuel ; vérifiez le patch avant de l’utiliser sur le DROID.")
-                    .setNegativeButton("Revenir au patch", null)
+            showDialog(new AlertDialog.Builder(this).setTitle("Export with local errors?")
+                    .setMessage(getResources().getQuantityString(R.plurals.forge_error_count, patch.errorCount(), patch.errorCount())
+                            + " reported. The export preserves the current text. Check the patch before using it on DROID.")
+                    .setNegativeButton("Return to patch", null)
                     .setNeutralButton("Diagnostics", (dialog, which) -> showDiagnostics())
-                    .setPositiveButton("Exporter", (dialog, which) -> createPatch()));
+                    .setPositiveButton("Export", (dialog, which) -> createPatch()));
         } else createPatch();
     }
 
@@ -2667,7 +2679,7 @@ public final class MainActivity extends Activity {
             } catch (IOException | OutOfMemoryError exception) {
                 deliver(() -> {
                     operations--; updateEnabled(); updateDiagnostics(); pendingExport = null;
-                    showError("Préparation de l’export impossible", errorMessage(exception));
+                    showError("Unable to prepare export", errorMessage(exception));
                 });
             }
         });
@@ -2675,7 +2687,7 @@ public final class MainActivity extends Activity {
 
     private boolean launchDocument(Intent intent, int request) {
         try { startActivityForResult(intent, request); return true; }
-        catch (Exception exception) { showError("Gestionnaire de fichiers indisponible", errorMessage(exception)); return false; }
+        catch (Exception exception) { showError("File picker unavailable", errorMessage(exception)); return false; }
     }
 
     @Override protected void onActivityResult(int request, int result, Intent data) {
@@ -2705,7 +2717,7 @@ public final class MainActivity extends Activity {
             try {
                 String text;
                 try (InputStream input = application.getContentResolver().openInputStream(uri)) {
-                    if (input == null) throw new IOException("Le fournisseur n’a pas ouvert le fichier.");
+                    if (input == null) throw new IOException("The document provider could not open the file.");
                     text = readUtf8(input);
                 }
                 String name = documentName(application, uri);
@@ -2723,7 +2735,7 @@ public final class MainActivity extends Activity {
                     activePane = 1;
                     renderPatch(); arrangePanels();
                     sourceDraft = null; sourceDraftBase = null;
-                    toast("Patch importé.");
+                    toast("Patch imported.");
                 });
             } catch (Exception | LinkageError | OutOfMemoryError exception) {
                 String recoveredSource = null;
@@ -2754,7 +2766,7 @@ public final class MainActivity extends Activity {
                         }
                     }
                     renderPatch();
-                    showError(exception instanceof OutOfMemoryError ? "Import interrompu" : "Import impossible", errorMessage(exception));
+                    showError(exception instanceof OutOfMemoryError ? "Import interrupted" : "Unable to import", errorMessage(exception));
                 });
             }
         });
@@ -2771,20 +2783,20 @@ public final class MainActivity extends Activity {
                 if (text == null) {
                     try (InputStream input = exportSnapshot(application).openRead()) { text = readUtf8(input); }
                     catch (FileNotFoundException missingSnapshot) {
-                        throw new IOException("L’instantané d’export n’est plus disponible. Relancez l’export du patch.", missingSnapshot);
+                        throw new IOException("The export snapshot is no longer available. Export the patch again.", missingSnapshot);
                     }
                 }
                 byte[] bytes = PatchTextCodec.encode(text);
                 try (OutputStream output = application.getContentResolver().openOutputStream(uri, "wt")) {
-                    if (output == null) throw new IOException("Le fournisseur n’a pas ouvert le fichier en écriture.");
+                    if (output == null) throw new IOException("The document provider could not open the file for writing.");
                     output.write(bytes);
                     output.flush();
                 }
-                deliver(() -> { operations--; renderPatch(); toast("Instantané du patch exporté en UTF-8."); });
+                deliver(() -> { operations--; renderPatch(); toast("Patch snapshot exported as UTF-8."); });
             } catch (Exception | OutOfMemoryError exception) {
                 deliver(() -> {
                     operations--; renderPatch();
-                    showError("Export impossible", errorMessage(exception));
+                    showError("Unable to export", errorMessage(exception));
                 });
             } finally {
                 exportSnapshot(application).delete();
@@ -2807,18 +2819,18 @@ public final class MainActivity extends Activity {
         String textToEdit = sourceDraft != null && sourceSnapshot.equals(sourceDraftBase) ? sourceDraft : sourceSnapshot;
         if (!PatchTextCodec.canEditInTextView(textToEdit)) {
             dialogType = "";
-            showDialog(new AlertDialog.Builder(this).setTitle("Édition externe de ce grand fichier")
-                    .setMessage("Le texte intégral est conservé et reste exportable. Pour garder une interface réactive, l’éditeur de texte intégré accepte jusqu’à 256 K caractères, 4 096 lignes et 16 384 caractères par ligne. Exportez ce patch pour l’éditer dans un éditeur externe, puis réimportez-le.")
-                    .setNegativeButton("Fermer", null).setPositiveButton("Exporter", (dialog, which) -> confirmExport()));
+            showDialog(new AlertDialog.Builder(this).setTitle("Edit this large file externally")
+                    .setMessage("The full text is preserved and can still be exported. To keep the interface responsive, the built-in text editor supports up to 256K characters, 4,096 lines and 16,384 characters per line. Export this patch, edit it in an external editor, then import it again.")
+                    .setNegativeButton("Close", null).setPositiveButton("Export", (dialog, which) -> confirmExport()));
             requestUiSave();
             return;
         }
         dialogType = "source"; sourceLine = line;
         LinearLayout body = vertical();
         body.setPadding(dp(16), dp(8), dp(16), dp(8));
-        TextView hint = label("Édition UTF-8 · commentaires et ordre du patch conservés.\nLes diagnostics locaux ne remplacent pas une validation sur le DROID.", 12, MUTED);
+        TextView hint = label("UTF-8 editing · comments and patch order are preserved.\nLocal diagnostics do not replace validation on DROID.", 12, MUTED);
         body.addView(hint);
-        EditText source = edit("Texte du patch .ini");
+        EditText source = edit(".ini patch text");
         source.setTypeface(Typeface.MONOSPACE);
         source.setTextSize(13);
         source.setGravity(Gravity.TOP | Gravity.START);
@@ -2836,7 +2848,7 @@ public final class MainActivity extends Activity {
                 accepted = PatchTextCodec.canEditInTextView(candidate);
             }
             if (accepted) return null;
-            source.setError("Limite de l’éditeur intégré : 256 K caractères, 4 096 lignes, 16 384 caractères par ligne. Le texte existant est conservé.");
+            source.setError("Built-in editor limits: 256K characters, 4,096 lines, 16,384 characters per line. The existing text is preserved.");
             return destination.subSequence(replaceStart, replaceEnd);
         }});
         source.setText(textToEdit);
@@ -2850,11 +2862,11 @@ public final class MainActivity extends Activity {
             }
             @Override public void afterTextChanged(Editable text) {}
         });
-        source.setContentDescription("Texte source du patch DROID");
+        source.setContentDescription("DROID patch source");
         int editorHeight = Math.max(120, Math.min(440, getResources().getConfiguration().screenHeightDp - 210));
         body.addView(source, new LinearLayout.LayoutParams(-1, dp(editorHeight)));
-        AlertDialog dialog = trackDialog(new AlertDialog.Builder(this).setTitle("Texte source · " + patchName)
-                .setView(body).setNegativeButton("Fermer", null).setPositiveButton("Appliquer", null).create());
+        AlertDialog dialog = trackDialog(new AlertDialog.Builder(this).setTitle("Source · " + patchName)
+                .setView(body).setNegativeButton("Close", null).setPositiveButton("Apply", null).create());
         sourceDialog = dialog;
         dialog.setOnDismissListener(ignored -> {
             sourceSelection = source.getSelectionStart();
@@ -2866,12 +2878,12 @@ public final class MainActivity extends Activity {
                 String text = source.getText().toString();
                 try {
                     if (PatchTextCodec.encode(text).length > MAX_FILE_BYTES) {
-                        source.setError("Le patch dépasse la limite de 4 Mio."); return;
+                        source.setError("The patch exceeds the 4 MiB limit."); return;
                     }
                 } catch (IOException invalidText) {
                     source.setError(errorMessage(invalidText)); return;
                 }
-                mutate("Lecture du texte source…", -1, () -> replaceDocument(text, false), () -> {
+                mutate("Reading source…", -1, () -> replaceDocument(text, false), () -> {
                     sourceDraft = null; sourceDraftBase = null; sourceSelection = 0;
                     dialog.dismiss();
                 }, EditMode.SOURCE);
@@ -2921,7 +2933,7 @@ public final class MainActivity extends Activity {
         if (pendingConnection != null && currentPoint(pendingConnection)) {
             statusLabel.setText(getString(R.string.forge_connection_pending, pendingConnection.blockName.toUpperCase(Locale.ROOT), pendingConnection.parameter));
             statusLabel.setTextColor(CYAN);
-            statusLabel.setContentDescription(statusLabel.getText() + ". Annuler la connexion.");
+            statusLabel.setContentDescription(statusLabel.getText() + ". Cancel the connection.");
             return;
         }
         int errors = patch.errorCount();
@@ -2943,55 +2955,55 @@ public final class MainActivity extends Activity {
                     getResources().getQuantityString(R.plurals.forge_notice_count, warnings, warnings)));
             statusLabel.setTextColor(errors > 0 ? RED : COPPER);
         }
-        statusLabel.setContentDescription(statusLabel.getText() + ". Ouvrir les diagnostics.");
+        statusLabel.setContentDescription(statusLabel.getText() + ". Open diagnostics.");
     }
 
     private void showDiagnostics() {
         if (!loaded) return;
         if (patch.diagnostics.isEmpty()) {
-            showDialog(new AlertDialog.Builder(this).setTitle("Vérification locale")
-                    .setMessage("Aucune erreur locale détectée. Ce moteur effectue des contrôles structurels et utilise le catalogue disponible ; il ne garantit pas le comportement du patch sur le DROID.")
-                    .setPositiveButton("Fermer", null));
+            showDialog(new AlertDialog.Builder(this).setTitle("Local validation")
+                    .setMessage("No local errors were detected. This engine checks the patch structure using the available catalog. It does not guarantee how the patch will behave on DROID.")
+                    .setPositiveButton("Close", null));
             return;
         }
         String[] messages = new String[patch.diagnostics.size()];
         for (int i = 0; i < messages.length; i++) {
             Diagnostic diagnostic = patch.diagnostics.get(i);
-            messages[i] = (diagnostic.isError() ? "Erreur" : "Remarque") + " · ligne " + diagnostic.line + "\n" + diagnostic.message;
+            messages[i] = (diagnostic.isError() ? "Error" : "Notice") + " · line " + diagnostic.line + "\n" + diagnostic.message;
         }
-        showDialog(new AlertDialog.Builder(this).setTitle("Diagnostics locaux · ouvrir une ligne")
+        showDialog(new AlertDialog.Builder(this).setTitle("Local diagnostics · open a line")
                 .setItems(messages, (dialog, position) -> editSource(patch.diagnostics.get(position).line))
-                .setNegativeButton("Fermer", null));
+                .setNegativeButton("Close", null));
     }
 
     private void showOrphanDrafts() {
-        if (orphanDrafts.isEmpty()) { toast("Tous les brouillons conservés ont été récupérés."); return; }
+        if (orphanDrafts.isEmpty()) { toast("All retained drafts have been recovered."); return; }
         List<OrphanDraft> snapshot = new ArrayList<>(orphanDrafts);
         String[] choices = new String[snapshot.size()];
         for (int index = 0; index < choices.length; index++) {
             OrphanDraft orphan = snapshot.get(index);
             choices[index] = displayText(orphan.key, 160) + "\n" + displayText(orphan.draft.value, 128);
         }
-        showDialog(new AlertDialog.Builder(this).setTitle("Brouillons conservés · choisir une valeur")
+        showDialog(new AlertDialog.Builder(this).setTitle("Retained drafts · choose a value")
                 .setItems(choices, (dialog, position) -> {
                     OrphanDraft orphan = snapshot.get(position);
                     TextView value = label(orphan.draft.value, 16, TEXT);
                     value.setTextIsSelectable(true); value.setPadding(dp(16), dp(12), dp(16), dp(12));
                     ScrollView scroll = new ScrollView(this); scroll.addView(value);
                     LinearLayout body = vertical();
-                    TextView explanation = label("Le circuit d’origine ne peut plus être identifié avec certitude. Copiez cette valeur puis collez-la dans le circuit choisi ; ce brouillon reste conservé tant que vous ne l’abandonnez pas.", 14, TEXT);
+                    TextView explanation = label("The original circuit can no longer be identified reliably. Copy this value and paste it into the circuit you choose. This draft is kept until you discard it.", 14, TEXT);
                     explanation.setPadding(dp(16), dp(12), dp(16), dp(8)); body.addView(explanation);
                     body.addView(scroll, new LinearLayout.LayoutParams(-1, dp(200)));
                     showDialog(new AlertDialog.Builder(this).setTitle(displayText(orphan.key, 160)).setView(body)
-                            .setNegativeButton("Fermer", null)
-                            .setPositiveButton("Copier la valeur", (detail, which) -> {
+                            .setNegativeButton("Close", null)
+                            .setPositiveButton("Copy value", (detail, which) -> {
                                 ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
-                                if (clipboard != null) { clipboard.setPrimaryClip(ClipData.newPlainText(displayText(orphan.key, 160), orphan.draft.value)); toast("Valeur copiée ; le brouillon reste conservé."); }
+                                if (clipboard != null) { clipboard.setPrimaryClip(ClipData.newPlainText(displayText(orphan.key, 160), orphan.draft.value)); toast("Value copied. The draft is still saved."); }
                             })
-                            .setNeutralButton("Abandonner ce brouillon", (detail, which) -> {
+                            .setNeutralButton("Discard this draft", (detail, which) -> {
                                 orphanDrafts.remove(orphan); requestUiSave(); updateDiagnostics();
                             }));
-                }).setNegativeButton("Fermer", null));
+                }).setNegativeButton("Close", null));
     }
 
     private void scheduleAutosave(Context context, String snapshot) {
@@ -3016,7 +3028,7 @@ public final class MainActivity extends Activity {
             saveError = errorMessage(exception);
             statusLabel.setText(R.string.forge_autosave_failed);
             statusLabel.setTextColor(RED);
-            toast("Sauvegarde locale : " + errorMessage(exception));
+            toast("Local autosave: " + errorMessage(exception));
         });
     }
 
@@ -3111,7 +3123,7 @@ public final class MainActivity extends Activity {
                     writeAtomic(uiAutosave(application), state.toString());
                     try (InputStream input = uiAutosave(application).openRead()) {
                         if (!state.toString().equals(readUtf8(input, 32 * 1024 * 1024)))
-                            throw new IOException("Les brouillons sauvegardés n’ont pas pu être vérifiés.");
+                            throw new IOException("The saved drafts could not be verified.");
                     }
                     uiTransition(application).delete();
                     deliver(() -> { draftSaveError = ""; if (operations == 0) updateDiagnostics(); });
@@ -3178,7 +3190,7 @@ public final class MainActivity extends Activity {
             String key = entry.optString("key");
             rememberedCharacters += value.characters(key);
             if (rememberedCharacters > MAX_APPLIED_CHARACTERS) {
-                appliedCells.clear(); draftSaveError = "Les cellules mémorisées dépassent la limite de récupération."; break;
+                appliedCells.clear(); draftSaveError = "The remembered cells exceed the recovery limit."; break;
             }
             appliedCells.put(key, value);
         }
@@ -3229,7 +3241,7 @@ public final class MainActivity extends Activity {
         else if (cellDialog != null && currentPoint(cellDialog.point)) {
             CellDialogState state = cellDialog;
             if ("raw_value".equals(type)) editRawValue(state.point);
-            else if ("cable_name".equals(type)) chooseCableName(state.title, state.existing, state.point, state.from, state.operation);
+            else if ("cable_name".equals(type)) chooseCableName(state.displayTitle(), state.existing, state.point, state.from, state.operation);
         } else if ("source".equals(type)) editSource(sourceLine);
         else if ("catalogue".equals(type)) showCatalogue();
         else if ("circuit".equals(type)) {
@@ -3253,7 +3265,7 @@ public final class MainActivity extends Activity {
     }
 
     private void showAbout() {
-        String version = "version inconnue";
+        String version = "unknown version";
         try {
             String installed = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
             if (installed != null && !installed.trim().isEmpty()) version = installed;
@@ -3262,16 +3274,16 @@ public final class MainActivity extends Activity {
         }
         showDialog(new AlertDialog.Builder(this).setTitle(getString(R.string.mobile_forge_name) + " · " + version)
                 .setMessage(getString(R.string.mobile_about_text, patch.catalogueFirmware))
-                .setNegativeButton("Fermer", null)
-                .setPositiveButton("Crédits et licences", (dialog, which) -> showDialog(new AlertDialog.Builder(this)
-                        .setTitle("Crédits et licences")
-                        .setItems(new String[]{getString(R.string.mobile_android_credits), "DROID Forge · crédits", "Code · GNU GPL version 3", "Graphismes officiels", "Bibliothèques C++ · LLVM / Apache"}, (choice, index) -> {
+                .setNegativeButton("Close", null)
+                .setPositiveButton("Credits and licenses", (dialog, which) -> showDialog(new AlertDialog.Builder(this)
+                        .setTitle("Credits and licenses")
+                        .setItems(new String[]{getString(R.string.mobile_android_credits), "DROID Forge · credits", "Code · GNU GPL version 3", "Official graphics", "C++ libraries · LLVM / Apache"}, (choice, index) -> {
                             if (index == 0) showLicence(getString(R.string.mobile_android_credits), "legal/MOBILE-CREDITS.txt");
-                            else if (index == 1) showLicence("Crédits DROID Forge", "forge/CREDITS");
+                            else if (index == 1) showLicence("DROID Forge credits", "forge/CREDITS");
                             else if (index == 2) showLicence("GNU GPL version 3", "legal/GPL-3.0.txt");
-                            else if (index == 3) showLicence("Conditions des graphismes", "legal/GRAPHICS-LICENSE.txt");
-                            else showLicence("Licences du runtime C++", "legal/NDK-RUNTIME-LICENSES.txt");
-                        }).setNegativeButton("Fermer", null))));
+                            else if (index == 3) showLicence("Graphics license", "legal/GRAPHICS-LICENSE.txt");
+                            else showLicence("C++ runtime licenses", "legal/NDK-RUNTIME-LICENSES.txt");
+                        }).setNegativeButton("Close", null))));
     }
 
     private void showLicence(String title, String asset) {
@@ -3286,10 +3298,10 @@ public final class MainActivity extends Activity {
                     licence.setPadding(dp(18), dp(12), dp(18), dp(12));
                     scroll.addView(licence);
                     showDialog(new AlertDialog.Builder(this).setTitle(title).setView(scroll)
-                            .setPositiveButton("Fermer", null));
+                            .setPositiveButton("Close", null));
                 });
             } catch (IOException | OutOfMemoryError exception) {
-                deliver(() -> showError("Licence indisponible", errorMessage(exception)));
+                deliver(() -> showError("License unavailable", errorMessage(exception)));
             }
         });
     }
@@ -3364,10 +3376,10 @@ public final class MainActivity extends Activity {
     private void toast(String message) { Toast.makeText(this, message, Toast.LENGTH_LONG).show(); }
     private void showError(String title, String message) {
         if (!destroyed && !isFinishing()) showDialog(new AlertDialog.Builder(this).setTitle(title).setMessage(message)
-                .setPositiveButton("Fermer", null));
+                .setPositiveButton("Close", null));
     }
     private static String errorMessage(Throwable exception) {
-        if (exception instanceof OutOfMemoryError) return "Mémoire insuffisante pour terminer cette opération. Exportez le texte conservé puis relancez l’application si nécessaire.";
+        if (exception instanceof OutOfMemoryError) return "Not enough memory to complete this operation. Export the preserved source and restart the app if needed.";
         String message = exception.getMessage();
         return message == null || message.isEmpty() ? exception.getClass().getSimpleName() : message;
     }
@@ -3434,7 +3446,7 @@ public final class MainActivity extends Activity {
         edit.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         edit.setFilters(new InputFilter[]{(source, start, end, destination, replaceStart, replaceEnd) -> {
             if (destination.length() - (replaceEnd - replaceStart) + (end - start) <= MAX_EDITOR_CHARACTERS) return null;
-            edit.setError("Ce champ est limité à 4 096 caractères. Utilisez le texte source pour une valeur plus longue.");
+            edit.setError("This field is limited to 4,096 characters. Use the source editor for a longer value.");
             return destination.subSequence(replaceStart, replaceEnd);
         }});
         return edit;
@@ -3566,6 +3578,10 @@ public final class MainActivity extends Activity {
             this.operation = operation; this.title = title; this.existing = existing; this.point = point; this.from = from;
             name = existing.startsWith("_") ? existing.substring(1) : existing;
         }
+        String displayTitle() {
+            if ("rename".equals(operation)) return "Rename cable " + existing;
+            return "connect".equals(operation) ? "New cable name" : "Create a cable";
+        }
         JSONObject toJson() throws JSONException {
             JSONObject json = new JSONObject().put("operation", operation).put("title", title).put("existing", existing)
                     .put("name", name).put("point", point.toJson());
@@ -3632,7 +3648,7 @@ public final class MainActivity extends Activity {
             card.setPadding(0, 0, 0, 0);
             card.setBackgroundColor(PANEL);
             if (visibleBlocks.isEmpty()) {
-                TextView empty = label("Cette section ne contient aucun circuit.\nAjoutez un circuit avec le bouton Circuit.", 15, MUTED);
+                TextView empty = label("This section has no circuits.\nUse the Circuit button to add one.", 15, MUTED);
                 empty.setPadding(dp(16), dp(24), dp(16), dp(24));
                 card.addView(empty);
                 return card;
@@ -3644,22 +3660,22 @@ public final class MainActivity extends Activity {
             heading.setBackground(background(RAISED, block.index == selectedBlock ? TEXT : RAISED, 0));
             ImageView icon = new ImageView(MainActivity.this);
             icon.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            icon.setContentDescription("Icône du circuit " + displayText(block.name, 128));
+            icon.setContentDescription("Icon for circuit " + displayText(block.name, 128));
             heading.addView(icon, new LinearLayout.LayoutParams(dp(44), dp(44)));
             setCircuitIcon(circuit == null ? block.name : circuit.name, icon);
             TextView name = label(getString(R.string.forge_block_heading, displayText(block.name.toUpperCase(Locale.ROOT), 128), block.disabled ? getString(R.string.forge_disabled) : ""), 16, block.disabled ? MUTED : TEXT);
             name.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
             name.setPadding(dp(8), 0, dp(4), 0);
-            name.setContentDescription("Circuit " + displayText(block.name, 128) + ", ligne " + block.line);
+            name.setContentDescription("Circuit " + displayText(block.name, 128) + ", line " + block.line);
             heading.addView(name, new LinearLayout.LayoutParams(0, dp(48), 1));
-            Button fold = action(foldedBlocks.contains(block.index) ? "▸" : "▾", "Plier ou déplier le circuit " + displayText(block.name, 128), false);
+            Button fold = action(foldedBlocks.contains(block.index) ? "▸" : "▾", "Collapse or expand circuit " + displayText(block.name, 128), false);
             fold.setTextColor(TEXT);
             fold.setOnClickListener(v -> {
                 if (!foldedBlocks.remove(block.index)) foldedBlocks.add(block.index);
                 notifyDataSetChanged();
             });
             heading.addView(fold, new LinearLayout.LayoutParams(dp(48), dp(48)));
-            Button more = action("⋮", "Actions du circuit " + displayText(block.name, 128), false);
+            Button more = action("⋮", "Actions for circuit " + displayText(block.name, 128), false);
             more.setTextColor(TEXT);
             more.setOnClickListener(v -> showBlockMenu(v, block));
             heading.addView(more, new LinearLayout.LayoutParams(dp(48), dp(48)));
@@ -3706,9 +3722,9 @@ public final class MainActivity extends Activity {
                 if (parameter.value.length() > MAX_EDITOR_CHARACTERS || parameter.name.length() > 256 || block.name.length() > 256) {
                     TextView longValue = label(displayText(parameter.value, 256), 13, MUTED);
                     longValue.setMaxLines(2);
-                    longValue.setContentDescription("Valeur longue conservée intégralement. Édition dans le texte source.");
+                    longValue.setContentDescription("The full long value is preserved. Edit it in the source.");
                     row.addView(longValue, new LinearLayout.LayoutParams(0, dp(48), 1));
-                    Button source = action("Source", "Éditer cette valeur longue dans le texte source", false);
+                    Button source = action("Source", "Edit this long value in the source", false);
                     source.setOnClickListener(v -> editSource(block.line));
                     row.addView(source, new LinearLayout.LayoutParams(dp(80), dp(48)));
                     card.addView(row);
@@ -3716,10 +3732,10 @@ public final class MainActivity extends Activity {
                 }
                 renderValueCells(row, block, parameter);
                 jack.setOnClickListener(v -> showDialog(new AlertDialog.Builder(MainActivity.this).setTitle(displayText(parameter.name, 256))
-                        .setMessage((definition == null ? "Paramètre non documenté." : parameterMeta(definition)
-                                + "\n\n" + definition.description) + (parameter.disabled ? "\n\nDésactivé dans le texte du patch." : "")
-                                + (occurrences.get(parameter.name) > 1 ? "\n\nPlusieurs occurrences : édition de la dernière active. Utilisez le texte source pour les autres." : ""))
-                        .setPositiveButton("Fermer", null)));
+                        .setMessage((definition == null ? "Undocumented parameter." : parameterMeta(definition)
+                                + "\n\n" + definition.description) + (parameter.disabled ? "\n\nDisabled in the patch source." : "")
+                                + (occurrences.get(parameter.name) > 1 ? "\n\nMultiple occurrences: editing the last active one. Use the source editor for the others." : ""))
+                        .setPositiveButton("Close", null)));
                 card.addView(row);
                 View line = new View(MainActivity.this); line.setBackgroundColor(0xff353535);
                 card.addView(line, new LinearLayout.LayoutParams(-1, dp(1)));
@@ -3727,7 +3743,7 @@ public final class MainActivity extends Activity {
             if (pageCount > 1) {
                 LinearLayout paging = horizontal();
                 paging.setGravity(Gravity.CENTER_VERTICAL);
-                Button previous = action("‹", "Paramètres précédents de " + displayText(block.name, 128), false);
+                Button previous = action("‹", "Previous parameters of " + displayText(block.name, 128), false);
                 previous.setEnabled(parameterPage > 0);
                 previous.setOnClickListener(v -> { parameterPages.put(block.index, parameterPage - 1); notifyDataSetChanged(); });
                 paging.addView(previous, new LinearLayout.LayoutParams(dp(48), dp(48)));
@@ -3735,14 +3751,14 @@ public final class MainActivity extends Activity {
                         Math.min(effective.size(), (parameterPage + 1) * PARAMETER_PAGE_SIZE), effective.size()), 12, MUTED);
                 count.setGravity(Gravity.CENTER);
                 paging.addView(count, new LinearLayout.LayoutParams(0, dp(48), 1));
-                Button next = action("›", "Paramètres suivants de " + displayText(block.name, 128), false);
+                Button next = action("›", "Next parameters of " + displayText(block.name, 128), false);
                 next.setEnabled(parameterPage + 1 < pageCount);
                 next.setOnClickListener(v -> { parameterPages.put(block.index, parameterPage + 1); notifyDataSetChanged(); });
                 paging.addView(next, new LinearLayout.LayoutParams(dp(48), dp(48)));
                 card.addView(paging);
             }
             if (effective.isEmpty()) {
-                Button add = action("+ Paramètre", "Ajouter un paramètre au circuit " + displayText(block.name, 128), false);
+                Button add = action("+ Parameter", "Add a parameter to circuit " + displayText(block.name, 128), false);
                 add.setOnClickListener(v -> { selectedBlock = block.index; showParameterDialog(block); });
                 card.addView(add, new LinearLayout.LayoutParams(-1, dp(48)));
             }
@@ -3787,7 +3803,7 @@ public final class MainActivity extends Activity {
             row.detail.setText(circuit.description.isEmpty() ? circuit.category : circuit.description);
             setCircuitIcon(circuit.name, row.icon);
             row.plus.setEnabled(loaded && operations == 0 && patch.analysisComplete && !recoveryRequired);
-            row.plus.setContentDescription("Ajouter " + circuit.name + " au patch");
+            row.plus.setContentDescription("Add " + circuit.name + " to the patch");
             row.plus.setOnClickListener(v -> addCircuit(circuit));
             boolean selected = selectedCircuit == circuit;
             row.view.setBackground(background(selected ? RAISED : PANEL, selected ? TEXT : BORDER, 0));
@@ -3837,7 +3853,7 @@ public final class MainActivity extends Activity {
             text.addView(title); text.addView(subtitle); text.addView(detail);
             view.addView(text, new LinearLayout.LayoutParams(0, -2, 1));
             if (catalogueRow) {
-                plus = action("+", "Ajouter un circuit", false);
+                plus = action("+", "Add a circuit", false);
                 plus.setFocusable(false);
                 view.addView(plus, new LinearLayout.LayoutParams(dp(48), dp(48)));
             } else plus = null;
@@ -3928,7 +3944,7 @@ public final class MainActivity extends Activity {
         final boolean contextRequired;
         Example(JSONObject json, String firmware) {
             title = displayText(json.optString("title", json.optString("id")), 256);
-            file = json.optString("file"); category = json.optString("category", "Manuel");
+            file = json.optString("file"); category = json.optString("category", "Manual");
             this.firmware = firmware; sha256 = json.optString("sha256"); page = json.optInt("page");
             kind = json.optString("kind"); source = displayText(json.optString("source"), 512);
             sourcePath = displayText(json.optString("source_path"), 512); note = displayText(json.optString("note"), 1024);

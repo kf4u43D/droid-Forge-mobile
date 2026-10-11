@@ -24,7 +24,7 @@ final class PatchTextCodec {
             encoded.get(bytes);
             return bytes;
         } catch (CharacterCodingException exception) {
-            throw new IOException("Le texte contient un caractère Unicode incomplet.", exception);
+            throw new IOException("The text contains an incomplete Unicode character.", exception);
         }
     }
 
@@ -41,7 +41,7 @@ final class PatchTextCodec {
                 chunk[0] = (byte) single;
                 count = 1;
             }
-            if (count > limit - total) throw new IOException("Le fichier dépasse la limite autorisée (" + limit / (1024 * 1024) + " Mio).");
+            if (count > limit - total) throw new IOException("The file exceeds the allowed limit (" + limit / (1024 * 1024) + " MiB).");
             total += count;
             buffer.write(chunk, 0, count);
         }
@@ -49,7 +49,7 @@ final class PatchTextCodec {
             return StandardCharsets.UTF_8.newDecoder().onMalformedInput(CodingErrorAction.REPORT)
                     .onUnmappableCharacter(CodingErrorAction.REPORT).decode(ByteBuffer.wrap(buffer.toByteArray())).toString();
         } catch (CharacterCodingException exception) {
-            throw new IOException("Le fichier n’est pas un texte UTF-8 valide. Convertissez son encodage avant de l’importer.", exception);
+            throw new IOException("The file is not valid UTF-8 text. Convert its encoding before importing it.", exception);
         }
     }
 

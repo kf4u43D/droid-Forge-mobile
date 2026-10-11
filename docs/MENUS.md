@@ -1,37 +1,35 @@
-# Commandes du Forge PC et du port Android
+# Commands in Forge PC and the Android port
 
-Comparaison avec Forge 1.7.1, firmware blue-7, à partir de
-`upstream/droidforge/droidforge/main/mainwindow.cpp` au commit
+Comparison with Forge 1.7.1, blue-7 firmware, based on
+`upstream/droidforge/droidforge/main/mainwindow.cpp` at commit
 `60cbb7bbf9630c7d4a184e346a3d1120bde4d69f`.
 
-Ce tableau distingue les commandes accessibles dans le port et les fonctions
-du PC encore absentes. Les boutons de la barre mobile déclenchent les opérations
-qu'ils annoncent.
+The table lists the commands available in the port and PC features still to be
+ported. The mobile toolbar buttons run the operations named on them.
 
-| Domaine | Présent dans le port | Encore absent |
+| Area | Available in the port | Still to be ported |
 | --- | --- | --- |
-| Fichiers | Nouveau patch, import et export `.ini`, édition du texte source, sauvegarde privée, catalogue des 630 exemples officiels | Bibliothèque complète du PC, options supplémentaires de compression, générateurs Python, intégrer un autre patch, exporter une sélection/section, patches récents et fenêtres multiples |
-| Circuits et paramètres | Ajouter/supprimer des circuits, ajouter des paramètres, cellules arithmétiques des entrées, commentaires de circuits, édition brute, aide du catalogue, paramètres initiaux, annuler/rétablir | Couper/copier/coller, dupliquer et déplacer un circuit, activer/désactiver un bloc, trier et étendre les paramètres, supprimer une ligne de paramètre par menu |
-| Câbles | Commencer/terminer/annuler une connexion, choisir/créer/renommer/suivre, fusion confirmée, effacer une cellule | Réécriture en masse des noms de câbles |
-| Organisation | Navigation par section, pliage des circuits, conservation des commentaires et séparateurs importés, recherche du catalogue | Édition structurée des sections, signets, commentaires de paramètres, recherche dans le patch, suivre un registre/circuit homonyme/même paramètre |
-| Rack | Façades officielles, détails des contrôleurs, labels, MASTER16/18 reconnus, G8/X7 déduits des paramètres selon le PC | Duplication/déplacement des modules, choix structuré du type de MASTER |
-| Affichage | Adaptation portrait/paysage et écrans étroits, zoom du rack de 50 à 400 %, déplacement du rack | Zoom des circuits et toutes les options d'affichage du PC, miroir, affichage forcé d'un nombre minimum de G8/X7 |
-| DROID | Diagnostics locaux, préparation du texte DROID, Activate! MIDI/SysEx via X7, Save to SD avec sauvegarde et relecture, import de droid.ini, récupération des originaux, Eject SD via Android | Validation/allocation complètes et analyse RAM, suivi temps réel, mise à jour et lecture du firmware matériel, lecture du patch actif en RAM |
-| Informations | Version installée, firmware du catalogue pris en charge, crédits et licences | — |
-| Aide | Informations du catalogue et exemples officiels | Lecteur/liens du manuel complet ou ciblé circuit/module, vidéos et Discord |
+| Files | New patch, `.ini` import/export, source editing, private autosave, catalogue of 630 official examples | Full PC library, additional compression options, Python generators, integrating another patch, exporting a selection/section, recent patches and multiple windows |
+| Circuits and parameters | Add/delete circuits, add parameters, arithmetic input cells, circuit comments, raw editing, catalogue help, initial parameters, undo/redo | Cut/copy/paste, duplicate and move a circuit, enable/disable a block, sort and expand parameters, delete a parameter line through its menu |
+| Cables | Start/finish/cancel a connection, choose/create/rename/follow, confirmed merge, clear a cell | Bulk rewriting of cable names |
+| Organization | Section navigation, circuit folding, preservation of imported comments and separators, catalogue search | Structured section editing, bookmarks, parameter comments, patch search, following a register/circuit with the same name/same parameter |
+| Rack | Official panels, controller details, labels, double-tap to add a module, MASTER16/18 recognition, G8/X7 inferred from parameters as on PC | Duplicate/move modules, structured MASTER type selection |
+| Display | Portrait/landscape and narrow layouts, rack zoom from 50 to 400 %, rack panning, English application interface | Circuit zoom and all PC display options, mirroring, forcing a minimum number of G8/X7 modules |
+| DROID | Local diagnostics, DROID text preparation, Activate! MIDI/SysEx through X7, Save to SD with backup and read-back, droid.ini import, recovery of originals, Eject SD through Android | Complete validation/allocation and RAM analysis, live monitoring, hardware firmware reading/updating, reading the active patch from RAM |
+| Information | Installed version, supported catalogue firmware, credits and licences | — |
+| Help | Catalogue information and official examples | Full or circuit/module-specific manual reader/links, videos and Discord |
 
-Les dix actions de la barre d’outils originale ont maintenant un accès mobile :
-Nouveau, Ouvrir, Sauver, Circuit, Paramètre, Module, Problèmes, **Activate!**,
-**Save to SD** et **Eject SD**. L’éjection dépend des droits Android : si
-l’application ne peut pas la demander directement, elle ouvre DocumentsUI
-pour utiliser l’icône d’éjection du volume. Le retour du sélecteur ne confirme
-pas que la carte a été éjectée.
+The ten original toolbar actions have mobile equivalents: New, Open, Save,
+Circuit, Parameter, Module, Problems, **Activate!**, **Save to SD** and
+**Eject SD**. Ejection depends on Android permissions: when the application
+cannot request it directly, it opens DocumentsUI so the volume's eject icon can
+be used. Returning from the picker does not confirm that the card was ejected.
 
-Le comportement diffère aussi : **Nouveau** recrée un patch MASTER18 vide,
-alors que le PC conserve son rack ; **Sauver** ouvre l’export Android, sans
-réécrire directement le fichier précédemment importé. **Save to SD** écrit
-une copie préparée pour le DROID ; le document de l’éditeur garde ses annotations.
+**New** creates an empty MASTER18 patch; the PC keeps its rack. **Save** opens
+Android export without directly overwriting the previously imported file.
+**Save to SD** writes a copy prepared for DROID; the editor document keeps its
+annotations.
 
-Voir [la connexion DROID](DROID-CONNECTION.md) et [la validation 0.5.0](VALIDATION-0.5.0.md)
-pour les modes du X7 et les essais effectués. Une analyse locale réussie ne
-démontre pas que le patch fonctionne sur un système DROID réel.
+See [DROID connection](DROID-CONNECTION.md) and [0.5.0 validation](VALIDATION-0.5.0.md)
+for X7 modes and completed tests. Successful local analysis does not establish
+that a patch works on a physical DROID system.

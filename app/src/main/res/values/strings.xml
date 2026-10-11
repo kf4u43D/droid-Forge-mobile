@@ -3,49 +3,49 @@
     <string name="app_name">droid Forge mobile</string>
     <string name="forge_file_name">%1$s\u0020\u0020·\u0020\u0020%2$s</string>
     <plurals name="forge_block_count">
-        <item quantity="one">%1$d bloc</item>
-        <item quantity="other">%1$d blocs</item>
+        <item quantity="one">%1$d block</item>
+        <item quantity="other">%1$d blocks</item>
     </plurals>
     <plurals name="forge_circuit_count">
         <item quantity="one">%1$d circuit</item>
         <item quantity="other">%1$d circuits</item>
     </plurals>
     <string name="forge_block_heading">%1$s%2$s</string>
-    <string name="forge_parameter_page">Paramètres %1$d–%2$d / %3$d</string>
+    <string name="forge_parameter_page">Parameters %1$d–%2$d / %3$d</string>
     <plurals name="forge_parameter_details">
-        <item quantity="one">%1$d paramètre · ligne %2$d%3$s</item>
-        <item quantity="other">%1$d paramètres · ligne %2$d%3$s</item>
+        <item quantity="one">%1$d parameter · line %2$d%3$s</item>
+        <item quantity="other">%1$d parameters · line %2$d%3$s</item>
     </plurals>
     <string name="forge_indexed_block">%1$02d\u0020\u0020\u0020[%2$s]</string>
     <string name="forge_catalogue_count">%1$d</string>
-    <string name="forge_engine_unavailable">Moteur indisponible</string>
-    <string name="forge_patch_load_failed">Le patch n’a pas pu être ouvert.</string>
-    <string name="forge_prepare_export">Préparation de l’export…</string>
-    <string name="forge_read_patch">Lecture du patch…</string>
-    <string name="forge_export_patch">Export du patch…</string>
-    <string name="forge_recovery_required">Opération interrompue · exportez le texte conservé puis relancez l’application</string>
-    <string name="forge_autosave_failed">Sauvegarde locale impossible · exportez votre patch</string>
-    <string name="forge_drafts_save_failed">Brouillons non enregistrés localement · appliquez les valeurs puis exportez le patch</string>
-    <string name="forge_analysis_partial">Analyse incomplète : édition du texte et export disponibles · toucher pour les diagnostics</string>
+    <string name="forge_engine_unavailable">Engine unavailable</string>
+    <string name="forge_patch_load_failed">The patch could not be opened.</string>
+    <string name="forge_prepare_export">Preparing export…</string>
+    <string name="forge_read_patch">Reading patch…</string>
+    <string name="forge_export_patch">Exporting patch…</string>
+    <string name="forge_recovery_required">Operation interrupted · export the retained text, then restart the app</string>
+    <string name="forge_autosave_failed">Local save failed · export your patch</string>
+    <string name="forge_drafts_save_failed">Drafts could not be saved locally · apply the values, then export the patch</string>
+    <string name="forge_analysis_partial">Analysis incomplete: source editing and export available · tap for diagnostics</string>
     <plurals name="forge_error_count">
-        <item quantity="one">%1$d erreur</item>
-        <item quantity="other">%1$d erreurs</item>
+        <item quantity="one">%1$d error</item>
+        <item quantity="other">%1$d errors</item>
     </plurals>
     <plurals name="forge_notice_count">
-        <item quantity="one">%1$d remarque</item>
-        <item quantity="other">%1$d remarques</item>
+        <item quantity="one">%1$d notice</item>
+        <item quantity="other">%1$d notices</item>
     </plurals>
-    <string name="forge_large_patch_status">Grand patch · %1$s · %2$s</string>
-    <string name="forge_validation_clean">Aucune erreur détectée</string>
+    <string name="forge_large_patch_status">Large patch · %1$s · %2$s</string>
+    <string name="forge_validation_clean">No errors detected</string>
     <string name="forge_validation_issues">%1$s · %2$s</string>
-    <string name="forge_controller">Module matériel</string>
-    <string name="forge_patch_block">Bloc du patch</string>
-    <string name="forge_disabled">\u0020· désactivé</string>
+    <string name="forge_controller">Hardware module</string>
+    <string name="forge_patch_block">Patch block</string>
+    <string name="forge_disabled">\u0020· disabled</string>
     <string name="forge_block_brackets">[%1$s]</string>
     <string name="forge_parameter_help">%1$s%2$s</string>
     <plurals name="forge_orphan_drafts">
-        <item quantity="one">%1$d brouillon conservé · toucher pour le récupérer</item>
-        <item quantity="other">%1$d brouillons conservés · toucher pour les récupérer</item>
+        <item quantity="one">%1$d retained draft · tap to recover it</item>
+        <item quantity="other">%1$d retained drafts · tap to recover them</item>
     </plurals>
-    <string name="forge_orphan_drafts_menu">Brouillons conservés…</string>
+    <string name="forge_orphan_drafts_menu">Retained drafts…</string>
 </resources>

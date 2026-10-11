@@ -101,10 +101,10 @@ final class DroidMidiTransport implements Closeable {
             this.error = error;
             x7StorageConnected = hasX7MassStorage();
             if (!error.isEmpty()) summary = error;
-            else if (x7StorageConnected && endpoints.isEmpty()) summary = "DROID X7 en stockage USB : aucun port MIDI. Choisissez le mode MIDI du X7 pour activer un patch.";
-            else if (!supported) summary = "Le service MIDI Android n’est pas disponible sur cet appareil.";
-            else if (endpoints.isEmpty()) summary = "Aucun port USB MIDI détecté.";
-            else summary = endpoints.size() == 1 ? "1 port USB MIDI disponible." : endpoints.size() + " ports USB MIDI disponibles.";
+            else if (x7StorageConnected && endpoints.isEmpty()) summary = "DROID X7 in USB storage mode: no MIDI port. Select X7 MIDI mode to activate a patch.";
+            else if (!supported) summary = "The Android MIDI service is unavailable on this device.";
+            else if (endpoints.isEmpty()) summary = "No USB MIDI port detected.";
+            else summary = endpoints.size() == 1 ? "1 USB MIDI port available." : endpoints.size() + " USB MIDI ports available.";
         }
         boolean hasX7MassStorage() {
             for (UsbDeviceSummary device : usbDevices) if (device.compatibleX7 && device.massStorage) return true;
@@ -127,7 +127,7 @@ final class DroidMidiTransport implements Closeable {
     private final UsbManager usb;
     private boolean midiRegistered, usbRegistered;
     private volatile Endpoint sendingEndpoint;
-    private volatile Snapshot latest = new Snapshot(false, Collections.emptyList(), Collections.emptyList(), "Recherche des périphériques USB…");
+    private volatile Snapshot latest = new Snapshot(false, Collections.emptyList(), Collections.emptyList(), "Searching for USB devices…");
 
     DroidMidiTransport(Context context, Listener listener) {
         if (context == null || listener == null) throw new IllegalArgumentException("Missing MIDI context or listener");
@@ -243,20 +243,20 @@ final class DroidMidiTransport implements Closeable {
         if (completion == null) throw new IllegalArgumentException("Missing upload callback");
         if (closed.get()) return;
         if (midi == null || endpoint == null || endpoint.info.getType() != MidiDeviceInfo.TYPE_USB || !endpoint.compatibleX7) {
-            main.post(() -> { if (!closed.get()) completion.onError("Sélectionnez un port USB MIDI du DROID X7."); }); return;
+            main.post(() -> { if (!closed.get()) completion.onError("Select a DROID X7 USB MIDI port."); }); return;
         }
         if (!transferring.compareAndSet(false, true)) {
-            main.post(() -> { if (!closed.get()) completion.onError("Un transfert MIDI est déjà en cours."); }); return;
+            main.post(() -> { if (!closed.get()) completion.onError("A MIDI transfer is already in progress."); }); return;
         }
         sendingEndpoint = endpoint;
         try { session.send(opened -> midi.openDevice(endpoint.info, device -> {
-            if (device == null) { opened.onFailure("Android n’a pas pu ouvrir le DROID X7 MIDI."); return; }
-            if (!opened.isWanted()) { closeDevice(device); opened.onFailure("Connexion MIDI abandonnée."); return; }
+            if (device == null) { opened.onFailure("Android could not open DROID X7 MIDI."); return; }
+            if (!opened.isWanted()) { closeDevice(device); opened.onFailure("MIDI connection cancelled."); return; }
             MidiInputPort input = null;
             MidiOutputPort output = null;
             try {
                 input = device.openInputPort(endpoint.inputPort);
-                if (input == null) { closeDevice(device); opened.onFailure("Le port MIDI du X7 est occupé ou indisponible."); return; }
+                if (input == null) { closeDevice(device); opened.onFailure("The X7 MIDI port is busy or unavailable."); return; }
                 FrameReceiver receiver = null;
                 if (endpoint.outputPort >= 0) {
                     try {
@@ -334,7 +334,7 @@ final class DroidMidiTransport implements Closeable {
             this.device = device; this.input = input; this.output = output; this.receiver = receiver;
         }
         @Override public void send(byte[] data, int offset, int count) throws IOException {
-            if (closed.get()) throw new IOException("Le port MIDI a été fermé.");
+            if (closed.get()) throw new IOException("The MIDI port has been closed.");
             input.send(data, offset, count);
         }
         @Override public void close() {
@@ -354,7 +354,7 @@ final class DroidMidiTransport implements Closeable {
         Bundle properties = info.getProperties();
         String name = safeName(properties.getString(MidiDeviceInfo.PROPERTY_NAME));
         if (name.isEmpty()) name = safeName(properties.getString(MidiDeviceInfo.PROPERTY_PRODUCT));
-        if (name.isEmpty()) name = "Périphérique USB MIDI " + info.getId();
+        if (name.isEmpty()) name = "USB MIDI device " + info.getId();
         return name;
     }
     private static String usbName(UsbDevice device) {

@@ -64,13 +64,13 @@ final class DroidActions implements AutoCloseable {
 
     void connection() {
         midi.refresh();
-        String state = snapshot == null ? "Recherche des périphériques USB…" : snapshot.summary;
-        String sd = tree() == null ? "Carte SD : aucun dossier choisi." : "Carte SD : dossier autorisé par Android.";
-        show(new AlertDialog.Builder(activity).setTitle("Connexion DROID")
-                .setMessage(state + "\n\n" + sd + "\n\nX7 : carré/gauche pour la carte SD ; droite pour MIDI ; milieu pour déconnecter USB et charger le fichier de la carte après éjection.\n\nLe catalogue de l’éditeur est blue-7. La version du firmware du matériel n’est pas lue par ce protocole.")
-                .setNeutralButton("Choisir la carte SD", (dialog, which) -> chooseTree(Purpose.READ))
-                .setPositiveButton("Actualiser", (dialog, which) -> connection())
-                .setNegativeButton("Fermer", null).create());
+        String state = snapshot == null ? "Searching for USB devices…" : snapshot.summary;
+        String sd = tree() == null ? "SD card: no folder selected." : "SD card: folder access granted by Android.";
+        show(new AlertDialog.Builder(activity).setTitle("DROID connection")
+                .setMessage(state + "\n\n" + sd + "\n\nX7: square/left for the SD card; right for MIDI; centre to disconnect USB and load the file from the card after ejecting.\n\nThe editor uses the blue-7 catalogue. This protocol does not read the hardware firmware version.")
+                .setNeutralButton("Choose SD card", (dialog, which) -> chooseTree(Purpose.READ))
+                .setPositiveButton("Refresh", (dialog, which) -> connection())
+                .setNegativeButton("Close", null).create());
     }
 
     void readPatch() {
@@ -92,16 +92,16 @@ final class DroidActions implements AutoCloseable {
         if (snapshot != null) for (DroidMidiTransport.Endpoint endpoint : snapshot.endpoints)
             if (endpoint.x7) endpoints.add(endpoint);
         if (endpoints.isEmpty()) {
-            host.error("X7 MIDI absent", "Aucun port DROID X7 MIDI disponible. En mode carré, le X7 expose la carte SD. Éjectez-la avant de passer le commutateur à droite pour l’activation MIDI, puis actualisez la connexion.");
+            host.error("X7 MIDI unavailable", "No DROID X7 MIDI port is available. In square mode, the X7 exposes the SD card. Eject it before switching to the right for MIDI activation, then refresh the connection.");
             return;
         }
         if (endpoints.size() == 1) prepare(endpoints.get(0), null);
         else {
             String[] names = new String[endpoints.size()];
             for (int i = 0; i < names.length; i++) names[i] = endpoints.get(i).label;
-            show(new AlertDialog.Builder(activity).setTitle("Choisir le X7 MIDI")
+            show(new AlertDialog.Builder(activity).setTitle("Choose X7 MIDI")
                     .setItems(names, (dialog, which) -> prepare(endpoints.get(which), null))
-                    .setNegativeButton("Annuler", null).create());
+                    .setNegativeButton("Cancel", null).create());
         }
     }
 
@@ -116,7 +116,7 @@ final class DroidActions implements AutoCloseable {
 
     private boolean requireApplied() {
         if (!host.hasDrafts()) return true;
-        host.error("Des saisies ne sont pas appliquées", "Appliquez ou récupérez vos brouillons avant le déploiement. Le DROID reçoit uniquement le patch appliqué.");
+        host.error("Some edits have not been applied", "Apply or recover your drafts before deployment. DROID receives only the applied patch.");
         return false;
     }
 
@@ -129,7 +129,7 @@ final class DroidActions implements AutoCloseable {
         try { activity.startActivityForResult(intent, CHOOSE_SD); }
         catch (RuntimeException exception) {
             preferences.edit().remove("pending-purpose").apply();
-            host.error("Carte SD inaccessible", message(exception));
+            host.error("SD card inaccessible", message(exception));
         }
     }
 
@@ -143,13 +143,13 @@ final class DroidActions implements AutoCloseable {
                 try {
                     int required = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
                     if ((flags & required) != required)
-                        throw new SecurityException("Le fichier doit être autorisé en écriture et en lecture pour vérifier l’export.");
+                        throw new SecurityException("Read and write access to the file is required to verify the export.");
                     if ((flags & Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION) != 0)
                         activity.getContentResolver().takePersistableUriPermission(destination,
                                 Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                     rememberSafAction(SafAction.EXPORT, destination);
                 } catch (RuntimeException exception) {
-                    host.error("Export de l’original impossible", message(exception));
+                    host.error("Original export failed", message(exception));
                 }
             }
             else backupExport().delete();
@@ -163,14 +163,14 @@ final class DroidActions implements AutoCloseable {
         int flags = data.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         try {
             if ((flags & Intent.FLAG_GRANT_READ_URI_PERMISSION) == 0)
-                throw new SecurityException("L’accès en lecture n’a pas été autorisé.");
+                throw new SecurityException("Read access was not granted.");
             if ((flags & Intent.FLAG_GRANT_WRITE_URI_PERMISSION) != 0)
                 activity.getContentResolver().takePersistableUriPermission(selected,
                         Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             else activity.getContentResolver().takePersistableUriPermission(selected, Intent.FLAG_GRANT_READ_URI_PERMISSION);
             preferences.edit().putString("sd-tree", selected.toString()).apply();
         } catch (SecurityException exception) {
-            host.error("Autorisation de carte SD non conservée", "Choisissez à nouveau le dossier de la carte et autorisez son accès. " + message(exception));
+            host.error("SD card permission was not retained", "Choose the card folder again and grant access. " + message(exception));
             return true;
         }
         rememberSafAction(Purpose.SAVE.name().equals(purpose) ? SafAction.SAVE : SafAction.READ, selected);
@@ -189,9 +189,9 @@ final class DroidActions implements AutoCloseable {
         if (!canStartOperation()) { main.postDelayed(resumeSaf, 500); return; }
         try {
             SafAction action = SafAction.valueOf(actionName);
-            if (token.isEmpty() || uriText.isEmpty()) throw new IllegalArgumentException("Le résultat du sélecteur est incomplet. Choisissez à nouveau le fichier ou la carte.");
+            if (token.isEmpty() || uriText.isEmpty()) throw new IllegalArgumentException("The picker result is incomplete. Choose the file or card again.");
             Uri uri = Uri.parse(uriText);
-            if (!"content".equals(uri.getScheme())) throw new IllegalArgumentException("Le sélecteur n’a pas fourni un document Android valide.");
+            if (!"content".equals(uri.getScheme())) throw new IllegalArgumentException("The picker did not provide a valid Android document.");
             activeSafToken = token;
             switch (action) {
                 case READ: read(uri, token); break;
@@ -200,11 +200,11 @@ final class DroidActions implements AutoCloseable {
                     else completeSafAction(token);
                     break;
                 case EXPORT: exportBackupTo(uri, token); break;
-                default: throw new IllegalArgumentException("Action du sélecteur non reconnue.");
+                default: throw new IllegalArgumentException("Unrecognised picker action.");
             }
         } catch (RuntimeException exception) {
             completeSafAction(token);
-            host.error("Reprise du sélecteur impossible", message(exception));
+            host.error("Could not resume the picker result", message(exception));
         }
     }
 
@@ -215,7 +215,7 @@ final class DroidActions implements AutoCloseable {
             // commit() changes the in-memory preferences even when persistence fails.
             preferences.edit().remove("pending-saf-action").remove("pending-saf-uri")
                     .remove("pending-saf-token").apply();
-            host.error("Résultat du sélecteur non conservé", "La reprise n’a pas pu être sauvegardée. Choisissez à nouveau le fichier ou la carte.");
+            host.error("Picker result was not retained", "The pending action could not be saved. Choose the file or card again.");
             return;
         }
         onHostReady();
@@ -231,7 +231,7 @@ final class DroidActions implements AutoCloseable {
         }
         if (!preferences.edit().remove("pending-saf-action").remove("pending-saf-uri")
                 .remove("pending-saf-token").commit()) {
-            main.post(() -> { if (!closed) host.error("Reprise non mise à jour", "L’action est terminée, mais son état n’a pas pu être sauvegardé."); });
+            main.post(() -> { if (!closed) host.error("Pending action status was not updated", "The action has finished, but its status could not be saved."); });
         }
     }
 
@@ -287,14 +287,14 @@ final class DroidActions implements AutoCloseable {
                 post(lease, () -> {
                     finish(lease);
                     completeSafAction(safToken);
-                    show(new AlertDialog.Builder(activity).setTitle("Importer droid.ini de la carte ?")
-                            .setMessage("Fichier lu : " + data.length + " octets.\n\nCe fichier est le patch enregistré sur la carte, qui peut différer d’un patch envoyé précédemment en MIDI. L’import remplace le document et ses brouillons ; une copie privée du document précédent sera conservée.")
-                            .setNegativeButton("Conserver le patch", null)
-                            .setNeutralButton("Exporter d’abord", (dialog, which) -> host.exportSource())
-                            .setPositiveButton("Importer", (dialog, which) -> host.importSource(text)).create());
+                    show(new AlertDialog.Builder(activity).setTitle("Import droid.ini from the card?")
+                            .setMessage("File read: " + data.length + " bytes.\n\nThis file is the patch saved on the card, which may differ from a patch previously sent over MIDI. Importing replaces the document and its drafts; a private copy of the previous document will be retained.")
+                            .setNegativeButton("Keep patch", null)
+                            .setNeutralButton("Export first", (dialog, which) -> host.exportSource())
+                            .setPositiveButton("Import", (dialog, which) -> host.importSource(text)).create());
                 });
             } catch (Exception | LinkageError | OutOfMemoryError exception) {
-                failSaf(lease, safToken, "Lecture de la carte impossible", exception);
+                failSaf(lease, safToken, "Could not read the card", exception);
             } finally { if (closed) finish(lease); }
         });
     }
@@ -306,25 +306,26 @@ final class DroidActions implements AutoCloseable {
             try {
                 DroidSdStorage.BackupRecord[] records = storage.listBackups();
                 String[] names = new String[records.length];
-                java.text.DateFormat dates = java.text.DateFormat.getDateTimeInstance();
+                java.text.DateFormat dates = java.text.DateFormat.getDateTimeInstance(
+                        java.text.DateFormat.DEFAULT, java.text.DateFormat.DEFAULT, java.util.Locale.ENGLISH);
                 for (int i = 0; i < names.length; i++)
-                    names[i] = dates.format(new java.util.Date(records[i].timestampMillis)) + " · " + records[i].bytes + " octets";
+                    names[i] = dates.format(new java.util.Date(records[i].timestampMillis)) + " · " + records[i].bytes + " bytes";
                 post(lease, () -> {
                     finish(lease);
                     if (records.length == 0) {
-                        host.error("Sauvegardes DROID", "Aucun fichier de la carte n’a été remplacé avec sauvegarde dans cette installation.");
+                        host.error("DROID backups", "No card file has been replaced with a backup in this installation.");
                         return;
                     }
-                    show(new AlertDialog.Builder(activity).setTitle("Sauvegardes originales droid.ini")
+                    show(new AlertDialog.Builder(activity).setTitle("Original droid.ini backups")
                             .setItems(names, (dialog, which) -> show(new AlertDialog.Builder(activity)
-                                    .setTitle("Récupérer une sauvegarde")
-                                    .setMessage("Ouvrir dans l’éditeur exige un texte UTF-8 valide. L’export conserve tous les octets de l’original.")
-                                    .setNegativeButton("Annuler", null)
-                                    .setNeutralButton("Exporter l’original", (choice, action) -> exportBackup(records[which]))
-                                    .setPositiveButton("Ouvrir dans l’éditeur", (choice, action) -> recover(records[which])).create()))
-                            .setNegativeButton("Fermer", null).create());
+                                    .setTitle("Recover a backup")
+                                    .setMessage("Opening in the editor requires valid UTF-8 text. Export preserves every byte of the original.")
+                                    .setNegativeButton("Cancel", null)
+                                    .setNeutralButton("Export original", (choice, action) -> exportBackup(records[which]))
+                                    .setPositiveButton("Open in editor", (choice, action) -> recover(records[which])).create()))
+                            .setNegativeButton("Close", null).create());
                 });
-            } catch (Exception | OutOfMemoryError exception) { fail(lease, "Sauvegardes inaccessibles", exception); }
+            } catch (Exception | OutOfMemoryError exception) { fail(lease, "Backups inaccessible", exception); }
             finally { if (closed) finish(lease); }
         });
     }
@@ -338,12 +339,12 @@ final class DroidActions implements AutoCloseable {
                 String source = PatchTextCodec.read(new ByteArrayInputStream(bytes), 4 * 1024 * 1024);
                 post(lease, () -> {
                     finish(lease);
-                    show(new AlertDialog.Builder(activity).setTitle("Récupérer l’original dans l’éditeur ?")
-                            .setMessage("La carte reste inchangée. L’original remplacera le document de l’éditeur, dont une copie privée sera conservée. Vous pourrez ensuite exporter ce fichier.")
-                            .setNegativeButton("Annuler", null)
-                            .setPositiveButton("Récupérer", (dialog, which) -> host.importSource(source)).create());
+                    show(new AlertDialog.Builder(activity).setTitle("Recover the original in the editor?")
+                            .setMessage("The card remains unchanged. The original will replace the editor document, and a private copy of that document will be retained. You can then export this file.")
+                            .setNegativeButton("Cancel", null)
+                            .setPositiveButton("Recover", (dialog, which) -> host.importSource(source)).create());
                 });
-            } catch (Exception | OutOfMemoryError exception) { fail(lease, "Récupération impossible", exception); }
+            } catch (Exception | OutOfMemoryError exception) { fail(lease, "Recovery failed", exception); }
             finally { if (closed) finish(lease); }
         });
     }
@@ -364,7 +365,7 @@ final class DroidActions implements AutoCloseable {
                 catch (IOException | RuntimeException failure) { snapshotFile.failWrite(output); throw failure; }
                 try (InputStream input = snapshotFile.openRead()) {
                     if (!java.util.Arrays.equals(bytes, DroidSdIo.readBounded(input, 4 * 1024 * 1024)))
-                        throw new IOException("L’instantané de sauvegarde n’a pas pu être vérifié.");
+                        throw new IOException("The backup snapshot could not be verified.");
                 }
                 post(lease, () -> {
                     finish(lease);
@@ -375,9 +376,9 @@ final class DroidActions implements AutoCloseable {
                     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
                     intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION);
                     try { activity.startActivityForResult(intent, EXPORT_BACKUP); }
-                    catch (RuntimeException exception) { host.error("Export indisponible", message(exception)); }
+                    catch (RuntimeException exception) { host.error("Export unavailable", message(exception)); }
                 });
-            } catch (Exception | OutOfMemoryError exception) { fail(lease, "Préparation de l’export impossible", exception); }
+            } catch (Exception | OutOfMemoryError exception) { fail(lease, "Could not prepare the export", exception); }
             finally { if (closed) finish(lease); }
         });
     }
@@ -390,22 +391,22 @@ final class DroidActions implements AutoCloseable {
                 byte[] bytes;
                 try (InputStream input = backupExport().openRead()) { bytes = DroidSdIo.readBounded(input, 4 * 1024 * 1024); }
                 try (OutputStream output = activity.getContentResolver().openOutputStream(destination, "wt")) {
-                    if (output == null) throw new IOException("Le fournisseur n’a pas ouvert le fichier en écriture.");
+                    if (output == null) throw new IOException("The provider did not open the file for writing.");
                     output.write(bytes); output.flush();
                 }
                 try (InputStream input = activity.getContentResolver().openInputStream(destination)) {
                     if (!java.util.Arrays.equals(bytes, DroidSdIo.readBounded(input, 4 * 1024 * 1024)))
-                        throw new IOException("La relecture de l’export ne correspond pas à la sauvegarde.");
+                        throw new IOException("The exported file read back does not match the backup.");
                 }
                 post(lease, () -> {
                     finish(lease);
                     completeSafAction(safToken);
                     backupExport().delete();
-                    show(new AlertDialog.Builder(activity).setTitle("Original exporté et vérifié")
-                            .setMessage(bytes.length + " octets conservés à l’identique.")
-                            .setPositiveButton("Fermer", null).create());
+                    show(new AlertDialog.Builder(activity).setTitle("Original exported and verified")
+                            .setMessage(bytes.length + " bytes preserved exactly.")
+                            .setPositiveButton("Close", null).create());
                 });
-            } catch (Exception | OutOfMemoryError exception) { failSaf(lease, safToken, "Export de l’original impossible", exception); }
+            } catch (Exception | OutOfMemoryError exception) { failSaf(lease, safToken, "Original export failed", exception); }
             finally { if (closed) finish(lease); }
         });
     }
@@ -426,19 +427,19 @@ final class DroidActions implements AutoCloseable {
                 post(lease, () -> {
                     finish(lease);
                     completeSafAction(safToken);
-                    String target = endpoint == null ? "Remplacer droid.ini sur la carte" : "Activer le patch sur " + endpoint.label;
+                    String target = endpoint == null ? "Replace droid.ini on the card" : "Activate the patch on " + endpoint.label;
                     String detail = endpoint == null
-                            ? "L’original sera sauvegardé avant écriture. Le fichier écrit sera relu et comparé. Éjectez ensuite la carte avant de remettre le X7 au milieu."
-                            : "L’envoi remplace le patch exécuté par le MASTER. Le protocole officiel ne renvoie pas d’accusé de réception ; vérifiez ensuite les voyants du MASTER.";
+                            ? "The original will be backed up before writing. The written file will be read back and compared. Then eject the card before returning the X7 switch to the centre."
+                            : "Sending replaces the patch running on the MASTER. The official protocol does not return an acknowledgement; check the MASTER lights afterwards.";
                     show(new AlertDialog.Builder(activity).setTitle(target + " ?")
-                            .setMessage(bytes.length + " / 64 000 octets.\n\nLes commentaires et labels restent dans le document de l’éditeur ; ils sont retirés de la copie destinée au DROID.\n\n" + detail)
-                            .setNegativeButton("Annuler", null)
+                            .setMessage(bytes.length + " / 64,000 bytes.\n\nComments and labels remain in the editor document; they are removed from the copy sent to DROID.\n\n" + detail)
+                            .setNegativeButton("Cancel", null)
                             .setPositiveButton(endpoint == null ? "Save to SD" : "Activate!", (dialog, which) -> {
                                 if (endpoint == null) write(selected, source, bytes); else send(endpoint, source, frame);
                             }).create());
                 });
             } catch (Exception | LinkageError | OutOfMemoryError exception) {
-                failSaf(lease, safToken, "Déploiement refusé", exception);
+                failSaf(lease, safToken, "Deployment refused", exception);
             } finally { if (closed) finish(lease); }
         });
     }
@@ -448,18 +449,18 @@ final class DroidActions implements AutoCloseable {
         if (lease == null) return;
         worker.execute(() -> {
             try {
-                if (!source.equals(NativeBridge.source())) throw new IllegalStateException("Le patch a changé : préparez à nouveau le déploiement.");
+                if (!source.equals(NativeBridge.source())) throw new IllegalStateException("The patch has changed: prepare the deployment again.");
                 DroidSdStorage.Result result = storage.save(selected, bytes);
                 post(lease, () -> {
                     finish(lease);
-                    show(new AlertDialog.Builder(activity).setTitle("droid.ini écrit et vérifié")
-                            .setMessage(result.bytes + " octets relus à l’identique." + (result.backupVerified ? " L’ancien fichier est sauvegardé dans le stockage privé de l’application." : "")
-                                    + "\n\nÉjectez la carte avant de remettre le X7 au milieu pour charger le patch.")
-                            .setNegativeButton("Fermer", null)
+                    show(new AlertDialog.Builder(activity).setTitle("droid.ini written and verified")
+                            .setMessage(result.bytes + " bytes read back exactly." + (result.backupVerified ? " The previous file is backed up in private app storage." : "")
+                                    + "\n\nEject the card before returning the X7 switch to the centre to load the patch.")
+                            .setNegativeButton("Close", null)
                             .setPositiveButton("Eject SD", (dialog, which) -> eject()).create());
                 });
             } catch (Exception | LinkageError | OutOfMemoryError exception) {
-                fail(lease, "Sauvegarde SD interrompue", exception);
+                fail(lease, "SD save interrupted", exception);
             } finally { if (closed) finish(lease); }
         });
     }
@@ -470,25 +471,25 @@ final class DroidActions implements AutoCloseable {
         midiLease = lease;
         worker.execute(() -> {
             try {
-                if (!source.equals(NativeBridge.source())) throw new IllegalStateException("Le patch a changé : préparez à nouveau le déploiement.");
+                if (!source.equals(NativeBridge.source())) throw new IllegalStateException("The patch has changed: prepare the deployment again.");
                 if (closed) { finish(lease); return; }
                 midi.send(endpoint, frame, 15000, new DroidMidiTransport.Completion() {
                     @Override public void onSent() {
                         midiLease = null;
                         finish(lease);
-                        if (!closed) show(new AlertDialog.Builder(activity).setTitle("Transfert MIDI envoyé")
-                                .setMessage("Les octets ont été remis au port MIDI Android. Vérifiez l’activation et l’absence d’erreur sur le MASTER : le protocole officiel ne fournit pas d’accusé de réception.")
-                                .setPositiveButton("Fermer", null).create());
+                        if (!closed) show(new AlertDialog.Builder(activity).setTitle("MIDI transfer sent")
+                                .setMessage("The bytes were handed to the Android MIDI port. Check activation and any errors on the MASTER: the official protocol does not provide an acknowledgement.")
+                                .setPositiveButton("Close", null).create());
                     }
                     @Override public void onError(String error) {
                         midiLease = null;
                         finish(lease);
-                        if (!closed) host.error("Transfert MIDI interrompu", error);
+                        if (!closed) host.error("MIDI transfer interrupted", error);
                     }
                 });
             } catch (Exception | LinkageError | OutOfMemoryError exception) {
                 midiLease = null;
-                fail(lease, "Activation impossible", exception);
+                fail(lease, "Activation failed", exception);
             }
         });
     }
@@ -508,26 +509,26 @@ final class DroidActions implements AutoCloseable {
                 storage.ejectRoot(selected);
                 post(lease, () -> {
                     finish(lease);
-                    show(new AlertDialog.Builder(activity).setTitle("Éjection demandée à Android")
-                            .setMessage("Attendez la confirmation d’Android avant de remettre le X7 au milieu. Ne retirez pas la carte pendant une écriture.")
-                            .setPositiveButton("Fermer", null).create());
+                    show(new AlertDialog.Builder(activity).setTitle("Ejection requested from Android")
+                            .setMessage("Wait for Android confirmation before returning the X7 switch to the centre. Do not remove the card while it is being written.")
+                            .setPositiveButton("Close", null).create());
                 });
-            } catch (Exception exception) { fail(lease, "Éjection impossible", exception); }
+            } catch (Exception exception) { fail(lease, "Ejection failed", exception); }
             finally { if (closed) finish(lease); }
         });
     }
 
     private void showSystemEject() {
-        show(new AlertDialog.Builder(activity).setTitle("Éjecter la carte avec Android")
-                .setMessage("Dans le sélecteur Android, ouvrez le volet des emplacements et touchez l’icône Éjecter à côté de DROID. Attendez la confirmation ou la disparition du volume, puis revenez sans choisir de dossier. Remettez ensuite le X7 au milieu. Si l’action n’est pas proposée, utilisez les réglages ou la notification USB Android.")
-                .setNegativeButton("Fermer", null)
-                .setNeutralButton("Réglages", (dialog, which) -> {
+        show(new AlertDialog.Builder(activity).setTitle("Eject the card with Android")
+                .setMessage("In the Android picker, open the locations panel and tap the Eject icon next to DROID. Wait for confirmation or for the volume to disappear, then return without choosing a folder. Return the X7 switch to the centre. If the action is unavailable, use Android settings or the USB notification.")
+                .setNegativeButton("Close", null)
+                .setNeutralButton("Settings", (dialog, which) -> {
                     try { activity.startActivity(new Intent(Settings.ACTION_INTERNAL_STORAGE_SETTINGS)); }
-                    catch (RuntimeException exception) { host.error("Réglages indisponibles", message(exception)); }
+                    catch (RuntimeException exception) { host.error("Settings unavailable", message(exception)); }
                 })
-                .setPositiveButton("Ouvrir le sélecteur", (dialog, which) -> {
+                .setPositiveButton("Open picker", (dialog, which) -> {
                     Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-                    intent.putExtra(DocumentsContract.EXTRA_PROMPT, "Touchez Éjecter à côté de DROID, puis revenez sans choisir de dossier.");
+                    intent.putExtra(DocumentsContract.EXTRA_PROMPT, "Tap Eject next to DROID, then return without choosing a folder.");
                     Uri selected = tree();
                     if (selected != null) {
                         try { intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI,
@@ -535,7 +536,7 @@ final class DroidActions implements AutoCloseable {
                         catch (IllegalArgumentException ignored) { /* Let Android show its default location. */ }
                     }
                     try { activity.startActivityForResult(intent, EJECT_PICKER); }
-                    catch (RuntimeException exception) { host.error("Sélecteur indisponible", message(exception)); }
+                    catch (RuntimeException exception) { host.error("Picker unavailable", message(exception)); }
                 }).create());
     }
 

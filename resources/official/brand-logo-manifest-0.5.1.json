@@ -1,0 +1,13 @@
+{
+  "name": "Der Mann mit der Maschine brand logo",
+  "source_page": "https://dermannmitdermaschine.de/",
+  "source_url": "https://dermannmitdermaschine.de/images/Logo.png",
+  "attribution": "Mathias Kettner aka Der Mann mit der Maschine",
+  "path": "app/src/main/res/drawable-nodpi/dmmdm_logo.png",
+  "bytes": 30500,
+  "sha256": "9bec7c36c12a0daad6dbf3a03672b3d4eeb7d62909d23502739b64fa84dda0a3",
+  "width": 213,
+  "height": 177,
+  "transformation": "None: official PNG copied byte for byte. Android XML scales it proportionally over a black background inside the adaptive icon safe circle.",
+  "rights_notice": "Brand artwork retains its author's rights. The graphics permission in GRAPHICS-LICENSE.txt concerns the blue-7 archive's module faceplates and circuit icons."
+}

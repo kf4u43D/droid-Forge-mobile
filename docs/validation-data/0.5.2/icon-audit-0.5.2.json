@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "version": "0.5.2",
+  "version_code": 9,
+  "scope": "User-supplied launcher pictogram, Android build/lint, binary checks and existing editor-source preservation. Historical X7 transport checks remain assigned to 0.5.0.",
+  "passed": true,
+  "pictogram_source_kind": "user_supplied_attachment",
+  "pictogram_png_sha256": "bfd426c81dd0b444a08a806c2dd6140c29a97ebd75d5014687a85487aed0f3bc",
+  "user_supplied_png_byte_exact": true,
+  "pictogram_source_dimensions_px": [
+    465,
+    465
+  ],
+  "adaptive_foreground_nominal_dimensions_at_108dp": [
+    45,
+    45
+  ],
+  "adaptive_insets_percent": [
+    29.166667,
+    29.166667,
+    29.166667,
+    29.166667
+  ],
+  "safe_circle_dp": 66,
+  "bitmap_aspect_ratio_preserved": true,
+  "device_model": "SM-X620",
+  "android": 16,
+  "preview_and_release_build_and_lint_passed": true,
+  "preview_apk_signature_verified_existing_development_certificate": true,
+  "apk_arm64_and_16k_alignment_verified": true,
+  "official_example_assets_verified": 630,
+  "native_engine_bytes_identical_to_0_5_0_and_0_5_1_previews": true,
+  "installed_apk": {
+    "name": "droid-Forge-mobile-0.5.2-arm64-preview.apk",
+    "sha256": "b6e32923e41a46f100243323fd39814affd2eecb6e5c48906b51071f60df4688",
+    "bytes": 9241305,
+    "byte_exact_to_local_artifact": true
+  },
+  "editor_source_text_preserved_byte_exact_after_update_and_launcher_start": true,
+  "samsung_settings_icon_visually_verified": true,
+  "samsung_launcher_icon_visually_verified": true,
+  "launching_from_new_icon_passed": true,
+  "user_patch_contents_name_and_hash_published": false,
+  "new_droid_hardware_transfer_performed": false,
+  "temporary_device_screenshot_and_ui_dump_removed": true,
+  "main_application_left_foreground": true,
+  "limits": [
+    "Android rounds insets to pixels; nominal dimensions describe the proportional layout.",
+    "No dedicated monochrome themed icon is supplied.",
+    "Other launcher shapes were not exercised on device; the artwork fits the documented adaptive safe circle."
+  ]
+}

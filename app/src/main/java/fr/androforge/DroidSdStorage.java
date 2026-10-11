@@ -85,13 +85,13 @@ public final class DroidSdStorage {
         File directory = backupDirectory(false);
         if (!directory.exists()) return new BackupRecord[0];
         File[] files = directory.listFiles();
-        if (files == null) throw new IOException("Le dossier des sauvegardes privées n’est pas lisible.");
+        if (files == null) throw new IOException("The private backup folder cannot be read.");
         ArrayList<BackupRecord> result = new ArrayList<>();
         for (File file : files) {
             if (!isBackupName(file.getName()) || !file.isFile()) continue;
             File canonical = file.getCanonicalFile();
             if (!directory.equals(canonical.getParentFile()))
-                throw new IOException("Un chemin de sauvegarde sort du stockage privé autorisé.");
+                throw new IOException("A backup path is outside the permitted private storage.");
             result.add(new BackupRecord(canonical));
         }
         result.sort(Comparator.comparingLong((BackupRecord backup) -> backup.timestampMillis).reversed()
@@ -102,11 +102,11 @@ public final class DroidSdStorage {
     /** Raw bytes allow explicit UTF-8 validation by the editor or lossless binary export. */
     public byte[] readBackup(BackupRecord backup) throws IOException {
         if (backup == null || backup.file == null || !isBackupName(backup.file.getName()))
-            throw new IOException("La sauvegarde sélectionnée est invalide.");
+            throw new IOException("The selected backup is invalid.");
         File directory = backupDirectory(false);
         File file = backup.file.getCanonicalFile();
         if (!directory.equals(file.getParentFile()) || !file.isFile())
-            throw new IOException("La sauvegarde n’est plus accessible dans le stockage privé autorisé.");
+            throw new IOException("The backup is no longer accessible in the permitted private storage.");
         try (InputStream input = new FileInputStream(file)) {
             return DroidSdIo.readBounded(input, MAX_READ_BYTES);
         }
@@ -117,7 +117,7 @@ public final class DroidSdStorage {
         try {
             Uri parent = directory(treeUri);
             Uri patch = findPatch(treeUri, parent);
-            if (patch == null) throw new IOException("Aucun fichier droid.ini dans le dossier sélectionné.");
+            if (patch == null) throw new IOException("No droid.ini file in the selected folder.");
             return readFile(patch);
         } catch (RuntimeException exception) {
             throw accessFailure(exception);
@@ -142,7 +142,7 @@ public final class DroidSdStorage {
                         expectedPatch = current;
                         inspected = true;
                     } else if (expectedPatch == null ? current != null : !expectedPatch.equals(current)) {
-                        throw new IOException("Le fichier droid.ini a été remplacé pendant la sauvegarde.");
+                        throw new IOException("The droid.ini file was replaced during saving.");
                     }
                     return current == null ? null : readFile(current);
                 }
@@ -158,11 +158,11 @@ public final class DroidSdStorage {
                     if (expectedPatch == null) {
                         expectedPatch = DocumentsContract.createDocument(resolver, parent,
                                 "application/octet-stream", PATCH_FILENAME);
-                        if (expectedPatch == null) throw new IOException("La création de droid.ini a échoué.");
+                        if (expectedPatch == null) throw new IOException("Creating droid.ini failed.");
                         ensurePatchName(expectedPatch);
                     }
                     ParcelFileDescriptor descriptor = resolver.openFileDescriptor(expectedPatch, "wt");
-                    if (descriptor == null) throw new IOException("L’ouverture de droid.ini en écriture a échoué.");
+                    if (descriptor == null) throw new IOException("Opening droid.ini for writing failed.");
                     try (ParcelFileDescriptor.AutoCloseOutputStream output =
                                  new ParcelFileDescriptor.AutoCloseOutputStream(descriptor)) {
                         output.write(bytes);
@@ -192,7 +192,7 @@ public final class DroidSdStorage {
     /** Never treats an unsupported or denied request as an ejection success. */
     public void ejectRoot(Uri treeUri) throws IOException {
         if (!canEject(treeUri))
-            throw new IOException("L’éjection n’est pas autorisée par le fournisseur. Utilisez l’éjection du stockage dans Android.");
+            throw new IOException("The provider does not allow ejection. Use storage ejection in Android.");
         try { DocumentsContract.ejectRoot(resolver, ejectableRoot(treeUri)); }
         catch (RuntimeException exception) { throw accessFailure(exception); }
     }
@@ -200,16 +200,16 @@ public final class DroidSdStorage {
     private Uri directory(Uri treeUri) throws IOException {
         if (treeUri == null || !"content".equals(treeUri.getScheme())
                 || !DocumentsContract.isTreeUri(treeUri) || treeUri.getAuthority() == null)
-            throw new IOException("Sélectionnez un dossier avec le sélecteur Android.");
+            throw new IOException("Select a folder with the Android picker.");
         String id = DocumentsContract.getTreeDocumentId(treeUri);
         if (id == null || id.isEmpty() || id.length() > 4096)
-            throw new IOException("L’identifiant du dossier sélectionné est invalide.");
+            throw new IOException("The selected folder identifier is invalid.");
         Uri parent = DocumentsContract.buildDocumentUriUsingTree(treeUri, id);
         try (Cursor cursor = resolver.query(parent,
                 new String[]{DocumentsContract.Document.COLUMN_MIME_TYPE}, null, null, null)) {
             if (cursor == null || !cursor.moveToFirst()
                     || !DocumentsContract.Document.MIME_TYPE_DIR.equals(cursor.getString(0)))
-                throw new IOException("Le dossier sélectionné n’est pas accessible.");
+                throw new IOException("The selected folder is inaccessible.");
         }
         return parent;
     }
@@ -227,10 +227,10 @@ public final class DroidSdStorage {
             int count = 0;
             while (cursor.moveToNext()) {
                 if (++count > MAX_DIRECTORY_ENTRIES)
-                    throw new IOException("Le dossier contient trop d’éléments pour une recherche fiable de droid.ini.");
+                    throw new IOException("The folder contains too many items to locate droid.ini reliably.");
                 String name = cursor.getString(1);
                 if (!isPatchName(name)) continue;
-                if (match != null) throw new IOException("Plusieurs fichiers correspondent à droid.ini. Choisissez un dossier sans ambiguïté.");
+                if (match != null) throw new IOException("Multiple files match droid.ini. Choose a folder without ambiguity.");
                 if (DocumentsContract.Document.MIME_TYPE_DIR.equals(cursor.getString(2))
                         || (cursor.getInt(3) & DocumentsContract.Document.FLAG_VIRTUAL_DOCUMENT) != 0)
                     throw new IOException("droid.ini n’est pas un fichier directement lisible.");
@@ -252,14 +252,14 @@ public final class DroidSdStorage {
         try (Cursor cursor = resolver.query(file,
                 new String[]{DocumentsContract.Document.COLUMN_DISPLAY_NAME}, null, null, null)) {
             if (cursor == null || !cursor.moveToFirst() || !isPatchName(cursor.getString(0)))
-                throw new IOException("Le fournisseur n’a pas conservé le nom droid.ini ; aucun texte n’a été écrit.");
+                throw new IOException("The provider did not retain the name droid.ini; no text was written.");
         }
     }
 
     private File createBackup(byte[] original) throws IOException {
         File directory = backupDirectory(true);
         File[] files = directory.listFiles();
-        if (files == null) throw new IOException("Le dossier des sauvegardes privées n’est pas lisible.");
+        if (files == null) throw new IOException("The private backup folder cannot be read.");
         long total = 0;
         int count = 0;
         for (File file : files) {
@@ -268,7 +268,7 @@ public final class DroidSdStorage {
             count++;
         }
         if (count >= MAX_BACKUPS || original.length > MAX_BACKUP_BYTES - total)
-            throw new IOException("Le budget des sauvegardes SD privées est atteint. Exportez et libérez vos sauvegardes avant de remplacer droid.ini.");
+            throw new IOException("The private SD backup limit has been reached. Export and remove backups before replacing droid.ini.");
         File file = new File(directory, "droid-sd-" + UUID.randomUUID() + ".ini");
         AtomicFile atomic = new AtomicFile(file);
         FileOutputStream output = null;
@@ -291,9 +291,9 @@ public final class DroidSdStorage {
         File privateRoot = context.getFilesDir().getCanonicalFile();
         File directory = new File(privateRoot, "droid-sd-backups").getCanonicalFile();
         if (!privateRoot.equals(directory.getParentFile()))
-            throw new IOException("Le dossier de sauvegarde sort du stockage privé autorisé.");
+            throw new IOException("The backup folder is outside the permitted private storage.");
         if (create && !directory.isDirectory() && !directory.mkdirs())
-            throw new IOException("La sauvegarde privée de droid.ini ne peut pas être créée.");
+            throw new IOException("The private backup of droid.ini cannot be created.");
         return directory;
     }
 
@@ -319,6 +319,6 @@ public final class DroidSdStorage {
     }
 
     private static IOException accessFailure(RuntimeException exception) {
-        return new IOException("Le stockage n’est plus accessible ou l’autorisation Android a été refusée.", exception);
+        return new IOException("Storage is no longer accessible or Android permission was denied.", exception);
     }
 }

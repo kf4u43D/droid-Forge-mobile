@@ -23,8 +23,8 @@ android {
         applicationId = "fr.androforge"
         minSdk = 26
         targetSdk = 36
-        versionCode = 7
-        versionName = "0.5.0"
+        versionCode = 10
+        versionName = "0.5.3"
         ndk { abiFilters += "arm64-v8a" }
         externalNativeBuild {
             cmake { arguments += listOf("-DANDROID_STL=c++_static", "-DANDROFORGE_BUILD_TESTS=OFF") }
@@ -70,7 +70,11 @@ android {
             matchingFallbacks += listOf("tabletPreview", "release")
         }
     }
+    // Keep Git checkout and corresponding-source archive builds comparable.
+    buildTypes.configureEach { vcsInfo { include = false } }
     packaging { jniLibs { useLegacyPackaging = false } }
+    // Keep resources available for the app's fixed English locale in optional bundles.
+    bundle { language { enableSplit = false } }
     lint {
         abortOnError = true
         checkReleaseBuilds = true

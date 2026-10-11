@@ -32,29 +32,29 @@ SOURCE_FILES = {
     'droid-patch-snippets-blue-7.txt': ('droid-blue-7/manual/droid-patch-snippets-blue-7.txt',
         'f528ea80398218d59d00cd8ffded2b70aeac6c020840501e20eccebb0fa3c55d'),
 }
-NOTICE = '''Exemples officiels DROID blue-7 — Der Mann mit der Maschine
-Provenance : https://shop.dermannmitdermaschine.de/pages/downloads
-Auteur de DROID / Forge PC : Mathias Kettner (Der Mann mit der Maschine).
-Dr Delos : contribution au port Android, selon le crédit demandé pour ce projet.
+NOTICE = '''Official DROID blue-7 examples — Der Mann mit der Maschine
+Provenance: https://shop.dermannmitdermaschine.de/pages/downloads
+DROID / Forge PC author: Mathias Kettner (Der Mann mit der Maschine).
+Dr Delos: contribution to the Android port, as credited for this project.
 
-Les fichiers des répertoires patches et motokit et les corps des 332 extraits TXT
-sont conservés à l'octet, sans correction. Les 262 extraits PDF supplémentaires
-sont des transcriptions de blocs de code, identifiées comme telles et référencées
-par page/colonne. Aucune ligne omise ou configuration matérielle n'est inventée.
+Files from the patches and motokit directories and the bodies of the 332 TXT
+excerpts are preserved byte for byte, without corrections. The 262 additional PDF
+excerpts are code block transcriptions, identified as such and referenced by
+page/column. No omitted lines or hardware configuration are invented.
 
-Le README officiel accompagne le corpus. Il propose les snippets pour copie dans
-vos patches. Il ne fournit pas de licence autonome explicite pour ces exemples :
-ne pas assimiler l'autorisation des graphismes à une licence GPL sur les patches.
-La GPLv3 du logiciel Android/Forge PC ne change pas l'attribution du corpus.
+The official README accompanies the corpus. It offers snippets to copy into
+your patches. It provides no explicit standalone licence for these examples:
+do not treat graphics permission as a GPL licence for the patches.
+The GPLv3 licence of the Android/Forge PC software does not change corpus attribution.
 
-Plusieurs fichiers officiels sont anciens ou nécessitent les contrôleurs déclarés
-dans l'ordre donné. Les deux grands INI Moto Kit sont destinés à l'étude dans un
-éditeur ; le README officiel dit qu'ils sont trop grands pour chargement direct
-sur le master et renvoie aux patches matériels compressés du fournisseur.
+Some official files are older versions or require the declared controllers
+in the given order. The two large Moto Kit INI files are intended for study in
+an editor; the official README says they are too large to load directly on
+the MASTER and refers to the supplier's compressed hardware patches.
 
-Les fragments, points de suspension, placeholders et contre-exemples restent
-volontairement inchangés. Réussir le test de lecture/export ne prouve ni la validité
-complète du firmware ni le fonctionnement sur le matériel DROID.
+Fragments, ellipses, placeholders and counterexamples remain intentionally
+unchanged. Passing the read/export test proves neither full firmware validity
+nor operation on DROID hardware.
 '''
 
 

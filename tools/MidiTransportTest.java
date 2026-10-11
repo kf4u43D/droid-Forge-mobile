@@ -172,7 +172,7 @@ public final class MidiTransportTest {
             session.send(callback -> callback.onOpened(port), frame(100), 1000, result);
             await(port.wrote, "Disconnect setup failed"); session.disconnected(); await(result.done, "Disconnect not reported");
             check(result.errors.get() == 1 && result.sent.get() == 0, "Disconnect during drain must never claim activation");
-            check(result.message.contains("n’est pas confirmée"), "Possibly delivered bytes must be reported honestly");
+            check(result.message.contains("is not confirmed"), "Possibly delivered bytes must be reported honestly");
         }
     }
 
@@ -209,7 +209,7 @@ public final class MidiTransportTest {
             Result failure = new Result(); session.send(callback -> { throw new IOException("Unavailable"); }, frame(10), 1000, failure); await(failure.done, "Open exception not reported");
             check(failure.errors.get() == 1 && !session.isBusy(), "Failed open must release operation state");
             Result memory = new Result(); session.send(callback -> { throw new OutOfMemoryError("fake"); }, frame(10), 1000, memory); await(memory.done, "Memory refusal not reported");
-            check(memory.errors.get() == 1 && memory.message.contains("Mémoire"), "Explicit memory error must keep transport recoverable");
+            check(memory.errors.get() == 1 && memory.message.contains("Insufficient memory"), "Explicit memory error must keep transport recoverable");
         }
     }
 
@@ -219,7 +219,7 @@ public final class MidiTransportTest {
                 Result cancelled = new Result();
                 session.send(callback -> callback.onOpened(new Port()), frame(4096), 1000, cancelled);
                 session.cancel(); await(cancelled.done, "Immediate cancellation was lost");
-                check(cancelled.errors.get() == 1 && cancelled.sent.get() == 0 && cancelled.message.startsWith("Transfert MIDI annulé"),
+                check(cancelled.errors.get() == 1 && cancelled.sent.get() == 0 && cancelled.message.startsWith("MIDI transfer cancelled"),
                         "Cancel immediately after queued send must cancel that operation");
             }
         }

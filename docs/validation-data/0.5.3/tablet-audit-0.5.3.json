@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "version": "0.5.3-validation",
+  "version_code": 10,
+  "device_model": "SM-X620",
+  "android": 16,
+  "tests": [
+    "English zero plural on a French Android device",
+    "New document template is English",
+    "Double-tap empty rack opens all nine module choices; cancel preserves source",
+    "Picker adds and renders one module; undo restores exact source",
+    "Double-tap existing module opens picker without single-tap dialog",
+    "Single tap retains module details in English",
+    "Long press retains label editing",
+    "Zoom controls and reset retain correct behavior",
+    "Ordinary drag does not open module picker",
+    "File menu and DROID commands display in English",
+    "DROID connection dialog displays in English without hardware writes",
+    "About retains version, catalogue firmware and credits in English",
+    "Nonmutating rack and menu interactions preserve exact editor source"
+  ],
+  "scope": "Optimized isolated editor package and English UI",
+  "physical_droid_write_or_transfer": false,
+  "checks": 13,
+  "device_locale": "fr-FR",
+  "validation_apk_sha256": "a4dfac6683a2d663b7913ed89ff6377778053bb2c22f6f69754f12fb71b35f57",
+  "main_preview_apk_sha256": "f015a4688aa8b573234b85b2d846f7dda5f2bfa64f212c4d2ac549bd936088ce",
+  "normal_main_app": {
+    "version": "0.5.3-preview",
+    "version_code": 10,
+    "passed": true,
+    "normal_main_app_updated": true,
+    "installed_apk_byte_exact": true,
+    "existing_editor_source_preserved_byte_exact": true,
+    "double_tap_picker_and_cancellation_preserve_source": true,
+    "existing_backup_dates_checked_in_english": true,
+    "new_midi_transfer_or_physical_sd_write": false
+  },
+  "cleanup": {
+    "passed": true,
+    "isolated_test_packages_removed": true,
+    "owned_temporary_ui_files_removed": true,
+    "main_editor_returned_to_foreground": true,
+    "main_editor_source_preserved_byte_exact_after_all_tests": true
+  },
+  "configuration_changes": {
+    "passed": true,
+    "orientations_checked": [
+      "portrait",
+      "landscape"
+    ],
+    "editor_layout_and_english_actions_available": true,
+    "existing_editor_source_preserved_byte_exact": true,
+    "original_rotation_settings_restored": true
+  },
+  "official_metadata_checks": 3364,
+  "user_patch_contents_or_filenames_published": false
+}

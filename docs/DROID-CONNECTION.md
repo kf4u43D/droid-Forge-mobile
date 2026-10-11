@@ -1,247 +1,225 @@
-# Connexion DROID — 0.5.0
+# DROID connection — 0.5.0
 
-Ce document décrit le protocole officiel et l’adaptation Android 0.5.0.
-La revue locale et les tests des adaptateurs et de l’interface sont terminés.
-Après reconnexion du X7 en mode carré, l’import de carte et la sauvegarde SD
-ont été vérifiés à l’octet sur le matériel réel. L’original a été restauré
-exactement par un harness privé de test, puis l’action DocumentsUI ouverte
-par **Eject SD** a réellement démonté le volume DROID. Le transfert Android
-MIDI vers le X7 a ensuite réussi. L’utilisateur ne constate aucune erreur après
-Activate ; le fonctionnement complet du patch reste non certifié.
-Le [rapport physique X7](validation-data/0.5.0/droid-hardware-audit-0.5.0.json) contient
-24 assertions réussies : 19 pour la carte SD, l’import et le nettoyage,
-puis 5 pour le transport MIDI Android. Elles restent distinctes des essais
-avec fournisseur privé.
-Les [preuves de 0.5.0](VALIDATION-0.5.0.md) distinguent ces deux périmètres.
-La [validation 0.4.0](VALIDATION-0.4.0.md) reste un rapport historique séparé.
+This document describes the official protocol and its Android 0.5.0 adaptation.
+Local review and the adapter and interface tests are complete. After reconnecting
+the X7 in square mode, card import and SD saving were verified byte for byte on
+the real hardware. A private test harness restored the exact original file, then
+the DocumentsUI action opened by **Eject SD** actually unmounted the DROID volume.
+Android MIDI transfer to the X7 then succeeded. The user reports no error after
+Activate; the complete operation of the patch remains uncertified.
+The [physical X7 report](validation-data/0.5.0/droid-hardware-audit-0.5.0.json)
+contains 24 passed assertions: 19 for SD, import and cleanup, followed by 5 for
+Android MIDI transport. These remain separate from the private-provider tests.
+The [0.5.0 evidence](VALIDATION-0.5.0.md) distinguishes the two scopes.
+The [0.4.0 validation](VALIDATION-0.4.0.md) remains a separate historical report.
 
-## Positions du X7 et nature du patch récupéré
+## X7 positions and the patch being retrieved
 
-Le manuel blue-7, chapitre 8, pages 89–91, donne trois positions :
+The blue-7 manual, chapter 8, pages 89–91, specifies three positions:
 
-| Position | Fonction USB | Conséquence |
+| Position | USB function | Consequence |
 | --- | --- | --- |
-| Gauche, mode carré observé sur le X7 connecté | Stockage de masse, accès à la carte SD | Le master ne joue pas son patch pendant cet accès |
-| Milieu | USB déconnecté | Après éjection par l’hôte, le master recharge automatiquement `droid.ini` |
-| Droite | USB MIDI | Envoi et réception MIDI, activation d’un patch par SysEx |
+| Left, square mode observed on the connected X7 | Mass storage, access to the SD card | The master does not play its patch during this access |
+| Middle | USB disconnected | After host ejection, the master automatically reloads `droid.ini` |
+| Right | USB MIDI | MIDI input/output and patch activation through SysEx |
 
-Le [fabricant décrit l’accès SD comme celui d’une clé USB](https://shop.dermannmitdermaschine.de/products/x7),
-y compris depuis un téléphone ou une tablette. Le X7 agit comme périphérique USB ;
-Android doit jouer le rôle d’hôte. Le manuel p. 90 précise aussi les contraintes
-de révision et de firmware pour un câble USB-C vers USB-C ; l’application ne
-met pas à jour le firmware.
+The [manufacturer describes SD access as using a USB flash drive](https://shop.dermannmitdermaschine.de/products/x7),
+including from a phone or tablet. The X7 is a USB peripheral; Android must act as
+the host. Page 90 of the manual also specifies hardware-revision and firmware
+requirements for a USB-C to USB-C cable; the application does not update firmware.
 
-Lire `droid.ini` récupère **le fichier enregistré sur la carte**, sans conversion
-de son texte. Ce fichier peut différer d’un patch précédemment activé en RAM par
-MIDI. Ni le manuel blue-7 ni le transport MIDI du Forge PC de référence ne
-documentent une commande de récupération du patch actif en RAM. Aucun message
-de demande ni accusé de réception de patch n’est inventé.
+Reading `droid.ini` retrieves **the file saved on the card**, without converting
+its text. This file may differ from a patch previously activated in RAM through
+MIDI. Neither the blue-7 manual nor the reference Forge PC MIDI transport
+documents a command to retrieve the active patch from RAM. No patch request or
+acknowledgement message is invented.
 
-Références : [manuel officiel blue-7](https://dermannmitdermaschine.de/download/droid-manual-blue-7.pdf),
-copie locale `resources/official/droid-manual-blue-7.pdf`, pages 89–91 et 95–97.
+References: [official blue-7 manual](https://dermannmitdermaschine.de/download/droid-manual-blue-7.pdf),
+local copy `resources/official/droid-manual-blue-7.pdf`, pages 89–91 and 95–97.
 
-## Activate, Save to SD et Eject SD dans Forge PC
+## Activate, Save to SD and Eject SD in Forge PC
 
-La référence PC est le commit
-`60cbb7bbf9630c7d4a184e346a3d1120bde4d69f` :
+The PC reference is commit `60cbb7bbf9630c7d4a184e346a3d1120bde4d69f`:
 
-- `droidforge/main/patchoperator.cpp:420` : `saveToSD()` contrôle les problèmes
-  du patch, prépare `toDeployString()`, écrit `droid.ini`, puis demande l’éjection.
-- `droidforge/main/tuning.h:18` : `DROID_PATCH_FILENAME` vaut `droid.ini` ;
-  `MAX_DROID_INI`, ligne 36, limite la charge utile à 64 000 octets.
-- `droidforge/patch/patch.cpp:1338` : le déploiement assemble les contrôleurs puis
-  les circuits. Les annotations de l’éditeur ne sont pas le texte déployé.
-- `droidforge/patch/patch.cpp:1375`, notamment 1405–1408 : après écriture, Forge
-  relit le contenu et le compare à celui demandé.
-- `droidforge/main/patchoperator.cpp:494` : l’éjection utilise les fonctions de
-  l’OS, notamment `diskutil` sur Mac et `udisksctl` sur Linux.
-- `droidforge/os/midihost.cpp:6` : l’activation MIDI utilise le même texte,
-  précédé de `F0 00 66 66 50` et suivi de `F7`. `50` est le caractère ASCII `P`.
+- `droidforge/main/patchoperator.cpp:420`: `saveToSD()` checks patch problems,
+  prepares `toDeployString()`, writes `droid.ini`, then requests ejection.
+- `droidforge/main/tuning.h:18`: `DROID_PATCH_FILENAME` is `droid.ini`;
+  `MAX_DROID_INI`, on line 36, limits the payload to 64,000 bytes.
+- `droidforge/patch/patch.cpp:1338`: deployment assembles controllers followed by
+  circuits. Editor annotations are separate from the deployed text.
+- `droidforge/patch/patch.cpp:1375`, particularly 1405–1408: after writing, Forge
+  reads the contents again and compares them with the requested contents.
+- `droidforge/main/patchoperator.cpp:494`: ejection uses OS functions, including
+  `diskutil` on Mac and `udisksctl` on Linux.
+- `droidforge/os/midihost.cpp:6`: MIDI activation uses the same text, preceded by
+  `F0 00 66 66 50` and followed by `F7`. `50` is the ASCII character `P`.
 
-Le manuel p. 95–97 documente l’envoi de ce SysEx avec le switch à droite. Le
-contournement Mac des octets isolés dans Forge PC n’est pas une règle à appliquer
-automatiquement au transport Android.
+Pages 95–97 of the manual document sending this SysEx with the switch on the
+right. The Mac workaround for isolated bytes in Forge PC is not a rule to apply
+automatically to Android transport.
 
-Le moteur Android prépare séparément un texte ASCII/LF : contrôleurs actifs
-d’abord, circuits et paramètres actifs dans leur ordre, sans commentaires,
-labels ni annotations. Il conserve la précision textuelle des nombres et refuse
-les erreurs, l’analyse partielle, les paramètres actifs inconnus et les budgets
-dépassés. Les options PC de déduplication, noms courts et compression des câbles
-ne sont pas reprises dans cette première adaptation. Le source éditable reste
-distinct et conserve ses métadonnées.
+The Android engine separately prepares ASCII/LF text: active controllers first,
+then active circuits and parameters in their order, without comments, labels or
+annotations. It preserves the textual precision of numbers and rejects errors,
+partial analysis, unknown active parameters and exceeded budgets. PC options for
+deduplication, short names and cable compression are not included in this first
+adaptation. The editable source remains separate and retains its metadata.
 
-## Accès SD Android avec SAF
+## Android SD access through SAF
 
-Le contrôleur UI demande un dossier par `ACTION_OPEN_DOCUMENT_TREE` et conserve
-seulement l’autorisation accordée par Android. Choisir un dossier n’écrit rien.
-La [documentation SAF](https://developer.android.com/guide/topics/providers/document-provider)
-décrit ces accès et les racines temporaires de stockage USB.
+The UI controller requests a directory with `ACTION_OPEN_DOCUMENT_TREE` and
+retains only the permission granted by Android. Selecting a directory writes
+nothing. The [SAF documentation](https://developer.android.com/guide/topics/providers/document-provider)
+describes these accesses and temporary USB storage roots.
 
-`DroidSdStorage` opère sur le worker d’entrée/sortie :
+`DroidSdStorage` runs on the input/output worker:
 
-1. `read(tree)` cherche un unique fichier `droid.ini` dans le dossier choisi et
-   rend ses octets bruts, avec une limite de 4 Mio. Le décodage UTF-8 strict est
-   une étape séparée avant remplacement du patch dans l’éditeur.
-2. `save(tree, deployed)` refuse une charge vide, non ASCII ou supérieure à
-   64 000 octets. Un fichier déjà identique n’est pas réécrit.
-3. Avant remplacement, l’original est sauvegardé dans le stockage privé de
-   l’application, puis relu à l’octet. Un changement concurrent de l’original
-   interrompt l’opération avant écriture.
-4. L’écriture ferme et synchronise le fichier, puis vérifie sa relecture exacte.
-   Un échec peut laisser un fichier partiel sur la carte ; il reste explicitement
-   signalé et la sauvegarde privée disponible. Aucune restauration ou éjection
-   automatique n’est effectuée après cet échec.
-5. `listBackups()` et `readBackup(record)` permettent la récupération des
-   originaux privés. Les chemins sont limités au dossier de sauvegarde et la
-   lecture à 4 Mio. Ces méthodes rendent des octets ; une source non UTF-8 doit
-   pouvoir être conservée par export brut, sans conversion silencieuse.
+1. `read(tree)` locates a unique `droid.ini` in the selected directory and returns
+   its raw bytes, with a 4 MiB limit. Strict UTF-8 decoding is a separate step
+   before replacing the patch in the editor.
+2. `save(tree, deployed)` rejects an empty, non-ASCII or larger-than-64,000-byte
+   payload. An already identical file is not rewritten.
+3. Before replacement, the original is backed up in private application storage
+   and read back byte for byte. A concurrent change to the original stops the
+   operation before writing.
+4. The write closes and synchronizes the file, then verifies exact readback.
+   A failure may leave a partial file on the card; it remains explicitly reported
+   and the private backup remains available. No automatic restoration or ejection
+   occurs after this failure.
+5. `listBackups()` and `readBackup(record)` allow recovery of private originals.
+   Paths are restricted to the backup directory, and reads to 4 MiB. These methods
+   return bytes; a non-UTF-8 source can be preserved through raw export without
+   silent conversion.
 
-Les sauvegardes ne sont pas supprimées automatiquement. Leur budget de 128
-fichiers et 32 Mio provoque un refus visible **avant** un nouvel overwrite. La
-vérification de relecture ne transforme pas SAF en transaction atomique du
-fournisseur et ne certifie pas la résistance de la carte à une coupure électrique.
+Backups are not deleted automatically. Their budget of 128 files and 32 MiB
+causes a visible refusal **before** a new overwrite. Readback verification does
+not turn SAF into an atomic provider transaction and does not certify the card's
+resilience to power loss.
 
-Le X7 connecté a été identifié par le pilote de tests comme un périphérique MSC
-classe 8, VID `0483`, PID `a416`, sans périphérique MIDI dans ce mode. Le volume
-monté par Samsung n’avait pas de chemin FUSE visible aux applications.
-Ce constat ne suffit pas à conclure que SAF sera absent : le
-[fournisseur AOSP](https://android.googlesource.com/platform/frameworks/base/+/master/packages/ExternalStorageProvider/src/com/android/externalstorage/ExternalStorageProvider.java)
-peut utiliser un chemin interne si le volume est monté pour le bon utilisateur.
-Après reconnexion, la racine DROID a réellement été choisie et autorisée dans
-le sélecteur Samsung. Deux lectures SAF du fichier de carte ont donné les
-mêmes 74 269 octets ; l’import accepté, son autosauvegarde et le redémarrage
-à froid ont conservé ce texte exactement. L’annulation de la confirmation
-d’import a également conservé le document courant.
-L’application ne contourne pas ces droits en accédant directement à
-`/mnt/media_rw` ou en utilisant un shell privilégié.
+The test driver identified the connected X7 as an MSC class 8 device, VID `0483`,
+PID `a416`, with no MIDI device in this mode. Samsung mounted the volume without
+a FUSE path visible to applications. This observation does not establish that SAF
+is unavailable: the [AOSP provider](https://android.googlesource.com/platform/frameworks/base/+/master/packages/ExternalStorageProvider/src/com/android/externalstorage/ExternalStorageProvider.java)
+can use an internal path if the volume is mounted for the correct user.
+After reconnection, the DROID root was actually selected and granted in Samsung's
+picker. Two SAF reads of the card file returned the same 74,269 bytes; accepted
+import, autosave and a cold restart preserved this text exactly. Canceling the
+import confirmation also preserved the current document.
+The application does not bypass these permissions through direct access to
+`/mnt/media_rw` or a privileged shell.
 
-La préparation C++ a produit un déploiement de 49 163 octets, sans mutation du
-source, de l’état ou de l’historique. Save to SD l’a écrit puis relu exactement
-sur la carte ; une lecture instrumentée indépendante a confirmé l’égalité
-avec le résultat C++. L’original de 74 269 octets a été sauvegardé exactement
-dans le stockage privé avant remplacement. Une seconde sauvegarde sans
-changement n’a ni réécrit le fichier ni créé un second original privé.
+C++ preparation produced a 49,163-byte deployment without changing the source,
+state or history. Save to SD wrote and read it back exactly on the card; an
+independent instrumented read confirmed equality with the C++ result. The
+74,269-byte original was backed up exactly in private storage before replacement.
+A second unchanged save neither rewrote the file nor created a second private
+original.
 
-L’export brut de l’original a vérifié ses 74 269 octets dans un **fichier distinct**
-créé par le sélecteur. Il n’a pas remplacé le `droid.ini` existant. La remise de
-l’original dans ce fichier a ensuite été réalisée par un **harness privé de
-test**, avec des autorisations SAF normales : trois contrôles préalables du
-déploiement présent, écriture de l’original, synchronisation et trois relectures
-exactes. Deux lectures SD indépendantes et une copie hôte ont confirmé les
-74 269 octets d’avant campagne. Cette restauration n’est pas une commande de
-l’application. Le nettoyage a supprimé seulement le fichier distinct créé
-par l’export ; les autres identités d’entrées et les préférences sont inchangées,
-sans comparaison à l’octet du contenu des autres fichiers de carte.
-Le contenu, le nom du fichier distinct et les empreintes privées ne sont pas publiés.
+Raw export of the original verified its 74,269 bytes in a **distinct file**
+created by the picker. It did not replace the existing `droid.ini`. Restoring the
+original to that file was subsequently performed by a **private test harness**
+with normal SAF permissions: three preflight checks of the deployed contents,
+writing the original, synchronization and three exact readbacks. Two independent
+SD reads and a host copy confirmed the 74,269 bytes from before the campaign.
+This restoration is not an application command. Cleanup deleted only the
+separate file created by export; the other entry identities and preferences
+were unchanged, without comparing the contents of other card files byte for byte.
+The contents, distinct filename and private hashes are not published.
 
-## Éjection réelle
+## Actual ejection
 
 [`DocumentsContract.ejectRoot()`](https://developer.android.com/reference/android/provider/DocumentsContract#ejectRoot(android.content.ContentResolver,%20android.net.Uri))
-est une API publique depuis Android 26, applicable aux racines portant
-`FLAG_SUPPORTS_EJECT`. Elle peut échouer. Le
-[contrôle AOSP du fournisseur](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/core/java/android/provider/DocumentsProvider.java)
-exige une autorisation d’écriture sur l’URI de racine `/root/...` ; une permission
-sur l’URI de dossier `/tree/...` ne l’accorde pas automatiquement.
+is a public API since Android 26, applicable to roots with
+`FLAG_SUPPORTS_EJECT`. It can fail. The [AOSP provider check](https://android.googlesource.com/platform/frameworks/base/+/refs/heads/main/core/java/android/provider/DocumentsProvider.java)
+requires write permission on the `/root/...` root URI; permission on a
+`/tree/...` directory URI does not automatically grant it.
 
-`canEject(tree)` vérifie une racine identifiée, le droit spécifique et sa capacité.
-Si l’application ne peut pas l’éjecter, un repli public consiste à ouvrir
-le sélecteur système par `ACTION_OPEN_DOCUMENT_TREE`. Dans la liste des
-stockages, l’utilisateur touche l’icône d’éjection à côté de DROID, attend sa
-disparition ou la confirmation d’Android, puis revient sans choisir un dossier.
-`EXTRA_INITIAL_URI` peut suggérer le dossier DROID déjà autorisé ; cette
-[position initiale reste dépendante du système](https://developer.android.com/reference/android/provider/DocumentsContract#EXTRA_INITIAL_URI).
-Le résultat de ce parcours d’éjection est ignoré : il ne déclenche ni
-import, ni écriture, ni conservation d’une nouvelle autorisation.
+`canEject(tree)` checks an identified root, its specific permission and capability.
+If the application cannot eject it, a public fallback opens the system picker
+with `ACTION_OPEN_DOCUMENT_TREE`. In the storage list, the user touches the eject
+icon beside DROID, waits for its disappearance or Android's confirmation, then
+returns without selecting a directory. `EXTRA_INITIAL_URI` can suggest the
+already granted DROID directory; this [initial position remains system-dependent](https://developer.android.com/reference/android/provider/DocumentsContract#EXTRA_INITIAL_URI).
+The result of this ejection flow is ignored: it triggers no import, write or
+retention of a new permission.
 
-Ce parcours est fondé sur le
-[code DocumentsUI Android 16](https://android.googlesource.com/platform/packages/apps/DocumentsUI/+/refs/tags/android-security-16.0.0_r1/src/com/android/documentsui/sidebar/RootItem.java) :
-la barre latérale affiche une icône pour les racines déclarant l’éjection,
-indépendamment de l’action de sélection. Le
-[worker système](https://android.googlesource.com/platform/packages/apps/DocumentsUI/+/refs/tags/android-security-16.0.0_r1/src/com/android/documentsui/sidebar/EjectRootTask.java)
-appelle l’API d’éjection sous les droits de DocumentsUI. Ce parcours a réussi
-sur la tablette Samsung : **Eject SD** a ouvert DocumentsUI, l’icône DROID
-a été ciblée et le volume DROID est passé à l’état `unmounted`. La carte SD
-de la tablette est restée montée. Une application ordinaire n’obtient pas
-les droits de DocumentsUI en ouvrant le sélecteur. Les réglages de stockage et la notification
-USB restent des replis secondaires.
+This flow is based on [Android 16 DocumentsUI code](https://android.googlesource.com/platform/packages/apps/DocumentsUI/+/refs/tags/android-security-16.0.0_r1/src/com/android/documentsui/sidebar/RootItem.java):
+the sidebar shows an icon for roots declaring ejection support, independently
+of the selection action. The [system worker](https://android.googlesource.com/platform/packages/apps/DocumentsUI/+/refs/tags/android-security-16.0.0_r1/src/com/android/documentsui/sidebar/EjectRootTask.java)
+calls the ejection API with DocumentsUI permissions. This flow succeeded on the
+Samsung tablet: **Eject SD** opened DocumentsUI, the DROID icon was targeted and
+the DROID volume entered the `unmounted` state. The tablet's SD card remained
+mounted. An ordinary application does not obtain DocumentsUI permissions by
+opening the picker. Storage settings and the USB notification remain secondary
+fallbacks.
 
-Ouvrir un écran, annuler le sélecteur ou retirer une autorisation SAF
-**n’est pas une éjection**. Aucun résultat d’intent ne garantit qu’un volume a
-été démonté. Une demande API acceptée n’est pas non plus une preuve de fin
-d’un démontage asynchrone.
+Opening a screen, canceling the picker or revoking a SAF permission **is not an
+ejection**. No intent result guarantees that a volume has been unmounted. An
+accepted API request is also not proof that an asynchronous unmount has completed.
 
-Après une éjection réelle par Android, remettre le switch du X7 au milieu
-déconnecte l’USB et lance le fichier de la carte, selon le manuel p. 91.
-`DROIDERR.TXT` permet ensuite de consulter une éventuelle erreur du master.
-Aucun fichier firmware n’est écrit par ces commandes.
+After actual ejection by Android, returning the X7 switch to the middle
+disconnects USB and starts the card file, according to page 91 of the manual.
+`DROIDERR.TXT` can then show a possible master error. These commands write no
+firmware file.
 
-## Transfert MIDI réel et observation du MASTER
+## Real MIDI transfer and MASTER observation
 
-Après l’éjection SD, l’utilisateur a confirmé le passage du X7 en mode MIDI.
-Android a détecté **DROID X7 MIDI**, avec une entrée et une sortie USB.
-L’application a demandé la confirmation pour cette cible et ses
-**49 163 / 64 000 octets** de déploiement. Annuler n’a envoyé aucun octet.
-Après une nouvelle confirmation acceptée, **Transfert MIDI envoyé** a signalé
-que les **49 169 octets** de la trame avaient été remis au port Android.
-Le dialogue précisait l’absence d’accusé de réception dans le protocole officiel.
-Le source de l’éditeur est resté identique à l’octet après transfert ; Android
-indique le port fermé et aucune connexion MIDI active pour ce périphérique.
-Activate reste disponible. Aucun crash de l’application principale n’a été
-observé dans le buffer de crash disponible.
+After SD ejection, the user confirmed switching the X7 to MIDI mode. Android
+detected **DROID X7 MIDI**, with one USB input and one output. The application
+requested confirmation for this target and its **49,163 / 64,000-byte** deployment.
+Canceling sent no bytes. After a second accepted confirmation, the original
+**Transfert MIDI envoyé** message (MIDI transfer sent) reported that the
+**49,169-byte** frame had been handed to the Android port. The dialog explicitly
+stated the absence of an acknowledgement in the official protocol.
+The editor source remained byte-identical after transfer; Android reported the
+port closed and no active MIDI connection to this device. Activate remained
+available. No main application crash was observed in the available crash buffer.
 
-Ce résultat vérifie la fin du transport Android. L’utilisateur rapporte
-**« pas d’erreur »** après Activate ; cette observation est consignée séparément
-des 24 vérifications instrumentées. Le fonctionnement complet du patch reste
-non certifié. Aucun ACK n’est déduit de l’envoi ou de cette observation.
-La version firmware n’est pas lue par ce protocole ; un descripteur USB ne
-fournit pas cette preuve.
+This result verifies completion of Android transport. The user reported
+**“pas d’erreur” (no error)** after Activate; this observation is recorded
+separately from the 24 instrumented checks. Complete patch operation remains
+uncertified. No ACK is inferred from sending or this observation. The protocol
+does not read the firmware version; a USB descriptor does not provide that proof.
 
-## Tests obtenus et limites matérielles
+## Completed tests and hardware limitations
 
-Les classes SAF se compilent avec `android-36.jar`. La politique de transaction
-a passé **311 contrôles JDK** : conservation UTF-8/BOM/CRLF de l’original,
-sauvegarde corrompue ou impossible, conflit concurrent, déconnexion pendant
-l’écriture, relecture manquante/altérée, absence d’overwrite sur un fichier
-identique, limites 64 000 octets/4 Mio et validation des 256 valeurs d’octet.
-Ces tests utilisent un backend simulé ; ils ne constituent pas des écritures sur
-la carte réelle.
+The SAF classes compile against `android-36.jar`. The transaction policy passed
+**311 JDK checks**: preservation of UTF-8/BOM/CRLF originals, corrupt or impossible
+backups, concurrent conflicts, disconnection during writing, missing/altered
+readback, no overwrite of an identical file, 64,000-byte/4 MiB limits and
+validation of all 256 byte values. These tests use a simulated backend; they do
+not write to the actual card.
 
-**56 contrôles Android JNI/SAF** ont également réussi avec un fournisseur de
-documents privé : autorisations et révocation, fichier déjà identique,
-création/noms, écriture synchronisée, relecture, sauvegardes et déconnexion.
-Ils ont été réexécutés sur l’APK validation final, sans écriture sur le X7.
-**22 scénarios GUI** ont réussi avec le sélecteur Android et ce fournisseur :
-choix et autorisation du dossier, confirmation SAVE, écriture/relecture,
-import et sauvegarde du document précédent, récupération après rotation et
-arrêt du processus, absence de seconde sauvegarde sur un fichier identique,
-export brut exact de l’original après interruption du sélecteur, annulations
-et absence de fausse confirmation d’éjection. Les deux contrôles de nettoyage
-de la fixture ont également réussi.
+**56 Android JNI/SAF checks** also passed with a private documents provider:
+permissions and revocation, already identical files, creation/names, synchronized
+writes, readback, backups and disconnection. They were rerun on the final
+validation APK without writing to the X7. **22 GUI scenarios** passed with the
+Android picker and this provider: directory selection and grants, SAVE
+confirmation, writing/readback, import and backup of the previous document,
+recovery after rotation and process termination, no second backup of an identical
+file, exact raw export of the original after picker interruption, cancellation
+and no false ejection confirmation. Both fixture-cleanup checks also passed.
 
-Le [harness GPL reproductible](../tools/android_hardware_tests/README.md)
-documente les autorisations et l’isolation des fixtures. Le
-[rapport de validation 0.5.0](VALIDATION-0.5.0.md) identifie les APK finaux,
-le [rapport tablette](validation-data/0.5.0/tablet-audit-0.5.0.json) détaille l’interface et
-le [rapport des adaptateurs](validation-data/0.5.0/android-adapters-audit-0.5.0.json) les
-contrôles JNI/SAF. Aucune de ces suites ne revendique une opération sur la
-carte physique ou une activation MIDI du master.
+The [reproducible GPL harness](../tools/android_hardware_tests/README.md)
+documents permissions and fixture isolation. The [0.5.0 validation report](VALIDATION-0.5.0.md)
+identifies the final APKs; the [tablet report](validation-data/0.5.0/tablet-audit-0.5.0.json)
+details the interface and the [adapter report](validation-data/0.5.0/android-adapters-audit-0.5.0.json)
+the JNI/SAF checks. None of these suites claims an operation on the physical card
+or a MIDI activation of the master.
 
 ```powershell
 javac -encoding UTF-8 -d .cache/sd-io-test app/src/main/java/fr/androforge/DroidSdIo.java tools/DroidSdIoTest.java
 java -ea -cp .cache/sd-io-test fr.androforge.DroidSdIoTest
 ```
 
-Le complément physique a vérifié la lecture/importation de carte, l’écriture
-confirmée et relue, la sauvegarde exacte de l’original et son export brut
-distinct, puis une restauration par harness privé et l’éjection système réelle.
-L’APK principal installé a été comparé à l’octet avec l’APK preview publié dans
-`dist`, dont le SHA-256 est indiqué dans la validation. Le transport Android
-MIDI a ensuite réussi, puis l’utilisateur n’a constaté aucune erreur. Le
-[rapport physique X7](validation-data/0.5.0/droid-hardware-audit-0.5.0.json) consigne
-24 assertions réussies : 19 SD et 5 MIDI Android. L’observation utilisateur
-d’absence d’erreur reste séparée ; le fonctionnement complet du patch n’est
-pas certifié.
-Les preuves historiques 22 GUI/56 adaptateurs restent
-inchangées, et leurs compteurs ne sont pas additionnés à ces assertions physiques.
-Aucun envoi MIDI ou fonctionnement du master n’est
-déduit d’une sauvegarde SD ou de la préparation d’une trame SysEx.
+The physical follow-up verified card reading/import, confirmed writing and
+readback, exact backup of the original and its distinct raw export, followed by
+restoration through a private harness and actual system ejection. The installed
+main APK was compared byte for byte with the preview APK delivered in `dist`,
+whose SHA-256 is specified in the validation. Android MIDI transport subsequently
+succeeded, and the user then reported no error. The [physical X7 report](validation-data/0.5.0/droid-hardware-audit-0.5.0.json)
+records 24 passed assertions: 19 SD and 5 Android MIDI. The user's no-error
+observation remains separate; complete patch operation is not certified.
+The historical 22 GUI/56 adapter proofs are unchanged, and their counters are
+not added to these physical assertions. No MIDI transmission or master operation
+is inferred from an SD save or preparation of a SysEx frame.

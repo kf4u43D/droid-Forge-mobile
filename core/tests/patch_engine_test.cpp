@@ -70,7 +70,7 @@ void forgeCircuitCreationDefaults() {
     engine.addCircuit("copy");
     CHECK(engine.source() == "[copy]\n    input = 0\n    output =\n");
     CHECK(!parameter(engine, 0, "output")->disabled);
-    CHECK(diagnostic(engine, "warning", "non renseignée"));
+    CHECK(diagnostic(engine, "warning", "not set"));
     engine.undo(); CHECK(engine.source().empty());
     engine.redo(); CHECK(engine.blocks()[0].parameters.size() == 2);
     engine.load(""); engine.addCircuit("lfo");
@@ -262,23 +262,23 @@ void cableInventoryAndGlobalEdits() {
 void cableConnectivityDiagnosticsAreConservative() {
     PatchEngine engine;
     engine.load("[copy]\ninput = _MISSING\noutput = O1\n");
-    CHECK(diagnostic(engine, "error", "Aucune sortie"));
+    CHECK(diagnostic(engine, "error", "No output"));
     engine.load("[copy]\ninput = _CABLE\noutput = _CABLE\n");
     CHECK(!diagnostic(engine, "error"));
     engine.load("[copy]\ninput = _CABLE\noutput = _CABLE\n[copy]\noutput = _cable\n");
-    CHECK(diagnostic(engine, "error", "Plusieurs sorties"));
+    CHECK(diagnostic(engine, "error", "Multiple outputs"));
     // Connection remains allowed; diagnostics expose the resulting conflict.
     engine.connectParameters(1, "output", 0, "_CABLE", 0, "input", 0, "_CABLE", "_CABLE");
-    CHECK(diagnostic(engine, "error", "Plusieurs sorties"));
+    CHECK(diagnostic(engine, "error", "Multiple outputs"));
     engine.load("[copy]\noutput = _UNUSED\n");
-    CHECK(diagnostic(engine, "warning", "Aucune entrée"));
+    CHECK(diagnostic(engine, "warning", "No input"));
     CHECK(!diagnostic(engine, "error"));
     engine.load("#[copy]\ninput = _MISSING\noutput = _CABLE\n[copy]\n# input = _MISSING\noutput = _CABLE\n");
     CHECK(!diagnostic(engine, "error"));
-    CHECK(!diagnostic(engine, "warning", "Plusieurs sorties"));
+    CHECK(!diagnostic(engine, "warning", "Multiple outputs"));
     engine.load("[copy]\ninput = _UNKNOWN\n[future]\nopaque = _UNKNOWN\n");
-    CHECK(diagnostic(engine, "warning", "Validation partielle du câble"));
-    CHECK(!diagnostic(engine, "error", "Aucune sortie"));
+    CHECK(diagnostic(engine, "warning", "Partial validation of cable"));
+    CHECK(!diagnostic(engine, "error", "No output"));
     engine.load("[copy]\ninput = \"_PHANTOM\" # _COMMENT\noutput = O1\n");
     CHECK(engine.cables() == "{\"analysisComplete\":true,\"cables\":[]}");
     CHECK(!diagnostic(engine, "error"));
@@ -322,7 +322,7 @@ void quotedHashesAndUtf8() {
     CHECK(engine.source().find("Éditeur 🥁") != std::string::npos);
     CHECK(engine.state().find("\\\"Another # hash\\\"") != std::string::npos);
     engine.load("[copy]\ninput = \"unfinished # hash\noutput = O1\n");
-    CHECK(diagnostic(engine, "error", "guillemets"));
+    CHECK(diagnostic(engine, "error", "quoted string"));
     const std::string malformed = std::string("[future]\npayload = ") + char(0xff) + '\n';
     engine.load(malformed);
     CHECK(engine.source() == malformed);
@@ -362,8 +362,8 @@ void syntaxAndSchemaValidation() {
     };
     for (const auto& expression : valid) {
         engine.load("[copy]\ninput = " + expression + "\noutput = O1\n");
-        CHECK(!diagnostic(engine, "error", "Expression DROID"));
-        CHECK(!diagnostic(engine, "error", "guillemets"));
+        CHECK(!diagnostic(engine, "error", "DROID expression"));
+        CHECK(!diagnostic(engine, "error", "quoted string"));
     }
     const std::vector<std::string> invalid = {
         "I1 / 0", "I1 / 0.0V", "I1 / I2", "I1 + I2 + I3", "I1 * I2 * I3", "(I1)", "nan", "1e3", "I1 @ 2", "_", "P1", "Z1", "\"unterminated", "\"é\"", "\"a\\b\""
@@ -376,7 +376,7 @@ void syntaxAndSchemaValidation() {
     CHECK(diagnostic(engine, "error"));
     engine.load("[copy]\ninput = \noutput =\n");
     CHECK(!diagnostic(engine, "error"));
-    CHECK(diagnostic(engine, "warning", "non renseignée"));
+    CHECK(diagnostic(engine, "warning", "not set"));
     engine.load("[copy]\nunknown = I1\n");
     CHECK(diagnostic(engine, "warning", "unknown"));
     CHECK(!diagnostic(engine, "error"));
@@ -417,11 +417,11 @@ void duplicateAndDisabledAssignments() {
     PatchEngine engine;
     engine.load("#[copy]\n# input = 1\ninput = 2\ninput = 3 # effective\n# input = 4\n");
     CHECK(engine.blocks()[0].disabled);
-    CHECK(!diagnostic(engine, "warning", "plusieurs"));
+    CHECK(!diagnostic(engine, "warning", "multiple"));
     engine.setParameter(0, "i", "5");
     CHECK(engine.source() == "#[copy]\n# input = 1\ninput = 2\ninput = 5 # effective\n# input = 4\n");
     engine.load("[copy]\n# i = 1\ninput = 2\ni = 3 # effective\n# input = 4\n");
-    CHECK(diagnostic(engine, "warning", "plusieurs"));
+    CHECK(diagnostic(engine, "warning", "multiple"));
     engine.setParameter(0, "input", "5");
     CHECK(engine.source() == "[copy]\n# i = 1\ninput = 2\ni = 5 # effective\n# input = 4\n");
     engine.load("[copy]\n# input = 1\n");
@@ -447,13 +447,13 @@ void duplicateAndDisabledAssignments() {
     }) {
         engine.load(source);
         CHECK(!diagnostic(engine, "error"));
-        CHECK(diagnostic(engine, "warning", "Valeur désactivée"));
+        CHECK(diagnostic(engine, "warning", "Disabled value"));
         CHECK(engine.source() == source);
     }
     engine.load("#[copy]\ninput = 1\ninput = 2\n");
-    CHECK(!diagnostic(engine, "warning", "plusieurs"));
+    CHECK(!diagnostic(engine, "warning", "multiple"));
     engine.load("#[copy] unexpected\ninput = 1\n");
-    CHECK(diagnostic(engine, "error", "En-tête"));
+    CHECK(diagnostic(engine, "error", "block header"));
 }
 
 void documentSizeLimitIsAtomic() {
@@ -511,12 +511,12 @@ void boundedAnalysisPreservesTheWholeDocument() {
 
     std::string manyBlocks;
     for (std::size_t i = 0; i <= PatchEngine::kMaxAnalyzedBlocks; ++i) manyBlocks += "[copy]\n";
-    verifyPartial(manyBlocks, "blocs");
+    verifyPartial(manyBlocks, "blocks");
     CHECK(engine.blocks().size() == PatchEngine::kMaxAnalyzedBlocks);
 
     std::string manyAssignments = "[copy]\n";
     for (std::size_t i = 0; i <= PatchEngine::kMaxAnalyzedParameters; ++i) manyAssignments += "# input = 1\n";
-    verifyPartial(manyAssignments, "affectations");
+    verifyPartial(manyAssignments, "assignments");
     CHECK(engine.blocks()[0].parameters.size() == PatchEngine::kMaxAnalyzedParameters);
 
     std::string manyErrors;
@@ -524,18 +524,18 @@ void boundedAnalysisPreservesTheWholeDocument() {
     verifyPartial(manyErrors, "diagnostics");
     CHECK(engine.diagnostics().size() == PatchEngine::kMaxDiagnostics);
 
-    verifyPartial("[copy]\ninput = \"" + std::string(PatchEngine::kMaxAnalyzedFieldBytes, 'a') + "\"\n", "champ");
+    verifyPartial("[copy]\ninput = \"" + std::string(PatchEngine::kMaxAnalyzedFieldBytes, 'a') + "\"\n", "field");
     CHECK(engine.blocks()[0].parameters.empty());
-    verifyPartial("# LABELS: firmware=" + std::string(PatchEngine::kMaxAnalyzedFieldBytes + 1, 'a') + "\n", "champ");
+    verifyPartial("# LABELS: firmware=" + std::string(PatchEngine::kMaxAnalyzedFieldBytes + 1, 'a') + "\n", "field");
     CHECK(engine.blocks().empty());
-    verifyPartial('[' + std::string(PatchEngine::kMaxAnalyzedFieldBytes + 1, 'a') + "]\n", "champ");
-    verifyPartial("[copy]\n" + std::string(PatchEngine::kMaxAnalyzedFieldBytes + 1, 'a') + " = 1\n", "champ");
+    verifyPartial('[' + std::string(PatchEngine::kMaxAnalyzedFieldBytes + 1, 'a') + "]\n", "field");
+    verifyPartial("[copy]\n" + std::string(PatchEngine::kMaxAnalyzedFieldBytes + 1, 'a') + " = 1\n", "field");
 
     // The cumulative field budget still catches many individually small fields.
     std::string excessiveFields = "[copy]\n";
     const auto longValue = std::string(8000, 'a');
     for (int i = 0; i < 132; ++i) excessiveFields += "# input = \"" + longValue + "\"\n";
-    verifyPartial(excessiveFields, "volume des champs");
+    verifyPartial(excessiveFields, "memory budget");
 
     std::string harmlessComments = "# ";
     harmlessComments.append(PatchEngine::kMaxSourceBytes - harmlessComments.size(), 'x');
@@ -733,15 +733,15 @@ void limitsFirmwareAndJson() {
     PatchEngine engine;
     engine.load("# LABELS: firmware=future-99; version=1\n[copy]\ninput = I1\n");
     CHECK(engine.state().find("\"firmware\":\"future-99\"") != std::string::npos);
-    CHECK(diagnostic(engine, "warning", "Firmware"));
+    CHECK(diagnostic(engine, "warning", "Declared firmware"));
     std::string large = "# ";
     large.append(65000, 'x');
     engine.load(large);
     CHECK(engine.source() == large);
-    CHECK(diagnostic(engine, "warning", "64 000"));
+    CHECK(diagnostic(engine, "warning", "64,000"));
     engine.load("[copy]\ninput = _" + std::string(64, 'a') + '\n');
-    CHECK(diagnostic(engine, "warning", "63 octets"));
-    CHECK(!diagnostic(engine, "error", "Expression DROID"));
+    CHECK(diagnostic(engine, "warning", "63 bytes"));
+    CHECK(!diagnostic(engine, "error", "DROID expression"));
     CHECK(PatchEngine::catalogue().front() == '[');
     CHECK(PatchEngine::catalogue().find("\"name\":\"copy\"") != std::string::npos);
     engine.load("");

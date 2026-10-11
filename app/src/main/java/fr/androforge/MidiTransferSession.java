@@ -54,7 +54,7 @@ final class MidiTransferSession implements Closeable {
         if (completion == null || connector == null) throw new IllegalArgumentException("Missing MIDI callback or connector");
         String problem = MidiSysExFramer.activationProblem(frame);
         if (!problem.isEmpty()) { notifyFailure(completion, problem); return; }
-        if (timeoutMs < 250 || timeoutMs > 120000) { notifyFailure(completion, "Délai MIDI invalide."); return; }
+        if (timeoutMs < 250 || timeoutMs > 120000) { notifyFailure(completion, "Invalid MIDI timeout."); return; }
         if (closed.get()) return;
         final byte[] copy;
         try { copy = Arrays.copyOf(frame, frame.length); }
@@ -62,19 +62,19 @@ final class MidiTransferSession implements Closeable {
         execute(() -> {
             if (closed.get()) return;
             if (active != null || opening.get() || writing.get() || closing.get() != 0) {
-                notifyFailure(completion, "Un transfert ou une fermeture MIDI est encore en cours."); return;
+                notifyFailure(completion, "A MIDI transfer or close operation is still in progress."); return;
             }
             try {
                 Operation operation = new Operation(copy, completion);
                 active = operation;
-                operation.timeout = control.schedule(() -> finish(operation, "Le transfert MIDI a dépassé le délai prévu.", false), timeoutMs, TimeUnit.MILLISECONDS);
+                operation.timeout = control.schedule(() -> finish(operation, "The MIDI transfer timed out.", false), timeoutMs, TimeUnit.MILLISECONDS);
                 opening.set(true);
                 io.execute(() -> {
                 try {
                     if (!operation.stopped) connector.open(new Opened() {
                         @Override public boolean isWanted() { return !closed.get() && !operation.stopped; }
                         @Override public void onOpened(Channel channel) {
-                            if (channel == null) { onFailure("Le périphérique MIDI n’a pas pu être ouvert."); return; }
+                            if (channel == null) { onFailure("The MIDI device could not be opened."); return; }
                             if (!isWanted()) { dispose(channel); opening.set(false); return; }
                             opening.set(false);
                             if (!execute(() -> opened(operation, channel))) dispose(channel);
@@ -131,8 +131,8 @@ final class MidiTransferSession implements Closeable {
         });
     }
 
-    void cancel() { stop("Transfert MIDI annulé."); }
-    void disconnected() { stop("Le périphérique MIDI a été déconnecté."); }
+    void cancel() { stop("MIDI transfer cancelled."); }
+    void disconnected() { stop("The MIDI device was disconnected."); }
 
     private void stop(String message) {
         Operation operation = active;
@@ -153,9 +153,9 @@ final class MidiTransferSession implements Closeable {
         if (operation.channel != null) dispose(operation.channel);
         if (sent) dispatch(operation.completion::onSent);
         else {
-            String detail = message == null || message.isEmpty() ? "Le transfert MIDI a échoué." : message;
+            String detail = message == null || message.isEmpty() ? "The MIDI transfer failed." : message;
             if (operation.sent > 0) detail += " " + operation.sent + " / " + operation.frame.length
-                    + " octets ont été remis à Android ; l’activation du patch n’est pas confirmée.";
+                    + " bytes were handed to Android; patch activation is not confirmed.";
             notifyFailure(operation.completion, detail);
         }
     }
@@ -190,15 +190,15 @@ final class MidiTransferSession implements Closeable {
         Operation operation = active;
         if (operation != null) operation.stopped = true;
         execute(() -> {
-            if (operation != null) finish(operation, "Session MIDI fermée.", false);
+            if (operation != null) finish(operation, "MIDI session closed.", false);
             control.shutdownNow(); io.shutdownNow(); cleanup.shutdown();
         });
     }
 
     static String errorMessage(Throwable failure) {
-        if (failure instanceof OutOfMemoryError) return "Mémoire insuffisante pour le transfert MIDI.";
+        if (failure instanceof OutOfMemoryError) return "Insufficient memory for the MIDI transfer.";
         String message = failure.getMessage();
-        if (message == null || message.trim().isEmpty()) return "Le périphérique MIDI n’est pas disponible.";
+        if (message == null || message.trim().isEmpty()) return "The MIDI device is unavailable.";
         return message.length() > 512 ? message.substring(0, 512) : message;
     }
 
